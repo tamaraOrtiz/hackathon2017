@@ -69,6 +69,8 @@ Correo: tamara.tfs@gmail.com bordonwork@gmail.com
       $(".button-collapse").sideNav('hide');
       $('.principal_content').html(mapaTpl());
        });
+      $(".navegacion_principal").html("");
+      $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Mapas</a>");
     
     $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Plan Nacional de Desarrollo 2030</a>");
     $("#facebook").on('click', function (){
