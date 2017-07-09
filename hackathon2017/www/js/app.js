@@ -1,6 +1,6 @@
-/* 
+/*
 Autores: Tamara Ortiz y Ruben Bordon
-Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com
 */
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function () {
@@ -41,13 +41,13 @@ Correo: tamara.tfs@gmail.com bordonwork@gmail.com
     //departamentoRender.list($('.menu_list'));
     var nivelRender = new NivelRender();
     nivelRender.initialize();
-    
+
     $(".button-collapse").sideNav();
     $('.principal_content').html(homeTpl());
     $('.collapsible').collapsible();
     $(".navegacion_principal").html("");
     $(".nivel_tab").on('click', function (){
-      
+
       nivelRender.list($('.principal_content'));
       $(".navegacion_principal").html("");
       $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Niveles</a>");
