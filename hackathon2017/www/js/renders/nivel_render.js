@@ -1,7 +1,11 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var NivelRender = function () {
   var nivel, nivelList;
   var showTemplate  = Handlebars.compile($("#nivel-show-tpl").html());
-  var listTemplate  = Handlebars.compile($('#menu-list-tpl').html());
+  var listTemplate  = Handlebars.compile($('#niveles-list-tpl').html());
   var nivelService  = new NivelService();
   var institucionService = new InstitucionService();
   var institucionRender  = new InstitucionRender();

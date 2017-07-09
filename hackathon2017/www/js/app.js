@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function () {
 
@@ -6,6 +10,7 @@
   var service        = new AvanceService();
   var pdd_service        = new PDDService();
   var initTpl        = Handlebars.compile($("#init-tpl").html());
+  var homeTpl        = Handlebars.compile($("#home-tpl").html());
   var homeTpl        = Handlebars.compile($("#home-tpl").html());
 
   renderInitView();
@@ -36,12 +41,24 @@
     //departamentoRender.list($('.menu_list'));
     var nivelRender = new NivelRender();
     nivelRender.initialize();
-    nivelRender.list($('.principal_content'));
+    
     $(".button-collapse").sideNav();
     $('.principal_content').html(homeTpl());
     $('.collapsible').collapsible();
     $(".navegacion_principal").html("");
+    $(".nivel_tab").on('click', function (){
+      
+      nivelRender.list($('.principal_content'));
+      $(".navegacion_principal").html("");
+      $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Niveles</a>");
+
+      $(".button-collapse").sideNav('hide');
+       });
     $(".slide-title").on('click', function (){
+      renderHomeView();
+      $(".button-collapse").sideNav('hide');
+       });
+    $(".pnd_tab").on('click', function (){
       renderHomeView();
       $(".button-collapse").sideNav('hide');
        });

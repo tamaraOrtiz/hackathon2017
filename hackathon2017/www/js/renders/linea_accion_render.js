@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var LineaAccionRender = function () {
   var lineaAccion, lineaAccionList;
   //var showTemplate  = Handlebars.compile($("#lineaAccion-show-tpl").html());

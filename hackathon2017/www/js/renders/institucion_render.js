@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var InstitucionRender = function () {
   var institucion, institucionList;
   var showTemplate  = Handlebars.compile($("#institucion-show-tpl").html());

@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var StrategyService = function() {
     var url;
     var all_strategy= "/sql?q=SELECT%20eje_estrategico_id,eje_estrategico_nombre%20FROM%20pnd_meta_fisica";

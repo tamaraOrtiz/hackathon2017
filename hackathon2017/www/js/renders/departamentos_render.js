@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var DerpatamentoRender = function () {
   var departamento, departamentoList;
   //var showTemplate  = Handlebars.compile($("#institucion-show-tpl").html());

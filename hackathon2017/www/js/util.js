@@ -1,3 +1,7 @@
+/* 
+Autores: Tamara Ortiz y Ruben Bordon
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+*/
 var maxHeight = $('body').prop('clientHeight') - $('.nav-extended').prop('clientHeight');
 var maxWidth = $('body').prop('clientWidth');
 
