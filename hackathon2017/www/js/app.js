@@ -11,7 +11,7 @@ Correo: tamara.tfs@gmail.com bordonwork@gmail.com
   var pdd_service        = new PDDService();
   var initTpl        = Handlebars.compile($("#init-tpl").html());
   var homeTpl        = Handlebars.compile($("#home-tpl").html());
-  var homeTpl        = Handlebars.compile($("#home-tpl").html());
+  var mapaTpl        = Handlebars.compile($("#pobreza-map").html());
 
   renderInitView();
   /* --------------------------------- Event Registration -------------------------------- */
@@ -65,6 +65,11 @@ Correo: tamara.tfs@gmail.com bordonwork@gmail.com
     $(".icon_nav").on('click', function (){
       renderHomeView();
        });
+    $(".map_tab").on('click', function (){
+      $(".button-collapse").sideNav('hide');
+      $('.principal_content').html(mapaTpl());
+       });
+    
     $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Plan Nacional de Desarrollo 2030</a>");
     $("#facebook").on('click', function (){
       var options = {
