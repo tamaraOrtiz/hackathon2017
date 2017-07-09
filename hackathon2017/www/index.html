@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html>
+<head>
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+  https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+  * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+  * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+  * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+  * Enable inline JS: add 'unsafe-inline' to default-src
+-->
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" type="text/css" href="css/ratchet/ratchet.min.css">
+<link rel="stylesheet" type="text/css" href="css/ratchet/ratchet-theme-android.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<title>proyectandoPy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/lib/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+</head>
+<body>
+<!-- Left aligned menu below button -->
+  <ul id="slide-out" class="side-nav">
+      <li><div class="user-view">
+        <div class="background">
+          <img style="width: 100%;" src="img/fondo.svg">
+        </div>
+
+        <!-- <a href="#"><img class="circle" src="img/ico2.png" style="border-radius: 0;"></a> -->
+        <a href="#"><span class="white-text name slide-title">proyectando<span class="sub_ico">Py</h1></a></span></a>
+        <a href="#"><span class="white-text email" style="font-size: 11px;">www.senatics.gov.py</span></a>
+      </div></li>
+      <div class="menu_list"></div>
+
+    </ul>
+    <nav class="nav-extended" style="display:none;">
+      <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse button_menu_app" ><i class="material-icons" style="margin-top: 3px;">menu</i></a>
+        <a href="#!" class="brand-logo"><h1 class="icon_nav">proyectando<span class="sub_ico">Py</span></h1></a>
+
+      </div>
+      <div class="nav-content">
+        <div class="col s12 navegacion_principal">
+        </div>
+    </nav>
+
+
+
+  <div class="principal_content"></div>
+
+
+
+
+  <script id="init-tpl" type="text/template">
+      <div class="container init_app">
+        <h1 class="icon_app">proyectando<span class="sub_ico">Py</span></h1>
+      </div>
+  </script>
+  <script id="home-tpl" type="text/template">
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img class="circle alignnone wp-image-152 size-thumbnail" src="http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/1-150x150.png" alt="1" width="50" height="50" >
+
+        <span class="title">Eje 1 </span>
+        <p>Reducción de pobreza y desarrollo social </br>
+        <ul class="collapsible collapsible_home" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header header_home">Ver Mas</div>
+            <div class="collapsible-body body_home"><span>
+            <h5 class="sub_title_home">Diagnósticos</h5>
+            <a title="Pobreza" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/pobreza/">Pobreza</a><br>
+            <a title="Gestión educativa" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/gestion-educativa/">Gestión educativa</a><br>
+            <a title="Servicios de salud" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/servicios-de-salud/">Servicios de salud</a><br>
+            <a title="Vivienda" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/vivienda/">Vivienda</a><br>
+            <a title="Agua y saneamiento" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/agua-y-saneamiento/">Agua y saneamiento</a><br>
+            <a title="Identidad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/identidad/">Identidad</a><br>
+            <a title="Igualdad de género" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/igualdad-de-genero/">Igualdad de género</a><br>
+            <a title="Grupos en situación de vulnerabilidad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/grupos-en-situacion-de-vulnerabilidad/">Grupos en situación de vulnerabilidad</a><br>
+            <a title="Justicia y derechos humanos" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/justicia-y-derechos-humanos/">Justicia y derechos humanos</a><br>
+            <a title="Administración pública" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/administracion-publica/">Administración pública</a><br>
+            <a title="Gestión pública y articulación territorial" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/gestion-publica-y-articulacion-territorial/">Gestión pública y articulación territorial</a><br>
+            <a title="Seguridad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/seguridad/">Seguridad</a><br>
+            <a title="Residuos sólidos" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/residuos-solidos/">Residuos sólidos</a>
+            <h5 class="sub_title_home">Estrategias</h5>
+            <a title="Estrategia 1.1 – Desarrollo social equitativo" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-1-1/">Estrategia 1.1 – Desarrollo social equitativo<br>
+              </a><a title="Estrategia 1.2 – Servicios sociales de calidad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-1-2/">Estrategia 1.2 – Servicios sociales de calidad<br>
+              </a><a title="Estrategia 1.3 – Desarrollo local participativo" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-1-3/">Estrategia 1.3 – Desarrollo local participativo<br>
+              </a><a title="Estrategia 1.4 – Hábitat adecuado y sostenible" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-1-4/">Estrategia 1.4 – Hábitat adecuado y sostenible</a>
+          </span></div>
+          </li>
+
+        </ul>
+        </p>
+
+      </li>
+
+      <li class="collection-item avatar">
+        <img class="circle alignnone wp-image-151 size-thumbnail" src="http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/2-150x150.png" alt="2" width="50" height="50" >
+
+        <span class="title">Eje 2</span>
+        <p>Crecimiento económico inclusivo</br>
+        <ul class="collapsible collapsible_home" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header header_home">Ver Mas</div>
+            <div class="collapsible-body body_home"><span>
+            <h5 class="sub_title_home">Diagnósticos</h5>
+            <a title="Estabilidad macroeconómica" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/estabilidad-macroeconomica/">Estabilidad macroeconómica</a><br>
+            <a title="Conectividad interna y externa" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/conectividad-interna-y-externa/">Conectividad interna y externa</a><br>
+            <a title="Empleo de calidad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/empleo-de-calidad/">Empleo de calidad</a><br>
+            <a title="Seguridad social" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/seguridad-social/">Seguridad social</a><br>
+            <a title="Micro, pequeñas y medianas empresas" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/micro-pequenas-y-medianas-empresas/">Micro, pequeñas y medianas empresas</a><br>
+            <a title="Recursos energéticos renovables" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/recursos-energeticos-renovables/">Recursos energéticos renovables</a><br>
+            <a title="Investigación, desarrollo tecnológico y educación superior" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/investigacion-desarrollo-tecnologico-y-educacion-superior/">Investigación, desarrollo tecnológico y educación superior</a><br>
+            <a title="Fomento de la producción" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/fomento-de-la-produccion/">Fomento de la producción</a><br>
+            <a title="Competencia y formalización de la economía" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/competencia-y-formalizacion-de-la-economia/">Competencia y formalización de la economía</a><br>
+            <a title="Cadenas de valor regionales" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/cadenas-de-valor-regionales/">Cadenas de valor regionales</a><br>
+            <a title="Producción sostenible" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/produccion-sostenible/">Producción sostenible</a><br>
+            <a title="Gobierno abierto y transparente" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/gobierno-abierto-y-transparente/">Gobierno abierto y transparente</a><br>
+            <a title="Defensa nacional" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/defensa-nacional/">Defensa nacional</a>
+            <h5 class="sub_title_home">Estrategias</h5>
+            <a title="Estrategia 2.1 – Empleo y seguridad social" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-2-1/">Estrategia 2.1 – Empleo y seguridad social<br>
+              </a><a title="Estrategia 2.2 – Competitividad e innovación" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-2-2/">Estrategia 2.2 – Competitividad e innovación<br>
+              </a><a title="Estrategia 2.3 – Regionalización y diversificación productiva" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-2-3/">Estrategia 2.3 – Regionalización y diversificación productiva<br>
+              </a><a title="Estrategia 2.4 – Valorización del capital ambiental" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-2-4/">Estrategia 2.4 – Valorización del capital ambiental</a>
+          </span></div>
+          </li>
+
+        </ul>
+        </p>
+
+
+      </li>
+
+      <li class="collection-item avatar">
+        <img class="circle alignnone wp-image-150 size-thumbnail" src="http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/3-150x150.png" alt="3" width="50" height="50">
+
+        <span class="title">Eje3</span>
+        <p>Inserción de Paraguay en el mundo</br>
+        <ul class="collapsible collapsible_home" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header header_home">Ver Mas</div>
+            <div class="collapsible-body body_home"><span>
+            <h5 class="sub_title_home">Diagnósticos</h5>
+            <a title="Apertura de mercados y presencia internacional" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/apertura-de-mercados-y-presencia-internacional/">Apertura de mercados y presencia internacional</a><br>
+            <a title="Turismo" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/turismo/">Turismo</a><br>
+            <a title="Cultura" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/cultura/">Cultura</a><br>
+            <a title="Redes de información" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/redes-de-informacion/">Redes de información</a><br>
+            <a title="Integración energética" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/integracion-energetica/">Integración energética</a><br>
+            <a title="Integración fronteriza" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/integracion-fronteriza/">Integración fronteriza</a><br>
+            <a title="Migraciones" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/migraciones/">Migraciones</a><br>
+            <a title="Cambio climático" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/cambio-climatico/">Cambio climático</a><br>
+            <a title="Conservación de la biodiversidad" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/conservacion-de-la-biodiversidad/">Conservación de la biodiversidad</a><br>
+            <a title="Cooperación internacional" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/cooperacion-internacional/">Cooperación internacional</a><br>
+            <a title="Prevención del lavado de dinero" href="http://www.stp.gov.py/pnd/ejes-estrategicos/diagnosticos/prevencion-del-lavado-de-dinero/">Prevención del lavado de dinero</a>
+            <h5 class="sub_title_home">Estrategias</h5>
+            <a title="Estrategia 3.1 – Igualdad de oportunidades en un mundo globalizado" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-3-1/">Estrategia 3.1 – Igualdad de oportunidades en un mundo globalizado<br>
+              </a><a title="Estrategia 3.2 – Atracción de inversiones, comercio exterior e imagen país" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-3-2/">Estrategia 3.2 – Atracción de inversiones, comercio exterior e imagen país<br>
+              </a><a title="Estrategia 3.3 – Integración económica regional" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-3-3/">Estrategia 3.3 – Integración económica regional<br>
+              </a><a title="Estrategia 3.4 – Sostenibilidad del hábitat global" href="http://www.stp.gov.py/pnd/ejes-estrategicos/estrategias/estrategia-3-4/">Estrategia 3.4 – Sostenibilidad del hábitat global</a>
+          </span></div>
+          </li>
+
+        </ul>
+        </p>
+      </li>
+    </ul>
+
+    <div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large red">
+      <i class="large share_ico"><i class="fa fa-share-alt" aria-hidden="true"></i></i>
+    </a>
+    <ul>
+      <li><a class="btn-floating light-blue lighten-1"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+      <li><a class="btn-floating  light-blue darken-4" id="facebook" data-url= "http://www.stp.gov.py/pnd/ejes-estrategicos/"><i class="fa fa-facebook"></i></a></li>
+    </ul>
+  </div>
+
+  </script>
+
+  <script id="pnd-show-tpl" type="text/template">
+    <div id="instituciones" class="scrollable">
+
+    </div>
+  </script>
+
+
+
+  <script id="institucion-list-tpl" type="text/template">
+    <div class="" id="institucion-list-id">
+      {{#each institucionList}}
+        <div class="panel panel-defualt institucion-item item_entidad_{{entidad_id}}" data-id={{entidad_id}} data-nivel_id={{nivel_id}}>
+          <div class="panel-heading entidad_list_{{entidad_id}} " >
+            {{entidad_nombre}} <span class="badge institucion_badge" data-nivel_id={{nivel_id}} data-id={{entidad_id}} data-nivel_id={{nivel_id}} style="cursor: pointer; background: none;"><i class="fa fa-angle-right fa-2x" aria-hidden="true"></i></span>
+          </div>
+
+          <div class="panel-body entidad_body_{{entidad_id}} int_programa" data-id={{entidad_id}} data-nivel_id={{nivel_id}}></div>
+        </div>
+      {{/each}}
+    </div>
+  </script>
+
+
+  <script id="institucion-show-tpl" type="text/template">
+    <div class="row">
+      {{entidad_nombre}}
+    </div>
+    <div id="chart-list" class="row"></div>
+  </script>
+
+  <script id="avances-view-tpl" type="text/template">
+      <div class='search-view'>
+          <input class='search-key' type="search" placeholder="C&#243;digo"/>
+          <div class="avance-list"></div>
+          <div id="#servicios-basicos-footer"></div>
+      </div>
+  </script>
+
+  <script id="nivel-show-tpl" type="text/template">
+    <div id="instituciones" class="scrollable">
+
+    </div>
+  </script>
+
+  <script id="menu-list-tpl" type="text/template">
+    <ul class="list-group" id="slide-menu">
+      {{#each nivelList}}
+        <li class="nivel-item" data-id={{nivel_id}}>
+          <div class="option_tab">
+            {{nivel_nombre}}
+            <div class="chip">
+              {{count}}
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </script>
+
+
+
+  <script id="menu-list-tpl2" type="text/template">
+    <ul class="list-group" id="slide-menu">
+      {{#each departamentoList}}
+        <li class="menu_item">
+          <div class="option_tab" data-id={{dpto}}>
+            {{dpto_desc}}
+          </div>
+        </li>
+      {{/each}}
+
+    </ul>
+  </script>
+  <script id="avances-list-tpl" type="text/template">
+    <ul class="list-group" id="avance">
+      {{#each avances}}
+        <li class="list-group-item list-group-item-action flex-column align-items-start school-item" data-id={{la_id}}>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="collections-title">{{sigla}}</h5>
+            <small>{{la_nombre}}</small>
+          </div>
+          <p class="class="mb-1"">{{la_um_descp}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <script id="institucion-linea-accion-view-tpl" type="text/template">
+    {{institucion}}
+    <ul class="list-group" id="institucion-linea-accion">
+      {{#each linea_acciones}}
+        <li class="list-group-item list-group-item-action flex-column align-items-start linea-accion-item" data-id={{la_id}}>
+          {{la_nombre}}
+        </li>
+      {{/each}}
+  </script>
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/lib/handlebars.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/lib/navbar.js"></script>
+  <script type="text/javascript" src="js/services/json/pdd_service.js"></script>
+  <script type="text/javascript" src="js/lib/echarts.min.js"></script>
+
+  <script type="text/javascript" src="js/util.js"></script>
+  <!-- SERVICES -->
+  <script type="text/javascript" src="js/services/json/avance_service.js"></script>
+  <script type="text/javascript" src="js/services/json/pnd_service.js"></script>
+  <script type="text/javascript" src="js/services/json/institucion_service.js"></script>
+  <script type="text/javascript" src="js/services/json/nivel_service.js"></script>
+  <script type="text/javascript" src="js/services/json/pdd_service.js"></script>
+  <script type="text/javascript" src="js/services/json/linea_accion_service.js"></script>
+  <script type="text/javascript" src="js/services/json/programa_service.js"></script>
+  <!-- RENDERS -->
+  <script type="text/javascript" src="js/renders/pnd_render.js"></script>
+  <script type="text/javascript" src="js/renders/departamentos_render.js"></script>
+  <script type="text/javascript" src="js/renders/institucion_render.js"></script>
+  <script type="text/javascript" src="js/renders/nivel_render.js"></script>
+  <script type="text/javascript" src="js/renders/programa_render.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
