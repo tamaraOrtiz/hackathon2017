@@ -33,16 +33,16 @@ var NivelRender = function () {
         $.each(result.rows, function( index, programa ) {
           programa_tag.append( "<span class='chip_label entidad_tag' data-programa_nombre="+programa["programa_nombre"].toLowerCase() +" data-nivel_id="+nivel_id+" data-entidad_id="+id+" data-programa_id="+programa["programa_id"]+" data-tipo_presupuesto_id="+programa["tipo_presupuesto_id"]+">"+programa['programa_nombre'].toLowerCase()+"</span>" );
           cantidad = cantidad + programa['cantidad_total'];
-        });
-        $('.entidad_tag').on('click', function () {
-          var entidadId = $(this).data('entidad_id');
-          var nivelId = $(this).data('nivel_id');
-          var programaId = $(this).data('programa_id');
-          var tipoPresupuestoId =  $(this).data('tipo_presupuesto_id');
-          programaRender.show($("principal_content"), nivelId, entidadId, programaId, tipoPresupuestoId );
-          $(".navegacion_principal").html("");
-          $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>"+$(this).data("programa_nombre")+"</a>");
-          $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Programas</a>");
+          $($('.entidad_tag:last')[0]).on('click', function () {
+            var entidadId = $(this).data('entidad_id');
+            var nivelId = $(this).data('nivel_id');
+            var programaId = $(this).data('programa_id');
+            var tipoPresupuestoId =  $(this).data('tipo_presupuesto_id');
+            programaRender.show($(".principal_content"), nivelId, entidadId, programaId, tipoPresupuestoId );
+            $(".navegacion_principal").html("");
+            $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>"+$(this).data("programa_nombre")+"</a>");
+            $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Programas</a>");
+          });
         });
 
         item_tag.append("<span class='chip_second_label'><i class='fa fa-child' aria-hidden='true'></i>"+cantidad+"</span>");
