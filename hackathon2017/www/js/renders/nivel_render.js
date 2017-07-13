@@ -1,6 +1,6 @@
-/* 
+/*
 Autores: Tamara Ortiz y Ruben Bordon
-Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com
 */
 var NivelRender = function () {
   var nivel, nivelList;
@@ -62,7 +62,7 @@ var NivelRender = function () {
     $(".navegacion_principal").html("");
     $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>"+nivel.nivel_nombre+"</a>");
     $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Entidades</a>");
-    institucionService.findAll("nivel_id = '"+nivel.nivel_id+"'").done(function (result) {
+    institucionService.findAll("nivelid = '"+nivel.nivel_id+"'").done(function (result) {
       var institucionWrapper = $('#instituciones');
       var instituciones = result.rows;
       var l = instituciones.length;
