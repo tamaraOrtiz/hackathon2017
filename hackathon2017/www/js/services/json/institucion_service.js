@@ -1,6 +1,6 @@
-/* 
+/*
 Autores: Tamara Ortiz y Ruben Bordon
-Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com
 */
 var InstitucionService = function() {
 
@@ -29,7 +29,7 @@ var InstitucionService = function() {
 
   this.findAll = function(conditions) {
     var where = conditions !== undefined ? " WHERE "+conditions : "";
-    return $.ajax({ url: url + "?q=SELECT DISTINCT nivel_id, entidad_id, entidad_nombre FROM public.destinatarioproducto "+where+" ORDER BY entidad_nombre ASC LIMIT 20;" })
+    return $.ajax({ url: url + "?q=SELECT DISTINCT nivelid, entidadid, nombre FROM public.instituciones "+where+" ORDER BY nombre ASC LIMIT 20;" })
   }
 
 };

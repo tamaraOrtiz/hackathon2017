@@ -1,6 +1,6 @@
-/* 
+/*
 Autores: Tamara Ortiz y Ruben Bordon
-Correo: tamara.tfs@gmail.com bordonwork@gmail.com  
+Correo: tamara.tfs@gmail.com bordonwork@gmail.com
 */
 var InstitucionRender = function () {
   var institucion, institucionList;
@@ -20,7 +20,7 @@ var InstitucionRender = function () {
   };
 
   function showTpl (wrapper) {
-    institucionService.getResumenPrograma(institucion.nivel_id, institucion.entidad_id).done(function (result) {
+    institucionService.getResumenPrograma(institucion.nivelid, institucion.entidadid).done(function (result) {
       institucion['resumenPrograma'] = result.rows;
       wrapper.html(showTemplate({institucion: institucion}));
       resumenProgramaChart();
@@ -36,11 +36,14 @@ var InstitucionRender = function () {
     $(".int_programa").initScrollable({x: 'auto', y: 'hidden'});
     $('.institucion_badge').on('click', function () {
       var id = $(this).data('id');
-      var nivelId = $(this).data('nivel_id');
-      institucion = $.grep(institucionList, function(e){ return e.entidad_id == id && e.nivel_id == nivelId; })[0];
+      var nivelId = $(this).data('nivelid');
+      institucion = $.grep(institucionList, function(e){ return e.entidadid == id && e.nivelid == nivelId; })[0];
       showTpl($('.principal_content'));
       $(".navegacion_principal").html("");
-      $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>"+institucion.entidad_nombre+"</a>");
+      $(".navegacion_principal").append("<a href='javascript:void(0)' class='breadcrumb' id='link-{{institucion.nombre}}'>"+institucion.nombre+"</a>");
+      $('#link-'+institucion.nombre).on('click', function () {
+        //TODO
+      });
       $(".navegacion_principal").append("<a href='#!' class='breadcrumb'>Programas</a>");
     });
   };
