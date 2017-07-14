@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
@@ -11,7 +11,6 @@ import { BasePage } from '../../app/base-page';
   providers: [InstitucionData]
 })
 
-@Injectable()
 export class InstitucionPage extends BasePage {
   items: Array<{id: string, nivelId: string, nombre: string}>;
 

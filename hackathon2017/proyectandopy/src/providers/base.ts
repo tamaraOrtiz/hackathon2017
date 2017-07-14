@@ -23,7 +23,7 @@ export class BaseData {
   }
 
   getQuery(sql: string){
-    return new Promise<any>(resolve => {
+    return new Promise<Array<any>>(resolve => {
       this.http.get(`${this.url}${sql}`).map( res => res.json()).subscribe( data => {
         this.data = data.rows;
         resolve(this.data);

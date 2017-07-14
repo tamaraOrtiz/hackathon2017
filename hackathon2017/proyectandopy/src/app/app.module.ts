@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { ErrorHandler, NgModule, Injectable } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 

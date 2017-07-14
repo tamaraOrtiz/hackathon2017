@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { BaseData } from '../providers/base';

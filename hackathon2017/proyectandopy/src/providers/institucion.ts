@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { BaseData } from './base';
 import 'rxjs/add/operator/map';
 
-@Injectable()
+
 export class InstitucionData extends BaseData {
   data: Array<{entidadid: string, nivelid: string}>
 

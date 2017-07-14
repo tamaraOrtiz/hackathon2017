@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { NivelData } from '../../providers/nivel';
@@ -11,7 +11,6 @@ import { BasePage } from '../../app/base-page';
   providers: [NivelData]
 })
 
-@Injectable()
 export class NivelPage extends BasePage {
   selectedItem: any;
   icons: string[];
