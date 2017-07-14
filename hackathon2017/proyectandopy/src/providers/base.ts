@@ -12,7 +12,7 @@ export class BaseData {
     this.url = "http://geo.stp.gov.py/user/stp/api/v2/sql";
   }
 
-  getAll(conditions) {
+  getAll(conditions: string) {
     let where = conditions !== undefined ? "WHERE "+conditions : "";
     return new Promise<Array<any>>(resolve => {
       this.http.get(`${this.url}${this.getAllQuery(where)}`).map( res => res.json()).subscribe( data => {
@@ -22,8 +22,17 @@ export class BaseData {
     });
   }
 
-  getAllQuery(where) {
-    
+  getQuery(sql: string){
+    return new Promise<any>(resolve => {
+      this.http.get(`${this.url}${sql}`).map( res => res.json()).subscribe( data => {
+        this.data = data.rows;
+        resolve(this.data);
+      });
+    });
+  }
+
+  getAllQuery(where: string) {
+
   }
 
 }

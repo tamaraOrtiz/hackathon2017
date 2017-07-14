@@ -20,4 +20,8 @@ export class ShowBasePage {
     console.log(this.item);
   }
 
+  pushItem(records: any) {
+
+  }
+
 }

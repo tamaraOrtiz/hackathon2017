@@ -23,9 +23,13 @@ export class ShowInstitucionPage extends ShowBasePage {
   }
 
   ionViewDidLoad() {
-    this.dataService.getResumenPrograma(this.item.id).then(records => {
-      this.pushItems(records);
+    this.dataService.getQuery(this.dataService.getResumenPrograma(this.item.nivelId, this.item.id, undefined)).then(record => {
+      this.pushItem(record);
     });
+  }
+
+  pushItem(records: {id: string, nivelId: string, nombre: string, meta: any}) {
+
   }
 
 }
