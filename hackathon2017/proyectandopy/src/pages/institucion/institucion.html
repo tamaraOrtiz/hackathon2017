@@ -1,13 +1,10 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
-  </ion-navbar>
+  <ion-nav>
+    <ion-title>Instituciones</ion-title>
+  </ion-nav>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       {{item.nombre}}
