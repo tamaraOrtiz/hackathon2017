@@ -122,7 +122,7 @@ var NivelPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_5__app_base_page__["a" /* BasePage */]));
 NivelPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Niveles</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/,
+        selector: 'page-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title class="app-title">proyectandoPy</ion-title>\n    </ion-navbar>\n  <ion-navbar >\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title class="app-subtitle">Niveles</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_nivel__["a" /* NivelData */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_nivel__["a" /* NivelData */]])
@@ -178,7 +178,7 @@ var ProgramaPage = ProgramaPage_1 = (function () {
 }());
 ProgramaPage = ProgramaPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-programa',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Programas</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/
+        selector: 'page-programa',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title class="app-title">proyectandoPy</ion-title>\n    </ion-navbar>\n  <ion-navbar >\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title class="app-subtitle">Programas</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], ProgramaPage);
@@ -553,14 +553,14 @@ var TutorialPage = (function () {
     function TutorialPage() {
         this.slides = [
             {
-                title: "Welcome to the Docs!",
-                description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-                image: "assets/img/ica-slidebox-img-1.png",
+                title: "Plan Nacional de Desarrollo 2030",
+                description: "El <b>Plan Nacional de Desallo 2030 o PND</b> busca coordinar las acciones de los Poderes de Estado, niveles de gobierno, sociedad civil y sector privado a fin de mejorar la gestión de País",
+                image: "assets/img/57.svg",
             },
             {
-                title: "What is Ionic?",
-                description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-                image: "assets/img/ica-slidebox-img-2.png",
+                title: "Ejes Estratégicos",
+                description: "El PND se basa en una estructura de objectivos, a partir de tres <b>Ejes Estratégicos:</b></br> 1. Reducción de pobreza y desarrollo social. </br> 2. Crecimiento económico inclusivo. </br> 3. Inserción de Paraguay en el mundo en forma adecuada. ",
+                image: "assets/img/ejes.jpg",
             },
             {
                 title: "What is Ionic Cloud?",
@@ -572,7 +572,7 @@ var TutorialPage = (function () {
     return TutorialPage;
 }());
 TutorialPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/tutorial/tutorial.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Información</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="tutorial-page">\n\n  <ion-slides pager>\n    <ion-slide *ngFor="let slide of slides">\n      <ion-toolbar>\n        <ion-buttons end>\n          <button ion-button color="primary">Skip</button>\n        </ion-buttons>\n      </ion-toolbar>\n      <img [src]="slide.image" class="slide-image"/>\n      <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n    <ion-slide>\n      <ion-toolbar>\n      </ion-toolbar>\n      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>\n      <h2 class="slide-title">Ready to Play?</h2>\n      <button ion-button large clear icon-end color="primary">\n        Continue\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/tutorial/tutorial.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/tutorial/tutorial.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title class="app-title">proyectandoPy</ion-title>\n    </ion-navbar>\n  <ion-navbar >\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title class="app-subtitle">Información</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="tutorial-page" padding>\n\n  <ion-slides pager>\n    <ion-slide *ngFor="let slide of slides">\n      <img [src]="slide.image" class="slide-image"/>\n      <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n    <ion-slide>\n      <ion-toolbar>\n      </ion-toolbar>\n      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>\n      <h2 class="slide-title">Ready to Play?</h2>\n      <button ion-button large clear icon-end color="primary">\n        Continue\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/tutorial/tutorial.html"*/
     })
 ], TutorialPage);
 
@@ -935,7 +935,7 @@ var InstitucionPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_5__app_base_page__["a" /* BasePage */]));
 InstitucionPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/'<ion-header>\n  <ion-navbar >\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Instituciones</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/,
+        selector: 'page-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title class="app-title">proyectandoPy</ion-title>\n    </ion-navbar>\n  <ion-navbar >\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title class="app-subtitle">Instituciones</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]])
