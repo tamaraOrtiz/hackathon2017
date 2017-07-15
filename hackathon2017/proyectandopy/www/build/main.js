@@ -122,10 +122,10 @@ var NivelPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_5__app_base_page__["a" /* BasePage */]));
 NivelPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/'<ion-header>\n  <ion-nav>\n    <ion-title>Niveles</ion-title>\n  </ion-nav>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/,
+        selector: 'page-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Niveles</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/nivel/nivel.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_nivel__["a" /* NivelData */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_nivel__["a" /* NivelData */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_nivel__["a" /* NivelData */]])
 ], NivelPage);
 
 //# sourceMappingURL=nivel.js.map
@@ -178,9 +178,9 @@ var ProgramaPage = ProgramaPage_1 = (function () {
 }());
 ProgramaPage = ProgramaPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-programa',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/'<ion-header>\n  <ion-nav>\n    <ion-title>Programas</ion-title>\n  </ion-nav>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/
+        selector: 'page-programa',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Programas</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/programa/programa.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], ProgramaPage);
 
 var ProgramaPage_1;
@@ -242,7 +242,7 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/home/home.html"*/'\n\n<ion-content padding>\n  <h3></h3>\n\n  <p>\n    If you gest, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], HomePage);
 
 //# sourceMappingURL=home.js.map
@@ -343,10 +343,10 @@ var ShowInstitucionPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_2__app_show_base_page__["a" /* ShowBasePage */]));
 ShowInstitucionPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-show-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-institucion/show-institucion.html"*/'<!--\n  Generated template for the ShowNivelPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n\n<ion-content padding>\n  {{item.nombre}}\n\n  <echart-canva></echart-canva>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-institucion/show-institucion.html"*/,
+        selector: 'page-show-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-institucion/show-institucion.html"*/'<!--\n  Generated template for the ShowNivelPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>showNivel</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  {{item.nombre}}\n\n  <echart-canva></echart-canva>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-institucion/show-institucion.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]])
 ], ShowInstitucionPage);
 
 //# sourceMappingURL=show-institucion.js.map
@@ -425,7 +425,7 @@ var BasePage = (function () {
 }());
 BasePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_base__["a" /* BaseData */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_base__["a" /* BaseData */]])
 ], BasePage);
 
 //# sourceMappingURL=base-page.js.map
@@ -463,9 +463,9 @@ var ShowNivelPage = (function () {
 }());
 ShowNivelPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-show-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-nivel/show-nivel.html"*/'<!--\n  Generated template for the ShowNivelPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n\n<ion-content padding>\n  {{item.nombre}}\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-nivel/show-nivel.html"*/,
+        selector: 'page-show-nivel',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-nivel/show-nivel.html"*/'<!--\n  Generated template for the ShowNivelPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>showNivel</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  {{item.nombre}}\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/show-nivel/show-nivel.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], ShowNivelPage);
 
 //# sourceMappingURL=show-nivel.js.map
@@ -520,7 +520,7 @@ MapaPage = MapaPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-mapa',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/mapa/mapa.html"*/'\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/mapa/mapa.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], MapaPage);
 
 var MapaPage_1;
@@ -646,7 +646,12 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_institucion_institucion__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_nivel_nivel__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_programa_programa__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_mapa_mapa__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -661,27 +666,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen) {
+    function MyApp(platform, statusBar, splashScreen, loadingCtrl) {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */];
-        platform.ready().then(function () {
+        this.loadingCtrl = loadingCtrl;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */];
+        this.initializeApp();
+        // used for an example of ngFor and navigation
+        this.pages = [
+            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: 'Institucion', component: __WEBPACK_IMPORTED_MODULE_5__pages_institucion_institucion__["a" /* InstitucionPage */] },
+            { title: 'Nivel', component: __WEBPACK_IMPORTED_MODULE_6__pages_nivel_nivel__["a" /* NivelPage */] },
+            { title: 'Programa', component: __WEBPACK_IMPORTED_MODULE_7__pages_programa_programa__["a" /* ProgramaPage */] },
+            { title: 'Mapa', component: __WEBPACK_IMPORTED_MODULE_8__pages_mapa_mapa__["a" /* MapaPage */] }
+        ];
+    }
+    MyApp.prototype.initializeApp = function () {
+        var _this = this;
+        this.platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            statusBar.styleDefault();
-            splashScreen.hide();
+            _this.statusBar.styleDefault();
+            _this.splashScreen.hide();
         });
-    }
+    };
+    MyApp.prototype.openPage = function (page) {
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        this.nav.setRoot(page.component);
+    };
     return MyApp;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]) === "function" && _a || Object)
+], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/app/app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */]) === "function" && _e || Object])
 ], MyApp);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -855,10 +888,10 @@ var InstitucionPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_5__app_base_page__["a" /* BasePage */]));
 InstitucionPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/'<ion-header>\n  <ion-nav>\n    <ion-title>Instituciones</ion-title>\n  </ion-nav>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/,
+        selector: 'page-institucion',template:/*ion-inline-start:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Instituciones</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      {{item.nombre}}\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/tamara/Imágenes/hackathon2017.git/hackathon2017/proyectandopy/src/pages/institucion/institucion.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_institucion__["a" /* InstitucionData */]])
 ], InstitucionPage);
 
 //# sourceMappingURL=institucion.js.map
