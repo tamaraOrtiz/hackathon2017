@@ -13,6 +13,7 @@ import { ShowNivelPage } from '../pages/show-nivel/show-nivel';
 import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,6 +30,7 @@ import { EchartCanva } from '../components/echart-canva';
     ProgramaPage,
     MapaPage,
     TabsPage,
+    TutorialPage,
     EchartCanva
   ],
   imports: [
@@ -46,7 +48,8 @@ import { EchartCanva } from '../components/echart-canva';
     ShowInstitucionPage,
     ProgramaPage,
     MapaPage,
-    TabsPage
+    TabsPage,
+    TutorialPage
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

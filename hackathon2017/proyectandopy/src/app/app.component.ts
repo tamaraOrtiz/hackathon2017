@@ -3,7 +3,6 @@ import { Nav, Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { InstitucionPage } from '../pages/institucion/institucion';
 import { NivelPage } from '../pages/nivel/nivel';
 import { ProgramaPage } from '../pages/programa/programa';
@@ -18,18 +17,17 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = TabsPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Institucion', component: InstitucionPage },
-      { title: 'Nivel', component: NivelPage },
-      { title: 'Programa', component: ProgramaPage },
-      { title: 'Mapa', component: MapaPage }
+      { title: 'Institucion', component: InstitucionPage, icon: "home" },
+      { title: 'Nivel', component: NivelPage, icon: "stats" },
+      { title: 'Programa', component: ProgramaPage, icon: "albums" },
+      { title: 'Mapa', component: MapaPage, icon: "map" }
 
     ];
 
