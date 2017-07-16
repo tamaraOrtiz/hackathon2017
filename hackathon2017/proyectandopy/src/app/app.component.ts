@@ -9,6 +9,7 @@ import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
 
+
 @Component({
   templateUrl: 'app.html'
 })

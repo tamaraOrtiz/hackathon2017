@@ -54,7 +54,7 @@
 
 .toolbar-background-md {
     border-color: #eecffb;
-    background: #6d1094;
+    background: url(/assets/img/fondo.svg) no-repeat center top;
     color: white;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .swiper-pagination-bullet-active{
-  background: #28bf90;
+  background: #2fc9dc;
 }
 
 .app-subtitle .toolbar-title-md{
@@ -77,4 +77,24 @@
   text-align: center;
   color: white;
   font-weight: bold;
+}
+
+.card-list{
+  .item-md.item-block .item-inner{
+    border: none !important;
+  }
+
+  .label-md{
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .card-md{
+    margin-bottom: 2px;
+  }
+
+  .button-clear-md{
+    color: #2fc9dc;
+  }
+
 }

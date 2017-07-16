@@ -12,10 +12,26 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      {{item.nombre}}
-    </button>
-  </ion-list>
+<ion-content  class="card-list card-background-page">
+  <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <ion-card>
+      <ion-item>
+        <h2>{{item.nombre}}</h2>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>12 Likes</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>4 Comments</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </button>
 </ion-content>
