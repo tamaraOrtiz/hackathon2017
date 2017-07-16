@@ -19,7 +19,11 @@ export class BasePage {
     });
   }
 
-  pushItems(records: Array<any>) {}
+  pushItems(records: Array<any>) {
+    for (let record of records) {
+      this.items.push(record);
+    }
+  }
 
   itemTapped(event, item) {}
 

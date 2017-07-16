@@ -19,15 +19,7 @@ export class InstitucionPage extends BasePage {
     this.where = "borrado = 'false'";
   }
 
-  pushItems(records: Array<any>) {
-    for (let record of records) {
-      this.items.push(record);
-    }
-  }
-
   itemTapped(event, item) {
-    console.log(this.items);
-    console.log(item)
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });
