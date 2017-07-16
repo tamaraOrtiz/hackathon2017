@@ -131,12 +131,14 @@
   ion-label{
     word-wrap: break-word !important;
     white-space: normal !important;
+    display: inline-flex;
   }
 
   .input-wrapper{
     overflow: auto;
   }
   .item-md{
+    margin-right: 5px;
     font-size: 13px;
     line-height: 20px;
     padding-left: 0px;
