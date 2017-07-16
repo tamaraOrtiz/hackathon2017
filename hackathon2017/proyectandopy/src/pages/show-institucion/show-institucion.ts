@@ -1,4 +1,4 @@
-import { Component, Injectable, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, Injectable, ViewChildren } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';

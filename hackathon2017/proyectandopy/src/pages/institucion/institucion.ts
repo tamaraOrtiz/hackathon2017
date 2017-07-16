@@ -16,6 +16,7 @@ export class InstitucionPage extends BasePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams, dataService);
+    this.where = "borrado = 'false'";
   }
 
   pushItems(records: Array<any>) {
