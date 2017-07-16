@@ -50,6 +50,7 @@
     }
   }
 
+
   .scroll-content{
     padding: 4px !important;
   }
@@ -65,8 +66,11 @@
     .icon-md{
 
     }
-  }
 
+  }
+  .swiper-wrapper{
+    background: white;
+  }
 }
 
 .toolbar-background-md {
@@ -195,4 +199,11 @@
     margin: 0 !important;
   }
 
+}
+
+page-show-institucion{
+  .scroll-content{
+
+    padding: 0px !important;
+  }
 }

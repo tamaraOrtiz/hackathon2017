@@ -8,6 +8,25 @@ import { Chart } from 'chart.js';
 })
 
 export class PpyCanva {
+   backgroundColor= [
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(244, 164, 96, 0.8)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(255, 206, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(255, 159, 64, 0.2)'
+  ];
+
+  borderColor= [
+    'rgba(255,99,132,1)',
+    'rgba(244, 164, 96, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)'
+  ];
 
   @ViewChild('canva') canva;
 
@@ -21,7 +40,7 @@ export class PpyCanva {
   get presupuesto() { return this._presupuesto; }
 
   ngOnInit() {
-    this.getBarChart(this.presupuesto.nombre, this.presupuesto.nombre_programas, this.presupuesto.programas)
+    this.getBarChart(this.presupuesto.nombre, this.presupuesto.nombre_programas, this.presupuesto.programas, this.getArrayDataDoughnut, this.backgroundColor, this.borderColor)
   }
 
   getChart(context, chartType, data, options?) {
@@ -32,34 +51,43 @@ export class PpyCanva {
     });
   }
 
-  getBarChart(label, labels, series) {
+  getArrayDataBar(series, background, border){
+    var datasets= []
+    var i=0;
+    series.map(function(x) {
+        datasets.push({
+          label: x.name,
+          data: [x.value],
+          backgroundColor: background[i],
+          borderColor: border[i],
+          borderWidth: 1
+        });
+        i += 1;
+    });
+    return datasets;
+  }
+
+  getArrayDataDoughnut(series, background, border){
+    console.log(background)
+    var data= [];
+    series.map(function(x) {
+        data.push(x.value);
+    });
+    var datasets = [{
+      backgroundColor: background,
+      borderColor: border,
+      data: data
+    }]
+    return datasets;
+  }
+
+  getBarChart(label, labels, series, getArrayData, background, border) {
     let data = {
-      labels: labels,
-      datasets: [{
-        label: label,
-        data: series.map(function(x) {
-            return x.value;
-        }),
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(244, 164, 96, 0.8)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(244, 164, 96, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
+      labels: labels.map(function(x) {
+        return x.toLowerCase();
+      }),
+      datasets: getArrayData(series, background, border),
+
     };
 
     let options = {
@@ -68,11 +96,21 @@ export class PpyCanva {
           ticks: {
             beginAtZero: true
           }
-        }]
+        }],
+        xAxes: [{
+            display: false
+        }],
+
+      },
+      legend: {
+          labels: {
+              // This more specific font property overrides the global property
+              fontSize: 10
+          }
       }
     }
     console.log(series)
-    return this.getChart(this.canva.nativeElement, "bar", data, options);
+    return this.getChart(this.canva.nativeElement, "doughnut", data, options);
 
   }
 }
