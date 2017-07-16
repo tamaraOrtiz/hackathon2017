@@ -14,7 +14,11 @@
 
   <ion-slides pager>
     <ion-slide *ngFor="let slide of slides">
-      <button (click)="openLink('http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/pnd2030.pdf')">Download</button>
+      <ion-toolbar class="tutorial-buttons">
+        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/pnd2030.pdf')"><ion-icon ios="ios-download" md="md-download"></ion-icon></button>
+        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/pnd/')"> <ion-icon name="link"></ion-icon></button>
+        <button ion-button color="secondary" clear > <ion-icon ios="ios-share" md="md-share"></ion-icon></button>
+      </ion-toolbar>
       <img [src]="slide.image" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>

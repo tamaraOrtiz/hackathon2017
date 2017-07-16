@@ -50,6 +50,23 @@
     }
   }
 
+  .scroll-content{
+    padding: 4px !important;
+  }
+  .tutorial-buttons{
+    position: absolute;
+    width: 70px;
+    right: -16px;
+    top: 0px;
+    .toolbar-background {
+      background: transparent !important;
+      border-color: transparent;
+    }
+    .icon-md{
+
+    }
+  }
+
 }
 
 .toolbar-background-md {
@@ -127,6 +144,7 @@
   background: #ecebeb;
   padding: 7px;
 }
+
 .common-list{
   ion-label{
     word-wrap: break-word !important;
@@ -145,6 +163,7 @@
     width: 100% !important;
     background: transparent !important;
     color: #423b3b;
+
   }
   .item-inner, .label-md{
     padding-right: 0px !important;
@@ -155,8 +174,11 @@
   }
 
   .item-inner{
-    border-bottom: 2px solid #ecebeb !important;
+    border-bottom: 4px solid #ecebeb !important;
     background: transparent !important;
+    .item-inner{
+      border: none !important;
+    }
 
   }
 
