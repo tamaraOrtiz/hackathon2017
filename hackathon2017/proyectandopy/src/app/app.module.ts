@@ -17,7 +17,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { EchartCanva } from '../components/echart-canva';
+import { PpyCanva } from '../components/ppy-canva';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { EchartCanva } from '../components/echart-canva';
     MapaPage,
     TabsPage,
     TutorialPage,
-    EchartCanva
+    PpyCanva
   ],
   imports: [
     BrowserModule,

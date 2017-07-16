@@ -18,12 +18,7 @@ Ionic pages and navigation.
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let presupuesto of presupuestos">
-    <ion-card-header>
-      {{charts[presupuesto].nombre}}
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas{{presupuesto}} .canvas></canvas>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngFor="let presupuesto of presupuestos">
+      <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
+    </ion-card>
 </ion-content>
