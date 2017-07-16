@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
-  templateUrl: 'tutorial.html'
+  templateUrl: 'tutorial.html',
 })
 export class TutorialPage {
   slides = [
@@ -37,4 +37,11 @@ export class TutorialPage {
       image: "assets/img/44.svg",
     }
   ];
+
+  constructor(private iab: InAppBrowser) {
+  }
+
+  openLink(link){
+  		this.iab.create(link,'_system',{location:'yes'});
+  }
 }

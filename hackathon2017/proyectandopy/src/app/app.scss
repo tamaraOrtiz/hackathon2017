@@ -71,7 +71,13 @@
   font-size: 14px !important;
 }
 
-.app-title .toolbar-title-md{
+.item-md{
+  background: ghostwhite;
+}
+
+.app-title{
+  background: url(/assets/img/fondo.svg) no-repeat center top;
+  height: 35px !important;
   font-family: 'Comfortaa', cursive;
   font-size: 25px !important;
   text-align: center;
@@ -80,6 +86,7 @@
 }
 
 .card-list{
+  padding-top: 35px;
   .item-md.item-block .item-inner{
     border: none !important;
   }
@@ -95,6 +102,47 @@
 
   .button-clear-md{
     color: #2fc9dc;
+  }
+
+}
+
+.list-icon{
+    padding: 0 15px !important;
+}
+
+.success{
+  color: #23bf88;
+
+}
+
+.warning{
+  color: #ff9a3e;
+}
+
+.danger{
+  color: #ef0000;
+}
+
+.common-list{
+  .item-md{
+    padding-left: 0px;
+  
+  }
+  .item-inner, .label-md{
+    padding-right: 0px !important;
+  }
+
+  .item-inner{
+    border-bottom: 1px solid #ecebeb !important;
+
+  }
+
+  .list-md .item-block .item-inner{
+
+  }
+
+  .label-md{
+    margin: 0 !important;
   }
 
 }

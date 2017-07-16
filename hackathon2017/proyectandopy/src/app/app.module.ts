@@ -3,6 +3,7 @@ import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -57,6 +58,7 @@ import { PpyCanva } from '../components/ppy-canva';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

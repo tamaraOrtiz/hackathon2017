@@ -1,7 +1,5 @@
 <ion-header>
-  <ion-navbar>
-      <ion-title class="app-title">proyectandoPy</ion-title>
-    </ion-navbar>
+  <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
   <ion-navbar >
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -12,26 +10,15 @@
 </ion-header>
 
 
-<ion-content  class="card-list card-background-page">
+<ion-content  class="common-list">
   <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-    <ion-card>
-      <ion-item>
-        <h2>{{item.nombre}}</h2>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="text"></ion-icon>
-            <div>4 Comments</div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+    <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+        <ion-item>
+          <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
+          {{item.nombre}}
+        </ion-item>
+      </button>
+    </ion-list>
   </button>
 </ion-content>
