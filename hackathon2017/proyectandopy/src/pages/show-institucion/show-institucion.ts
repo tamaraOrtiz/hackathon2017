@@ -38,7 +38,7 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.chartsData = this.structResumenPrograma(records);
       this.presupuestos = Object.keys(this.charts);
       for(let key of this.charts) {
-        this.charts.push(this.getBarChart());
+        //this.charts.push(this.getBarChart());
       }
     });
   }
@@ -108,7 +108,7 @@ export class ShowInstitucionPage extends ShowBasePage {
       }
     }
 
-    return this.getChart(this.chart.nativeElement, "bar", data, options);
+    //return this.getChart(this.chart.nativeElement, "bar", data, options);
   }
 
 }
