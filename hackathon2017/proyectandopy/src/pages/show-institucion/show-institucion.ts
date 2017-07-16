@@ -1,4 +1,4 @@
-import { Component, Injectable, ViewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
@@ -11,8 +11,6 @@ import { InstitucionData } from '../../providers/institucion';
 })
 
 export class ShowInstitucionPage extends ShowBasePage {
-
-  item: {id: string, nivelId: string, nombre: string, meta: any}
 
   meta: Array<any>
 
@@ -35,7 +33,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     });
   }
 
-  pushItem(record: {id: string, nivelId: string, nombre: string, meta: any}) {
+  pushItem(record: any) {
 
   }
 

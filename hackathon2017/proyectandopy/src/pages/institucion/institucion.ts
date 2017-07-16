@@ -12,7 +12,7 @@ import { BasePage } from '../../app/base-page';
 })
 
 export class InstitucionPage extends BasePage {
-  items: Array<{id: string, nivelId: string, nombre: string}>;
+  items: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams, dataService);
@@ -21,15 +21,13 @@ export class InstitucionPage extends BasePage {
 
   pushItems(records: Array<any>) {
     for (let record of records) {
-      this.items.push({
-        id: record.entidadid,
-        nivelId: record.nivelid,
-        nombre: record.nombre
-      });
+      this.items.push(record);
     }
   }
 
   itemTapped(event, item) {
+    console.log(this.items);
+    console.log(item)
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });

@@ -10,13 +10,26 @@ Ionic pages and navigation.
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="app-subtitle">showNivel</ion-title>
+    <ion-title class="app-subtitle">{{item.nombre}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let presupuesto of presupuestos">
-      <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
-    </ion-card>
+  <ion-card-header>
+    Información
+  </ion-card-header>
+  <ion-card-content>
+    {{item.baselegal}}
+    {{item.descripcion}}
+    {{item.diagnostico}}
+    {{item.mision}}
+    {{item.objetivo}}
+    {{item.politica}}
+    {{item.vision}}
+    {{item.ruc}}
+  </ion-card-content>
+
+  <ion-card *ngFor="let presupuesto of presupuestos">
+    <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
+  </ion-card>
 </ion-content>

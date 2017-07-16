@@ -19,13 +19,8 @@ export class BasePage {
     });
   }
 
-  pushItems(records: Array<any>) {
+  pushItems(records: Array<any>) {}
 
-  }
+  itemTapped(event, item) {}
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ShowBasePage, {
-      item: item
-    });
-  }
 }
