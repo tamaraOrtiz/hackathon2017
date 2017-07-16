@@ -14,8 +14,8 @@
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-item>
-        <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
-        {{item.nombre}}
+        <ion-icon name="checkmark-circle" class="success list-icon" col-1></ion-icon>
+        <div col-8>{{item.nombre}}</div>
       </ion-item>
     </button>
   </ion-list>

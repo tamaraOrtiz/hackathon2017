@@ -137,12 +137,19 @@
     overflow: auto;
   }
   .item-md{
+    font-size: 13px;
+    line-height: 20px;
     padding-left: 0px;
     width: 100% !important;
     background: transparent !important;
+    color: #423b3b;
   }
   .item-inner, .label-md{
     padding-right: 0px !important;
+  }
+
+  ion-icon{
+    font-size: 18px;
   }
 
   .item-inner{
