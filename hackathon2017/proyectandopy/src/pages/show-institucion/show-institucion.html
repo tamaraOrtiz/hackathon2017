@@ -20,18 +20,32 @@ Ionic pages and navigation.
       Información
     </ion-card-header>
     <ion-card-content>
-      {{item.descripcion}}
-      {{item.mision}}
-      {{item.vision}}
-      {{item.diagnostico}}
-      {{item.baselegal}}
-      {{item.objetivo}}
-      {{item.politica}}
-      {{item.ruc}}
+      <ion-list>
+        <div>
+          <ion-item class="item-stable"
+                    (click)="toggleGroup($event.currentTarget)"
+                  class= "show-desc"  ng-class="{active: isGroupShown()}">
+              <i class="icon" ng-class="isGroupShown() ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            Descripcion
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-show="isGroupShown()">
+            {{item.descripcion}}
+          </ion-item>
+        </div>
+      </ion-list>
+
     </ion-card-content>
   </ion-card>
+  <ion-grid>
+    <ion-row>
+    <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
 
-  <ion-card *ngFor="let presupuesto of presupuestos">
-    <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
-  </ion-card>
+        <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
+
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+
 </ion-content>

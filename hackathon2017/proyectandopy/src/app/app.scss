@@ -68,7 +68,7 @@
     }
 
   }
-  .swiper-wrapper{
+  .swiper-wrapper, .swiper-slide{
     background: white;
   }
 }
@@ -206,4 +206,25 @@ page-show-institucion{
 
     padding: 0px !important;
   }
+}
+
+ppy-canva{
+  ion-card{
+        margin: 0px !important;
+        width: 100% !important;
+  }
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
 }

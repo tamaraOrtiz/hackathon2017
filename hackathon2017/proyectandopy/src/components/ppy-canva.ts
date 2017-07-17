@@ -68,7 +68,7 @@ export class PpyCanva {
   }
 
   getArrayDataDoughnut(series, background, border){
-    console.log(background)
+
     var data= [];
     series.map(function(x) {
         data.push(x.value);
@@ -109,7 +109,7 @@ export class PpyCanva {
           }
       }
     }
-    console.log(series)
+
     return this.getChart(this.canva.nativeElement, "doughnut", data, options);
 
   }

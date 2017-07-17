@@ -32,7 +32,12 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.presupuestos = Object.keys(this.chartsData);
     });
   }
-
+  toggleGroup(event) {
+      console.log(event);
+    };
+  isGroupShown(event) {
+        console.log(event);
+      };
   pushItem(record: any) {
 
   }
