@@ -145,7 +145,7 @@
 }
 
 .scroll-content{
-  background: #ecebeb;
+  background: #f0f3fd;
   padding: 7px;
 }
 
@@ -173,12 +173,14 @@
     padding-right: 0px !important;
   }
 
+
+
   ion-icon{
     font-size: 18px;
   }
 
   .item-inner{
-    border-bottom: 4px solid #ecebeb !important;
+    border-bottom: 4px solid #f0f3fd !important;
     background: transparent !important;
     .item-inner{
       border: none !important;
@@ -236,4 +238,57 @@ ppy-canva{
   .item-md{
     padding-left: 0px !important;
   }
+
+
+}
+
+.show-info{
+  ion-card-content{
+    padding: 0 !important;
+
+  }
+  ion-label{
+    margin: 0 !important;
+    font-size: 13px;
+    height: 100%;
+    border: 1px solid #dcdcdc;
+    border-bottom: none;
+  }
+  ion-list{
+    border-bottom: 1px solid #dcdcdc;
+  }
+  .item-inner{
+    padding-right: 0px !important;
+  }
+
+  .item-accordion{
+    ion-label{
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+      word-wrap: break-word !important;
+      white-space: normal !important;
+      display: inline-flex;
+    }
+  }
+
+}
+
+
+.color-1{
+  background: darkslateblue;
+  color: ghostwhite;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.color-2{
+  background: darkcyan;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+ion-label{
+
+  color:  #423b3b;
 }

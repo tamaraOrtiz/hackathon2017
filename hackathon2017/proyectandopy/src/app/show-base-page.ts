@@ -9,4 +9,20 @@ export class ShowBasePage {
     this.item = navParams.get('item');
   }
 
+  toggleGroup(event, _class, col, h_id) {
+    if(document.getElementById(col)){
+      if (event.classList.contains(_class)) {
+        document.getElementById(col).style.display = 'none';
+        document.getElementById(_class).style.display = 'block';
+        document.getElementById(h_id).style.display = 'none';
+        event.classList.remove(_class);
+      } else{
+        document.getElementById(col).style.display = 'block';
+        document.getElementById(_class).style.display = 'none';
+        document.getElementById(h_id).style.display = 'block';
+        event.classList.add(_class);
+      }
+    }
+  }
+
 }
