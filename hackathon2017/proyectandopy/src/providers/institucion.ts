@@ -12,7 +12,22 @@ export class InstitucionData extends BaseData {
   }
 
   getAllQuery(where: string) {
-    return `?q=SELECT DISTINCT nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones ${where} ORDER BY nombre ASC LIMIT 20;`;
+    return `?q=SELECT DISTINCT id, nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones ${where} ORDER BY nombre ASC LIMIT 20;`;
+  }
+
+  getAvances(nivelId, entidadId, conditions) {
+    let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
+    return `?q=SELECT avance.* FROM avance LEFT JOIN public.accionhasproducto ON avance.accion_id = public.accionhasproducto.accionid ${where} public.accionhasproducto.nivel = '${nivelId}' AND public.accionhasproducto.entidad = '${entidadId}'`;
+  }
+
+  getLineasAccionDetalle(id, conditions) {
+    let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
+    return `?q=SELECT avance.* FROM avance ${where} ins_id = '${id}' AND ac_borr = 'f'`;
+  }
+
+  getLineasAccion(id, conditions) {
+    let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
+    return `?q=SELECT avance.la_nombre, avance.la_id, avance.periodo, avance.ila_id, avance.ila_meta, avance.la_um_descp FROM avance LEFT JOIN (DISTINCT avance.la_id, cartodb_id FROM ${where} ins_id = '${id}' AND ac_borr = 'f') as avance2 ON avance.cartodb_id = avance2.cartodb_id`;
   }
 
 }
