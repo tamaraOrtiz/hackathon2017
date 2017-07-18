@@ -228,3 +228,12 @@ ppy-canva{
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.acordeon_list{
+  [col-1]{
+    flex: 0 0 25px;
+  }
+  .item-md{
+    padding-left: 0px !important;
+  }
+}

@@ -32,12 +32,31 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.presupuestos = Object.keys(this.chartsData);
     });
   }
-  toggleGroup(event) {
-      console.log(event);
-    };
-  isGroupShown(event) {
-        console.log(event);
-      };
+  toggleGroup(event, _class, col, h_id) {
+    if(document.getElementById(col)){
+      if (event.classList.contains(_class)) {
+        document.getElementById(col).style.display = 'none';
+        document.getElementById(_class).style.display = 'block';
+        document.getElementById(h_id).style.display = 'none';
+        event.classList.remove(_class);
+      } else{
+        document.getElementById(col).style.display = 'block';
+        document.getElementById(_class).style.display = 'none';
+        document.getElementById(h_id).style.display = 'block';
+        event.classList.add(_class);
+      }
+    }
+  }
+
+  isGroupShown(event, _class, col) {
+    console.log("fffffff");
+    if (document.getElementById(col).classList.contains(_class)) {
+      return true;
+    } else{
+      return false;
+    }
+  }
+
   pushItem(record: any) {
 
   }
