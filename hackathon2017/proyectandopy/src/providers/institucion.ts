@@ -27,7 +27,7 @@ export class InstitucionData extends BaseData {
 
   getLineasAccion(id, conditions) {
     let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
-    return `?q=SELECT avance.la_nombre, avance.la_id, avance.periodo, avance.ila_id, avance.ila_meta, avance.la_um_descp FROM avance LEFT JOIN (DISTINCT avance.la_id, cartodb_id FROM ${where} ins_id = '${id}' AND ac_borr = 'f') as avance2 ON avance.cartodb_id = avance2.cartodb_id`;
+    return `?q=SELECT DISTINCT avance.periodo, avance.la_id, avance.la_nombre, avance.ila_id, avance.ila_meta, avance.la_um_descp FROM avance ${where} ins_id = '${id}' AND ac_borr = 'f'`;
   }
 
 }

@@ -20,6 +20,8 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   presupuestos: Array<string>
 
+  lineasAccion: any
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams);
     this.dataService = dataService;
@@ -31,75 +33,31 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.chartsData = this.structResumenPrograma(records);
       this.presupuestos = Object.keys(this.chartsData);
     });
-    this.dataService.getQuery(this.dataService.getAvances(this.item.nivelid, this.item.entidadid, undefined)).then(records => {
-      console.log(records);
-    });
-    this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, undefined)).then(records => {
-      let periodos = {}
-      records.forEach(function (a) {
-          if(periodos[a.periodo] === undefined){
-            periodos[a.periodo] = {
-              periodos: a.periodo,
-              lineasAccion: {}
-            }
-          }
-          if(periodos[a.periodo].lineasAccion[a.la_id] === undefined){
-            periodos[a.periodo].lineasAccion[a.la_id] = {
-              id: a.la_id,
-              nombre: a.la_nombre,
-              metaAnual: a.ila_meta,
-              unidadMedida: a.la_um_descp,
-              acciones: {}};
-          }
-          if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id] === undefined){
-            periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id] = {
-              id: a.accion_id,
-              nombre: a.ac_nombre,
-              peso: a.accion_peso,
-              fechaIni: a.accion_fecha_ini,
-              fechaFin: a.accion_fecha_fin,
-              unidadMedidaId: a.ac_um_id,
-              unidadMedida: a.ac_um_descp,
-              meta1: a.m1,
-              meta2: a.m2,
-              meta3: a.m3,
-              meta4: a.m4,
-              avances: {}
-            };
-          }
-          if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id] === undefined){
-            periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id] = {
-              id: a.avance_id,
-              fecha: a.avance_fecha,
-              cantidad: a.avance_cant,
-              unidadMedida: a.ac_um_descrip,
-              cronogramas: {}
-            }
-          }
-          if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id].cronogramas[a.crono_id] === undefined){
-            periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id].cronogramas[a.crono_id] = {
-              id: a.crono_id,
-              nombre: a.crono_nombre,
-              proporcion: a.crono_prop,
-              peso: a.crono_peso,
-              unidadMedidaId: a.crono_um_id,
-              unidadMedida: a.crono_um_descp,
-              acumulable: a.acumula,
-              tipoId: a.crono_tipo_id,
-              tipo: a.crono_tipo_nombre,
-              departamentoId: a.depto_id,
-              departamento: a.depto_nombre,
-              distritoId: a.dist_id,
-              distrito: a.dist_nombre
-            }
-          }
-
-      });
-      console.log(periodos);
+    this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, "periodo = '2017'")).then(records => {
+      this.lineasAccion = this.structLineasAccion(records);
     });
   }
+<<<<<<< 0f315cba6c3e8d5395ece8683f7fcf1e3ff22cb1
   
 
+=======
+
+  toggleGroup(event, _class, col, h_id) {
+    if(document.getElementById(col)){
+      if (event.classList.contains(_class)) {
+        document.getElementById(col).style.display = 'none';
+        document.getElementById(_class).style.display = 'block';
+        document.getElementById(h_id).style.display = 'none';
+        event.classList.remove(_class);
+      } else{
+        document.getElementById(col).style.display = 'block';
+        document.getElementById(_class).style.display = 'none';
+        document.getElementById(h_id).style.display = 'block';
+        event.classList.add(_class);
+      }
+    }
+  }
+>>>>>>> 4a000e523f3ffaf6c67723039db95c6339417d05
 
 
   pushItem(record: any) {
@@ -118,6 +76,84 @@ export class ShowInstitucionPage extends ShowBasePage {
       presupuestos[row.tipo_presupuesto_id].nombre_programas = presupuestos[row.tipo_presupuesto_id].nombre_programas.sort();
     };
     return presupuestos;
+  }
+
+  structLineasAccion (records: Array<any>):any {
+    let lineasAccion = [];
+    records.forEach(function (la) {
+      lineasAccion.push({
+        id: la.la_id,
+        nombre: la.la_nombre,
+        periodo: la.periodo,
+        instanciaId: la.ila_id,
+        meta: la.ila_meta,
+        unidadMedida: la.la_um_descp
+      });
+    });
+    return lineasAccion;
+  }
+
+  structLineasAccionDetalle (records:Array<any>):any {
+    let periodos = {};
+    records.forEach(function (a) {
+        if(periodos[a.periodo] === undefined){
+          periodos[a.periodo] = {
+            periodos: a.periodo,
+            lineasAccion: {}
+          }
+        }
+        if(periodos[a.periodo].lineasAccion[a.la_id] === undefined){
+          periodos[a.periodo].lineasAccion[a.la_id] = {
+            id: a.la_id,
+            nombre: a.la_nombre,
+            metaAnual: a.ila_meta,
+            unidadMedida: a.la_um_descp,
+            acciones: {}};
+        }
+        if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id] === undefined){
+          periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id] = {
+            id: a.accion_id,
+            nombre: a.ac_nombre,
+            peso: a.accion_peso,
+            fechaIni: a.accion_fecha_ini,
+            fechaFin: a.accion_fecha_fin,
+            unidadMedidaId: a.ac_um_id,
+            unidadMedida: a.ac_um_descp,
+            meta1: a.m1,
+            meta2: a.m2,
+            meta3: a.m3,
+            meta4: a.m4,
+            avances: {}
+          };
+        }
+        if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id] === undefined){
+          periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id] = {
+            id: a.avance_id,
+            fecha: a.avance_fecha,
+            cantidad: a.avance_cant,
+            unidadMedida: a.ac_um_descrip,
+            cronogramas: {}
+          }
+        }
+        if(periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id].cronogramas[a.crono_id] === undefined){
+          periodos[a.periodo].lineasAccion[a.la_id].acciones[a.accion_id].avances[a.avance_id].cronogramas[a.crono_id] = {
+            id: a.crono_id,
+            nombre: a.crono_nombre,
+            proporcion: a.crono_prop,
+            peso: a.crono_peso,
+            unidadMedidaId: a.crono_um_id,
+            unidadMedida: a.crono_um_descp,
+            acumulable: a.acumula,
+            tipoId: a.crono_tipo_id,
+            tipo: a.crono_tipo_nombre,
+            departamentoId: a.depto_id,
+            departamento: a.depto_nombre,
+            distritoId: a.dist_id,
+            distrito: a.dist_nombre
+          }
+        }
+    });
+    return periodos;
   }
 
 }
