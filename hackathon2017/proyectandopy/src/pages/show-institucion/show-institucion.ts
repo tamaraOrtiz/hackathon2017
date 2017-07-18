@@ -37,28 +37,6 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.lineasAccion = this.structLineasAccion(records);
     });
   }
-<<<<<<< 0f315cba6c3e8d5395ece8683f7fcf1e3ff22cb1
-  
-
-=======
-
-  toggleGroup(event, _class, col, h_id) {
-    if(document.getElementById(col)){
-      if (event.classList.contains(_class)) {
-        document.getElementById(col).style.display = 'none';
-        document.getElementById(_class).style.display = 'block';
-        document.getElementById(h_id).style.display = 'none';
-        event.classList.remove(_class);
-      } else{
-        document.getElementById(col).style.display = 'block';
-        document.getElementById(_class).style.display = 'none';
-        document.getElementById(h_id).style.display = 'block';
-        event.classList.add(_class);
-      }
-    }
-  }
->>>>>>> 4a000e523f3ffaf6c67723039db95c6339417d05
-
 
   pushItem(record: any) {
 
