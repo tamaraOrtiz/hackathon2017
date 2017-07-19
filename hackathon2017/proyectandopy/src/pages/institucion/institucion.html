@@ -11,6 +11,7 @@
 
 
 <ion-content  class="common-list">
+  <ion-card>
   <ion-list>
     <button ion-item class="success" *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-item>
@@ -19,4 +20,5 @@
       </ion-item>
     </button>
   </ion-list>
+</ion-card>
 </ion-content>

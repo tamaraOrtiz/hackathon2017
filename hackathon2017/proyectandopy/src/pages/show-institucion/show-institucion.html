@@ -149,17 +149,34 @@ Ionic pages and navigation.
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <ion-content  class="common-list">
-    <ion-list>
-      <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="console.log(lineaAccion.id)">
-        <ion-item>
-          <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
-          <div>{{lineaAccion.nombre}}</div>
-          <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
+  <ion-card class="common-list" style="margin-bottom: 0;">
+      <ion-list class="acordeon_list">
+        <div class="color-3">
+        <ion-item class="item-stable " (click)="toggleGroup($event.currentTarget, 'show-la', 'la' ,'hide-la')" class= "">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-1>
+                <ion-icon id='show-la' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                <ion-icon id='hide-la' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+              </ion-col>
+              <ion-col col-11>Lineas de acción</ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-item>
-      </button>
-    </ion-list>
-  </ion-content>
+      </div>
+        <ion-item class="item-accordion" id="la" style="display: none;">
+          <ion-list>
+            <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="console.log(lineaAccion.id)">
+              <ion-item>
+                <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
+                <div class="h5-color3">{{lineaAccion.nombre}}</div>
+                <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
+              </ion-item>
+            </button>
+          </ion-list>
+        </ion-item>
+      </ion-list>
+  </ion-card>
   <ion-grid>
     <ion-row>
     <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
