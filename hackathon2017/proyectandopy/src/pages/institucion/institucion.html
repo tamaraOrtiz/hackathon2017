@@ -12,10 +12,10 @@
 
 <ion-content  class="common-list">
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <button ion-item class="success" *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-item>
-        <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
-        <div>{{item.nombre}}</div>
+        <div class="item-list">{{item.nombre}}</div>
+        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
       </ion-item>
     </button>
   </ion-list>

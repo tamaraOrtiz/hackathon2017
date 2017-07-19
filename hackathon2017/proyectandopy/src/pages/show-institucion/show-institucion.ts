@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -22,10 +23,13 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   lineasAccion: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser) {
     super(navCtrl, navParams);
     this.dataService = dataService;
     this.charts = [];
+  }
+  openLink(link){
+  		this.iab.create(link,'_system',{location:'yes'});
   }
 
   ionViewDidLoad() {

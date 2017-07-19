@@ -24,6 +24,9 @@ Ionic pages and navigation.
   <ion-card class="show-info">
     <ion-card-header class= "color-1">
       Información
+      <div class="div-1 right" style="top: 9px;">
+        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
+      </div>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
@@ -129,6 +132,18 @@ Ionic pages and navigation.
                 {{item.ruc ? item.ruc : 'Información no disponible.'}}
               </ion-item>
             </ion-list>
+          </ion-col>
+          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
+            <div class="starts">
+              <h5> Califica esta información </h5>
+              <div>
+                  <ion-icon md="ios-star-outline"></ion-icon>
+                  <ion-icon md="ios-star-outline"></ion-icon>
+                  <ion-icon md="ios-star-outline"></ion-icon>
+                  <ion-icon md="ios-star-outline"></ion-icon>
+                  <ion-icon md="ios-star-outline"></ion-icon>
+              </div>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>

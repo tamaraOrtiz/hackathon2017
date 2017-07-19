@@ -17,6 +17,7 @@
 .tutorial-page {
 
   .toolbar-background {
+
     background: #fff;
     border-color: transparent;
   }
@@ -27,11 +28,15 @@
 
   .slide-title {
     margin-top: 0 !important;
+    height: 73px;
+    font-size: 13px !important;
+    text-align: initial;
+    padding: 15px;
   }
 
   .slide-image {
     max-height: 50%;
-    max-width: 75%;
+    max-width: 55%;
     margin: 9px 0;
   }
 
@@ -52,13 +57,13 @@
 
 
   .scroll-content{
-    padding: 4px !important;
+    padding: 10px !important;
   }
   .tutorial-buttons{
     position: absolute;
-    width: 70px;
-    right: -16px;
-    top: 0px;
+    width: 180px;
+    right: -19px;
+    top: 30px;
     .toolbar-background {
       background: transparent !important;
       border-color: transparent;
@@ -70,6 +75,8 @@
   }
   .swiper-wrapper, .swiper-slide{
     background: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
   }
 }
 
@@ -145,8 +152,8 @@
 }
 
 .scroll-content{
-  background: #f0f3fd;
-  padding: 7px;
+  background: rgba(87, 33, 121, 0.07);
+  padding: 10px;
 }
 
 .common-list{
@@ -154,6 +161,7 @@
     word-wrap: break-word !important;
     white-space: normal !important;
     display: inline-flex;
+
   }
 
   .input-wrapper{
@@ -180,19 +188,28 @@
   }
 
   .item-inner{
-    border-bottom: 4px solid #f0f3fd !important;
+
     background: transparent !important;
     .item-inner{
       border: none !important;
     }
+
 
   }
 
   button.item.item-block.item-md{
 
     background: white !important;
-  }
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10px;
+    margin-bottom: 7px;
 
+
+    .item-list{
+      padding-right: 7px;
+    }
+  }
+  button.item.item-block.item-md.success{ border-left: 5px solid #3acca7;}
   .list-md .item-block .item-inner{
 
   }
@@ -202,7 +219,26 @@
   }
 
 }
+.right{
+  position: absolute;
+  right: 7px;
+}
 
+.starts{
+  height: 119px;
+  background: lightskyblue;
+  padding: 19px;
+  font-size: 24px;
+  color: #4c51a7;
+
+  h5{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 7px;
+    color: #4c51a7;
+  }
+}
 page-show-institucion{
   .scroll-content{
 
@@ -251,8 +287,7 @@ ppy-canva{
     margin: 0 !important;
     font-size: 13px;
     height: 100%;
-    border: 1px solid #dcdcdc;
-    border-bottom: none;
+    border-top: 1px solid #dcdcdc;
   }
   ion-list{
     border-bottom: 1px solid #dcdcdc;
@@ -275,18 +310,85 @@ ppy-canva{
 
 
 .color-1{
-  background: darkslateblue;
-  color: ghostwhite;
+  color: #3acca7;
   text-transform: uppercase;
   font-size: 12px;
+  border-left: 5px solid ;
+  font-weight: bold;
+
 }
 
+.div-1{
+  .button-clear-md-secondary {
+    color: #3acca7;
+  }
+}
+
+.div-2{
+  .button-clear-md-secondary {
+    color: #04cce2;
+  }
+}
+
+.div-3{
+  .button-clear-md-secondary {
+    color: #da81ca;
+  }
+}
+
+.div-3{
+      .button-clear-md-secondary {
+
+        color: #AD1457;
+
+      }
+    }
+
+.div-4{.button-clear-md-secondary {color: #6A1B9A;}}
+.div-5{.button-clear-md-secondary {color: #EF6C00;}}
+.div-6{.button-clear-md-secondary {color: #AA00FF;}}
 .color-2{
-  background: darkcyan;
-  color: white;
+  color: #04cce2;
   text-transform: uppercase;
   font-size: 12px;
+  border-left: 5px solid;
+  font-weight: bold;
 }
+
+.color-3{
+  color: #AD1457;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-left: 5px solid;
+  font-weight: bold;
+
+}
+.color-4{
+  color: #6A1B9A;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-left: 5px solid;
+  font-weight: bold;
+
+}
+
+.color-5{
+  color: #EF6C00;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-left: 5px solid;
+  font-weight: bold;
+}
+
+.color-6{
+  color: #AA00FF;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-left: 5px solid;
+  font-weight: bold;
+}
+
+
 
 ion-label{
 
