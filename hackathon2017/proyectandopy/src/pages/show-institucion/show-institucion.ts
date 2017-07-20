@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
 
 
 @Component({
@@ -37,13 +38,19 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.chartsData = this.structResumenPrograma(records);
       this.presupuestos = Object.keys(this.chartsData);
     });
-    this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, "periodo = '2017'")).then(records => {
+    this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, "periodo = '2016'")).then(records => {
       this.lineasAccion = this.structLineasAccion(records);
     });
   }
 
   pushItem(record: any) {
 
+  }
+
+  lineaAccionTapped(event, item) {
+    this.navCtrl.push(ShowLineaAccionPage, {
+      item: item
+    });
   }
 
   structResumenPrograma (meta):any {

@@ -166,7 +166,7 @@ Ionic pages and navigation.
       </div>
         <ion-item class="item-accordion" id="la" style="display: none;">
           <ion-list>
-            <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="console.log(lineaAccion.id)">
+            <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
               <ion-item>
                 <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
                 <div class="h5-color3">{{lineaAccion.nombre}}</div>

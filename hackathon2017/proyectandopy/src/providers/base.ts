@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class BaseData {
   url: string
   data: Array<any>
+  paraguayGeoJson: any
   allQuery: string
 
   constructor(public http: Http) {
@@ -33,6 +34,15 @@ export class BaseData {
 
   getAllQuery(where: string) {
 
+  }
+
+  getParaguayMap(){
+    return new Promise<any>(resolve => {
+      this.http.get('assets/jsons/paraguay.json').map(res => res.json()).subscribe( data => {
+        this.paraguayGeoJson = data;
+        resolve(this.paraguayGeoJson);
+      });
+    });
   }
 
 }

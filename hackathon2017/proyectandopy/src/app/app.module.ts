@@ -15,6 +15,7 @@ import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { ShowLineaAccionPage } from '../pages/show-linea-accion/show-linea-accion';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +29,7 @@ import { PpyCanva } from '../components/ppy-canva';
     NivelPage,
     ShowNivelPage,
     ShowInstitucionPage,
+    ShowLineaAccionPage,
     ProgramaPage,
     MapaPage,
     TabsPage,
@@ -47,6 +49,7 @@ import { PpyCanva } from '../components/ppy-canva';
     NivelPage,
     ShowNivelPage,
     ShowInstitucionPage,
+    ShowLineaAccionPage,
     ProgramaPage,
     MapaPage,
     TabsPage,
