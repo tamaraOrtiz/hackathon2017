@@ -20,20 +20,17 @@ export class InstitucionPage extends BasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
+    this.selectedNiveles = [];
   }
 
   getItems(ev: any) {
-    // Reset items back to all of the items
-
-
-    // set val to the value of the searchbar
+    console.log(this.selectedNiveles);
     let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.indexOf(val) > -1);
-      })
+      let niveles = this.selectedNiveles.length > 0 ? `AND nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
+      this.dataService.getAll(`entidadnombre like '%${val}%' ${niveles}`).then(records => {
+        this.pushItems(records);
+      });
     }
   }
 
@@ -47,7 +44,9 @@ export class InstitucionPage extends BasePage {
   }
 
   filter() {
-    console.log(this.selectedNiveles);
+    this.dataService.getAll(`nivelid IN ('${this.selectedNiveles.join('\',\'')}')`).then(records => {
+      this.pushItems(records);
+    });
   }
 
   structNiveles (meta):any {

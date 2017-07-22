@@ -12,7 +12,7 @@ export class InstitucionData extends BaseData {
   }
 
   getAllQuery(where: string) {
-    return `?q=SELECT DISTINCT id, nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones ${where} ORDER BY nombre ASC LIMIT 20;`;
+    return `?q=SELECT DISTINCT id, nivelid, nivel_nombre, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones LEFT JOIN public.destinatarioproducto ON public.instituciones.nivelid = public.instituciones.nivel_id ${where} ORDER BY nombre ASC LIMIT 20;`;
   }
 
   getAvances(nivelId, entidadId, conditions) {

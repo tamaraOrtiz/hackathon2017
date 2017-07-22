@@ -20,6 +20,7 @@ export class BasePage {
   }
 
   pushItems(records: Array<any>) {
+    this.items = [];
     for (let record of records) {
       this.items.push(record);
     }
