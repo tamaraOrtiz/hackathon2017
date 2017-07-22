@@ -14,7 +14,7 @@ import { BasePage } from '../../app/base-page';
 export class InstitucionPage extends BasePage {
   items: Array<any>;
   searchQuery: string = '';
-
+  niveles: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
@@ -34,6 +34,28 @@ export class InstitucionPage extends BasePage {
       })
     }
   }
+
+  ionViewDidLoad(){
+    this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
+      this.niveles = this.structNiveles(records);
+    });
+    this.dataService.getAll(this.where).then(records => {
+      this.pushItems(records);
+    });
+  }
+
+  structNiveles (meta):any {
+    let niveles = [];
+    for(let row of meta) {
+      niveles.push({
+        id: row.nivel_id,
+        nombre: row.nivel_nombre,
+      });
+    }
+
+    return niveles;
+  }
+
 
   itemTapped(event, item) {
     this.navCtrl.push(ShowInstitucionPage, {

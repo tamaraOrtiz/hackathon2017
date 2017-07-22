@@ -30,4 +30,8 @@ export class InstitucionData extends BaseData {
     return `?q=SELECT DISTINCT avance.periodo, avance.la_id, avance.la_nombre, avance.ila_id, avance.ila_meta, avance.la_um_descp FROM avance ${where} ins_id = '${id}' AND ac_borr = 'f'`;
   }
 
+  getNiveles(where: string) {
+    return "?q=SELECT nivel_id, nivel_nombre, COUNT(DISTINCT entidad_id) FROM public.destinatarioproducto "+where+" GROUP BY nivel_id, nivel_nombre ORDER BY nivel_id ASC ;"
+  }
+
 }

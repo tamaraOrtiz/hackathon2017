@@ -12,13 +12,21 @@
 
 <ion-content  class="common-list">
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar class="bac-c2" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-item>
+        <ion-label>Niveles</ion-label>
+        <ion-select [(ngModel)]="toppings" multiple="true" cancelText="Nah" okText="Okay!">
+          <ion-option *ngFor="let nivel of niveles"  value="nivel.id" selected="true">{{nivel.nombre}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
     <ion-list >
       <button ion-item class="success" *ngFor="let item of items" (click)="itemTapped($event, item)">
         <ion-item>
           <div class="item-list">{{item.nombre}}
             <h3 ><ion-badge class="bac-c4"><ion-icon  md="ios-photos"></ion-icon>260</ion-badge>
-            <ion-badge class="bac-c3"><ion-icon  name="trending-up"></ion-icon>130</ion-badge></h3>
+            <ion-badge class="bac-c1"><ion-icon  name="trending-up"></ion-icon>130</ion-badge></h3>
           </div>
           <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
 
