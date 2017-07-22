@@ -6,21 +6,21 @@
     </button>
     <ion-title class="app-subtitle">Instituciones</ion-title>
   </ion-navbar>
-
+  <ion-searchbar  (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list class="selec-header">
+    <ion-item>
+      <ion-label>Niveles:</ion-label>
+      <ion-select [(ngModel)]="toppings" multiple="true" cancelText="Nah" okText="Okay!">
+        <ion-option *ngFor="let nivel of niveles"  value="nivel.id" selected="true">{{nivel.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 
 <ion-content  class="common-list">
 
-    <ion-searchbar class="bac-c2" (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list>
-      <ion-item>
-        <ion-label>Niveles</ion-label>
-        <ion-select [(ngModel)]="toppings" multiple="true" cancelText="Nah" okText="Okay!">
-          <ion-option *ngFor="let nivel of niveles"  value="nivel.id" selected="true">{{nivel.nombre}}</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+
     <ion-list >
       <button ion-item class="success" *ngFor="let item of items" (click)="itemTapped($event, item)">
         <ion-item>

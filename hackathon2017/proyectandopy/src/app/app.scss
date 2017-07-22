@@ -81,10 +81,23 @@
 }
 
 ion-searchbar{
-  background: #27b0b3 !important;
+  background: url(/assets/img/fondo.svg) no-repeat center top !important;
   .searchbar-input{
     box-shadow: none !important;
     border-radius: 25px !important;
+  }
+}
+.selec-header{
+  background: url(/assets/img/fondo.svg) no-repeat center top !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  .item-md{
+    background: url(/assets/img/fondo.svg) no-repeat center top !important;
+    color: ghostwhite !important;
+    }
+  .label-md{
+    color: #fbfbfb !important;
+    font-size: 13px;
   }
 }
 
