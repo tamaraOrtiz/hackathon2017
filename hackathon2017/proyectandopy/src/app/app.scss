@@ -79,6 +79,52 @@
 
   }
 }
+
+ion-searchbar{
+  background: #27b0b3 !important;
+  .searchbar-input{
+    box-shadow: none !important;
+    border-radius: 25px !important;
+  }
+}
+
+.common-list{
+  .item-md{
+    background: ghostwhite !important;
+  }
+  button.item-md{
+    padding-left: 0 !important;
+    background: ghostwhite !important;
+    .item-inner{
+      padding: 0 !important;
+      .label-md{
+        margin: 0 !important;
+        min-height: 63px !important;
+        word-wrap: break-word !important;
+        white-space: normal !important;
+        display: inline-flex;
+        font-size: 14px;
+        color: #422828 !important;
+        padding: 2px 4px 0px 0px;
+        line-height: 24px;
+        background: ghostwhite;
+        ion-badge{
+          border-radius: 25px !important;
+          ion-icon{
+            padding-right: 3px;
+          }
+        }
+        .item-inner{
+          border: none !important;
+        }
+      }
+    }
+  }
+  .right{
+    position: absolute;
+    right: 7px;
+  }
+}
 .bar-button-default-md{
   color: ghostwhite;
 }
