@@ -27,8 +27,9 @@ export class InstitucionPage extends BasePage {
     console.log(this.selectedNiveles);
     let val = ev.target.value;
     if (val && val.trim() != '') {
+      console.log(val);
       let niveles = this.selectedNiveles.length > 0 ? `AND nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
-      this.dataService.getAll(`entidadnombre like '%${val}%' ${niveles}`).then(records => {
+      this.dataService.getAll(`nombre ILIKE '%agencia%' ${niveles}`).then(records => {
         this.pushItems(records);
       });
     }
