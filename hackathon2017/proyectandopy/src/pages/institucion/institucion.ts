@@ -15,6 +15,8 @@ export class InstitucionPage extends BasePage {
   items: Array<any>;
   searchQuery: string = '';
   niveles: Array<any>;
+  selectedNiveles: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
@@ -42,6 +44,10 @@ export class InstitucionPage extends BasePage {
     this.dataService.getAll(this.where).then(records => {
       this.pushItems(records);
     });
+  }
+
+  filter() {
+    console.log(this.selectedNiveles);
   }
 
   structNiveles (meta):any {

@@ -10,8 +10,8 @@
   <ion-list class="selec-header">
     <ion-item>
       <ion-label>Niveles:</ion-label>
-      <ion-select [(ngModel)]="toppings" multiple="true" cancelText="Nah" okText="Okay!">
-        <ion-option *ngFor="let nivel of niveles"  value="nivel.id" selected="true">{{nivel.nombre}}</ion-option>
+      <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event)">
+        <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
