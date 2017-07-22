@@ -145,6 +145,12 @@ ion-searchbar{
         padding: 2px 4px 0px 0px;
         line-height: 24px;
         background: ghostwhite;
+        p{
+          font-size: 11px !important;
+        }
+        h3{
+          padding: 9px 0;
+        }
         ion-badge{
           border-radius: 25px !important;
           ion-icon{
@@ -160,6 +166,7 @@ ion-searchbar{
   .right{
     position: absolute;
     right: 7px;
+    top: 8px;
   }
 }
 .bar-button-default-md{

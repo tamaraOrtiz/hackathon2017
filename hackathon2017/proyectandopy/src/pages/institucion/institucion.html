@@ -25,9 +25,10 @@
       <button ion-item class="success" *ngFor="let item of items" (click)="itemTapped($event, item)">
         <ion-item>
           <div class="item-list">{{item.nombre}}
+            <p>{{item.nivel_nombre}}</p>
             <h3 ><ion-badge class="bac-c4"><ion-icon  md="ios-photos"></ion-icon>260</ion-badge>
             <ion-badge class="bac-c1"><ion-icon  name="trending-up"></ion-icon>130</ion-badge></h3>
-            {{item.nivel_nombre}}
+
           </div>
           <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
 
