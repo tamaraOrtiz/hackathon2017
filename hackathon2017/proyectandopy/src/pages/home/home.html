@@ -1,11 +1,46 @@
 
+<ion-header>
+  <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-subtitle">Bienvenido</ion-title>
+  </ion-navbar>
 
-<ion-content padding>
-  <h3></h3>
+</ion-header>
 
-  <p>
-    If you gest, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content class="card-background-page">
+  <ion-grid>
+    <ion-row class="expand">
+      <ion-col class="card-content" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
+        <ion-card class="bac-c1" [navPush]="Niveles">
+          <ion-icon class="icon-w" name="stats"></ion-icon>
+          <div class="card-title">Niveles</div>
+          <div class="card-subtitle">41 Registros</div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="card-content" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
+        <ion-card class="bac-c2" [navPush]="Intituciones">
+          <ion-icon class="icon-w" name="school"></ion-icon>
+          <div class="card-title">Instituciones</div>
+          <div class="card-subtitle">64 Registros</div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="card-content" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
+        <ion-card class="bac-c3">
+          <ion-icon class="icon-w" name="trending-up"></ion-icon>
+          <div class="card-title">Lineas de Acción</div>
+          <div class="card-subtitle">72 Registros</div>
+        </ion-card>
+      </ion-col>
+      <ion-col class="card-content" col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
+        <ion-card class="bac-c4" [navPush]="Programas">
+          <ion-icon class="icon-w"  md="ios-photos"></ion-icon>
+          <div class="card-title">Programas</div>
+          <div class="card-subtitle">28 Registros</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
