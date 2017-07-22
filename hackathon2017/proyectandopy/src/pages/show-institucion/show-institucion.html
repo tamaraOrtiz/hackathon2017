@@ -12,179 +12,200 @@ Ionic pages and navigation.
     </button>
     <ion-title class="app-subtitle">{{item.nombre}}</ion-title>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+  <ion-segment [(ngModel)]="tabs" class="tab-show">
+    <ion-segment-button value="info">
+      <ion-icon name="md-information-circle"></ion-icon>
+      <ion-label>Información</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chart">
+      <ion-icon name="pie"></ion-icon>
+      <ion-label>Estadísticas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="la">
+      <ion-icon name="trending-up"></ion-icon>
+      <ion-label>Lineas de Acción</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="prog">
+      <ion-icon md="ios-photos"></ion-icon>
+      <ion-label>Programas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 </ion-header>
-<div>
-   <ion-icon ios="ios-star" md="md-star"></ion-icon>
-   <ion-icon ios="ios-star" md="md-star"></ion-icon>
-   <ion-icon ios="ios-star" md="md-star"></ion-icon>
-   <ion-icon ios="ios-star" md="md-star"></ion-icon>
-   <ion-icon ios="ios-star" md="md-star"></ion-icon>
-</div>
 <ion-content padding>
-  <ion-card class="show-info">
-    <ion-card-header class= "color-1">
-      Información
-      <div class="div-1 right" style="top: 9px;">
-        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
-      </div>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8>
-            <ion-list class="acordeon_list">
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-desc', 'descripcion' ,'hide-desc')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-desc' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-desc' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Descripcion</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="descripcion" style="display: none;">
-                {{item.descripcion ? item.descripcion : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-mis', 'mision','hide-mis')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-mis' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-mis' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Misión</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="mision" style="display: none;">
-                {{item.mision ? item.mision : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-diag', 'diagnostico', 'hide-diag')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-diag' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-diag' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Diagnostico</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="diagnostico"  style="display: none;">
-                {{item.diagnostico ? item.diagnostico : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-bl', 'baselegal', 'hide-bl')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-bl' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-bl' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Base Legal</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="baselegal" style="display: none;">
-                {{item.baselegal ? item.baselegal : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-obj', 'objetivo', 'hide-obj')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-obj' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-obj' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Objetivos</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="objetivo"  style="display: none;">
-                {{item.objetivo ? item.objetivo : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-pol', 'politica', 'hide-pol')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-pol' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-pol' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>Política</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="politica"  style="display: none;">
-                {{item.politica ? item.politica : 'Información no disponible.'}}
-              </ion-item>
-              <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-ruc', 'ruc', 'hide-ruc')" class= "">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-1>
-                      <ion-icon id='show-ruc' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                      <ion-icon id='hide-ruc' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                    </ion-col>
-                    <ion-col col-11>R.U.C.</ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-item>
-              <ion-item class="item-accordion" id="ruc"  style="display: none;">
-                {{item.ruc ? item.ruc : 'Información no disponible.'}}
-              </ion-item>
-            </ion-list>
-          </ion-col>
-          <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
-            <div class="starts">
-              <h5> Califica esta información </h5>
-              <div>
-                  <ion-icon md="ios-star-outline"></ion-icon>
-                  <ion-icon md="ios-star-outline"></ion-icon>
-                  <ion-icon md="ios-star-outline"></ion-icon>
-                  <ion-icon md="ios-star-outline"></ion-icon>
-                  <ion-icon md="ios-star-outline"></ion-icon>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="common-list" style="margin-bottom: 0;">
-      <ion-list class="acordeon_list">
-        <div class="color-3">
-        <ion-item class="item-stable " (click)="toggleGroup($event.currentTarget, 'show-la', 'la' ,'hide-la')" class= "">
+  <div [ngSwitch]="tabs">
+      <ion-card class="show-info" *ngSwitchCase="'info'">
+        <ion-card-header class= "color-1">
+          Información
+          <div class="div-1 right" style="top: 9px;">
+            <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
           <ion-grid>
             <ion-row>
-              <ion-col col-1>
-                <ion-icon id='show-la' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                <ion-icon id='hide-la' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+              <ion-col col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8>
+                <ion-list class="acordeon_list">
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-desc', 'descripcion' ,'hide-desc')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-desc' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-desc' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Descripcion</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="descripcion" style="display: none;">
+                    {{item.descripcion ? item.descripcion : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-mis', 'mision','hide-mis')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-mis' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-mis' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Misión</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="mision" style="display: none;">
+                    {{item.mision ? item.mision : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-diag', 'diagnostico', 'hide-diag')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-diag' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-diag' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Diagnostico</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="diagnostico"  style="display: none;">
+                    {{item.diagnostico ? item.diagnostico : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-bl', 'baselegal', 'hide-bl')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-bl' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-bl' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Base Legal</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="baselegal" style="display: none;">
+                    {{item.baselegal ? item.baselegal : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-obj', 'objetivo', 'hide-obj')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-obj' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-obj' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Objetivos</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="objetivo"  style="display: none;">
+                    {{item.objetivo ? item.objetivo : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-pol', 'politica', 'hide-pol')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-pol' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-pol' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>Política</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="politica"  style="display: none;">
+                    {{item.politica ? item.politica : 'Información no disponible.'}}
+                  </ion-item>
+                  <ion-item class="item-stable" (click)="toggleGroup($event.currentTarget, 'show-ruc', 'ruc', 'hide-ruc')" class= "">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col col-1>
+                          <ion-icon id='show-ruc' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                          <ion-icon id='hide-ruc' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                        </ion-col>
+                        <ion-col col-11>R.U.C.</ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-item>
+                  <ion-item class="item-accordion" id="ruc"  style="display: none;">
+                    {{item.ruc ? item.ruc : 'Información no disponible.'}}
+                  </ion-item>
+                </ion-list>
               </ion-col>
-              <ion-col col-11>Lineas de acción</ion-col>
+              <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
+                <div class="starts">
+                  <h5> Califica esta información </h5>
+                  <div>
+                      <ion-icon md="ios-star-outline"></ion-icon>
+                      <ion-icon md="ios-star-outline"></ion-icon>
+                      <ion-icon md="ios-star-outline"></ion-icon>
+                      <ion-icon md="ios-star-outline"></ion-icon>
+                      <ion-icon md="ios-star-outline"></ion-icon>
+                  </div>
+                </div>
+              </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-item>
-      </div>
-        <ion-item class="item-accordion" id="la" style="display: none;">
-          <ion-list>
-            <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
-              <ion-item>
-                <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
-                <div class="h5-color3">{{lineaAccion.nombre}}</div>
-                <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
-              </ion-item>
-            </button>
+        </ion-card-content>
+      </ion-card>
+      <ion-card *ngSwitchCase="'la'" class="common-list" style="margin-bottom: 0;">
+          <ion-list class="acordeon_list">
+            <div class="color-3">
+            <ion-item class="item-stable " (click)="toggleGroup($event.currentTarget, 'show-la', 'la' ,'hide-la')" class= "">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-1>
+                    <ion-icon id='show-la' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+                    <ion-icon id='hide-la' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
+                  </ion-col>
+                  <ion-col col-11>Lineas de acción</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </div>
+            <ion-item class="item-accordion" id="la" style="display: none;">
+              <ion-list>
+                <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
+                  <ion-item>
+                    <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
+                    <div class="h5-color3">{{lineaAccion.nombre}}</div>
+                    <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
+                  </ion-item>
+                </button>
+              </ion-list>
+            </ion-item>
           </ion-list>
-        </ion-item>
-      </ion-list>
-  </ion-card>
-  <ion-grid>
-    <ion-row>
-    <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
+      </ion-card>
+      <ion-grid *ngSwitchCase="'chart'">
+        <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
 
-        <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
+            <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
 
-    </ion-col>
-  </ion-row>
-  </ion-grid>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+      <ion-grid *ngSwitchCase="'prog'">
+
+      </ion-grid>
+    </div>
+
+
+
 
 </ion-content>

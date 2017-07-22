@@ -218,7 +218,21 @@ ion-searchbar{
 
 }
 
-
+.tab-show{
+  ion-segment-button{
+    border: none !important;
+    color: ghostwhite !important;
+    font-size: 10px !important;
+    ion-icon{
+      font-size: 10px !important;
+    }
+    ion-label{
+      margin: auto;
+      position: relative;
+      top: -24px;
+    }
+  }
+}
 
 .toolbar-background-md , .toolbar-title-md{
 

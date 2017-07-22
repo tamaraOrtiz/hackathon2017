@@ -18,6 +18,8 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   charts: Array<any>
 
+  tabs: string = "info";
+
   chartsData: any
 
   presupuestos: Array<string>
