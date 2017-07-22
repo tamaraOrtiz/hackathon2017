@@ -85,6 +85,7 @@ ion-searchbar{
   .searchbar-input{
     box-shadow: none !important;
     border-radius: 25px !important;
+    font-size: 13px !important;
   }
 }
 .selec-header{
@@ -99,8 +100,31 @@ ion-searchbar{
     color: #fbfbfb !important;
     font-size: 13px;
   }
+  .select-text{
+    font-size: 13px !important;
+    color: #d9a7fd;
+  }
+  .select-md .select-icon .select-icon-inner{
+    color: #d9a7fd;
+  }
 }
 
+.alert-wrapper{
+  .alert-title{
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    color: #422828 !important;
+  }
+  .alert-checkbox-label{
+    font-size: 13px !important;
+    color: #422828 !important;
+  }
+
+}
+.alert-md .alert-button{
+  font-size: 13px !important;
+  color: #2aa8c7;
+}
 .common-list{
   .item-md{
     background: ghostwhite !important;
