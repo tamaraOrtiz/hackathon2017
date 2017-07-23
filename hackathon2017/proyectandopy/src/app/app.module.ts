@@ -21,6 +21,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PpyCanva } from '../components/ppy-canva/ppy-canva';
 import { PpyRating } from '../components/ppy-rating/ppy-rating';
+import { PpyComment } from '../components/ppy-comment/ppy-comment';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PpyRating } from '../components/ppy-rating/ppy-rating';
     TabsPage,
     TutorialPage,
     PpyCanva,
-    PpyRating
+    PpyRating,
+    PpyComment
   ],
   imports: [
     BrowserModule,

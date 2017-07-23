@@ -147,16 +147,7 @@ Ionic pages and navigation.
                 <div class="starts">
                   <ppy-rating [rating]="{page: 'show-institucion', entity_id: item.id, entity_type: 'Institucion', score: 0, meta: null}"></ppy-rating>
                 </div>
-                <ion-list>
-                  <ion-item>
-                    <ion-avatar item-start>
-                      <ion-icon name="person"></ion-icon>
-                    </ion-avatar>
-                    <ion-textarea placeholder="Danos tu opinión"></ion-textarea>
-
-                  </ion-item>
-                </ion-list>
-                <button ion-button id="send-comment"><ion-icon class="send" md="ios-send"></ion-icon>Enviar</button>
+                <ppy-comment [comment]="{page: 'show-institucion', entity_id: item.id, entity_type: 'Institucion', comment: '', meta: null}"></ppy-comment>
               </ion-col>
             </ion-row>
           </ion-grid>
