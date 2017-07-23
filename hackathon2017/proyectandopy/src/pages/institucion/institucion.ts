@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
 import { ShowInstitucionPage } from '../show-institucion/show-institucion';
 import { BasePage } from '../../app/base-page';
+import { LoadingController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-institucion',
@@ -16,11 +18,12 @@ export class InstitucionPage extends BasePage {
   searchQuery: string = '';
   niveles: Array<any>;
   selectedNiveles: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData) {
+  loading;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
     this.selectedNiveles = [];
+
   }
 
   getItems(ev: any) {
@@ -36,12 +39,19 @@ export class InstitucionPage extends BasePage {
   }
 
   ionViewDidLoad(){
+    this.loading = this.loadingCtrl.create({
+       content: 'Por favor espere...'
+    });
+
+    this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
     });
     this.dataService.getAll(this.where).then(records => {
       this.pushItems(records);
+      this.loading.dismiss();
     });
+
   }
 
   filter() {
