@@ -81,7 +81,7 @@
 }
 
 ion-searchbar{
-  background: url(/assets/img/fondo.svg) no-repeat center top !important;
+  background: transparent !important;
   .searchbar-input{
     box-shadow: none !important;
     border-radius: 25px !important;
@@ -89,11 +89,11 @@ ion-searchbar{
   }
 }
 .selec-header{
-  background: url(/assets/img/fondo.svg) no-repeat center top !important;
+  background: transparent no-repeat center top !important;
   margin: 0 !important;
   padding: 0 !important;
   .item-md{
-    background: url(/assets/img/fondo.svg) no-repeat center top !important;
+    background: transparent !important;
     color: ghostwhite !important;
     }
   .label-md{
@@ -237,12 +237,33 @@ ion-searchbar{
 .toolbar-background-md , .toolbar-title-md{
 
     border-color: #eecffb;
-    background: url(/assets/img/fondo.svg) no-repeat center top;
+    background: transparent no-repeat center top;
     color: white !important;
     font-family: 'Comfortaa', cursive;
     font-size: 13px;
 }
 
+page-show-institucion{
+    .scroll-content{
+      padding: 0 !important;
+    }
+}
+
+.title-page{
+  margin: 0 !important;
+  padding: 13px !important;
+  font-size: 13px !important;
+  text-transform: uppercase;
+  color: ghostwhite;
+  font-weight: bold;
+
+}
+.right{
+  top: 0px !important;
+  position: absolute !important;
+  right: 0px !important;
+  
+}
 .app-title{
   margin: 0px;
   padding: 0px !important;
@@ -281,4 +302,7 @@ ion-searchbar{
 }
 .icon-w{
   color: ghostwhite;
+}
+ion-header{
+  background: url(/assets/img/fondo.svg) no-repeat center top;
 }
