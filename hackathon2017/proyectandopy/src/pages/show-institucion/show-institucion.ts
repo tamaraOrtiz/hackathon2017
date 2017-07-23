@@ -4,7 +4,7 @@ import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-show-institucion',
@@ -28,7 +28,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   calificacion: ""
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser, private socialSharing: SocialSharing) {
     super(navCtrl, navParams);
     this.dataService = dataService;
     this.charts = [];
