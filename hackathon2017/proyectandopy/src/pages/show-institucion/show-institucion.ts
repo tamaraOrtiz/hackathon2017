@@ -26,6 +26,8 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   lineasAccion: any
 
+  calificacion: ""
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser) {
     super(navCtrl, navParams);
     this.dataService = dataService;
@@ -47,6 +49,20 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   pushItem(record: any) {
 
+  }
+
+  setCalificacion(text, number){
+      this.calificacion = text;
+      var paso;
+      document.getElementById("send-button").style.display = 'block';
+      for (paso = 1; paso < 6; paso++) {
+        var el = document.getElementById("star-"+paso.toString());
+        if(paso<=number){
+          el.classList.add("check");
+        }else{
+          el.classList.remove("check");
+        }
+      }
   }
 
   lineaAccionTapped(event, item) {

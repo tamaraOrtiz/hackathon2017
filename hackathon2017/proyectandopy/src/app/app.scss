@@ -164,9 +164,9 @@ ion-searchbar{
     }
   }
   .right{
-    position: absolute;
-    right: 7px;
-    top: 8px;
+    position: absolute !important;
+    right: 7px !important;
+    top: 8px !important;
   }
 }
 .bar-button-default-md{
@@ -247,8 +247,67 @@ page-show-institucion{
     .scroll-content{
       padding: 0 !important;
     }
+    .show-info{
+      .grid{
+        margin: 0 !important;
+        padding: 0 !important;
+        .item-md{
+          padding-left: 5px !important;
+          background: ghostwhite;
+          ion-label{
+            font-size: 13px !important;
+            color: #422828 !important;
+            word-wrap: break-word !important;
+            white-space: normal !important;
+            display: inline-flex;
+          }
+        }
+      }
+    }
 }
 
+
+
+.starts{
+  height: 150px;
+  background: #ebf4f9;
+  padding: 19px;
+  font-size: 24px;
+  color: #73117d;
+  ion-icon{
+    color: #9da9b3 !important;
+  }
+  ion-icon.check{
+    color: #73117d !important;
+  }
+  h5{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 7px;
+    color: #73117d;
+  }
+  .calificacion{
+    font-size: 13px !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  button{
+    position: absolute;
+    right: 8px;
+    /* top: 114px; */
+    font-size: 12px;
+    /* margin-bottom: 41px; */
+    text-transform: capitalize;
+    height: 24px;
+
+
+  }
+  #send-button > span >ion-icon{
+    padding-right: 3px !important;
+    color: ghostwhite !important;
+  }
+}
 .title-page{
   margin: 0 !important;
   padding: 13px !important;
@@ -262,7 +321,7 @@ page-show-institucion{
   top: 0px !important;
   position: absolute !important;
   right: 0px !important;
-  
+
 }
 .app-title{
   margin: 0px;
