@@ -263,7 +263,35 @@ page-show-institucion{
           }
         }
       }
+      ion-avatar{
+        margin: auto !important;
+        text-align: center;
+        background: #4fc2e8;
+        color: white;
+        border-radius: 25px;
+        padding-top: 9px;
+      }
+      #send-comment{
+        background: #4fc2e8;
+        height: 25px !important;
+        position: absolute;;
+        right: 3px;
+        .button-inner{
+          font-size: 12px;
+          text-transform: none;
+        }
+        ion-icon{
+          padding-right: 3px !important;
+          color: ghostwhite !important;
+
+        }
+      }
     }
+}
+
+textarea{
+  font-size: 13px !important;
+  color: #422828 !important;
 }
 
 
