@@ -19,7 +19,8 @@ import { ShowLineaAccionPage } from '../pages/show-linea-accion/show-linea-accio
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { PpyCanva } from '../components/ppy-canva';
+import { PpyCanva } from '../components/ppy-canva/ppy-canva';
+import { PpyRating } from '../components/ppy-rating/ppy-rating';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PpyCanva } from '../components/ppy-canva';
     MapaPage,
     TabsPage,
     TutorialPage,
-    PpyCanva
+    PpyCanva,
+    PpyRating
   ],
   imports: [
     BrowserModule,
