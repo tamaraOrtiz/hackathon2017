@@ -145,23 +145,14 @@ Ionic pages and navigation.
               </ion-col>
               <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
                 <div class="starts">
-                  <h5> Califica esta información </h5>
-                  <div>
-                      <ion-icon md="ios-star" id="star-1" (click)="setCalificacion('La informacón no me ayudo en nada.',1)"></ion-icon>
-                      <ion-icon md="ios-star" id="star-2" (click)="setCalificacion('La información es insufiente.',2)"></ion-icon>
-                      <ion-icon md="ios-star" id="star-3" (click)="setCalificacion('La infomación no es clara.',3)"></ion-icon>
-                      <ion-icon md="ios-star" id="star-4" (click)="setCalificacion('La infomación es suficiente.',4)"></ion-icon>
-                      <ion-icon md="ios-star" id="star-5" (click)="setCalificacion('La infomación es completa y clara.',5)"></ion-icon>
-                      <ion-label class="calificacion">{{calificacion}}</ion-label>
-                      <button ion-button id="send-button" style="display:none;"><ion-icon class="send" md="ios-send"></ion-icon>Enviar</button>
-                  </div>
+                  <ppy-rating [rating]="{page: 'show-institucion', entity_id: item.id, entity_type: 'Institucion', score: 0, meta: null}"></ppy-rating>
                 </div>
                 <ion-list>
                   <ion-item>
                     <ion-avatar item-start>
                       <ion-icon name="person"></ion-icon>
                     </ion-avatar>
-                    <ion-textarea placeholder="Danós tu opinión"></ion-textarea>
+                    <ion-textarea placeholder="Danos tu opinión"></ion-textarea>
 
                   </ion-item>
                 </ion-list>

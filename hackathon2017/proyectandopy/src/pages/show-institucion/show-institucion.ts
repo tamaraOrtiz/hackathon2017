@@ -51,20 +51,6 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   }
 
-  setCalificacion(text, number){
-      this.calificacion = text;
-      var paso;
-      document.getElementById("send-button").style.display = 'block';
-      for (paso = 1; paso < 6; paso++) {
-        var el = document.getElementById("star-"+paso.toString());
-        if(paso<=number){
-          el.classList.add("check");
-        }else{
-          el.classList.remove("check");
-        }
-      }
-  }
-
   lineaAccionTapped(event, item) {
     this.navCtrl.push(ShowLineaAccionPage, {
       item: item
