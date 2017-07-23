@@ -170,43 +170,31 @@ Ionic pages and navigation.
             </ion-row>
           </ion-grid>
       </div>
-      <ion-card *ngSwitchCase="'la'" class="common-list" style="margin-bottom: 0;">
-          <ion-list class="acordeon_list">
-            <div class="color-3">
-            <ion-item class="item-stable " (click)="toggleGroup($event.currentTarget, 'show-la', 'la' ,'hide-la')" class= "">
-              <ion-grid>
-                <ion-row>
-                  <ion-col col-1>
-                    <ion-icon id='show-la' ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-                    <ion-icon id='hide-la' ios="ios-arrow-up" md="ios-arrow-up" style="display: none;"></ion-icon>
-                  </ion-col>
-                  <ion-col col-11>Lineas de acción</ion-col>
-                </ion-row>
-              </ion-grid>
+      <div *ngSwitchCase="'la'" class="common-list" style="margin-bottom: 0;">
+        <ion-label class="title-page bac-c5">Lineas de acción</ion-label>
+        <ion-list>
+          <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
+            <ion-item>
+              <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
+              <div class="h5-color3">{{lineaAccion.nombre}}</div>
+              <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
             </ion-item>
-          </div>
-            <ion-item class="item-accordion" id="la" style="display: none;">
-              <ion-list>
-                <button ion-item *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
-                  <ion-item>
-                    <ion-icon name="checkmark-circle" class="success list-icon"></ion-icon>
-                    <div class="h5-color3">{{lineaAccion.nombre}}</div>
-                    <div>Meta: {{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</div>
-                  </ion-item>
-                </button>
-              </ion-list>
-            </ion-item>
-          </ion-list>
-      </ion-card>
-      <ion-grid *ngSwitchCase="'chart'">
-        <ion-row>
-        <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
+          </button>
+        </ion-list>
+      </div>
+      <div *ngSwitchCase="'chart'">
+        <ion-label class="title-page bac-c2">Estadísticas</ion-label>
+        <ion-grid >
+          <ion-row>
+          <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let presupuesto of presupuestos">
 
-            <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
+              <ppy-canva [presupuesto]="chartsData[presupuesto]"></ppy-canva>
 
-        </ion-col>
-      </ion-row>
-      </ion-grid>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+      </div>
+
       <ion-grid *ngSwitchCase="'prog'">
 
       </ion-grid>
