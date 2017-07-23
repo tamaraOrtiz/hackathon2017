@@ -1,0 +1,10 @@
+<h5> Califica esta información </h5>
+<div>
+    <ion-icon md="ios-star" id="star-1" (click)="setRating('La informacón no me ayudo en nada.',1)"></ion-icon>
+    <ion-icon md="ios-star" id="star-2" (click)="setRating('La información es insufiente.',2)"></ion-icon>
+    <ion-icon md="ios-star" id="star-3" (click)="setRating('La infomación no es clara.',3)"></ion-icon>
+    <ion-icon md="ios-star" id="star-4" (click)="setRating('La infomación es suficiente.',4)"></ion-icon>
+    <ion-icon md="ios-star" id="star-5" (click)="setRating('La infomación es completa y clara.',5)"></ion-icon>
+    <ion-label id="rating-text" class="calificacion"></ion-label>
+    <button ion-button id="send-rating" style="display:none;"><ion-icon class="send" md="ios-send"></ion-icon>Enviar</button>
+</div>
