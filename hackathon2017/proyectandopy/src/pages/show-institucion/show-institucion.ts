@@ -5,6 +5,7 @@ import { InstitucionData } from '../../providers/institucion';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-show-institucion',
@@ -28,7 +29,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   calificacion: ""
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser, private socialSharing: SocialSharing, public plt: Platform) {
     super(navCtrl, navParams);
     this.dataService = dataService;
     this.charts = [];
@@ -36,6 +37,32 @@ export class ShowInstitucionPage extends ShowBasePage {
   openLink(link){
   		this.iab.create(link,'_system',{location:'yes'});
   }
+
+  regularShare(){
+
+      // share(message, subject, file, url)
+      if (this.plt.is('code') || this.plt.is('mobileweb')) {
+      // This will only print when on iOS
+        console.log('I am an iOS device!');
+      
+      }else{
+        this.socialSharing.share("Testing, sharing this from inside an app I'm building right now", null, "www/assets/img/ejes.jpg", null);
+      }
+
+    }
+
+  twitterShare(){
+    this.socialSharing.shareViaTwitter("Testing, sharing this from inside an app I'm building right now", "www/assets/img/ejes.jpg", null);
+  }
+
+  instagramShare(){
+    this.socialSharing.shareViaInstagram(`Testing, sharing this from inside an app I'm building right now`, "www/assets/img/ejes.jpg");
+  }
+
+  whatsappShare(){
+    this.socialSharing.shareViaWhatsApp("Testing, sharing this from inside an app I'm building right now", "www/assets/img/ejes.jpg", null);
+  }
+
 
   ionViewDidLoad() {
     this.dataService.getQuery(this.dataService.getResumenPrograma(this.item.nivelid, this.item.entidadid, undefined)).then(records => {
