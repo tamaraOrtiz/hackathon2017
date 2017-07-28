@@ -99,9 +99,21 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
   onEachFeature(feature, layer) {
     layer.on({
-        mouseover: this.highlightFeature,
+        mouseover: function (e) {
+          var layer = e.target;
+          layer.setStyle({
+              weight: 5,
+              color: '#666',
+              dashArray: '',
+              fillOpacity: 0.7
+          });
+
+          if (!L.Browser.ie && !L.Browser.edge) {
+              layer.bringToFront();
+          }
+        },
         mouseout: this.resetHighlight,
-        click: this.zoomToFeature
+      click: this.zoomToFeature
     });
   }
 

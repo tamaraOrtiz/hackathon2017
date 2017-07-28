@@ -1,6 +1,7 @@
 
 import { Component, Input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'ppy-canva',
@@ -91,6 +92,9 @@ export class PpyCanva {
     };
 
     let options = {
+      onAnimationComplete: function () {
+        console.log(this.canva.nativeElement.toDataURL("image/png"));
+      },
       scales: {
         yAxes: [{
           ticks: {
