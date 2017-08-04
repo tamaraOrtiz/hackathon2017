@@ -18,19 +18,17 @@ export class InstitucionPage extends BasePage {
   searchQuery: string = '';
   niveles: Array<any>;
   selectedNiveles: any;
+  groupedItems: Array<any> = [];
   loading;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
     this.selectedNiveles = [];
-
   }
 
   getItems(ev: any) {
-    console.log(this.selectedNiveles);
     let val = ev.target.value;
     if (val && val.trim() != '') {
-      console.log(val);
       let niveles = this.selectedNiveles.length > 0 ? `AND nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
       this.dataService.getAll(`nombre ILIKE '%agencia%' ${niveles}`).then(records => {
         this.pushItems(records);
@@ -49,8 +47,19 @@ export class InstitucionPage extends BasePage {
     });
     this.dataService.getAll(this.where).then(records => {
       this.pushItems(records);
+      let self = this;
+      let groupedItems = {}
+      this.items.map(function(item) {
+        if(groupedItems[item.nivelid] === undefined) {
+          groupedItems[item.nivelid] = {name: item.nivel_nombre, items: []};
+        }
+        groupedItems[item.nivelid]['items'].push(item);
+      });
+      this.groupedItems = (<any> Object).values(groupedItems);
       this.loading.dismiss();
     });
+
+
 
   }
 

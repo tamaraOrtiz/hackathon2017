@@ -14,6 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
 .tutorial-page {
 
   .toolbar-background {
@@ -127,7 +128,7 @@ ion-searchbar{
 }
 .common-list{
   .item-md{
-    background: ghostwhite !important;
+    background: ghostwhite;
   }
   button.item-md{
     padding-left: 0 !important;
@@ -396,4 +397,8 @@ textarea{
 }
 ion-header{
   background: url(/assets/img/fondo.svg) no-repeat center top;
+}
+
+.item-grouper {
+  background-color: #EFE3FF !important;
 }
