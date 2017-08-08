@@ -37,6 +37,7 @@ export class InstitucionPage extends BasePage {
   }
 
   ionViewDidLoad(){
+    let self = this;
     this.loading = this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
@@ -44,7 +45,10 @@ export class InstitucionPage extends BasePage {
     this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
+    }, function(errors){
+      self.loading.dismiss();
     });
+
     this.dataService.getAll(this.where).then(records => {
       this.pushItems(records);
       let self = this;
@@ -57,6 +61,8 @@ export class InstitucionPage extends BasePage {
       });
       this.groupedItems = (<any> Object).values(groupedItems);
       this.loading.dismiss();
+    }, function(errors){
+      self.loading.dismiss();
     });
 
 

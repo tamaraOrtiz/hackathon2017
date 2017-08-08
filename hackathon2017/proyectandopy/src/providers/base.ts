@@ -15,10 +15,12 @@ export class BaseData {
 
   getAll(conditions: string) {
     let where = conditions !== undefined ? "WHERE "+conditions : "";
-    return new Promise<Array<any>>(resolve => {
+    return new Promise<Array<any>>((resolve, reject) => {
       this.http.get(`${this.url}${this.getAllQuery(where)}`).map( res => res.json()).subscribe( data => {
         this.data = data.rows;
         resolve(this.data);
+      }, error => {
+        reject(error);
       });
     });
   }
