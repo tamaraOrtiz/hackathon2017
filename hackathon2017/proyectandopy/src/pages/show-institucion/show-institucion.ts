@@ -2,18 +2,22 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
+import { RatingData } from '../../providers/rating';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Events } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-show-institucion',
   templateUrl: 'show-institucion.html',
-  providers: [InstitucionData]
+  providers: [InstitucionData, RatingData]
 })
 
 export class ShowInstitucionPage extends ShowBasePage {
+
+  ratingService: RatingData
 
   meta: Array<any>
 
@@ -27,10 +31,14 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   lineasAccion: any
 
-  calificacion: ""
+  calificacion: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, private iab: InAppBrowser, private socialSharing: SocialSharing, public plt: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public dataService: InstitucionData, public raService: RatingData,
+    private iab: InAppBrowser, public events: Events,
+    private socialSharing: SocialSharing, public plt: Platform) {
     super(navCtrl, navParams);
+    this.ratingService = raService;
     this.dataService = dataService;
     this.charts = [];
   }
@@ -44,7 +52,7 @@ export class ShowInstitucionPage extends ShowBasePage {
       if (this.plt.is('code') || this.plt.is('mobileweb')) {
       // This will only print when on iOS
         console.log('I am an iOS device!');
-      
+
       }else{
         this.socialSharing.share("Testing, sharing this from inside an app I'm building right now", null, "www/assets/img/ejes.jpg", null);
       }
@@ -71,6 +79,11 @@ export class ShowInstitucionPage extends ShowBasePage {
     });
     this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, "periodo = '2016'")).then(records => {
       this.lineasAccion = this.structLineasAccion(records);
+    });
+
+    this.ratingService.getRating().then(rating => {
+      this.calificacion = rating;
+      this.events.publish('rating:retrieve', rating, Date.now());
     });
   }
 
