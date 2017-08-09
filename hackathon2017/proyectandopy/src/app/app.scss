@@ -80,19 +80,28 @@
 
   }
 }
-
+.analizer{
+  top: 105px !important;
+}
 ion-searchbar{
   background: transparent !important;
+  height: 52px !important;
   .searchbar-input{
     box-shadow: none !important;
-    border-radius: 25px !important;
+    background-color: rgba(140, 114, 197, 0.28) !important;
     font-size: 13px !important;
+    line-height: 2rem;
+  }
+  .searchbar-search-icon{
+    color: white !important;
   }
 }
 .selec-header{
   background: transparent no-repeat center top !important;
   margin: 0 !important;
   padding: 0 !important;
+  width: calc(100% - 70px) !important;
+
   .item-md{
     background: transparent !important;
     color: ghostwhite !important;
@@ -107,6 +116,10 @@ ion-searchbar{
   }
   .select-md .select-icon .select-icon-inner{
     color: #d9a7fd;
+
+  }
+  ion-select{
+    max-width: 63% !important;
   }
 }
 
@@ -236,14 +249,24 @@ ion-searchbar{
 }
 
 .toolbar-background-md , .toolbar-title-md{
-
+    font-weight: bold;
     border-color: #eecffb;
     background: transparent no-repeat center top;
     color: white !important;
     font-family: 'Comfortaa', cursive;
-    font-size: 13px;
-}
+    font-size: 12px;
 
+}
+.app-subtitle{
+  .toolbar-title-md{
+    text-transform: uppercase;
+    display: inline-flex;
+    padding-right: 0;
+    ion-icon{
+      color: white;
+    }
+  }
+}
 page-show-institucion{
     .scroll-content{
       padding: 0 !important;
@@ -353,21 +376,23 @@ textarea{
 
 }
 .app-title{
-  margin: 0px;
-  padding: 0px !important;
+
   height: 40px !important;
   .toolbar-title-md{
-    font-size: 17px !important;
+    color: #CDB1F5 !important;
+    font-size: 16px !important;
     text-align: center;
     font-weight: bold !important;
-    padding-top: 15px !important;
-    height: 100%;
+    height: auto;
   }
 
 }
 
+ion-header{
+  background-color: #5832AB !important;
+}
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon,.tabs-md .tab-button[aria-selected=true] {
-    color: #2dafda;
+    color: #7B72E9;
   }
 .scroll-content{
   background: rgba(239, 241, 255, 0.42) !important;
@@ -395,10 +420,22 @@ textarea{
 .icon-w{
   color: ghostwhite;
 }
-ion-header{
-  background: url(/assets/img/fondo.svg) no-repeat center top;
+
+.app-title{
+  background-color:  #5E1A75 !important;
+  border-bottom: 1px solid #7f4c96;
 }
 
 .item-grouper {
   background-color: #EFE3FF !important;
+  ion-label{
+    color: #555555 !important;
+    font-size: 14px !important;
+    font-weight: bold;
+  }
+}
+
+.toolbar-md {
+    /* padding: 4px; */
+    min-height: 36px !important;
 }

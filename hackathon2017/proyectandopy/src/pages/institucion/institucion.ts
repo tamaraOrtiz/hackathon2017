@@ -26,6 +26,7 @@ export class InstitucionPage extends BasePage {
     this.selectedNiveles = [];
   }
 
+
   getItems(ev: any) {
     let val = ev.target.value;
     if (val && val.trim() != '') {
@@ -36,6 +37,15 @@ export class InstitucionPage extends BasePage {
     }
   }
 
+  showSearch(){
+    document.getElementById("subnavbar").style.display = 'none';
+    document.getElementById("search-div").style.cssText += ';display:block !important;'
+  }
+
+  cancelSearch(){
+    document.getElementById("subnavbar").style.display = 'block';
+    document.getElementById("search-div").style.cssText += ';display:none !important;'
+  }
   ionViewDidLoad(){
     let self = this;
     this.loading = this.loadingCtrl.create({

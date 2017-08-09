@@ -1,12 +1,18 @@
 <ion-header>
   <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
-  <ion-navbar >
+  <ion-navbar id="subnavbar">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="app-subtitle">Instituciones</ion-title>
+    <ion-title class="app-subtitle"><ion-label> Instituciones </ion-label>
+      <button ion-button clear (click)="showSearch()"><ion-icon name="search"></ion-icon></button>
+
+    </ion-title>
+
   </ion-navbar>
-  <ion-searchbar  (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
+
+  <ion-searchbar [showCancelButton]=true [animated]=true hidden id="search-div"(ionInput)="getItems($event)" placeholder="Buscar" (ionCancel)="cancelSearch($event)">
+</ion-searchbar>
   <ion-list class="selec-header">
     <ion-item>
       <ion-label>Niveles:</ion-label>
@@ -14,7 +20,12 @@
         <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
       </ion-select>
     </ion-item>
+
   </ion-list>
+  <ion-fab right edge class="analizer" >
+    <button ion-fab color=secondary> <ion-icon name="stats"></ion-icon></button>
+  </ion-fab>
+
 </ion-header>
 
 

@@ -10,7 +10,7 @@ import { TutorialPage } from '../../pages/tutorial/tutorial';
   templateUrl: 'tabs.html'})
 
 export class TabsPage {
-  'Home' = HomePage;
+  'Instituciones' = InstitucionPage;
   'Niveles' = NivelPage;
   'Programas' = ProgramaPage;
   'Informacion' = TutorialPage;
