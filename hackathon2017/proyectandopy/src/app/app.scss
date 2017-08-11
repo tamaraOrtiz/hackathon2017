@@ -140,6 +140,14 @@ ion-searchbar{
   color: #2aa8c7;
 }
 .common-list{
+  ion-avatar{
+        color: #848080;
+  }
+  ion-grid, ion-col{
+    padding: 0 !important;
+    margin: auto;
+    background: rgba(234, 234, 234, 0.8);
+  }
   .item-md{
     background: ghostwhite;
   }
@@ -233,21 +241,24 @@ ion-searchbar{
 }
 
 .tab-show{
+  height: 46px !important;
   ion-segment-button{
     border: none !important;
     color: ghostwhite !important;
     font-size: 10px !important;
-    ion-icon{
-      font-size: 10px !important;
+    ion-icon, i.fa{
+      font-size: 18px !important;
     }
-    ion-label{
-      margin: auto;
-      position: relative;
-      top: -24px;
-    }
+
   }
 }
+.segment-md .segment-button.segment-activated{
+  border-bottom: 3px solid #ae04d2 !important;
+}
+#subnavbar{
+  height: 52px !important;
 
+}
 .toolbar-background-md , .toolbar-title-md{
     font-weight: bold;
     border-color: #eecffb;
@@ -259,6 +270,9 @@ ion-searchbar{
 }
 .app-subtitle{
   .toolbar-title-md{
+    font-family: 'Muli', sans-serif;
+
+    color: #bad4f5 !important;
     text-transform: uppercase;
     display: inline-flex;
     padding-right: 0;
@@ -389,7 +403,8 @@ textarea{
 }
 
 ion-header{
-  background-color: #5832AB !important;
+  background-color: #5E1A75 !important;
+  height: 137px !important;
 }
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon,.tabs-md .tab-button[aria-selected=true] {
     color: #7B72E9;
@@ -422,12 +437,12 @@ ion-header{
 }
 
 .app-title{
-  background-color:  #5E1A75 !important;
-  border-bottom: 1px solid #7f4c96;
+  background-color: #41254a !important;
+  border-bottom: 1px solid #482358;;
 }
 
 .item-grouper {
-  background-color: #EFE3FF !important;
+  background-color: #dbe4f7 !important;
   ion-label{
     color: #555555 !important;
     font-size: 14px !important;
@@ -438,4 +453,31 @@ ion-header{
 .toolbar-md {
     /* padding: 4px; */
     min-height: 36px !important;
+}
+
+i.fa{
+      font-size: 22px;
+}
+
+.label_c1{
+  background: transparent !important;
+  color: #078A76;
+  padding-left: 0px !important;
+  i.fa{
+    padding-right: 5px;
+    font-size: 13px !important;
+  }
+
+}
+
+.label_c2{
+  background: transparent !important;
+  color: #F28500;
+  padding-left: 0px !important;
+  i.fa{
+    padding-right: 5px;
+    font-size: 13px !important;
+  }
+
+
 }

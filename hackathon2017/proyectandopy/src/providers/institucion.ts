@@ -34,4 +34,6 @@ export class InstitucionData extends BaseData {
     return "?q=SELECT nivel_id, nivel_nombre, COUNT(DISTINCT entidad_id) FROM public.destinatarioproducto "+where+" GROUP BY nivel_id, nivel_nombre ORDER BY nivel_id ASC ;"
   }
 
+
+
 }

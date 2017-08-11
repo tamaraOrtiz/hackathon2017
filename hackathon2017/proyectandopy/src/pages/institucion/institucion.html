@@ -23,27 +23,40 @@
 
   </ion-list>
   <ion-fab right edge class="analizer" >
-    <button ion-fab color=secondary> <ion-icon name="stats"></ion-icon></button>
+    <button ion-fab color=secondary> <!-- basic usage -->
+    <i class="fa fa-calculator  " aria-hidden="true"></i></button>
   </ion-fab>
 
 </ion-header>
 
 
 <ion-content  class="common-list">
-    <ion-list>
-        <div *ngFor="let nivel of groupedItems">
-          <ion-item class="item-grouper"><i class="fa fa-bank"></i>{{nivel.name}}</ion-item>
-        <button ion-item class="success" *ngFor="let item of nivel.items" (click)="itemTapped($event, item)">
-          <ion-item>
-            <div class="item-list">{{item.nombre}}
-              <p>{{item.nivel_nombre}}</p>
-              <h3 ><ion-badge class="bac-c4"><ion-icon  md="ios-photos"></ion-icon>260</ion-badge>
-              <ion-badge class="bac-c1"><ion-icon  name="trending-up"></ion-icon>130</ion-badge></h3>
-            </div>
-            <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
-          </ion-item>
-        </button>
-      </div>
-    </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-sm-12 col-md-12 col-lg-8 col-xl-8>
+        <ion-list>
+            <div *ngFor="let nivel of groupedItems">
+              <ion-item class="item-grouper">{{nivel.name}}</ion-item>
+            <button ion-item class="success" *ngFor="let item of nivel.items" (click)="itemTapped($event, item)">
+              <ion-item>
+                <ion-avatar item-start>
+                    <i class="fa fa-bank"></i>
+                </ion-avatar>
+                <div class="item-list">
+                  <h2>{{item.nombre}}</h2>
+                  <p>{{item.nivel_nombre}}</p>
+                  <h5 ><ion-badge class="label_c1"><i class="fa fa-users" aria-hidden="true"></i>260</ion-badge>
+                  <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>130</ion-badge></h5>
+                </div>
+                <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
+              </ion-item>
+            </button>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 
 </ion-content>
