@@ -9,4 +9,8 @@
     <button ion-button id="send-rating" style="display:none;" (click)="pushRating()">
       <ion-icon class="send" md="ios-send"></ion-icon>Enviar
     </button>
+    <ion-select [(ngModel)]="rating.meta">
+      <ion-option value="yes">YES</ion-option>
+      <ion-option *ngFor="let option of options" value="{{option}}">{{option}}</ion-option>
+    </ion-select>
 </div>

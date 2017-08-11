@@ -10,6 +10,8 @@ import { RatingData } from '../../providers/rating';
 
 export class PpyRating {
 
+  _options: Array<string>
+
   _rating: { page: string, entity_id: string, entity_type: string, score: number, meta: string };
 
   ratingText = ['La información no me ayudo en nada.',
@@ -19,6 +21,7 @@ export class PpyRating {
               'La infomación es completa y clara.'];
 
   constructor(public events: Events, public dataService: RatingData) {
+    console.log(this.options)
     events.subscribe('rating:retrieve', (rating, time) => {
       this.setRating(rating, true);
     });
@@ -27,6 +30,15 @@ export class PpyRating {
   @Input()
   set rating(rating: { page: string, entity_id: string, entity_type: string, score: number, meta: string }) {
     this._rating = rating;
+  }
+
+  @Input()
+  set options(options: Array<string>) {
+    this._options = options;
+  }
+
+  get options(){
+    return this._options;
   }
 
   get rating(){
