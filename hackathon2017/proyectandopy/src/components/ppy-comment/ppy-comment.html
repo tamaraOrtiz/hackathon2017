@@ -6,4 +6,4 @@
     <ion-textarea [(ngModel)]="comment.text" placeholder="Danos tu opinión"></ion-textarea>
   </ion-item>
 </ion-list>
-<button ion-button id="send-comment"><ion-icon class="send" md="ios-send"></ion-icon>Enviar</button>
+<button ion-button id="send-comment" (click)="pushComment()"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
