@@ -314,10 +314,11 @@ page-show-institucion{
         padding-top: 9px;
       }
       #send-comment{
-        background: #4fc2e8;
-        height: 25px !important;
-        position: absolute;;
-        right: 3px;
+        background: #0086b3;
+        height: 29px !important;
+        position: absolute;
+        right: 34px;
+        margin-right: 11px;
         .button-inner{
           font-size: 12px;
           text-transform: none;
@@ -382,6 +383,12 @@ textarea{
     /* margin-bottom: 41px; */
     text-transform: capitalize;
     height: 29px;
+    span{
+      font-size: 12px;
+    }
+    ion-icon{
+          padding-right: 3px;
+    }
 
   }
   #send-rating{
@@ -536,4 +543,37 @@ i.fa{
     line-height: 19px;
     text-align: justify;
   }
+}
+
+
+.comment-list{
+  .item-inner{
+      padding-left: 15px !important;
+      h2{
+        font-size: 14px;
+      }
+      p{
+        font-size: 12px;
+      }
+      ion-note{
+        position: absolute;
+        top: 0;
+        right: 7px;
+      }
+  }
+  ion-avatar{
+    background: #d2d2d2 !important;
+
+  }
+
+}
+
+.comment-form{
+    min-height: 95px;
+    background: rgba(239, 239, 239, 0.55);
+    margin-top: 9px;
+    padding-bottom: 43px;
+    .item-md{
+      background: transparent !important;
+    }
 }
