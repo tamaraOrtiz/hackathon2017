@@ -317,7 +317,7 @@ page-show-institucion{
         background: #0086b3;
         height: 29px !important;
         position: absolute;
-        right: 34px;
+        right: 3px;
         margin-right: 11px;
         .button-inner{
           font-size: 12px;
@@ -576,4 +576,11 @@ i.fa{
     .item-md{
       background: transparent !important;
     }
+}
+
+ion-footer{
+  .toolbar-background-md, .toolbar-title-md{
+    color: #5e1a75  !important;
+    text-align: center;
+  }
 }
