@@ -285,9 +285,25 @@ ion-searchbar{
     }
   }
 }
+.principal-grid{
+  background: rgba(234, 234, 234, 0.8);
+  padding: 0 !important;
+  height: 100%;
+  .principal-col{
+    padding: 0 !important;
+    margin: auto;
+    height: 100%;
+    background: ghostwhite;
+  }
+  ion-row{
+    height: 100%;
+
+  }
+}
 page-show-institucion{
     .scroll-content{
       padding: 0 !important;
+
     }
     .show-info{
       .grid{
