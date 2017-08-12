@@ -151,6 +151,11 @@ ion-searchbar{
   .item-md{
     background: ghostwhite;
   }
+  .item-md h2 {
+    margin: 2px 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+  }
   button.item-md{
     padding-left: 0 !important;
     background: ghostwhite !important;
@@ -164,7 +169,7 @@ ion-searchbar{
         display: inline-flex;
         font-size: 14px;
         color: #422828 !important;
-        padding: 2px 4px 0px 0px;
+        padding: 5px 4px 5px 0px;
         line-height: 24px;
         background: ghostwhite;
         p{
@@ -271,8 +276,7 @@ ion-searchbar{
 .app-subtitle{
   .toolbar-title-md{
     font-family: 'Muli', sans-serif;
-
-    color: #bad4f5 !important;
+    color: #eff6ff !important;
     text-transform: uppercase;
     display: inline-flex;
     padding-right: 0;
@@ -335,28 +339,29 @@ textarea{
 
 
 .starts{
-  height: 150px;
-  background: #ebf4f9;
+
+  background: #FCEED6;
   padding: 19px;
   font-size: 24px;
-  color: #73117d;
+  color: #F28500;
   ion-icon{
-    color: #9da9b3 !important;
+    color: #F28500 !important;
   }
   ion-icon.check{
-    color: #73117d !important;
+    color: #F28500 !important;
   }
   h5{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 12px;
     padding: 7px;
-    color: #73117d;
+    color: #F28500;
   }
   .calificacion{
     font-size: 13px !important;
     margin-right: 0 !important;
     margin-bottom: 0 !important;
+    color: #383838;
   }
   button{
     position: absolute;
@@ -367,7 +372,10 @@ textarea{
     text-transform: capitalize;
     height: 24px;
 
-
+  }
+  #send-rating{
+    background: #0097A7 !important;
+    color: ghostwhite !important;
   }
   #send-button > span >ion-icon{
     padding-right: 3px !important;
@@ -376,11 +384,16 @@ textarea{
 }
 .title-page{
   margin: 0 !important;
-  padding: 13px !important;
+  padding: 9px 13px !important;
   font-size: 13px !important;
   text-transform: uppercase;
-  color: ghostwhite;
+  color: #1d6fad !important;
   font-weight: bold;
+  button{
+    height: 17px;
+    margin-top: -5px;
+    color: #1d6fad !important;
+  }
 
 }
 .right{
@@ -445,11 +458,12 @@ ion-header{
   .item-inner{
     border: none !important;
   }
-  border-bottom: 2px solid #1d6fad;
+  border-bottom: 2px solid #c3c9ce;
   ion-label{
     color: #1d6fad !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     font-weight: bold;
+    text-transform: uppercase;
   }
 }
 
@@ -483,4 +497,12 @@ i.fa{
   }
 
 
+}
+
+
+.item-accordion{
+  ion-label{
+    line-height: 19px;
+    text-align: justify;
+  }
 }

@@ -1,16 +1,37 @@
-<h5> Califica esta información </h5>
+
 <div>
-    <ion-icon md="ios-star" id="star-1" (click)="setRating(1)"></ion-icon>
-    <ion-icon md="ios-star" id="star-2" (click)="setRating(2)"></ion-icon>
-    <ion-icon md="ios-star" id="star-3" (click)="setRating(3)"></ion-icon>
-    <ion-icon md="ios-star" id="star-4" (click)="setRating(4)"></ion-icon>
-    <ion-icon md="ios-star" id="star-5" (click)="setRating(5)"></ion-icon>
-    <ion-label id="rating-text" class="calificacion"></ion-label>
-    <button ion-button id="send-rating" style="display:none;" (click)="pushRating()">
-      <ion-icon class="send" md="ios-send"></ion-icon>Enviar
-    </button>
-    <ion-select [(ngModel)]="rating.meta">
-      <ion-option value="yes">YES</ion-option>
-      <ion-option *ngFor="let option of options" value="{{option}}">{{option}}</ion-option>
-    </ion-select>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <h5> Califica esta información </h5>
+        <i class="fa fa-star" aria-hidden="true" id="star-1" (click)="setRating(1)"></i>
+        <i class="fa fa-star" aria-hidden="true" id="star-2" (click)="setRating(2)"></i>
+        <i class="fa fa-star" aria-hidden="true" id="star-3" (click)="setRating(3)"></i>
+        <i class="fa fa-star" aria-hidden="true" id="star-4" (click)="setRating(4)"></i>
+        <i class="fa fa-star" aria-hidden="true" id="star-5" (click)="setRating(5)"></i>
+        <ion-label id="rating-text" class="calificacion"></ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <h1>5</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9>
+        <ion-item>
+          <ion-label>Informacion</ion-label>
+          <ion-select [(ngModel)]="rating.meta">
+          
+            <ion-option *ngFor="let option of options" value="{{option}}">{{option}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button id="send-rating" style="display:none;" (click)="pushRating()">
+          <ion-icon class="send" md="ios-send"></ion-icon>Enviar
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </div>

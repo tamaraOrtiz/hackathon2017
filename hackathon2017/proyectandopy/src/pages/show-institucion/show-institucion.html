@@ -40,9 +40,9 @@ Ionic pages and navigation.
 <ion-content padding>
   <div [ngSwitch]="tabs">
       <div class="show-info" *ngSwitchCase="'info'">
-          <ion-label class="title-page bac-c1">Información</ion-label>
-          <button ion-button color="text" class="right" clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
-
+          <ion-label class="title-page item-grouper">Información
+            <button ion-button clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
+          </ion-label>
           <ion-grid>
             <ion-row>
               <ion-col col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8>
