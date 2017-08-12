@@ -24,6 +24,7 @@ export class PpyRating {
     console.log(this.options)
     events.subscribe('rating:retrieve', (rating, time) => {
       this.setRating(rating, true);
+
     });
   }
 
@@ -47,9 +48,11 @@ export class PpyRating {
 
   setRating(number, init){
     this.rating.score = number;
+    this.rating.meta = this._options[0];
     document.getElementById("rating-text").innerHTML = this.ratingText[number-1];
     if(!init){
       document.getElementById("send-rating").style.display = 'block';
+      document.getElementById("col-rating").style.display = 'block';
     }
     for (let i = 1; i < 6; i++) {
       var el = document.getElementById("star-"+i.toString());

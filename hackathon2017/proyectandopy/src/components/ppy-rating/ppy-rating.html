@@ -12,16 +12,16 @@
         <ion-label id="rating-text" class="calificacion"></ion-label>
       </ion-col>
       <ion-col col-3>
-        <h1>5</h1>
+        <h1 class="cal-number">5</h1>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-9>
-        <ion-item>
-          <ion-label>Informacion</ion-label>
-          <ion-select [(ngModel)]="rating.meta">
-          
+        <ion-item id="col-rating" style="display:none;" >
+          <ion-label hidden>Informacion</ion-label>
+          <ion-select class="rating-select" [(ngModel)]="rating.meta" cancelText="Cancelar">
             <ion-option *ngFor="let option of options" value="{{option}}">{{option}}</ion-option>
+
           </ion-select>
         </ion-item>
       </ion-col>
