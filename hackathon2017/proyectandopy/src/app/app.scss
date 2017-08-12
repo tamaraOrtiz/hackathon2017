@@ -253,7 +253,7 @@ ion-searchbar{
   }
 }
 .segment-md .segment-button.segment-activated{
-  border-bottom: 3px solid #ae04d2 !important;
+  border-bottom: 3px solid #9b33b1 !important;
 }
 #subnavbar{
   height: 52px !important;
@@ -442,9 +442,12 @@ ion-header{
 }
 
 .item-grouper {
-  background-color: #dbe4f7 !important;
+  .item-inner{
+    border: none !important;
+  }
+  background-color: #808796 !important;
   ion-label{
-    color: #555555 !important;
+    color: #efefef !important;
     font-size: 14px !important;
     font-weight: bold;
   }
