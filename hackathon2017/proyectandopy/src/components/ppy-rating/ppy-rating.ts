@@ -21,7 +21,6 @@ export class PpyRating {
               'La infomación es completa y clara.'];
 
   constructor(public events: Events, public dataService: RatingData) {
-    console.log(this.options)
     events.subscribe('rating:retrieve', (rating, time) => {
       this.setRating(rating, true);
 
@@ -49,7 +48,7 @@ export class PpyRating {
   setRating(number, init){
     this.rating.score = number;
     this.rating.meta = this._options[0];
-    document.getElementById("rating-text").innerHTML = this.ratingText[number-1];
+    document.getElementById("rating-text").innerHTML = this.ratingText[Math.floor(number)-1];
     if(!init){
       document.getElementById("send-rating").style.display = 'block';
       document.getElementById("col-rating").style.display = 'block';

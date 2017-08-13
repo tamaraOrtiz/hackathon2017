@@ -8,9 +8,9 @@ export class RatingData extends BaseData {
     this.pushEntity('rating', entity);
   }
 
-  getRating(){
+  getRating(entity_id, entity_type){
     return new Promise<Array<any>>((resolve, reject) => {
-      this.http.get(`${this.apiUrl}get_rating/`).map( res => res.json()).subscribe( data => {
+      this.http.get(`${this.apiUrl}get_rating?entity_id=${entity_id}&entity_type=${entity_type}`).map( res => res.json()).subscribe( data => {
         resolve(data);
       }, error => {
         reject(error);

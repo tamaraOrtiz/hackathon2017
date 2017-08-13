@@ -81,7 +81,7 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.lineasAccion = this.structLineasAccion(records);
     });
 
-    this.ratingService.getRating().then(rating => {
+    this.ratingService.getRating(this.item.id, 'Institucion').then(rating => {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
