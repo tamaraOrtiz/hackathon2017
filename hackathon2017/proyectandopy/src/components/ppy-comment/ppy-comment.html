@@ -14,10 +14,10 @@
     <ion-avatar item-start>
         <ion-icon name="person"></ion-icon>
     </ion-avatar>
-    <div class="item-list">
+    <div class="item-list" *ngFor="let comment of comments">
       <h2>User</h2>
-      <p>comentario</p>
-      <ion-note item-end edge right>3:43 pm</ion-note>
+      <p>{{comment.text}}</p>
+      <ion-note item-end edge right>{{comment.commented_at}}</ion-note>
 
     </div>
   </ion-item>

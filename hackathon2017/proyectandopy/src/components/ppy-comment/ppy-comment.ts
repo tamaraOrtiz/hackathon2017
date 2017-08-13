@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Events } from 'ionic-angular';
 import { CommentData } from '../../providers/comment';
 
 @Component({
@@ -8,15 +9,17 @@ import { CommentData } from '../../providers/comment';
 })
 
 export class PpyComment {
+  _comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string, commented_at: string };
+  comments: Array<any>
 
-  _comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string };
-
-  constructor(public dataService: CommentData) {
-
+  constructor(public events: Events, public dataService: CommentData) {
+    events.subscribe('comments:retrieve', (comments, time) => {
+      this.comments = comments;
+    });
   }
 
   @Input()
-  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string }) {
+  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string, commented_at: string }) {
     this._comment = comment;
   }
 

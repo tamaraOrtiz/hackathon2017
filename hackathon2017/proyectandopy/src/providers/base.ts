@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Events } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class BaseData {
   paraguayGeoJson: any
   allQuery: string
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public events: Events, ) {
     this.stpUrl = "http://geo.stp.gov.py/user/stp/api/v2/sql";
     this.apiUrl = "https://proyectando-api.herokuapp.com/api/";
   }
@@ -60,9 +61,11 @@ export class BaseData {
   pushEntity(entityType, entity){
     return new Promise<any>((resolve, reject) => {
       this.http.post(`${this.apiUrl}${entityType}/`, entity).map( res => res.json()).subscribe( data => {
+        this.events.publish(`${entityType}:saved:success`, data);
         this.data = data.rows;
         resolve(this.data);
       }, error => {
+        this.events.publish(`${entityType}:saved:error`,entity);
         reject(error);
       });
     });

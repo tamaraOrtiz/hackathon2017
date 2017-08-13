@@ -24,7 +24,12 @@ export class PpyRating {
   constructor(public events: Events, public dataService: RatingData) {
     events.subscribe('rating:retrieve', (rating, time) => {
       this.setRating(rating, true);
-
+    });
+    events.subscribe('rating:saved:success', (rating) => {
+      alert("guardo")
+    });
+    events.subscribe('rating:saved:error', (rating) => {
+      alert("error")
     });
   }
 
