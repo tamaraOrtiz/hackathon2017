@@ -14,7 +14,8 @@ export class PpyRating {
 
   _rating: { page: string, entity_id: string, entity_type: string, score: number, meta: string };
 
-  ratingText = ['La información no me ayudo en nada.',
+  ratingText = ['Sin calificación',
+              'La información no me ayudo en nada.',
               'La información es insufiente.',
               'La infomación no es clara.',
               'La infomación es suficiente.',
@@ -48,7 +49,7 @@ export class PpyRating {
   setRating(number, init){
     this.rating.score = number;
     this.rating.meta = this._options[0];
-    document.getElementById("rating-text").innerHTML = this.ratingText[Math.floor(number)-1];
+    document.getElementById("rating-text").innerHTML = this.ratingText[Math.floor(number)];
     if(!init){
       document.getElementById("send-rating").style.display = 'block';
       document.getElementById("col-rating").style.display = 'block';
