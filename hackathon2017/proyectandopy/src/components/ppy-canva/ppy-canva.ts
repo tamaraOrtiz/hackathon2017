@@ -56,9 +56,9 @@ export class PpyCanva {
     dispatch.on("load.menu", function(presupuestosByName) {
       var select = d3.select('.py-canva-select')
       .on("change", function() { dispatch.call("statechange", this, presupuestosByName.get(this.value)); });
-      select.selectAll("option")
+      select.selectAll("ion-option")
       .data(presupuestosByName.values())
-      .enter().append("option")
+      .enter().append("ion-option")
       .attr("value", function(d) { return d.nombre; })
       .text(function(d) { return d.nombre; });
       dispatch.on("statechange.menu", function(presupuesto) {
