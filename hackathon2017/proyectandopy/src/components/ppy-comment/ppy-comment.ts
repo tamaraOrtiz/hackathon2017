@@ -10,7 +10,7 @@ import { ToastController } from 'ionic-angular';
 })
 
 export class PpyComment {
-  _comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string, commented_at: string };
+  _comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string};
   comments: Array<any>
   service: CommentData
 
@@ -46,7 +46,7 @@ export class PpyComment {
   }
 
   @Input()
-  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string, commented_at: string }) {
+  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string }) {
     this._comment = comment;
   }
 
