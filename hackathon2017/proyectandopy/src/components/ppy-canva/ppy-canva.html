@@ -1,13 +1,12 @@
-<ion-card >
-  <ion-card-header class="color-2">
-    <ion-select class="py-canva-select">
-      <ion-option *ngFor="let option of options" value="option.nombre">{{option.nombre}}</ion-option>      
-    </ion-select>
-  </ion-card-header>
-  <ion-card-content>
-    <div #graph style="display:table; margin: 0 auto; width: 80%;"></div>
-  </ion-card-content>
-</ion-card>
+<ion-item >
+  <ion-label hidden>Programas</ion-label>
+  <ion-select class="py-canva-select" [(ngModel)]="selectData" cancelText="Cancelar">
+    <ion-option *ngFor="let option of options" value="{{option.nombre}}">{{option.nombre}}</ion-option>
+  </ion-select>
+</ion-item>
+
+<div #graph style="display:table; margin: 0 auto; width: 80%;"></div>
+
 
 <style>
 #chart {                                                          /* NEW */
