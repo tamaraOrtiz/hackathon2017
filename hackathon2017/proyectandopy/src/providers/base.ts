@@ -58,6 +58,7 @@ export class BaseData {
 
   }
 
+
   pushEntity(entityType, entity){
     return new Promise<any>((resolve, reject) => {
       this.http.post(`${this.apiUrl}${entityType}/`, entity).map( res => res.json()).subscribe( data => {

@@ -10,11 +10,11 @@
 <button ion-button id="send-comment" (click)="pushComment()"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
 </div>
 <ion-list class="comment-list">
-  <ion-item>
+  <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start>
         <ion-icon name="person"></ion-icon>
     </ion-avatar>
-    <div class="item-list" *ngFor="let comment of comments">
+    <div class="item-list">
       <h2>User</h2>
       <p>{{comment.text}}</p>
       <ion-note item-end edge right>{{comment.commented_at}}</ion-note>
