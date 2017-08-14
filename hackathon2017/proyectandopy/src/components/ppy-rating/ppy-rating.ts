@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { RatingData } from '../../providers/rating';
+import { ToastController } from 'ionic-angular';
+
 
 @Component({
   selector: 'ppy-rating',
@@ -21,15 +23,28 @@ export class PpyRating {
               'La infomación es suficiente.',
               'La infomación es completa y clara.'];
 
-  constructor(public events: Events, public dataService: RatingData) {
+  constructor(public events: Events, public dataService: RatingData, public toastCtrl: ToastController) {
     events.subscribe('rating:retrieve', (rating, time) => {
       this.setRating(rating, true);
     });
     events.subscribe('rating:saved:success', (rating) => {
-      alert("guardo")
+      let toast = this.toastCtrl.create({
+        message: 'Tu calificación fue enviada con exito!',
+        duration: 3000,
+        position: 'top',
+        cssClass: "toast-success"
+      });
+      toast.present();
+      
     });
     events.subscribe('rating:saved:error', (rating) => {
-      alert("error")
+      let toast = this.toastCtrl.create({
+        message: 'Tu calificación no fue guardada, vuelve a intentarlo mas tarde!',
+        duration: 3000,
+        position: 'top',
+        cssClass: "toast-error"
+      });
+      toast.present();
     });
   }
 

@@ -603,3 +603,15 @@ ion-footer{
     text-align: center;
   }
 }
+
+.toast-success{
+  > div{
+         background-color:#11b76e !important;
+     }
+}
+
+.toast-error{
+  > div{
+       background-color:#ab2c46 !important;
+   }
+}
