@@ -30,6 +30,8 @@ export class PpyCanva {
     'rgba(255, 159, 64, 1)'
   ];
 
+  options: Array<any>
+
   @ViewChild('graph') graph;
 
   _presupuestos: Array<{ nombre: string, nombre_programas: string, programas: Array<any>}>;
@@ -52,15 +54,11 @@ export class PpyCanva {
     var presupuestosByName = d3.map();
     this.presupuestos.forEach(function(d) { presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas}); });
 
+    this.options = presupuestosByName.values();
     // A drop-down menu for selecting a state; uses the "menu" namespace.
     dispatch.on("load.menu", function(presupuestosByName) {
       var select = d3.select('.py-canva-select')
-      .on("change", function() { dispatch.call("statechange", this, presupuestosByName.get(this.value)); });
-      select.selectAll("ion-option")
-      .data(presupuestosByName.values())
-      .enter().append("ion-option")
-      .attr("value", function(d) { return d.nombre; })
-      .text(function(d) { return d.nombre; });
+                     .on("change", function() { dispatch.call("statechange", this, presupuestosByName.get(this.value)); });
       dispatch.on("statechange.menu", function(presupuesto) {
         select.property("value", presupuesto.nombre);
       });
