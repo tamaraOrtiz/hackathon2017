@@ -1,14 +1,17 @@
 <div class="comment-form">
-<ion-list>
+
+  <form #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
   <ion-item>
     <ion-avatar item-start>
       <i class="fa fa-comments-o" aria-hidden="true"></i>
     </ion-avatar>
-    <ion-textarea [(ngModel)]="comment.text" placeholder="Danos tu opinión"></ion-textarea>
+
+    <ion-textarea type="text" required [(ngModel)]="comment.text" ngControl="text" name="text" placeholder="Danos tu opinión"></ion-textarea>
   </ion-item>
-</ion-list>
 <button ion-button id="send-comment" (click)="pushComment()"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
+</form>
 </div>
+
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start>

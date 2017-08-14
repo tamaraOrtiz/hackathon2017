@@ -35,9 +35,14 @@ export class PpyRating {
         cssClass: "toast-success"
       });
       toast.present();
-      
+      document.getElementById("send-rating").style.display = 'none';
+      document.getElementById("col-rating").style.display = 'none';
+      dataService.getRating(this.rating.entity_type, this.rating.entity_id).then( rating => {
+        console.log(rating);
+      });
     });
     events.subscribe('rating:saved:error', (rating) => {
+
       let toast = this.toastCtrl.create({
         message: 'Tu calificación no fue guardada, vuelve a intentarlo mas tarde!',
         duration: 3000,
@@ -45,6 +50,10 @@ export class PpyRating {
         cssClass: "toast-error"
       });
       toast.present();
+
+
+
+
     });
   }
 
