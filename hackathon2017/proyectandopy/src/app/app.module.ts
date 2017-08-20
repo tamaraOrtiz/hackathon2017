@@ -17,6 +17,7 @@ import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ShowLineaAccionPage } from '../pages/show-linea-accion/show-linea-accion';
+import { PNDPage } from '../pages/pnd/pnd';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +40,8 @@ import { PpyComment } from '../components/ppy-comment/ppy-comment';
     TutorialPage,
     PpyCanva,
     PpyRating,
-    PpyComment
+    PpyComment,
+    PNDPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { PpyComment } from '../components/ppy-comment/ppy-comment';
     ProgramaPage,
     MapaPage,
     TabsPage,
-    TutorialPage
+    TutorialPage,
+    PNDPage
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -8,7 +8,7 @@ import { NivelPage } from '../pages/nivel/nivel';
 import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { PNDPage } from '../pages/pnd/pnd';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +28,8 @@ export class MyApp {
       { title: 'Institucion', component: InstitucionPage, icon: "home" },
       { title: 'Nivel', component: NivelPage, icon: "stats" },
       { title: 'Programa', component: ProgramaPage, icon: "albums" },
-      { title: 'Mapa', component: MapaPage, icon: "map" }
+      { title: 'Mapa', component: MapaPage, icon: "map" },
+      { title: 'PND', component: PNDPage, icon: "map" }
 
     ];
 

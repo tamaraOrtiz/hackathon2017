@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
+  <ion-navbar id="subnavbar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-subtitle"><ion-label> PND </ion-label>
+    </ion-title>
+
+  </ion-navbar>
+  <ion-toolbar class="selec-header" no-border-top>
+  <ion-segment [(ngModel)]="tabs" class="tab-show">
+    <ion-segment-button value="info">
+      <ion-icon name="md-information-circle"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="chart">
+      <ion-icon name="pie"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="la">
+      <ion-icon name="trending-up"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  </ion-toolbar>
+  <ion-fab right edge class="analizer" >
+    <button ion-fab color=secondary> <!-- basic usage -->
+    <i class="fa fa-calculator  " aria-hidden="true"></i></button>
+  </ion-fab>
+
+</ion-header>
+<ion-content  class="common-list">
+  <ion-grid>
+    <ion-row>
+      <ion-col  id='filter-row' hidden  col-sm-12 col-md-12 col-lg-9 col-xl-9>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
+              <ion-label class="filter-label">Nivel</ion-label>
+              <ion-item class="filter-select">
+              <ion-label hidden>Nivel</ion-label>
+              <ion-select  [(ngModel)]="selectedNiveles" cancelText="Cancelar">
+                <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
+              </ion-select>
+            </ion-item>
+            </ion-col>
+            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
+              <ion-label class="filter-label">Entidad</ion-label>
+              <ion-item class="filter-select">
+              <ion-label hidden>Entidad</ion-label>
+              <ion-select  [(ngModel)]="selectedEntidades" cancelText="Cancelar">
+                <ion-option *ngFor="let entidad of entidades"  value="{{entidad.id}}" selected="true">{{entidad.nombre}}</ion-option>
+              </ion-select>
+            </ion-item>
+            </ion-col>
+            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
+              <ion-label class="filter-label">Año</ion-label>
+              <ion-item class="filter-select" >
+              <ion-label hidden>Año</ion-label>
+              <ion-select [(ngModel)]="selectedAnhos" cancelText="Cancelar">
+                <ion-option *ngFor="let anho of anhos"  value="{{anho}}" selected="true">{{anho}}</ion-option>
+              </ion-select>
+            </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 class="filter-button">
+        Filtrar
+        <ion-icon color=white (click)="hideFilter()" hidden  id='filter-up' name="ios-arrow-up"></ion-icon>
+        <ion-icon color=white (click)="showFilter()" id='filter-down' name="ios-arrow-down"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
+  </ion-toolbar>
+</ion-footer>
