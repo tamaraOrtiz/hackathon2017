@@ -185,15 +185,11 @@ Ionic pages and navigation.
       </div>
       <div *ngSwitchCase="'chart'">
         <ion-label class="title-page item-grouper">Estadísticas</ion-label>
-        <ion-grid >
-          <ion-row>
-          <ion-col col-12>
+
 
               <ppy-canva [presupuestos]="chartsData"></ppy-canva>
 
-          </ion-col>
-        </ion-row>
-        </ion-grid>
+        
       </div>
 
       <ion-grid *ngSwitchCase="'prog'">

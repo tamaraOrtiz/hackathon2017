@@ -1,13 +1,28 @@
 <ion-item >
   <ion-label hidden>Programas</ion-label>
-  <ion-select class="py-canva-select" [(ngModel)]="selectData" cancelText="Cancelar">
+  <ion-select class="py-canva-select" [(ngModel)]="selectData" (ionChange)="onItemSelect($event)" cancelText="Cancelar">
     <ion-option *ngFor="let option of options" value="{{option.nombre}}">{{option.nombre}}</ion-option>
   </ion-select>
 </ion-item>
 
-<div #graph style="display:table; margin: 0 auto; width: 80%;"></div>
-
-
+<ion-grid class="graph-canva">
+  <ion-row>
+    <ion-col col-9>
+      <div #graph style="display:table; margin: 0 auto; width: 100%"></div>
+    </ion-col>
+    <ion-col col-3>
+      <div class="pie-info leaflet-top leaflet-right">
+        <div class="info leaflet-control">
+          <h4>Inversión por Programa</h4>
+          <b id="label">Seleccione un programa</b><br>
+          <p id="count"></p>
+          <p id="percentage"></p>
+        </div>
+        <div id="pie-info-legend" class="info legend leaflet-control"></div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 <style>
 #chart {                                                          /* NEW */
   height: 360px;                                                  /* NEW */

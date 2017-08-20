@@ -3,6 +3,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import * as d3 from "d3";
 import { Platform } from 'ionic-angular';
+import { AppHelper } from '../../helpers/app-helper';
 
 @Component({
   selector: 'ppy-canva',
@@ -44,38 +45,37 @@ export class PpyCanva {
   get presupuestos() { return this._presupuestos; }
 
   ngOnInit() {
-
+    let presupuestosByName = d3.map();
+    this.presupuestos.forEach(function(d) { presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas}); });
+    this.options = presupuestosByName.values();
+    this.selectData = presupuestosByName.keys()[0];
     this.generatePie();
-    this.selectData = this.options[0];
+  }
+
+  onItemSelect($event) {
+    this.generatePie();
   }
 
   generatePie() {
-    var dispatch = d3.dispatch("load", "statechange");
+    let self = this;
+    let dispatch = d3.dispatch("load", "statechange");
 
-    var presupuestosByName = d3.map();
+    let presupuestosByName = d3.map();
     this.presupuestos.forEach(function(d) { presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas}); });
 
-    this.options = presupuestosByName.values();
-
-    // A drop-down menu for selecting a state; uses the "menu" namespace.
-    dispatch.on("load.menu", function(presupuestosByName) {
-      var select = d3.select('.py-canva-select')
-                     .on("change", function() { alert(); dispatch.call("statechange", this, presupuestosByName.get(this.value)); });
-      dispatch.on("statechange.menu", function(presupuesto) {
-        select.property("value", presupuesto.nombre);
-      });
-    });
-
     dispatch.on("load.pie", function(presupuestosByName) {
-      let width  = this.graph.nativeElement.clientWidth;
-      let height = this.graph.nativeElement.clientWidth;
+      let width  = this.graph.nativeElement.clientWidth * 0.8;
+      let height = this.graph.nativeElement.clientWidth * 0.8;
       let radius = Math.min(width, height) / 2;
-      let data = presupuestosByName.get(presupuestosByName.keys()[0]).programas;
+      let data = presupuestosByName["$"+self.selectData].programas;
       let color  = d3.scaleOrdinal()
       .range(["#00838f",
       "#388e3c", "#ad1457",
       "#ff1744", "#1a237e",
       "#004d40", "#607d8b"]);
+
+      let legend = d3.select("#pie-info-legend");
+      legend.html('');
 
       let arc = d3.arc()
       .outerRadius(radius * 0.5)
@@ -84,6 +84,13 @@ export class PpyCanva {
       let pie = d3.pie()
       .sort(null)
       .value(function(d) { return d.value; });
+
+      d3.select(this.graph.nativeElement).html('');
+
+      let info = d3.select('.pie-info');
+      info.select('#label').html("Seleccione un programa");                // NEW
+      info.select('#count').html('');                // NEW
+      info.select('#percent').html('');
 
       let svg = d3.select(this.graph.nativeElement)
       .append("svg")
@@ -99,58 +106,43 @@ export class PpyCanva {
 
       g.append("path")
       .attr("d", arc)
-      .style("fill", function(d) { return color(d.data.value); });
+      .style("fill", function(d) {
+        legend.append("p")
+              .html(`<i style="background:${color(d.data.value)}"></i> ${AppHelper.toTitleCase(d.data.name)}<br>`);
+        return color(d.data.value);
+      });
 
-      g.append("text")
-      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.value.toString()  +" Gs"; })
-      .style("fill", "white");
+      svg.append("div")
+         .attr("class", "pie-info");
 
-      let tooltip = d3.select('#chart')                               // NEW
-          .append('div')                                                // NEW
-          .attr('class', 'tooltip');                                    // NEW
-
-        tooltip.append('div')                                           // NEW
-          .attr('class', 'label');                                      // NEW
-
-        tooltip.append('div')                                           // NEW
-          .attr('class', 'count');                                      // NEW
-
-        tooltip.append('div')                                           // NEW
-          .attr('class', 'percent');
-          g.on('mouseover', function(d) {                            // NEW
-                var total = d3.sum(data.map(function(d) {                // NEW
-                  console.log(d);
-                  return d.count;                                           // NEW
-                }));                                                        // NEW
-                var percent = Math.round(1000 * d.data.value / total) / 10; // NEW
-                tooltip.select('.label').html(d.data.name);                // NEW
-                tooltip.select('.count').html(d.data.value);                // NEW
-                tooltip.select('.percent').html(percent + '%');             // NEW
-                tooltip.style('display', 'block');                          // NEW
-              });
       dispatch.on("statechange.pie", function(d) {
         svg.selectAll("*").remove();
         let g = svg.selectAll(".arc")
-        .data(pie(d.programas))
-        .enter().append("g")
-        .attr("class", "arc");
+                   .data(pie(d.programas))
+                   .enter().append("g")
+                   .attr("class", "arc");
 
         g.append("path")
-        .attr("d", arc)
-        .style("fill", function(d) { return color(d.data.value); });
+         .attr("d", arc)
+         .style("fill", function(d) { return color(d.data.value); });
 
-        g.append("text")
-        .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .text(function(d) { return d.data.value.toString()+"Gs"; })
-        .style("fill", "white");
+        g.on('click', function(d) {
+          let total = d3.sum(data.map(function(d) {              // NEW
+            return d.value;                                           // NEW
+          }));
+          console.log(total)
+          let info = d3.select('.pie-info');
+          let percent = Math.round(1000 * d.data.value / total)/10; // NEW
+          info.select('#label').html(AppHelper.toTitleCase(d.data.name));                // NEW
+          info.select('#count').html(d.data.value + ' Gs');                // NEW
+          info.select('#percentage').html(percent + '%');             // NEW
+          info.style('display', 'block');                          // NEW
+        });
       });
     });
 
     dispatch.call("load", this, presupuestosByName);
-    dispatch.call("statechange", this, presupuestosByName.get(presupuestosByName.keys()[0]));
+    dispatch.call("statechange", this, presupuestosByName["$"+self.selectData]);
 
   }
 
