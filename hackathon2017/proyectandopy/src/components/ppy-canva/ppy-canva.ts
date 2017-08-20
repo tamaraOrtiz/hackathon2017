@@ -104,7 +104,7 @@ export class PpyCanva {
       g.append("text")
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dy", ".35em")
-      .text(function(d) { return d.data.value.toString()+" Gs"; })
+      .text(function(d) { return d.data.value.toString()  +" Gs"; })
       .style("fill", "white");
 
       let tooltip = d3.select('#chart')                               // NEW
