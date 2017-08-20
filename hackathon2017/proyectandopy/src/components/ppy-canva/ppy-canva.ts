@@ -29,7 +29,7 @@ export class PpyCanva {
     'rgba(153, 102, 255, 1)',
     'rgba(255, 159, 64, 1)'
   ];
-  selectData: Array<string>
+  selectData: string
   options: Array<any>
 
   @ViewChild('graph') graph;

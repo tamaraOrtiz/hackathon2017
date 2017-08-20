@@ -4,6 +4,7 @@ import { InstitucionPage } from '../../pages/institucion/institucion';
 import { NivelPage } from '../../pages/nivel/nivel';
 import { ProgramaPage } from '../../pages/programa/programa';
 import { TutorialPage } from '../../pages/tutorial/tutorial';
+import { PNDPage } from '../../pages/pnd/pnd';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -11,7 +12,7 @@ import { TutorialPage } from '../../pages/tutorial/tutorial';
 export class HomePage {
   'Intituciones' = InstitucionPage;
   'Niveles' = NivelPage;
-  'Programas' = ProgramaPage;
+  'PND' = PNDPage;
   'Informacion' = TutorialPage;
   constructor(public navCtrl: NavController) {
 

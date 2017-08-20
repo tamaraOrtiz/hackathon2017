@@ -5,6 +5,7 @@ import { HomePage } from '../../pages/home/home';
 import { NivelPage } from '../../pages/nivel/nivel';
 import { ProgramaPage } from '../../pages/programa/programa';
 import { TutorialPage } from '../../pages/tutorial/tutorial';
+import { PNDPage } from '../../pages/pnd/pnd';
 
 @Component({
   templateUrl: 'tabs.html'})
@@ -12,7 +13,7 @@ import { TutorialPage } from '../../pages/tutorial/tutorial';
 export class TabsPage {
   'Instituciones' = InstitucionPage;
   'Niveles' = NivelPage;
-  'Programas' = ProgramaPage;
+  'PND' = PNDPage;
   'Informacion' = TutorialPage;
 
   constructor() {
