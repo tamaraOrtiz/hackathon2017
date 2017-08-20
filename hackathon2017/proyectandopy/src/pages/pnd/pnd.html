@@ -14,11 +14,11 @@
       <i class="fa fa-th-list" aria-hidden="true"></i>
       General
     </ion-segment-button>
-    <ion-segment-button value="chart">
+    <ion-segment-button value="ejes">
       <i class="fa fa-cogs" aria-hidden="true"></i>
       Ejes
     </ion-segment-button>
-    <ion-segment-button value="la">
+    <ion-segment-button value="estrategias">
       <i class="fa fa-handshake-o" aria-hidden="true"></i>
       Estrategias
     </ion-segment-button>
@@ -39,31 +39,55 @@
         <ion-grid>
           <ion-row>
             <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-label class="filter-label">Nivel</ion-label>
-              <ion-item class="filter-select">
-              <ion-label hidden>Nivel</ion-label>
-              <ion-select  [(ngModel)]="selectedNiveles" cancelText="Cancelar">
-                <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
-              </ion-select>
-            </ion-item>
+              <ion-grid>
+                <ion-row class="filter-subrow">
+                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
+                    <ion-label class="filter-label">Nivel</ion-label>
+                  </ion-col>
+                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
+                  <ion-item class="filter-select">
+                  <ion-label hidden>Nivel</ion-label>
+                  <ion-select  [(ngModel)]="selectedNiveles" cancelText="Cancelar">
+                    <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
+                  </ion-select>
+                </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
             </ion-col>
             <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-label class="filter-label">Entidad</ion-label>
-              <ion-item class="filter-select">
-              <ion-label hidden>Entidad</ion-label>
-              <ion-select  [(ngModel)]="selectedEntidades" cancelText="Cancelar">
-                <ion-option *ngFor="let entidad of entidades"  value="{{entidad.id}}" selected="true">{{entidad.nombre}}</ion-option>
-              </ion-select>
-            </ion-item>
+              <ion-grid>
+                <ion-row class="filter-subrow">
+                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
+                    <ion-label class="filter-label">Entidad</ion-label>
+                  </ion-col>
+                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
+                    <ion-item class="filter-select">
+                    <ion-label hidden>Entidad</ion-label>
+                    <ion-select  [(ngModel)]="selectedEntidades" cancelText="Cancelar">
+                      <ion-option *ngFor="let entidad of entidades"  value="{{entidad.id}}" selected="true">{{entidad.nombre}}</ion-option>
+                    </ion-select>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-col>
             <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-label class="filter-label">Año</ion-label>
-              <ion-item class="filter-select" >
-              <ion-label hidden>Año</ion-label>
-              <ion-select [(ngModel)]="selectedAnhos" cancelText="Cancelar">
-                <ion-option *ngFor="let anho of anhos"  value="{{anho}}" selected="true">{{anho}}</ion-option>
-              </ion-select>
-            </ion-item>
+              <ion-grid>
+                <ion-row class="filter-subrow">
+                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
+                    <ion-label class="filter-label">Año</ion-label>
+                  </ion-col>
+                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
+                    <ion-item class="filter-select" >
+                    <ion-label hidden>Año</ion-label>
+                    <ion-select [(ngModel)]="selectedAnhos" cancelText="Cancelar">
+                      <ion-option *ngFor="let anho of anhos"  value="{{anho}}" selected="true">{{anho}}</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -77,15 +101,144 @@
       </ion-col>
     </ion-row>
     <ion-row [ngSwitch]="tabs">
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'resumen'"l>
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'resumen'">
         <ion-grid>
           <ion-row class=resumen>
-            <ion-col class="title" col-12>
+            <ion-col class="title c1" col-12>
               <ion-label>Totales</ion-label>
             </ion-col>
-            <ion-col col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-label>Totales</ion-label>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1" item-start>
+                  <i class="fa fa-bank"></i>
+              </ion-avatar>
+              <ion-label>3 Entidades</ion-label>
             </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1" item-start>
+                <i class="fa fa-link" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>2 Objetivos</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1" item-start>
+                  <i class="fa fa-users"></i>
+              </ion-avatar>
+              <ion-label>1000 Personas</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1" item-start>
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>100.000.000 gs.</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'ejes'">
+        <ion-grid>
+          <ion-row class=resumen>
+            <ion-col class="title c2" col-12>
+              <ion-label>Eje 1: Reducción de pobreza y desarrollo social</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c2" item-start>
+                  <i class="fa fa-bank"></i>
+              </ion-avatar>
+              <ion-label>3 Entidades</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c2"  item-start>
+                <i class="fa fa-link" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>2 Objetivos</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar  class="c2" item-start>
+                  <i class="fa fa-users"></i>
+              </ion-avatar>
+              <ion-label>1000 Personas</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar  class="c2" item-start>
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>100.000.000 gs.</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row class=resumen>
+            <ion-col class="title c3" col-12>
+              <ion-label>Eje 2: Crecimiento económico inclusivo</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar  class="c3" item-start>
+                  <i class="fa fa-bank"></i>
+              </ion-avatar>
+              <ion-label>3 Entidades</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar  class="c3" item-start>
+                <i class="fa fa-link" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>2 Objetivos</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c3" item-start>
+                  <i class="fa fa-users"></i>
+              </ion-avatar>
+              <ion-label>1000 Personas</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c3" item-start>
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>100.000.000 gs.</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row class=resumen>
+            <ion-col class="title c4" col-12>
+              <ion-label>Eje 3: Inserción de Paraguay en el mundo</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c4" item-start>
+                  <i class="fa fa-bank"></i>
+              </ion-avatar>
+              <ion-label>3 Entidades</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c4" item-start>
+                <i class="fa fa-link" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>2 Objetivos</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c4" item-start>
+                  <i class="fa fa-users"></i>
+              </ion-avatar>
+              <ion-label>1000 Personas</ion-label>
+            </ion-col>
+            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c4" item-start>
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </ion-avatar>
+              <ion-label>100.000.000 gs.</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9  >
+        <ion-grid class="common-grid">
+          <ion-row>
+            <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
+              <div class="starts">
+                <ppy-rating [rating]="{page: 'show-institucion', entity_id: 1, entity_type: 'PND', score: calificacion, meta: 'a'}" [options]="['General', 'Ejes', 'Estrategias']"></ppy-rating>
+              </div>
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center>
+              <ppy-comment [comment]="{page: 'show-institucion', entity_id: 1, entity_type: 'PND', text: '', meta: null}"></ppy-comment>
+            </ion-col>
+
           </ion-row>
         </ion-grid>
       </ion-col>

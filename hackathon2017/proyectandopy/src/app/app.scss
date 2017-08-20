@@ -362,7 +362,35 @@ textarea{
 }
 
 
+ppy-comment{
+  ion-avatar{
+    margin: auto !important;
+    text-align: center;
+    background: #4fc2e8;
+    color: white;
+    border-radius: 25px;
+    padding-top: 9px;
+    i.fa{
+      color: white;
+    }
+  }
+  #send-comment{
+    background: #0086b3;
+    height: 29px !important;
+    position: absolute;
+    right: 3px;
+    margin-right: 11px;
+    .button-inner{
+      font-size: 12px;
+      text-transform: none;
+    }
+    ion-icon{
+      padding-right: 3px !important;
+      color: ghostwhite !important;
 
+    }
+  }
+}
 .starts{
 
   background: #FCEED6;
@@ -505,7 +533,7 @@ ion-header{
   color: #7B72E9;
 }
 .scroll-content{
-  background: rgba(239, 241, 255, 0.42) !important;
+      background: rgb(236, 237, 238) !important;
 }
 
 .bac-c1{
@@ -687,7 +715,7 @@ ion-footer{
 }
 
 .common-list ion-col.filter-col{
-
+  margin: 0 !important;
   background: rgba(45, 45, 105, 0.58) !important;
 }
 
@@ -704,7 +732,9 @@ ion-footer{
     padding-left: 5px;
   }
 }
-
+.filter-subrow{
+      border-bottom: 1px solid #737399 !important;
+}
 .common-list button.item-md.empty-list{
   border: none !important;
   .item-inner{
@@ -726,13 +756,28 @@ ion-footer{
 .resumen{
   background: ghostwhite;
   .title{
-    border-bottom: 2px solid #0b62b1;
+
     background: transparent;
     text-align: center;
     text-transform: uppercase;
     font-size: 13px;
     font-weight: bold;
+  }
+  .title.c1{
+    border-bottom: 2px solid #0b62b1;
     color: #0b62b1;
+  }
+  .tite.c2{
+    border-bottom: 2px solid #0b62b1;
+    color: #19a5a1;
+  }
+  .title.c3{
+    border-bottom: 2px solid #0b62b1;
+    color: #0b62b1;
+  }
+  .tite.c4{
+    border-bottom: 2px solid #0b62b1;
+    color: #19a5a1;
   }
   ion-col{
     background: transparent;
@@ -754,5 +799,52 @@ ion-footer{
 
 .graph-canva {
   background: #dddddd;
+}
 
+.item-resumen{
+  display: inline-flex;
+  height: 65px;
+  border-bottom: 1px solid aliceblue;
+  ion-avatar{
+    width: 56px;
+    text-align: center;
+    padding-top: 19px;
+
+    color: aliceblue;
+    font-size: 20px;
+
+  }
+  .c1{
+    background: #0b62b1;
+  }
+  .c2{
+    background: #19a5a1;
+  }
+  .c3{
+    background: #0b62b1;
+  }
+  .c4{
+    background: #19a5a1;
+  }
+  ion-label{
+    text-align: center;
+      color: #534c61;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin: auto;
+
+  }
+}
+
+ppy-rating{
+  ion-grid, ion-col{
+    background: transparent !important;
+  }
+}
+
+.common-grid{
+  background: ghostwhite !important;
+  ion-col, .comment-form{
+    background: transparent !important;
+  }
 }
