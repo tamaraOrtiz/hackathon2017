@@ -10,18 +10,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="app-subtitle">showNivel</ion-title>
+    <ion-title class="app-subtitle">Lineas de Acción</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
-  {{item.nombre}}
-  <ion-grid style="height: 100%; position: relative;">
-    <ion-row style="height: 100%; position: relative;">
-      <ion-col col-12 style="height: 100%; position: relative;">
-        <div style="height: 100%" id="map"></div>
+<ion-content class="common-list">
+  <ion-grid style="height: 100%">
+    <ion-row style="height: 100%">
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 style="height: 100%">
+        <ion-item class="item-grouper">{{item.nombre}}</ion-item>
+        <div  style="height: calc(100% - 46px);" id="map"></div>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

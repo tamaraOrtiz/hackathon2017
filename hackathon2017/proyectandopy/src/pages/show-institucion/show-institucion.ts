@@ -120,7 +120,8 @@ export class ShowInstitucionPage extends ShowBasePage {
         periodo: la.periodo,
         instanciaId: la.ila_id,
         meta: la.ila_meta,
-        unidadMedida: la.la_um_descp
+        unidadMedida: la.la_um_descp,
+        ico: 'fa-users'
       });
     });
     return lineasAccion;

@@ -39,7 +39,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
             }
         });
       }
-      this.map = L.map('map').setView([-23.88, -60.76], 5);
+      this.map = L.map('map').setView([-23.88, -55.76], 6);
 
       this.geo = new L.GeoJSON(this.paraguayGeoJson, {
         style: function (feature) {
@@ -53,7 +53,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
             (layer as any).setStyle({
               weight: 5,
-              color: '#666',
+              color: '#c599ea',
               dashArray: '',
               fillOpacity: 0.7
             });
@@ -137,8 +137,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   highlightFeature(e) {
     var layer = e.target;
     layer.setStyle({
-        weight: 5,
-        color: '#666',
+        weight: 2,
+        color: '#5E1A75',
         dashArray: '',
         fillOpacity: 0.7
     });

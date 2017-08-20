@@ -10,14 +10,17 @@
   </ion-navbar>
   <ion-toolbar class="selec-header" no-border-top>
   <ion-segment [(ngModel)]="tabs" class="tab-show">
-    <ion-segment-button value="info">
-      <ion-icon name="md-information-circle"></ion-icon>
+    <ion-segment-button value="resumen">
+      <i class="fa fa-th-list" aria-hidden="true"></i>
+      General
     </ion-segment-button>
     <ion-segment-button value="chart">
-      <ion-icon name="pie"></ion-icon>
+      <i class="fa fa-cogs" aria-hidden="true"></i>
+      Ejes
     </ion-segment-button>
     <ion-segment-button value="la">
-      <ion-icon name="trending-up"></ion-icon>
+      <i class="fa fa-handshake-o" aria-hidden="true"></i>
+      Estrategias
     </ion-segment-button>
   </ion-segment>
 
@@ -71,6 +74,20 @@
         Filtrar
         <ion-icon color=white (click)="hideFilter()" hidden  id='filter-up' name="ios-arrow-up"></ion-icon>
         <ion-icon color=white (click)="showFilter()" id='filter-down' name="ios-arrow-down"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row [ngSwitch]="tabs">
+      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'resumen'"l>
+        <ion-grid>
+          <ion-row class=resumen>
+            <ion-col class="title" col-12>
+              <ion-label>Totales</ion-label>
+            </ion-col>
+            <ion-col col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-label>Totales</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>

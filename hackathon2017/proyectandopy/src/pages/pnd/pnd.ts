@@ -16,6 +16,7 @@ export class PNDPage extends BasePage {
   selectedNiveles: any;
   selectedEntidades: any;
   anhos: Array<any>;
+  tabs: string = "resumen";
   loading;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController) {
     super(navCtrl, navParams, dataService);
