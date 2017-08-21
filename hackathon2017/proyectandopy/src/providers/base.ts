@@ -45,7 +45,7 @@ export class BaseData {
 
   getParaguayMap(){
     return new Promise<any>((resolve, reject) => {
-      this.http.get('assets/jsons/paraguay_2002_departamentos.geojson').map(res => res.json()).subscribe( data => {
+      this.http.get('assets/jsons/paraguay_2002_distritos.geojson').map(res => res.json()).subscribe( data => {
         this.paraguayGeoJson = data;
         resolve(this.paraguayGeoJson);
       }, error => {
