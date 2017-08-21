@@ -457,7 +457,7 @@ ppy-comment{
   }
 }
 
-.rating-select{
+.rating-select, .py-canva-select{
   width: 100%;
   max-width: 100%;
   background: rgba(249, 249, 249, 0.92);
@@ -798,9 +798,16 @@ ion-footer{
 }
 
 .graph-canva {
-  background: #dddddd;
+  background: transparent;
 }
-
+ppy-canva{
+  .item-md{
+    background: transparent !important;
+    .item-inner{
+      border: none !important;
+    }
+  }
+}
 .item-resumen{
   display: inline-flex;
   height: 65px;
@@ -847,4 +854,12 @@ ppy-rating{
   ion-col, .comment-form{
     background: transparent !important;
   }
+}
+
+.py-canva-select {
+      background: rgba(217, 237, 255, 0.92);
+}
+.leaflet-control{
+  width:100%;
+
 }

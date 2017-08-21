@@ -12,13 +12,13 @@ import { AppHelper } from '../../helpers/app-helper';
 
 export class PpyCanva {
   backgroundColor= [
-    'rgba(255, 99, 132, 0.2)',
-    'rgba(244, 164, 96, 0.8)',
-    'rgba(54, 162, 235, 0.2)',
-    'rgba(255, 206, 86, 0.2)',
-    'rgba(75, 192, 192, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(255, 159, 64, 0.2)'
+    'rgb(247, 109, 109)',
+    'rgb(247, 109, 187)',
+    'rgb(224, 109, 247)',
+    'rgb(148, 109, 247)',
+    'rgb(109, 141, 247)',
+    'rgb(109, 211, 247)',
+    'rgb(109, 247, 201)'
   ];
 
   borderColor= [
@@ -69,10 +69,7 @@ export class PpyCanva {
       let radius = Math.min(width, height) / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
       let color  = d3.scaleOrdinal()
-      .range(["#00838f",
-      "#388e3c", "#ad1457",
-      "#ff1744", "#1a237e",
-      "#004d40", "#607d8b"]);
+      .range(this.backgroundColor);
 
       let legend = d3.select("#pie-info-legend");
       legend.html('');
@@ -124,7 +121,10 @@ export class PpyCanva {
 
         g.append("path")
          .attr("d", arc)
-         .style("fill", function(d) { return color(d.data.value); });
+         .style("fill", function(d) { return color(d.data.value); })
+         .style("fill-opacity", .5) // set the fill opacity
+         .style("stroke", function(d) { return color(d.data.value); })    // set the line colour
+         .style("stroke-width", 2);
 
         g.on('click', function(d) {
           let total = d3.sum(data.map(function(d) {              // NEW
