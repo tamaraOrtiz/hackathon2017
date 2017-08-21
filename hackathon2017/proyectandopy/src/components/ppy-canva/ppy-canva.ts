@@ -134,7 +134,7 @@ export class PpyCanva {
           let info = d3.select('.pie-info');
           let percent = Math.round(1000 * d.data.value / total)/10; // NEW
           info.select('#label').html(AppHelper.toTitleCase(d.data.name));                // NEW
-          info.select('#count').html(d.data.value + ' Gs');                // NEW
+          info.select('#count').html(d.data.value*1000000 + ' Gs');                // NEW
           info.select('#percentage').html(percent + '%');             // NEW
           info.style('display', 'block');                          // NEW
         });
