@@ -862,5 +862,9 @@ ppy-rating{
 }
 .leaflet-control{
   width:100%;
-
+  p{
+    font-size: 13px;
+    text-align: right;
+    color: #464a3d;
+  }
 }
