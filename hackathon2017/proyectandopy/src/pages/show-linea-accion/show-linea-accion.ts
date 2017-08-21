@@ -157,14 +157,14 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     }
 
     getColor(d) {
-      return d > 1000 ? '#1d4877' :
-      d > 500  ? '#1b8a5a' :
-      d > 200  ? '#fbb021' :
-      d > 100  ? '#f68838' :
-      d > 50   ? '#ee3e32' :
-      d > 20   ? '#FEB24C' :
-      d > 10   ? '#800026' :
-      '#FFEDA0';
+      return d > 1000 ? '#0a3656' :
+      d > 500  ? '#134e79' :
+      d > 200  ? '#266a9c' :
+      d > 100  ? '#3490d4' :
+      d > 50   ? '#6fbcf5' :
+      d > 20   ? '#b2d9f5' :
+      d > 10   ? '#d4e7f5' :
+      '#fbfbfb';
     }
 
 
@@ -172,7 +172,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     highlightFeature(e) {
       var layer = e.target;
       layer.setStyle({
-        weight: 2,
+        weight: 1,
         color: '#5E1A75',
         dashArray: '',
         fillOpacity: 0.7
