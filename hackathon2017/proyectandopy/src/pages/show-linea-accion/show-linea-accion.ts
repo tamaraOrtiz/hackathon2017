@@ -22,16 +22,17 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: LineaAccionData) {
     super(navCtrl, navParams);
     this.item = navParams.get('item');
-    this.dataService.getParaguayMap().then(map => {
-      this.paraguayGeoJson = map.features;
-    })
+
   }
 
   ionViewDidLoad() {
     let self = this;
-    let title = ["Costos por distrito", "Avances por distrito", "Metas por distrito"];
+    let title = "Avances por distrito";
     let multiplicador = [10000, 0.5, 1];
     let op = 0;
+    this.dataService.getParaguayMap().then(map => {
+      this.paraguayGeoJson = map.features;
+
     this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id, undefined)).then(records => {
       this.chartsData = records;
       for(let record of records) {
@@ -112,7 +113,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       info.update = function (props) {
         console.log(props);
         this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
-          '<b>' + props.distrito + '</b><br />' + (1500 * Math.random()) + ' Gs'
+          '<b>' + props.distrito + '</b><br />' + Math.round(1500 * Math.random()) + ' Km'
           : 'Seleccione un distrito');
         };
 
@@ -141,17 +142,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         legend.addTo(this.map);
 
       });
+      })
     }
 
     style(feature) {
       let self = this;
-      let d = (1500 * Math.random());
+      let d = Math.round(1500 * Math.random());
       return {
         fillColor:self.getColor(d),
-        weight: 2,
+        weight: 1,
         opacity: 1,
         color: 'white',
-        dashArray: '3',
+        dashArray: '1',
         fillOpacity: 0.7
       };
     }

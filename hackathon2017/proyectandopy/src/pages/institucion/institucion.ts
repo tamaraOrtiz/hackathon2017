@@ -79,9 +79,19 @@ export class InstitucionPage extends BasePage {
 
   }
 
-  filter() {
+  filter(event) {
+    let self = this;
     this.dataService.getAll(`nivelid IN ('${this.selectedNiveles.join('\',\'')}')`).then(records => {
       this.pushItems(records);
+      let self = this;
+      let groupedItems = {}
+      this.items.map(function(item) {
+        if(groupedItems[item.nivelid] === undefined) {
+          groupedItems[item.nivelid] = {name: item.nivel_nombre, items: []};
+        }
+        groupedItems[item.nivelid]['items'].push(item);
+      });
+      this.groupedItems = (<any> Object).values(groupedItems);
     });
   }
 
