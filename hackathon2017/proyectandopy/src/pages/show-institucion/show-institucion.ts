@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { InstitucionData } from '../../providers/institucion';
@@ -8,6 +8,8 @@ import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Events } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import * as d3 from "d3";
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-show-institucion',
@@ -16,6 +18,7 @@ import { Platform } from 'ionic-angular';
 })
 
 export class ShowInstitucionPage extends ShowBasePage {
+  @ViewChild('resumegraph') graph
 
   ratingService: RatingData
 
@@ -31,12 +34,15 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   lineasAccion: any
 
+  csvItems: any
+
   calificacion: any
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
-    private socialSharing: SocialSharing, public plt: Platform) {
+    private socialSharing: SocialSharing, public plt: Platform, public http: Http) {
     super(navCtrl, navParams);
     this.ratingService = raService;
     this.dataService = dataService;
@@ -85,6 +91,56 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
+    this.generateResumen();
+
+
+  }
+
+  generateResumen(){
+    console.log(this.graph);
+    let w  = this.graph.nativeElement.clientWidth * 0.8;
+    let h = this.graph.nativeElement.clientWidth * 0.8;
+    let x = d3.scaleLinear().range([0, w]);
+    let y = d3.scaleLinear().range([0, h]);
+
+    let vis = d3.select(this.graph.nativeElement)
+              .append("div")
+              .attr("class", "chart")
+              .attr("width", w)
+              .attr("height", h)
+              .append("svg:svg")
+              .attr("width", w)
+              .attr("height", h);
+
+    let partition = d3.partition()
+                 .size([h, w])
+                 .padding(0)
+                 //.round(f);
+    d3.json("/assets/jsons/flare.json", function(error, root) {
+      if (error) throw error;
+      root = d3.hierarchy(root);
+      root.sum(function(d) { return d.size; });
+      let g = vis.selectAll("g")
+          .data(partition(root).descendants())
+          .enter().append("svg:g")
+          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
+     let kx = w / root.dx;
+     let ky = h / 1;
+
+     g.append("svg:rect")
+         .attr("width", root.dy * kx)
+         .attr("height", function(d) { return d.dx * ky; })
+         .attr("class", function(d) { return d.children ? "parent" : "child"; });
+
+     g.append("svg:text")
+         .attr("transform", function() { alert("jola"); })
+         .attr("dy", ".35em")
+         .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
+         .text(function(d) { return d.name; })
+
+
+  });
+
   }
 
   pushItem(record: any) {

@@ -159,12 +159,12 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     }
 
     getColor(d) {
-      return d > 1000 ? '#0a3656' :
-      d > 500  ? '#134e79' :
-      d > 200  ? '#266a9c' :
-      d > 100  ? '#3490d4' :
-      d > 50   ? '#6fbcf5' :
-      d > 20   ? '#b2d9f5' :
+      return d > 1000 ? '#490271' :
+      d > 500  ? '#932cb1' :
+      d > 200  ? '#e051d1' :
+      d > 100  ? '#ea73de' :
+      d > 50   ? '#f3a8eb' :
+      d > 20   ? '#e4c9ef' :
       d > 10   ? '#d4e7f5' :
       '#fbfbfb';
     }

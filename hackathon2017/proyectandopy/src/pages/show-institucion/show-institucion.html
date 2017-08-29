@@ -23,7 +23,7 @@ Ionic pages and navigation.
     <ion-segment-button value="la">
       <ion-icon name="trending-up"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="prog">
+    <ion-segment-button value="resume">
       <i class="fa fa-sitemap" aria-hidden="true"></i>
     </ion-segment-button>
     <ion-segment-button value="prog">
@@ -189,7 +189,14 @@ Ionic pages and navigation.
 
               <ppy-canva [presupuestos]="chartsData"></ppy-canva>
 
-        
+
+      </div>
+      <div *ngSwitchCase="'resume'">
+        <ion-label class="title-page item-grouper">Resumen</ion-label>
+        <div #resumegraph style="display:table; margin: 0 auto; width: 100%"></div>
+
+
+
       </div>
 
       <ion-grid *ngSwitchCase="'prog'">
@@ -248,3 +255,27 @@ Ionic pages and navigation.
     <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
   </ion-toolbar>
 </ion-footer>
+<style>
+
+.node rect {
+  fill: #ddd;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.node tspan:last-child {
+  font-size: 9px;
+  fill-opacity: 0.8;
+}
+
+.node--internal text {
+  font-weight: bold;
+}
+
+.node--leaf rect {
+  fill-opacity: 0.6;
+}
+
+</style>

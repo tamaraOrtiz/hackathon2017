@@ -9,6 +9,7 @@ export class BaseData {
   apiUrl: string
   data: Array<any>
   paraguayGeoJson: any
+  jsonExample: any
   allQuery: string
 
   constructor(public http: Http, public events: Events, ) {
@@ -53,6 +54,18 @@ export class BaseData {
       });
     });
   }
+
+  getJsonEx(){
+    return new Promise<any>((resolve, reject) => {
+      this.http.get('assets/jsons/flare.csv').map(res => res.json()).subscribe( data => {
+        this.jsonExample = data;
+        resolve(this.jsonExample);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
 
   getEntity(entityType, id){
 
