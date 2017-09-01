@@ -880,3 +880,18 @@ ppy-rating{
     margin: auto !important;
   }
 }
+rect.parent {
+  cursor: pointer;
+  fill: #5bdaa9;
+  stroke: #f3fff0;
+}
+
+rect.child {
+  cursor: pointer;
+  fill: rgb(255, 187, 61);
+  stroke: rgb(241, 226, 206);
+}
+
+.show-info{
+  background: ghostwhite;
+}

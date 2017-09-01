@@ -11,25 +11,6 @@ import { AppHelper } from '../../helpers/app-helper';
 })
 
 export class PpyResumen {
-  backgroundColor= [
-    'rgb(247, 109, 109)',
-    'rgb(247, 109, 187)',
-    'rgb(224, 109, 247)',
-    'rgb(148, 109, 247)',
-    'rgb(109, 141, 247)',
-    'rgb(109, 211, 247)',
-    'rgb(109, 247, 201)'
-  ];
-
-  borderColor= [
-    'rgba(255,99,132,1)',
-    'rgba(244, 164, 96, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)'
-  ];
   selectData: string
 
   selectedCharType: number
@@ -45,9 +26,9 @@ export class PpyResumen {
   }
 
   generateResumen(){
-    console.log(this.graph);
-    let w  = 1000
-    let h = 1000;
+
+    let w  = this.graph.nativeElement.clientWidth;
+    let h = this.graph.nativeElement.clientWidth * 0.8;
     let x = d3.scaleLinear().range([0, w]);
     let y = d3.scaleLinear().range([0, h]);
 
@@ -62,32 +43,75 @@ export class PpyResumen {
 
     let partition = d3.partition()
                  .size([h, w])
-                 .padding(0)
+                 .padding(0);
                  //.round(f);
+
+
     d3.json("/assets/jsons/flare.json", function(error, root) {
-      if (error) throw error;
-      root = d3.hierarchy(root);
-      root.sum(function(d) { return d.size; });
-      let g = vis.selectAll("g")
-          .data(partition(root).descendants())
-          .enter().append("svg:g")
-          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
-     let kx = w / root.dx;
-     let ky = h / 1;
 
-     g.append("svg:rect")
-         .attr("width", root.dy * kx)
-         .attr("height", function(d) { return d.dx * ky; })
-         .attr("class", function(d) { return d.children ? "parent" : "child"; });
+    root = d3.hierarchy(root).sum(function(d) { return d.size; });
 
-     g.append("svg:text")
-         .attr("transform", function() { alert("jola"); })
-         .attr("dy", ".35em")
-         .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-         .text(function(d) { return d.name; })
+    var partition = d3.partition()
+                   .size([h, w])
+                   .padding(0)
+                   //.round(f);
 
-  });
+    partition(root);
+    var kx = w / (root.x1 - root.x0),
+      ky = h / 1;
+    var indice = Math.floor(Math.random() * (7 - 0) + 0);
+    var nodes = vis.selectAll('rect')
+          .data(root.descendants())
+          .enter()
+          .append('rect')
+              .attr('fill', function(d) {"#ddd"})
+              .attr('stroke', "#ddd")
+              .attr("class", function(d) { return d.children ? "parent" : "child"; })
+              .attr("x", function(d) { return d.y0; })
+              .attr("y", function(d) { return d.x0; })
+              .attr("width", function(d) { return d.y1 - d.y0; })
+              .attr("height", function(d) { return d.x1 - d.x0; })
+              .text(function(d) { return d.data.name; });
+    var text = vis.selectAll("text")
+        .data(root.descendants())
+        .enter().append("text")
+        .attr("x", function(d) { return (d.y0+10); })
+        .attr("y", function(d) { return (d.x0+10); })
+        .attr("dy", ".35em")
+        .attr("font-size",".9em")
+        .attr("fill", "#504941")
+        .style("opacity", function(d) {  return (d.x1 - d.x0)  > 15 ? 1 : 0; })
+        .html(function(d) { return d.data.name; });
+
+    function click(d) {
+        if (!d.children) return;
+
+        kx = ((d.x1 - d.x0) ? w - 40 : w) / (1 - (d.x1 - d.x0));
+        ky = h / (d.y1 - d.y0);
+        x.domain([(d.x1 - d.x0), 1]).range([(d.x1 - d.x0) ? 40 : 0, w]);
+        y.domain([(d.y0),(d.y1 + d.y0)]);
+
+          var t = vis.transition()
+              .duration(d3.event.altKey ? 7500 : 750)
+              .attr("transform", function(d) { return "translate(" + x(d.y0) + "," + y(d.x0) + ")"; });
+
+          t.select("rect")
+              .attr("width", (d.x1 - d.x0) * kx)
+              .attr("height", function(d) { return (d.y1 + d.y0) * ky; });
+
+          t.select("text")
+              .attr("transform", transform)
+              .style("opacity", function(d) { return (d.y1 + d.y0) * ky > 12 ? 1 : 0; });
+
+          d3.event.stopPropagation();
+        }
+
+        function transform(d) {
+        return "translate(8," + (d.y1 + d.y0) * ky / 2 + ")";
+        }
+      });
 
   }
+
 
 }
