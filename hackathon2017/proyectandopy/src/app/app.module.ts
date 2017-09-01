@@ -22,6 +22,7 @@ import { PNDPage } from '../pages/pnd/pnd';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PpyCanva } from '../components/ppy-canva/ppy-canva';
+import { PpyResumen } from '../components/ppy-resumen/ppy-resumen';
 import { PpyRating } from '../components/ppy-rating/ppy-rating';
 import { PpyComment } from '../components/ppy-comment/ppy-comment';
 
@@ -39,6 +40,7 @@ import { PpyComment } from '../components/ppy-comment/ppy-comment';
     TabsPage,
     TutorialPage,
     PpyCanva,
+    PpyResumen,
     PpyRating,
     PpyComment,
     PNDPage
