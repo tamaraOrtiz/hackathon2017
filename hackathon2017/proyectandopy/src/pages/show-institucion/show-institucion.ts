@@ -10,6 +10,7 @@ import { Events } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import * as d3 from "d3";
 import { Http } from '@angular/http';
+import { AppHelper } from '../../helpers/app-helper';
 
 @Component({
   selector: 'page-show-institucion',
@@ -18,7 +19,6 @@ import { Http } from '@angular/http';
 })
 
 export class ShowInstitucionPage extends ShowBasePage {
-  @ViewChild('resumegraph') graph
 
   ratingService: RatingData
 
@@ -38,6 +38,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   calificacion: any
 
+  @ViewChild('resumegraph') graph;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
@@ -91,19 +92,22 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
-    this.generateResumen();
-
-
   }
+
+  ngOnInit() {
+    this.generateResumen();
+  }
+
+
 
   generateResumen(){
     console.log(this.graph);
-    let w  = this.graph.nativeElement.clientWidth * 0.8;
-    let h = this.graph.nativeElement.clientWidth * 0.8;
+    let w  = 1000
+    let h = 1000;
     let x = d3.scaleLinear().range([0, w]);
     let y = d3.scaleLinear().range([0, h]);
 
-    let vis = d3.select(this.graph.nativeElement)
+    let vis = d3.select("#resumegraph")
               .append("div")
               .attr("class", "chart")
               .attr("width", w)
