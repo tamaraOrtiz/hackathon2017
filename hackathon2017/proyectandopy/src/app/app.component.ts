@@ -9,6 +9,7 @@ import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PNDPage } from '../pages/pnd/pnd';
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,6 +42,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      moment.locale('es-la');
     });
   }
 
