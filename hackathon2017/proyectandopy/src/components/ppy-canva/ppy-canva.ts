@@ -31,6 +31,13 @@ export class PpyCanva {
     'rgba(255, 159, 64, 1)'
   ];
   selectData: string
+
+  selectedCharType: number
+
+  selectedTitled: string
+
+  titles = ['Inversión por Programa', 'Avances vs Metas', 'Costos vs Beneficiarios']
+
   options: Array<any>
 
   @ViewChild('graph') graph;
@@ -54,6 +61,44 @@ export class PpyCanva {
 
   onItemSelect($event) {
     this.generatePie();
+  }
+
+  onGraphTypeSelect($event){
+    this.selectedTitled = this.titles[this.selectedCharType];
+    switch(this.selectedCharType) {
+      case 0:
+        this.generatePie();
+        break;
+      case 1:
+        this.generateAvancesGraph();
+        break;
+      case 2:
+        this.generateAvancesVsMetasGraph();
+        break;
+      case 3:
+        this.generateCostosVsBeneficiariosGraph();
+        break;
+      default:
+        break;
+    }
+  }
+
+  generateAvancesVsMetasGraph(){
+    let self = this;
+    let dispatch = d3.dispatch("load", "statechange");
+    let avancesVsMetas = d3.map();
+  }
+
+  generateCostosVsBeneficiariosGraph(){
+    let self = this;
+    let dispatch = d3.dispatch("load", "statechange");
+    let costosVsBeneficiarios = d3.map();
+  }
+
+  generateAvancesGraph(){
+    let self = this;
+    let dispatch = d3.dispatch("load", "statechange");
+    let avances = d3.map();
   }
 
   generatePie() {
@@ -143,6 +188,10 @@ export class PpyCanva {
 
     dispatch.call("load", this, presupuestosByName);
     dispatch.call("statechange", this, presupuestosByName["$"+self.selectData]);
+
+  }
+
+  d() {
 
   }
 
