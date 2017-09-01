@@ -38,8 +38,6 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   calificacion: any
 
-  @ViewChild('resumegraph') graph;
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -95,56 +93,7 @@ export class ShowInstitucionPage extends ShowBasePage {
   }
 
   ngOnInit() {
-    this.generateResumen();
-  }
-
-
-
-  generateResumen(){
-    console.log(this.graph);
-    let w  = 1000
-    let h = 1000;
-    let x = d3.scaleLinear().range([0, w]);
-    let y = d3.scaleLinear().range([0, h]);
-
-    let vis = d3.select("#resumegraph")
-              .append("div")
-              .attr("class", "chart")
-              .attr("width", w)
-              .attr("height", h)
-              .append("svg:svg")
-              .attr("width", w)
-              .attr("height", h);
-
-    let partition = d3.partition()
-                 .size([h, w])
-                 .padding(0)
-                 //.round(f);
-    d3.json("/assets/jsons/flare.json", function(error, root) {
-      if (error) throw error;
-      root = d3.hierarchy(root);
-      root.sum(function(d) { return d.size; });
-      let g = vis.selectAll("g")
-          .data(partition(root).descendants())
-          .enter().append("svg:g")
-          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
-     let kx = w / root.dx;
-     let ky = h / 1;
-
-     g.append("svg:rect")
-         .attr("width", root.dy * kx)
-         .attr("height", function(d) { return d.dx * ky; })
-         .attr("class", function(d) { return d.children ? "parent" : "child"; });
-
-     g.append("svg:text")
-         .attr("transform", function() { alert("jola"); })
-         .attr("dy", ".35em")
-         .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-         .text(function(d) { return d.name; })
-
-
-  });
-
+    //this.generateResumen();
   }
 
   pushItem(record: any) {
@@ -249,7 +198,5 @@ export class ShowInstitucionPage extends ShowBasePage {
     });
     return periodos;
   }
-
-
 
 }
