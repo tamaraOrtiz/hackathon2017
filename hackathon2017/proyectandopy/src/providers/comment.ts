@@ -7,9 +7,9 @@ export class CommentData extends BaseData {
     this.pushEntity('comment', entity);
   }
 
-  getAllComments(entityType, entityId){
+  getAllComments(entityType, entityId, lastPage){
     return new Promise<any>((resolve, reject) => {
-      this.http.get(`${this.apiUrl}comment?entity_id=${entityId}&entity_type=${entityType}`).map( res => res.json()).subscribe( data => {
+      this.http.get(`${this.apiUrl}comment?entity_id=${entityId}&entity_type=${entityType}&page=${lastPage}`).map( res => res.json()).subscribe( data => {
         resolve(data);
       }, error => {
         reject(error);

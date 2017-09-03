@@ -13,9 +13,11 @@ export class PpyComment {
   _comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string};
   comments: Array<any>
   service: CommentData
+  lastPage: number
 
   constructor(public events: Events, public dataService: CommentData, public toastCtrl: ToastController) {
     this.service = dataService;
+    this.lastPage = 0;
     events.subscribe('comment:saved:success', (comment) => {
       let toast = this.toastCtrl.create({
         message: 'Tu opinión fue enviada con exito!',
@@ -24,9 +26,7 @@ export class PpyComment {
         cssClass: "toast-success"
       });
       toast.present();
-      dataService.getAllComments(this.comment.entity_type, this.comment.entity_id).then( comments => {
-        this.comments = comments;
-      })
+      this.getComments(this.lastPage);
     });
     events.subscribe('comment:saved:error', (comment) => {
       let toast = this.toastCtrl.create({
@@ -40,8 +40,13 @@ export class PpyComment {
   }
 
   ngOnInit() {
-    this.service.getAllComments(this.comment.entity_type, this.comment.entity_id).then( comments => {
+    this.getComments(this.lastPage);
+  }
+
+  getComments(lastPage) {
+    this.service.getAllComments(this.comment.entity_type, this.comment.entity_id, lastPage).then( comments => {
       this.comments = comments;
+      this.lastPage = this.lastPage + 1;
     })
   }
 
