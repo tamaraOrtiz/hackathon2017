@@ -44,7 +44,7 @@ export class PpyRating {
       document.getElementById("send-rating").style.display = 'none';
       document.getElementById("col-rating").style.display = 'none';
       dataService.getRating(this.rating.entity_type, this.rating.entity_id).then( rating => {
-        console.log(rating);
+        this.setRating(rating, true);
       });
     });
     events.subscribe('rating:saved:error', (rating) => {
