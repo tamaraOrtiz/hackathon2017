@@ -14,6 +14,7 @@ export class PpyComment {
   comments: Array<any>
   service: CommentData
   lastPage: number
+  isLoading = false
 
   constructor(public events: Events, public dataService: CommentData, public toastCtrl: ToastController) {
     this.service = dataService;
@@ -44,9 +45,11 @@ export class PpyComment {
   }
 
   getComments(lastPage) {
+    this.isLoading = true;
     this.service.getAllComments(this.comment.entity_type, this.comment.entity_id, lastPage).then( comments => {
       this.comments = comments;
       this.lastPage = this.lastPage + 1;
+      this.isLoading = false;
     })
   }
 
