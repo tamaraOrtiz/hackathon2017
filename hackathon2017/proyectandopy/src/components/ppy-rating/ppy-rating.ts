@@ -25,9 +25,15 @@ export class PpyRating {
 
   constructor(public events: Events, public dataService: RatingData, public toastCtrl: ToastController) {
     events.subscribe('rating:retrieve', (rating, time) => {
+      if (document.getElementById("rating-text") === undefined) {
+        return;
+      }
       this.setRating(rating, true);
     });
     events.subscribe('rating:saved:success', (rating) => {
+      if (document.getElementById("rating-text") === undefined) {
+        return;
+      }
       let toast = this.toastCtrl.create({
         message: 'Tu calificación fue enviada con exito!',
         duration: 3000,
@@ -42,7 +48,9 @@ export class PpyRating {
       });
     });
     events.subscribe('rating:saved:error', (rating) => {
-
+      if (document.getElementById("rating-text") === undefined) {
+        return;
+      }
       let toast = this.toastCtrl.create({
         message: 'Tu calificación no fue guardada, vuelve a intentarlo mas tarde!',
         duration: 3000,
@@ -50,10 +58,6 @@ export class PpyRating {
         cssClass: "toast-error"
       });
       toast.present();
-
-
-
-
     });
   }
 
