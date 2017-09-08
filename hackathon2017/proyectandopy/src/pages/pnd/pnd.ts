@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { InstitucionData } from '../../providers/institucion';
+import { RatingData } from '../../providers/rating';
 import { BasePage } from '../../app/base-page';
+import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-pnd',
   templateUrl: 'pnd.html',
-  providers: [InstitucionData]
+  providers: [InstitucionData, RatingData]
 })
 export class PNDPage extends BasePage {
   items: Array<{title: string, note: string, icon: string}>;
@@ -17,9 +19,18 @@ export class PNDPage extends BasePage {
   selectedEntidades: any;
   anhos: Array<any>;
   tabs: string = "resumen";
+  ratingService: RatingData
+  calificacion: any
+
   loading;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public dataService: InstitucionData,
+    public loadingCtrl: LoadingController,
+    public events: Events,
+    public raService: RatingData) {
     super(navCtrl, navParams, dataService);
+    this.ratingService = raService;
     this.selectedNiveles = [];
     this.selectedEntidades = [];
     this.anhos = [2017,2018];
@@ -45,7 +56,7 @@ export class PNDPage extends BasePage {
     });
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     let self = this;
     this.loading = this.loadingCtrl.create({
        content: 'Por favor espere...'
@@ -63,6 +74,11 @@ export class PNDPage extends BasePage {
       this.loading.dismiss();
     }, function(errors){
       self.loading.dismiss();
+    });
+
+    this.ratingService.getRating(1, 'PND').then(rating => {
+      this.calificacion = rating;
+      this.events.publish('rating:retrieve', rating, Date.now());
     });
   }
 

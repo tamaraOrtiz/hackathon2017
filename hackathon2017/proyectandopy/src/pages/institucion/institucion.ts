@@ -46,7 +46,7 @@ export class InstitucionPage extends BasePage {
     document.getElementById("subnavbar").style.display = 'block';
     document.getElementById("search-div").style.cssText += ';display:none !important;'
   }
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     let self = this;
     this.loading = this.loadingCtrl.create({
        content: 'Por favor espere...'

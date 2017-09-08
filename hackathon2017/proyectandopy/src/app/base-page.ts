@@ -13,7 +13,7 @@ export class BasePage {
     this.where = undefined;
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.dataService.getAll(this.where).then(records => {
       this.pushItems(records);
     });

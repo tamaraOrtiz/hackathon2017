@@ -25,7 +25,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     let self = this;
     let title = "Avances por distrito";
     let multiplicador = [10000, 0.5, 1];

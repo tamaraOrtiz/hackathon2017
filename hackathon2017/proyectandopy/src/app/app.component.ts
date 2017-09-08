@@ -4,11 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { InstitucionPage } from '../pages/institucion/institucion';
-import { NivelPage } from '../pages/nivel/nivel';
-import { ProgramaPage } from '../pages/programa/programa';
-import { MapaPage } from '../pages/mapa/mapa';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PNDPage } from '../pages/pnd/pnd';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 import * as moment from 'moment';
 
 @Component({
@@ -17,21 +15,20 @@ import * as moment from 'moment';
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = TabsPage;
+  rootPage: any = InstitucionPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
+
+  'Instituciones' = InstitucionPage;
+  'PND' = PNDPage;
+  'Informacion' = TutorialPage;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Institucion', component: InstitucionPage, icon: "home" },
-      { title: 'Nivel', component: NivelPage, icon: "stats" },
-      { title: 'Programa', component: ProgramaPage, icon: "albums" },
-      { title: 'Mapa', component: MapaPage, icon: "map" },
-      { title: 'PND', component: PNDPage, icon: "map" }
-
+      { title: 'PND', component: PNDPage, icon: "albums" },
     ];
 
   }

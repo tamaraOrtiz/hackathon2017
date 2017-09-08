@@ -13,7 +13,7 @@ export class ShowNivelPage {
     this.item = navParams.get('item');
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     console.log(this.item);
   }
 
