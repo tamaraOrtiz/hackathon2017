@@ -161,7 +161,7 @@ Ionic pages and navigation.
       </div>
       <div *ngSwitchCase="'la'" class="common-list" style="margin-bottom: 0;">
         <ion-list>
-          <div >
+          <div>
             <ion-item class="item-grouper">Lineas de Acción</ion-item>
           <button ion-item class="success" *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
             <ion-item>
@@ -169,9 +169,11 @@ Ionic pages and navigation.
                   <i class="fa fa-line-chart" aria-hidden="true"></i>
               </ion-avatar>
               <div class="item-list">
-                <h2>{{lineaAccion.nombre}}</h2>
-                <h5 ><ion-badge class="label_c1"><i class="fa {{lineaAccion.ico}}" aria-hidden="true"></i>{{lineaAccion.meta}} {{lineaAccion.unidadMedida}}</ion-badge>
-                <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>130</ion-badge></h5>
+                <h2 style="text-transform: capitalize">{{lineaAccion.nombre}}</h2>
+                <h5>
+                  <ion-badge class="label_c1">{{lineaAccion.cantidadAvance}}/{{lineaAccion.cantidadProgramada}} {{lineaAccion.unidadMedida}}</ion-badge>
+                  <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</ion-badge>
+                </h5>
               </div>
               <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
             </ion-item>

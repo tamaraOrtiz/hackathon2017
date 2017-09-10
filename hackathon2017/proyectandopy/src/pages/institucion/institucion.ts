@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
 import { ShowInstitucionPage } from '../show-institucion/show-institucion';
+import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
 
@@ -31,7 +32,7 @@ export class InstitucionPage extends BasePage {
     let val = ev.target.value;
     if (val && val.trim() != '') {
       let niveles = this.selectedNiveles.length > 0 ? `AND nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
-      this.dataService.getAll(`nombre ILIKE '%agencia%' ${niveles}`).then(records => {
+      this.dataService.getAll(`nombre ILIKE '${val}' ${niveles}`).then(records => {
         this.pushItems(records);
       });
     }
@@ -64,18 +65,17 @@ export class InstitucionPage extends BasePage {
       let self = this;
       let groupedItems = {}
       this.items.map(function(item) {
-        if(groupedItems[item.nivelid] === undefined) {
-          groupedItems[item.nivelid] = {name: item.nivel_nombre, items: []};
-        }
-        groupedItems[item.nivelid]['items'].push(item);
+        item.nombre = AppHelper.toTitleCase(item.nombre);
+        self.groupItems(groupedItems, item)
       });
       this.groupedItems = (<any> Object).values(groupedItems);
+      this.groupedItems.map(function(item) {
+        item.entidades = (<any> Object).values(item.entidades);
+      });
       this.loading.dismiss();
     }, function(errors){
       self.loading.dismiss();
     });
-
-
 
   }
 
@@ -86,12 +86,13 @@ export class InstitucionPage extends BasePage {
       let self = this;
       let groupedItems = {}
       this.items.map(function(item) {
-        if(groupedItems[item.nivelid] === undefined) {
-          groupedItems[item.nivelid] = {name: item.nivel_nombre, items: []};
-        }
-        groupedItems[item.nivelid]['items'].push(item);
+        self.groupItems(groupedItems, item);
       });
       this.groupedItems = (<any> Object).values(groupedItems);
+      this.groupedItems.map(function(item) {
+        item.entidades = (<any> Object).values(item.entidades);
+      });
+      console.log(this.groupedItems);
     });
   }
 
@@ -107,11 +108,35 @@ export class InstitucionPage extends BasePage {
     return niveles;
   }
 
+  groupItems(groupedItems, item) {
+    if(groupedItems[item.nivelid] === undefined) {
+      groupedItems[item.nivelid] = {name: item.nivelid, entidades: []};
+    }
+    if(groupedItems[item.nivelid]['entidades'][item.entidadid] === undefined) {
+      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: item.entidadid, items: []};
+    }
+    groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
+  }
+
 
   itemTapped(event, item) {
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });
+  }
+
+  selectAll(all) {
+    let self = this;
+    if(all) {
+      self.selectedNiveles = [];
+      self.niveles.map(function(item) {
+        console.log(item.id);
+        self.selectedNiveles.push(item.id);
+      })
+    } else {
+      self.selectedNiveles = [];
+    }
+    console.log(event);
   }
 
 }

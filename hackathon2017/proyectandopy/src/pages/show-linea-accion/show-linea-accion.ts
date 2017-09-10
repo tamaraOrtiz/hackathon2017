@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { LineaAccionData } from '../../providers/linea-accion';
+import { AppHelper } from '../../helpers/app-helper';
 import 'leaflet';
 import 'leaflet-search';
 
@@ -111,7 +112,6 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
-        console.log(props);
         this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
           '<b>' + props.distrito + '</b><br />' + Math.round(1500 * Math.random()) + ' Km'
           : 'Seleccione un distrito');

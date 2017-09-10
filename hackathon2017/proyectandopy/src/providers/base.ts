@@ -29,10 +29,11 @@ export class BaseData {
     });
   }
 
-  getQuery(sql: string){
+  getQuery(sql: string, api=false){
+    let _url = api ? this.apiUrl : this.stpUrl;
     return new Promise<Array<any>>((resolve, reject) => {
-      this.http.get(`${this.stpUrl}${sql}`).map( res => res.json()).subscribe( data => {
-        this.data = data.rows;
+      this.http.get(`${_url}${sql}`).map( res => res.json()).subscribe( data => {
+        this.data = api ? data : data.rows;
         resolve(this.data);
       }, error => {
         reject(error);

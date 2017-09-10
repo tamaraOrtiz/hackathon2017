@@ -2,6 +2,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import * as d3 from "d3";
+import * as saveToPng from 'save-svg-as-png';
 import { Platform } from 'ionic-angular';
 import { AppHelper } from '../../helpers/app-helper';
 
@@ -114,7 +115,7 @@ export class PpyCanva {
       let radius = Math.min(width, height) / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
       let color  = d3.scaleOrdinal()
-      .range(this.backgroundColor);
+                     .range(this.backgroundColor);
 
       let legend = d3.select("#pie-info-legend");
       legend.html('');
@@ -136,6 +137,7 @@ export class PpyCanva {
 
       let svg = d3.select(this.graph.nativeElement)
       .append("svg")
+      .attr("fill", "white")
       .attr("width", width)
       .attr("height", height)
       .append("g")
@@ -175,7 +177,6 @@ export class PpyCanva {
           let total = d3.sum(data.map(function(d) {              // NEW
             return d.value;                                           // NEW
           }));
-          console.log(total)
           let info = d3.select('.pie-info');
           let percent = Math.round(1000 * d.data.value / total)/10; // NEW
           info.select('#label').html(AppHelper.toTitleCase(d.data.name));                // NEW
@@ -192,7 +193,9 @@ export class PpyCanva {
   }
 
   d() {
-
+    console.log(d3.select('svg'));
+    saveToPng.out$ = saveToPng;
+    saveToPng.out$.saveSvgAsPng(d3.select('svg')['_groups'][0][0], "diagram.png");
   }
 
 }

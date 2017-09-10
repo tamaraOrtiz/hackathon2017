@@ -82,8 +82,11 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.chartsData = this.structResumenPrograma(records);
       this.presupuestos = Object.keys(this.chartsData);
     });
-    this.dataService.getQuery(this.dataService.getLineasAccion(this.item.id, "periodo = '2017'")).then(records => {
-      this.lineasAccion = this.structLineasAccion(records);
+    this.dataService.getQuery(this.dataService.getLineasAccion(
+      this.item.nivelid,
+      this.item.entidadid,
+      this.item.id, ''), true).then(records => {
+        this.lineasAccion = this.structLineasAccion(records);
     });
 
     this.ratingService.getRating(this.item.id, 'Institucion').then(rating => {
@@ -125,11 +128,11 @@ export class ShowInstitucionPage extends ShowBasePage {
     records.forEach(function (la) {
       lineasAccion.push({
         id: la.la_id,
-        nombre: la.la_nombre,
-        periodo: la.periodo,
-        instanciaId: la.ila_id,
-        meta: la.ila_meta,
-        unidadMedida: la.la_um_descp,
+        nombre: AppHelper.toTitleCase(la.la_nombre),
+        cantidadFinanciera: la.cantidad_financiera,
+        cantidadAvance: la.cantidad_avance,
+        cantidadProgramada: la.cantidad_prog,
+        unidadMedida: la.unidad_medida,
         ico: 'fa-users'
       });
     });

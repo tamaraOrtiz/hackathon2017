@@ -12,7 +12,7 @@ export class InstitucionData extends BaseData {
   }
 
   getAllQuery(where: string) {
-    return `?q=SELECT DISTINCT id, nivelid, nivel_nombre, entidadid, nombre, baselegal, public.instituciones.descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones LEFT JOIN public.destinatarioproducto ON public.instituciones.nivelid = public.destinatarioproducto.nivel_id ${where} ORDER BY nombre ASC LIMIT 20;`;
+    return `?q=SELECT id, nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones ${where} ORDER BY nivelid, entidadid, nombre ASC;`;
   }
 
   getAvances(nivelId, entidadId, conditions) {
@@ -25,9 +25,9 @@ export class InstitucionData extends BaseData {
     return `?q=SELECT avance.* FROM avance ${where} ins_id = '${id}' AND ac_borr = 'f'`;
   }
 
-  getLineasAccion(id, conditions) {
+  getLineasAccion(nivelId, entidadId, institucionId, conditions) {
     let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
-    return `?q=SELECT DISTINCT avance.periodo, avance.la_id, avance.la_nombre, avance.ila_id, avance.ila_meta, avance.la_um_descp FROM avance ${where} ins_id = '${id}' AND ac_borr = 'f'`;
+    return `lineas_de_accion/?nivel=${nivelId}&entidad=${entidadId}&institucion=${institucionId}`;
   }
 
   getNiveles(where: string) {
