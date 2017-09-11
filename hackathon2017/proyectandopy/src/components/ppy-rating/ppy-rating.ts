@@ -25,13 +25,13 @@ export class PpyRating {
 
   constructor(public events: Events, public dataService: RatingData, public toastCtrl: ToastController) {
     events.subscribe('rating:retrieve', (rating, time) => {
-      if (document.getElementById("rating-text") === undefined) {
+      if (document.getElementById("rating-text") === null) {
         return;
       }
       this.setRating(rating, true);
     });
     events.subscribe('rating:saved:success', (rating) => {
-      if (document.getElementById("rating-text") === undefined) {
+      if (document.getElementById("rating-text") === null) {
         return;
       }
       let toast = this.toastCtrl.create({
@@ -48,7 +48,7 @@ export class PpyRating {
       });
     });
     events.subscribe('rating:saved:error', (rating) => {
-      if (document.getElementById("rating-text") === undefined) {
+      if (document.getElementById("rating-text") === null) {
         return;
       }
       let toast = this.toastCtrl.create({
