@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, LoadingController } from 'ionic-angular';
+import { Nav, Platform, LoadingController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,16 +22,23 @@ export class MyApp {
   'Instituciones' = InstitucionPage;
   'PND' = PNDPage;
   'Informacion' = TutorialPage;
+  menu:any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
     this.initializeApp();
 
+    this.menu = menuCtrl;
     this.pages = [
       { title: 'Institucion', component: InstitucionPage, icon: "home" },
       { title: 'PND', component: PNDPage, icon: "albums" },
     ];
 
   }
+
+  openMenu() {
+     this.menu.open();
+
+   }
 
   initializeApp() {
     this.platform.ready().then(() => {

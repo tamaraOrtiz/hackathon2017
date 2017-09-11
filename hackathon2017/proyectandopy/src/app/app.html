@@ -18,7 +18,35 @@
 </ion-menu>-->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-menu type="overlay" class="menu" id="principalmenu" [content]="content">
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <button ion-item (click)="openPage(homePage)">
+      Home
+    </button>
+    <button ion-item (click)="openPage(friendsPage)">
+      Friends
+    </button>
+    <button ion-item (click)="openPage(eventsPage)">
+      Events
+    </button>
+    <button ion-item (click)="closeMenu()">
+      Close Menu
+    </button>
+  </ion-list>
+</ion-content>
+
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false">
+<button ion-button menuToggle icon-only >
+  <ion-icon name='menu'></ion-icon>
+</button></ion-nav>
 <ion-tabs>
       <ion-tab tabIcon="home" tabTitle="Inicio" [root]="Instituciones"></ion-tab>
       <ion-tab tabIcon="albums" tabTitle="PND" [root]="PND"></ion-tab>

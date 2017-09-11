@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
 import { ShowInstitucionPage } from '../show-institucion/show-institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
+
 
 
 @Component({
@@ -21,11 +22,16 @@ export class InstitucionPage extends BasePage {
   selectedNiveles: any;
   groupedItems: Array<any> = [];
   loading;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController) {
+  rootPage: any = InstitucionPage;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
+
     this.selectedNiveles = [];
+  
+
   }
+
 
 
   getItems(ev: any) {
