@@ -936,6 +936,9 @@ rect.child {
   background:#e5e8ea !important;
   position: fixed;
   overflow-y: auto;
+  .closesidebar{
+    bottom: 22% !important;
+  }
 }
 
 .chips-div{
