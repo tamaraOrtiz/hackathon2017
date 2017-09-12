@@ -39,15 +39,13 @@ export class InstitucionPage extends BasePage {
 
   opensidebar(){
     this.openbar = true;
-    console.log("open");
-    console.log(this.openbar);
+
 
   }
 
   closesidebar(){
     this.openbar = false;
-    console.log("open");
-    console.log(this.openbar);
+
   }
 
   getItems(ev: any) {

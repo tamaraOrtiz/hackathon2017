@@ -115,7 +115,7 @@ ion-searchbar{
     color: transparent;
   }
   .select-md .select-icon .select-icon-inner{
-    color: transparent;
+    color: #23908a !important
 
   }
   ion-select{
@@ -295,7 +295,7 @@ ion-searchbar{
   }
 }
 .principal-grid{
-  background: rgba(234, 234, 234, 0.8);
+
   padding: 0 !important;
   height: 100%;
   .principal-col{
@@ -936,17 +936,17 @@ rect.child {
   background:#e5e8ea !important;
   position: fixed;
   overflow-y: auto;
-  .closesidebar{
-    bottom: 22% !important;
-  }
+
 }
 
 .chips-div{
   text-align: center;
 }
 
-
-.list-institution{
+.normal-col, .central-col{
+  padding: 0 !important;
+}
+.view-content{
 
 border: 2px solid aliceblue;
 border-radius: 5px;

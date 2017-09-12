@@ -12,6 +12,7 @@ import * as d3 from "d3";
 import { Http } from '@angular/http';
 import { AppHelper } from '../../helpers/app-helper';
 
+
 @Component({
   selector: 'page-show-institucion',
   templateUrl: 'show-institucion.html',
@@ -37,7 +38,7 @@ export class ShowInstitucionPage extends ShowBasePage {
   csvItems: any
 
   calificacion: any
-
+  openbar: any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -46,11 +47,21 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.ratingService = raService;
     this.dataService = dataService;
     this.charts = [];
+    this.openbar = plt.is('core');
   }
   openLink(link){
   		this.iab.create(link,'_system',{location:'yes'});
   }
+  opensidebar(){
+    this.openbar = true;
 
+
+  }
+
+  closesidebar(){
+    this.openbar = false;
+
+  }
   regularShare(){
 
       // share(message, subject, file, url)
