@@ -26,14 +26,12 @@ export class InstitucionPage extends BasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
-    this.selectedNiveles = [];
   }
 
   delete(chip: Element, value) {
     chip.remove();
-    console.log(this.selectedNiveles)
     this.selectedNiveles.splice(this.selectedNiveles.indexOf(value), 1);
-    console.log(this.selectedNiveles)
+    this.filter(null);
   }
 
   oppensidebar(){
@@ -76,6 +74,7 @@ export class InstitucionPage extends BasePage {
     this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
+      this.selectedNiveles = Object.keys(this.niveles);
     }, function(errors){
       self.loading.dismiss();
     });
