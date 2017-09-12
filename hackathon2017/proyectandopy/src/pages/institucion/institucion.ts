@@ -21,7 +21,7 @@ export class InstitucionPage extends BasePage {
   searchQuery: string = '';
   showSearchBar: boolean = false;
   niveles: Array<any>;
-  selectedNiveles: any;
+  selectedNiveles: Array<any> = [];
   groupedItems: Array<any> = [];
   loading;
   openbar: any;
@@ -35,7 +35,7 @@ export class InstitucionPage extends BasePage {
   delete(chip: Element, value) {
     chip.remove();
     this.selectedNiveles.splice(this.selectedNiveles.indexOf(value), 1);
-    this.filter(null);
+    this.filter(null, false);
   }
 
   opensidebar(){
@@ -63,34 +63,37 @@ export class InstitucionPage extends BasePage {
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
       this.selectedNiveles = Object.keys(this.niveles);
+      this.filter(null, false, this.loading);
     }, function(errors){
       self.loading.dismiss();
     });
-    this.filter(null, false);
   }
 
-  filter(event, bar) {
-    let val = event ? event.target.value : '';
-    if (bar && val && val.trim() != '') {
-      return;
-    }
-    let loading = this.loadingCtrl.create({
+  filter(event, bar, loader=null) {
+    let val = bar ? event.target.value : '';
+    console.log(event && event.hasOwnProperty('target'));
+    let loading = loader ? loader : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
-
-    loading.present();
+    if(!loader){
+      loading.present();
+    }
     let self = this;
-    let niveles = this.selectedNiveles.length > 0 ? `nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
-    let query = bar ? `nombre ILIKE '${val}' AND ${niveles}` : niveles;
+    let niveles = this.selectedNiveles.length > 0 ? `nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : null;
+    if (!niveles) {
+      loading.dismiss();
+      return;
+    }
+    let query = (bar && val.trim() !== '') ? `nombre ILIKE '%25${val}%25' AND ${niveles}` : niveles;
     this.dataService.getAll(query).then(records => {
-      this.pushItems(records);
-      let self = this;
+      self.pushItems(records);
+
       let groupedItems = {}
-      this.items.map(function(item) {
+      self.items.map(function(item) {
         self.groupItems(groupedItems, item);
       });
-      this.groupedItems = (<any> Object).values(groupedItems);
-      this.groupedItems.map(function(item) {
+      self.groupedItems = (<any> Object).values(groupedItems);
+      self.groupedItems.map(function(item) {
         item.entidades = (<any> Object).values(item.entidades);
       });
       loading.dismiss();
@@ -105,7 +108,7 @@ export class InstitucionPage extends BasePage {
       niveles[row.nivel_id] =
       {
         id: row.nivel_id,
-        nombre: row.nivel_nombre,
+        nombre: AppHelper.toTitleCase(row.nivel_nombre),
       };
     }
 
