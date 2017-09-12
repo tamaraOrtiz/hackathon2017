@@ -40,8 +40,7 @@
          <ion-item>
            <ion-label>Niveles</ion-label>
            <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event)">
-             <ion-option (ionSelect)="selectAll(isSelected)" selected="true">Todos/Ninguno</ion-option>
-             <ion-option  *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
+             <ion-option  *ngFor="let nivel of niveles | keys"  value="{{niveles[nivel].id}}" selected="selectedNiveles.contains(nivel)">{{niveles[nivel].nombre}}</ion-option>
 
            </ion-select>
          </ion-item>
@@ -49,9 +48,9 @@
        </ion-list>
         </div>
         <div class="chips-div">
-          <ion-chip *ngFor="let nivel of niveles"  id="{{nivel.id}}">
-             <ion-label>{{nivel.nombre}}</ion-label>
-             <button ion-button clear color=clear (click)="delete(chip1)">
+          <ion-chip *ngFor="let nivel of selectedNiveles"  #chip>
+             <ion-label>{{niveles[nivel].nombre}}</ion-label>
+             <button ion-button clear color=clear (click)="delete(chip, nivel)">
                <ion-icon name="close-circle"></ion-icon>
              </button>
            </ion-chip>

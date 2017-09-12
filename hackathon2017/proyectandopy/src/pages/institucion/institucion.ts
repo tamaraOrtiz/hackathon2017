@@ -26,10 +26,14 @@ export class InstitucionPage extends BasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
-
     this.selectedNiveles = [];
+  }
 
-
+  delete(chip: Element, value) {
+    chip.remove();
+    console.log(this.selectedNiveles)
+    this.selectedNiveles.splice(this.selectedNiveles.indexOf(value), 1);
+    console.log(this.selectedNiveles)
   }
 
   oppensidebar(){
@@ -108,17 +112,17 @@ export class InstitucionPage extends BasePage {
       this.groupedItems.map(function(item) {
         item.entidades = (<any> Object).values(item.entidades);
       });
-      console.log(this.groupedItems);
     });
   }
 
   structNiveles (meta):any {
     let niveles = [];
     for(let row of meta) {
-      niveles.push({
+      niveles[row.nivel_id] =
+      {
         id: row.nivel_id,
         nombre: row.nivel_nombre,
-      });
+      };
     }
 
     return niveles;

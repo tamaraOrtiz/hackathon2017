@@ -26,6 +26,8 @@ import { PpyCanva } from '../components/ppy-canva/ppy-canva';
 import { PpyResumen } from '../components/ppy-resumen/ppy-resumen';
 import { PpyRating } from '../components/ppy-rating/ppy-rating';
 import { PpyComment } from '../components/ppy-comment/ppy-comment';
+import { AppHelper } from '../helpers/app-helper';
+import { KeysPipe } from '../helpers/keys-pipe';
 
 @NgModule({
   declarations: [
@@ -44,13 +46,14 @@ import { PpyComment } from '../components/ppy-comment/ppy-comment';
     PpyResumen,
     PpyRating,
     PpyComment,
-    PNDPage
+    PNDPage,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    MomentModule
+    MomentModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
