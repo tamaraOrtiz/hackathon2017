@@ -19,6 +19,7 @@ import { Platform } from 'ionic-angular';
 export class InstitucionPage extends BasePage {
   items: Array<any>;
   searchQuery: string = '';
+  showSearchBar: boolean = false;
   niveles: Array<any>;
   selectedNiveles: any;
   groupedItems: Array<any> = [];
@@ -48,25 +49,10 @@ export class InstitucionPage extends BasePage {
 
   }
 
-  getItems(ev: any) {
-    let val = ev.target.value;
-    if (val && val.trim() != '') {
-      let niveles = this.selectedNiveles.length > 0 ? `AND nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
-      this.dataService.getAll(`nombre ILIKE '${val}' ${niveles}`).then(records => {
-        this.pushItems(records);
-      });
-    }
+  showSearch(value){
+    this.showSearchBar = value;
   }
 
-  showSearch(){
-    document.getElementById("subnavbar").style.display = 'none';
-    document.getElementById("search-div").style.cssText += ';display:block !important;'
-  }
-
-  cancelSearch(){
-    document.getElementById("subnavbar").style.display = 'block';
-    document.getElementById("search-div").style.cssText += ';display:none !important;'
-  }
   ionViewDidEnter(){
     let self = this;
     this.loading = this.loadingCtrl.create({
@@ -80,29 +66,23 @@ export class InstitucionPage extends BasePage {
     }, function(errors){
       self.loading.dismiss();
     });
-
-    this.dataService.getAll(this.where).then(records => {
-      this.pushItems(records);
-      let self = this;
-      let groupedItems = {}
-      this.items.map(function(item) {
-        item.nombre = AppHelper.toTitleCase(item.nombre);
-        self.groupItems(groupedItems, item)
-      });
-      this.groupedItems = (<any> Object).values(groupedItems);
-      this.groupedItems.map(function(item) {
-        item.entidades = (<any> Object).values(item.entidades);
-      });
-      this.loading.dismiss();
-    }, function(errors){
-      self.loading.dismiss();
-    });
-
+    this.filter(null, false);
   }
 
-  filter(event) {
+  filter(event, bar) {
+    let val = event ? event.target.value : '';
+    if (bar && val && val.trim() != '') {
+      return;
+    }
+    let loading = this.loadingCtrl.create({
+       content: 'Por favor espere...'
+    });
+
+    loading.present();
     let self = this;
-    this.dataService.getAll(`nivelid IN ('${this.selectedNiveles.join('\',\'')}')`).then(records => {
+    let niveles = this.selectedNiveles.length > 0 ? `nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : '';
+    let query = bar ? `nombre ILIKE '${val}' AND ${niveles}` : niveles;
+    this.dataService.getAll(query).then(records => {
       this.pushItems(records);
       let self = this;
       let groupedItems = {}
@@ -113,6 +93,9 @@ export class InstitucionPage extends BasePage {
       this.groupedItems.map(function(item) {
         item.entidades = (<any> Object).values(item.entidades);
       });
+      loading.dismiss();
+    }, function(errors){
+      loading.dismiss();
     });
   }
 
