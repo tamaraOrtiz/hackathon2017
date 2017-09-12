@@ -6,6 +6,7 @@ import { ShowInstitucionPage } from '../show-institucion/show-institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 
 
@@ -24,10 +25,10 @@ export class InstitucionPage extends BasePage {
   loading;
   openbar: any;
   rootPage: any = InstitucionPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController, public platform: Platform) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
-    this.openbar = true;
+    this.openbar = platform.is('core');
   }
 
   delete(chip: Element, value) {
