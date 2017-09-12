@@ -100,7 +100,7 @@ ion-searchbar{
   background: transparent no-repeat center top !important;
   margin: 0 !important;
   padding: 0 !important;
-  width: calc(100% - 70px) !important;
+
 
   .item-md{
     background: transparent !important;
@@ -946,4 +946,8 @@ rect.child {
 border: 2px solid aliceblue;
 border-radius: 5px;
 margin: 15px;
+}
+
+ion-chip{
+  max-width: 95%;
 }
