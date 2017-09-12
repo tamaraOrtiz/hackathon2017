@@ -933,7 +933,9 @@ rect.child {
   z-index: 80;
   position: absolute;
   height: 100%;
-  background:#e5e8ea !important
+  background:#e5e8ea !important;
+  position: fixed;
+  overflow-y: auto;
 }
 
 .chips-div{
