@@ -22,10 +22,12 @@ export class InstitucionPage extends BasePage {
   selectedNiveles: any;
   groupedItems: Array<any> = [];
   loading;
+  opensidebar: any;
   rootPage: any = InstitucionPage;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController) {
     super(navCtrl, navParams, dataService);
     this.where = "borrado = 'false'";
+    this.opensidebar = true;
   }
 
   delete(chip: Element, value) {
@@ -35,13 +37,14 @@ export class InstitucionPage extends BasePage {
   }
 
   oppensidebar(){
-
+    this.opensidebar = true;
     document.getElementById("filter-sidebar").style.display = 'block';
     document.getElementById("opensidebar").style.display = 'none';
 
   }
 
   closesidebar(){
+    this.opensidebar = false;
     document.getElementById("filter-sidebar-div").style.display = 'none';
     document.getElementById("opensidebar").style.display = 'block';
   }

@@ -30,7 +30,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-md-8  col-lg-2 col-xl-2>
+      <ion-col [attr.width-20]="opensidebar? true : false" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-md-8  col-lg-2 col-xl-2>
         <ion-fab  right bottom edge style="bottom: 10px;" class="closesidebar" click="closesidebar()">
             <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
             <i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
