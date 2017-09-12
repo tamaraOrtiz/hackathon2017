@@ -1,34 +1,8 @@
 <ion-header>
   <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
-  <ion-menu type="overlay" class="menu" id="filtermenu" [content]="content">
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Mellllnu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <button ion-item (click)="openPage(homePage)">
-        Home
-      </button>
-      <button ion-item (click)="openPage(friendsPage)">
-        Friends
-      </button>
-      <button ion-item (click)="openPage(eventsPage)">
-        Events
-      </button>
-      <button ion-item (click)="closeMenu()">
-        Close Menu
-      </button>
-    </ion-list>
-  </ion-content>
-
-  </ion-menu>
   <ion-navbar  #content id="subnavbar">
-    <button ion-button menuToggle icon-only >
-      <ion-icon name='menu'></ion-icon>
-    </button>
+
 
     <ion-title class="app-subtitle"><ion-label> Instituciones </ion-label>
       <button ion-button clear (click)="showSearch()"><ion-icon name="search"></ion-icon></button>
@@ -40,21 +14,7 @@
 
   <ion-searchbar [showCancelButton]=true [animated]=true hidden id="search-div"(ionInput)="getItems($event)" placeholder="Buscar" (ionCancel)="cancelSearch($event)">
 </ion-searchbar>
-  <ion-list class="selec-header">
-    <ion-item>
-      <ion-label>Niveles:</ion-label>
-      <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event)">
-        <ion-option (ionSelect)="selectAll(isSelected)" selected="true">Todos/Ninguno</ion-option>
-        <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
 
-      </ion-select>
-    </ion-item>
-
-  </ion-list>
-  <ion-fab right edge class="analizer" >
-    <button ion-fab color=secondary> <!-- basic usage -->
-    <i class="fa fa-calculator  " aria-hidden="true"></i></button>
-  </ion-fab>
 
 </ion-header>
 
@@ -62,15 +22,48 @@
 
 <ion-content  class="common-list">
 
+
+  <ion-fab hidden left bottom edge style="bottom: 10px;"  class="opensidebar"  click="oppensidebar()">
+      <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
+      <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+    </ion-fab>
+
   <ion-grid>
     <ion-row>
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9>
-         <button ion-button block menuToggle >Toggle Menu</button>
-        <ion-list>
+      <ion-col class="filter-sidebar" col-sm-8 col-md-8  col-lg-2 col-xl-2>
+        <ion-fab hidden right bottom edge style="bottom: 10px;" class="closesidebar" click="closesidebar()">
+            <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+          </ion-fab>
+        <div >
+          <ion-list class="selec-header">
+         <ion-item>
+           <ion-label>Niveles</ion-label>
+           <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event)">
+             <ion-option (ionSelect)="selectAll(isSelected)" selected="true">Todos/Ninguno</ion-option>
+             <ion-option  *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
+
+           </ion-select>
+         </ion-item>
+
+       </ion-list>
+        </div>
+        <div class="chips-div">
+          <ion-chip *ngFor="let nivel of niveles"  id="{{nivel.id}}">
+             <ion-label>{{nivel.nombre}}</ion-label>
+             <button ion-button clear color=clear (click)="delete(chip1)">
+               <ion-icon name="close-circle"></ion-icon>
+             </button>
+           </ion-chip>
+        </div>
+      </ion-col>
+      <ion-col col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+
+        <ion-list class='list-institution'>
           <div *ngFor="let nivel of groupedItems">
             <ion-item class="item-grouper">Nivel: {{nivel.name}}</ion-item>
             <div *ngFor="let entidad of nivel.entidades">
-              <ion-item class="item-grouper">Entidad: {{entidad.name}}</ion-item>
+              <ion-item class="item-grouper entidad-grouper">Entidad: {{entidad.name}}</ion-item>
               <button ion-item class="success" *ngFor="let item of entidad.items" (click)="itemTapped($event, item)">
                 <ion-item>
                   <ion-avatar item-start>
