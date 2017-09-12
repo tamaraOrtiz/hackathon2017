@@ -28,11 +28,21 @@ export class InstitucionPage extends BasePage {
     this.where = "borrado = 'false'";
 
     this.selectedNiveles = [];
-  
+
 
   }
 
+  oppensidebar(){
 
+    document.getElementById("filter-sidebar").style.display = 'block';
+    document.getElementById("opensidebar").style.display = 'none';
+
+  }
+
+  closesidebar(){
+    document.getElementById("filter-sidebar-div").style.display = 'none';
+    document.getElementById("opensidebar").style.display = 'block';
+  }
 
   getItems(ev: any) {
     let val = ev.target.value;

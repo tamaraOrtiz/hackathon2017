@@ -23,19 +23,19 @@
 <ion-content  class="common-list">
 
 
-  <ion-fab hidden left bottom edge style="bottom: 10px;"  class="opensidebar"  click="oppensidebar()">
+  <ion-fab hidden left bottom edge style="bottom: 10px;"  id="opensidebar"  click="oppensidebar()">
       <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
       <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
     </ion-fab>
 
   <ion-grid>
     <ion-row>
-      <ion-col class="filter-sidebar" col-sm-8 col-md-8  col-lg-2 col-xl-2>
-        <ion-fab hidden right bottom edge style="bottom: 10px;" class="closesidebar" click="closesidebar()">
+      <ion-col class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-md-8  col-lg-2 col-xl-2>
+        <ion-fab  right bottom edge style="bottom: 10px;" class="closesidebar" click="closesidebar()">
             <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
           </ion-fab>
-        <div >
+        <div id="filter-sidebar-div">
           <ion-list class="selec-header">
          <ion-item>
            <ion-label>Niveles</ion-label>
