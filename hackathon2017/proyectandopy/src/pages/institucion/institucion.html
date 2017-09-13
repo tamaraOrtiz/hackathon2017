@@ -15,18 +15,19 @@
 <ion-content  class="common-list">
 
 
-  <ion-fab *ngIf="!openbar" left bottom edge style="bottom: 190px;"  id="opensidebar" (click)="opensidebar()">
+  <ion-fab *ngIf="!openbar" left bottom edge style="bottom: 10px;"  id="opensidebar" (click)="opensidebar()">
       <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
       <i class="fa fa-filter" aria-hidden="true"></i></button>
     </ion-fab>
+    <ion-fab *ngIf="openbar"  left bottom edge style="bottom: 10px;" class="closesidebar" (click)="closesidebar()">
+        <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
+      </ion-fab>
 
   <ion-grid>
     <ion-row>
       <ion-col *ngIf="openbar" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
-        <ion-fab  right bottom edge style="bottom: 190px;" class="closesidebar" (click)="closesidebar()">
-            <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
-          </ion-fab>
+
         <div id="filter-sidebar-div">
           <ion-list class="selec-header">
          <ion-item>
