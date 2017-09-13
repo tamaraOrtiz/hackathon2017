@@ -951,17 +951,14 @@ rect.child {
   }
 
   .sidebarbutton{
-
-    border-width: 1px;
-    border-style: solid;
-    border-color: #00b5b5;
     color: #546365;
     width: 94%;
     margin: 0 2%;
-    background: rgba(174, 187, 186, 0.15);
+
+    background: transparent;
     text-transform: none;
     height: 50px;
-    border-bottom: none;
+    border: none;
     i{
           margin-right: 15px;
     }
@@ -970,6 +967,10 @@ rect.child {
       justify-content: flex-start;
 
     }
+  }
+  .sidebarbutton:hover{
+    color: #fff;
+
   }
   .sidebarbutton.active{
     background: #077075;

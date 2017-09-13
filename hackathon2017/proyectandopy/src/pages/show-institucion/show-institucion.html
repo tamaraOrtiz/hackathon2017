@@ -29,7 +29,7 @@ Ionic pages and navigation.
             <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
-        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')"  (click)="changetab('info')">
+        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('info')">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Información
         </button>
         <button  ion-button item-end outline [ngClass]="(tabactive=='chart' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('chart')">
@@ -41,7 +41,7 @@ Ionic pages and navigation.
         <button  ion-button item-end outline [ngClass]="(tabactive=='resumen' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('resumen')">
           <i class="fa fa-sitemap" aria-hidden="true"></i> Resumen
         </button>
-        <button  ion-button item-end outline [ngClass]="(tabactive=='map' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('map')" style="border-bottom: 1px solid #00b5b5;">
+        <button  ion-button item-end outline [ngClass]="(tabactive=='map' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('map')">
           <i class="fa fa-map" aria-hidden="true"></i> Mapa
         </button>
 
