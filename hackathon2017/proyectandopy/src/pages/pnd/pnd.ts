@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
+import { PndData } from '../../providers/pnd';
 import { BasePage } from '../../app/base-page';
 import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
@@ -9,7 +10,7 @@ import { LoadingController } from 'ionic-angular';
 @Component({
   selector: 'page-pnd',
   templateUrl: 'pnd.html',
-  providers: [InstitucionData, RatingData]
+  providers: [InstitucionData, RatingData, PndData]
 })
 export class PNDPage extends BasePage {
   items: Array<{title: string, note: string, icon: string}>;
@@ -20,23 +21,35 @@ export class PNDPage extends BasePage {
   anhos: Array<any>;
   tabs: string = "resumen";
   ratingService: RatingData
+  pndService: PndData
   calificacion: any
-
+  tabactive:any
+  openbar: any
   loading;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
-    public events: Events,
-    public raService: RatingData) {
+    public events: Events, public plt: Platform,
+    public raService: RatingData, public pService: PndData) {
     super(navCtrl, navParams, dataService);
     this.ratingService = raService;
+    this.pndService = pService;
     this.selectedNiveles = [];
     this.selectedEntidades = [];
     this.anhos = [2017,2018];
+    this.tabactive = 'general';
+    this.openbar = plt.is('core');
 
   }
+  changetab(_text){
+    this.tabactive = _text;
+  }
+  opensidebar(){
+    this.openbar = true;
 
+
+  }
   showFilter() {
     document.getElementById("filter-row").setAttribute('style', 'display:block !important');
     document.getElementById("filter-up").setAttribute('style', 'display:block !important');
@@ -49,6 +62,10 @@ export class PNDPage extends BasePage {
     document.getElementById("filter-down").setAttribute('style', 'display:block !important');
   }
 
+  closesidebar(){
+    this.openbar = false;
+
+  }
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(PNDPage, {

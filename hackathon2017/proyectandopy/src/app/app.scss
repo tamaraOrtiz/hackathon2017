@@ -364,6 +364,9 @@ textarea{
 
 
 ppy-comment{
+  ion-label{
+    font-size: 13px !important;
+  }
   ion-avatar{
     margin: auto !important;
     text-align: center;
@@ -712,7 +715,8 @@ ion-footer{
   max-width: 100% !important;
   text-align: right;
   color: #f9f9f9;
-  background: rgba(71, 75, 78, 0.16) !important;
+  background: transparent !important;
+    color: #546365;
   .item-inner{
     border: none !important;
     ion-select{
@@ -724,6 +728,20 @@ ion-footer{
     }
   }
   margin: 0 1px;
+}
+
+.labelfilter{
+  border-radius: 16px;
+  height: 32px;
+  font-size: 13px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.87);
+  background: rgba(17, 196, 224, 0.72) !important;
+  margin: 2px 12px;
+  max-width: 100px !important;
+  text-align: center;
+  height: 30px;
+    min-height: 5px;
 }
 
 .common-list ion-col.filter-col{

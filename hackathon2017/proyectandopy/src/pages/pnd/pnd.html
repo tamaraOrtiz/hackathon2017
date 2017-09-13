@@ -8,100 +8,66 @@
     </ion-title>
 
   </ion-navbar>
-  <ion-toolbar class="selec-header" no-border-top>
-  <ion-segment [(ngModel)]="tabs" class="tab-show">
-    <ion-segment-button value="resumen">
-      <i class="fa fa-th-list" aria-hidden="true"></i>
-      General
-    </ion-segment-button>
-    <ion-segment-button value="ejes">
-      <i class="fa fa-cogs" aria-hidden="true"></i>
-      Ejes
-    </ion-segment-button>
-    <ion-segment-button value="estrategias">
-      <i class="fa fa-handshake-o" aria-hidden="true"></i>
-      Estrategias
-    </ion-segment-button>
-  </ion-segment>
-
-  </ion-toolbar>
-  <ion-fab right edge class="analizer" >
-    <button ion-fab color=secondary> <!-- basic usage -->
-    <i class="fa fa-calculator  " aria-hidden="true"></i></button>
-  </ion-fab>
-
 </ion-header>
+
 <ion-content  class="common-list">
+  <ion-fab *ngIf="!openbar" left bottom edge style="bottom: 10px;"  id="opensidebar" (click)="opensidebar()">
+      <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
+      <i class="fa fa-filter" aria-hidden="true"></i></button>
+    </ion-fab>
   <ion-grid>
     <ion-row>
-      <ion-col  id='filter-row' hidden  col-sm-12 col-md-12 col-lg-9 col-xl-9>
+      <ion-col *ngIf="openbar" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
+        <div *ngIf="openbar"  left top style="bottom: 10px;" class="closesidebar" >
+            <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
+            <i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+        <button  ion-button item-end right  outline [ngClass]="(tabactive=='general' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('general')">
+          <i class="fa fa-th-list" aria-hidden="true"></i>
+          General
+        </button>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='eje' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('eje')">
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+          Ejes
+        </button>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='estrategia' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('estrategia')">
+          <i class="fa fa-handshake-o" aria-hidden="true"></i>
+          Estrategias
+        </button>
+        <ion-list>
+          <ion-item class="filter-select labelfilter">
 
-        <ion-grid>
-          <ion-row>
-            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-grid>
-                <ion-row class="filter-subrow">
-                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
-                    <ion-label class="filter-label">Nivel</ion-label>
-                  </ion-col>
-                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
-                  <ion-item class="filter-select">
-                  <ion-label hidden>Nivel</ion-label>
-                  <ion-select  [(ngModel)]="selectedNiveles" cancelText="Cancelar">
-                    <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
-                  </ion-select>
-                </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-            </ion-col>
-            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-grid>
-                <ion-row class="filter-subrow">
-                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
-                    <ion-label class="filter-label">Entidad</ion-label>
-                  </ion-col>
-                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
-                    <ion-item class="filter-select">
-                    <ion-label hidden>Entidad</ion-label>
-                    <ion-select  [(ngModel)]="selectedEntidades" cancelText="Cancelar">
-                      <ion-option *ngFor="let entidad of entidades"  value="{{entidad.id}}" selected="true">{{entidad.nombre}}</ion-option>
-                    </ion-select>
-                    </ion-item>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
-            <ion-col col-sm-12 col-md-12 col-lg-4 col-xl-4 class="filter-col">
-              <ion-grid>
-                <ion-row class="filter-subrow">
-                  <ion-col col-4 col-sm-4 col-md-4 col-lg-12 col-xl-12 class="filter-col">
-                    <ion-label class="filter-label">Año</ion-label>
-                  </ion-col>
-                  <ion-col col-8 col-sm-8 col-md-8 col-lg-12 col-xl-12 class="filter-col">
-                    <ion-item class="filter-select" >
-                    <ion-label hidden>Año</ion-label>
-                    <ion-select [(ngModel)]="selectedAnhos" cancelText="Cancelar">
-                      <ion-option *ngFor="let anho of anhos"  value="{{anho}}" selected="true">{{anho}}</ion-option>
-                    </ion-select>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+          <ion-label>Nivel</ion-label>
+        </ion-item>
+          <ion-item class="filter-select ">
+          <ion-label>Nivel</ion-label>
+          <ion-select  [(ngModel)]="selectedNiveles" cancelText="Cancelar">
+            <ion-option *ngFor="let nivel of niveles"  value="{{nivel.id}}" selected="true">{{nivel.nombre}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="filter-select labelfilter">
+        <ion-label>Entidad</ion-label>
+      </ion-item>
+        <ion-item class="filter-select ">
+        <ion-label>Entidad</ion-label>
+        <ion-select  [(ngModel)]="selectedEntidades" cancelText="Cancelar">
+          <ion-option *ngFor="let entidad of entidades"  value="{{entidad.id}}" selected="true">{{entidad.nombre}}</ion-option>
+        </ion-select>
+        </ion-item>
+        <ion-item class="filter-select labelfilter">
+        <ion-label>Año</ion-label>
+      </ion-item>
+        <ion-item class="filter-select " >
+        <ion-label>Año</ion-label>
+        <ion-select [(ngModel)]="selectedAnhos" cancelText="Cancelar">
+          <ion-option *ngFor="let anho of anhos"  value="{{anho}}" selected="true">{{anho}}</ion-option>
+        </ion-select>
+      </ion-item>
+        </ion-list>
+
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 class="filter-button">
-        Filtrar
-        <ion-icon color=white (click)="hideFilter()" hidden  id='filter-up' name="ios-arrow-up"></ion-icon>
-        <ion-icon color=white (click)="showFilter()" id='filter-down' name="ios-arrow-down"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <ion-row [ngSwitch]="tabs">
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'resumen'">
+
+        <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
           <ion-row class=resumen>
             <ion-col class="title c1" col-12>
@@ -134,7 +100,7 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'ejes'">
+      <ion-col *ngIf="tabactive=='eje'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
           <ion-row class=resumen>
             <ion-col class="title c2" col-12>
@@ -225,7 +191,7 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9 *ngSwitchCase="'estrategias'">
+      <ion-col *ngIf="tabactive=='estrategia'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
           <ion-row class=resumen>
             <ion-col class="title c1" col-12 >
@@ -611,7 +577,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-sm-12 col-md-12 col-lg-9 col-xl-9  >
+      <ion-col   [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid class="common-grid">
           <ion-row>
             <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
