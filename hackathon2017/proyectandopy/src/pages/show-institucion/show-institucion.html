@@ -20,27 +20,29 @@ Ionic pages and navigation.
       <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
       <i class="fa fa-filter" aria-hidden="true"></i></button>
     </ion-fab>
-    <ion-fab *ngIf="openbar"  left bottom edge style="bottom: 10px;" class="closesidebar" (click)="closesidebar()">
-        <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
-        <i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
-      </ion-fab>
+
   <ion-grid class="principal-grid">
     <ion-row>
+
       <ion-col *ngIf="openbar" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
-        <button (click)="changetab('info')">
-          <ion-icon name="md-information-circle"></ion-icon>
+        <div *ngIf="openbar"  left top style="bottom: 10px;" class="closesidebar" >
+            <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
+            <i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')"  (click)="changetab('info')">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Información
         </button>
-        <button (click)="changetab('chart')">
-          <ion-icon name="pie"></ion-icon>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='chart' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('chart')">
+          <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
         </button>
-        <button (click)="changetab('la')">
-          <ion-icon name="trending-up"></ion-icon>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='la' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('la')">
+          <i class="fa fa-line-chart" aria-hidden="true"></i> Lineas de Acción
         </button>
-        <button (click)="changetab('resumen')">
-          <i class="fa fa-sitemap" aria-hidden="true"></i>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='resumen' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('resumen')">
+          <i class="fa fa-sitemap" aria-hidden="true"></i> Resumen
         </button>
-        <button (click)="changetab('map')">
-          <i class="fa fa-map" aria-hidden="true"></i>
+        <button  ion-button item-end outline [ngClass]="(tabactive=='map' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('map')" style="border-bottom: 1px solid #00b5b5;">
+          <i class="fa fa-map" aria-hidden="true"></i> Mapa
         </button>
 
       </ion-col>

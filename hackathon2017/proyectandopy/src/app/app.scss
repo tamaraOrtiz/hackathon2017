@@ -535,6 +535,8 @@ ion-header{
 }
 .scroll-content{
       background: white !important;
+
+
 }
 
 .bac-c1{
@@ -936,11 +938,51 @@ rect.child {
   background:#e5e8ea !important;
   position: fixed;
   overflow-y: auto;
+  padding: 0 !important;
+  font-family: 'Muli', sans-serif;
+
+  .closesidebar{
+    text-align: end;
+/* color: bisque; */
+    background: #dddddd;
+    button{
+          color: #797171;
+    }
+  }
+
+  .sidebarbutton{
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #00b5b5;
+    color: #546365;
+    width: 94%;
+    margin: 0 2%;
+    background: rgba(174, 187, 186, 0.15);
+    text-transform: none;
+    height: 50px;
+    border-bottom: none;
+    i{
+          margin-right: 15px;
+    }
+    .button-inner{
+      align-items: center;
+      justify-content: flex-start;
+
+    }
+  }
+  .sidebarbutton.active{
+    background: #077075;
+    border: 1px solid #085461;
+    color: #fff;
+
+  }
 
 }
 
 .chips-div{
   text-align: center;
+  font-family: sans-serif;
 }
 
 .normal-col, .central-col{
