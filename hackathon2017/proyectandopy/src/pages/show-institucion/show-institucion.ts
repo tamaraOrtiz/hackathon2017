@@ -39,6 +39,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   calificacion: any
   openbar: any
+  tabactive:any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -48,6 +49,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.dataService = dataService;
     this.charts = [];
     this.openbar = plt.is('core');
+    this.tabactive = 'info'
   }
   openLink(link){
   		this.iab.create(link,'_system',{location:'yes'});
@@ -56,6 +58,10 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.openbar = true;
 
 
+  }
+
+  changetab(_text){
+    this.tabactive = _text;
   }
 
   closesidebar(){
