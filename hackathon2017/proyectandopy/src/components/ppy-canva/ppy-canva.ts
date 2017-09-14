@@ -122,8 +122,8 @@ export class PpyCanva {
     this.presupuestos.forEach(function(d) { presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas}); });
 
     dispatch.on("load.pie", function(presupuestosByName) {
-      let width  = this.graph.nativeElement.clientWidth * 0.8;
-      let height = this.graph.nativeElement.clientWidth;
+      let width  = this.smallScreen ? 350 : 500;
+      let height = width * 0.9;
       let radius = Math.min(width, height) / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 

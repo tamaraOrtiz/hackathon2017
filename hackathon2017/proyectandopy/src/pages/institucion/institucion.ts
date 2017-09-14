@@ -40,8 +40,6 @@ export class InstitucionPage extends BasePage {
 
   opensidebar(){
     this.openbar = true;
-
-
   }
 
   closesidebar(){
@@ -49,7 +47,7 @@ export class InstitucionPage extends BasePage {
 
   }
 
-  showSearch(value){
+  showSearch(value: boolean){
     this.showSearchBar = value;
   }
 
@@ -70,8 +68,7 @@ export class InstitucionPage extends BasePage {
   }
 
   filter(event, bar, loader=null) {
-    let val = bar ? event.target.value : '';
-    console.log(event && event.hasOwnProperty('target'));
+    let val = bar && (event.target.value !== null || event.target.value !== undefined) ? event.target.value : '';
     let loading = loader ? loader : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
@@ -117,11 +114,12 @@ export class InstitucionPage extends BasePage {
 
   groupItems(groupedItems, item) {
     if(groupedItems[item.nivelid] === undefined) {
-      groupedItems[item.nivelid] = {name: item.nivelid, entidades: []};
+      groupedItems[item.nivelid] = {name: this.niveles[item.nivelid].nombre, entidades: []};
     }
     if(groupedItems[item.nivelid]['entidades'][item.entidadid] === undefined) {
-      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: item.entidadid, items: []};
+      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: AppHelper.toTitleCase(item.entidadid), items: []};
     }
+    item.nombre = AppHelper.toTitleCase(item.nombre);
     groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
   }
 
