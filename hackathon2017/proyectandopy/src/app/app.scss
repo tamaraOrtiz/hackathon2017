@@ -33,6 +33,9 @@
     font-size: 13px !important;
     text-align: initial;
     padding: 15px;
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    color: #0a7e84;
   }
 
   .slide-image {
@@ -56,7 +59,9 @@
     }
   }
 
-
+.button-clear-md-secondary {
+  color: #0c7f85;
+}
   .scroll-content{
     padding: 10px !important;
   }
@@ -76,8 +81,17 @@
   }
   .swiper-wrapper, .swiper-slide{
     background: white;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
+
+  }
+  .slide-zoom{
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+
+  }
+  .swiper-pagination-bullet-active {
+    background: #1dc5d6;
+    opacity: 1;
   }
 }
 .analizer{
@@ -1056,8 +1070,9 @@ ion-header.modal{
   height: 42px;
   .toolbar-title-md{
     color: #127eb1 !important;
-  /* text-transform: uppercase; */
+
   font-size: 15px;
+    padding-top: 5px;
 
 
   }
@@ -1073,4 +1088,15 @@ svg {
   background-color: white;
   margin: 0 auto;
   display: block;
+}
+
+.header-md::after{
+  background-image: none !important;
+}
+
+.pndeye{
+  padding-left: 10px;
+    color: #3977c1;
+  position: absolute;
+  bottom: 37px;
 }
