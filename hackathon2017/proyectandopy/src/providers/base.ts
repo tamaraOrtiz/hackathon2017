@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Events } from 'ionic-angular';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class BaseData {
   jsonExample: any
   allQuery: string
 
-  constructor(public http: Http, public events: Events, ) {
+  constructor(public http: Http, public events: Events) {
     this.stpUrl = "http://geo.stp.gov.py/user/stp/api/v2/sql";
     this.apiUrl = "https://proyectando-api.herokuapp.com/api/";
   }

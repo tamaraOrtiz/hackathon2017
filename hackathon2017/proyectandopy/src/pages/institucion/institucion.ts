@@ -6,6 +6,7 @@ import { ShowInstitucionPage } from '../show-institucion/show-institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
 
 
@@ -26,8 +27,9 @@ export class InstitucionPage extends BasePage {
   loading;
   openbar: any;
   rootPage: any = InstitucionPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController, menuCtrl: MenuController, public platform: Platform) {
-    super(navCtrl, navParams, dataService);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
+    menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
+    super(navCtrl, navParams, dataService, socialSharing, platform);
     this.where = "borrado = 'false'";
     this.openbar = platform.is('core');
   }

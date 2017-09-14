@@ -11,7 +11,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { InstitucionPage } from '../pages/institucion/institucion';
 import { ShowInstitucionPage } from '../pages/show-institucion/show-institucion';
-import { NivelPage } from '../pages/nivel/nivel';
 import { ShowNivelPage } from '../pages/show-nivel/show-nivel';
 import { ProgramaPage } from '../pages/programa/programa';
 import { MapaPage } from '../pages/mapa/mapa';
@@ -35,7 +34,6 @@ import { KeysPipe } from '../helpers/keys-pipe';
     MyApp,
     HomePage,
     InstitucionPage,
-    NivelPage,
     ShowNivelPage,
     ShowInstitucionPage,
     ShowLineaAccionPage,
@@ -62,7 +60,6 @@ import { KeysPipe } from '../helpers/keys-pipe';
     MyApp,
     HomePage,
     InstitucionPage,
-    NivelPage,
     ShowNivelPage,
     ShowInstitucionPage,
     ShowLineaAccionPage,

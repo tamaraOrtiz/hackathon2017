@@ -13,7 +13,8 @@
 
 
 <ion-content  class="common-list">
-
+<button (click)="share()">Facebook</button>
+<a class="facebook" target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fgeo.stp.gov.py%2Ftables%2Fspr_destinatarios%2Fpublic%2Fmap&amp;text=undefined: ">Share on Facebook</a>
 
   <ion-fab *ngIf="!openbar" left bottom edge style="bottom: 10px;"  id="opensidebar" (click)="opensidebar()">
       <button ion-fab  menuToggle color=secondary> <!-- basic usage -->

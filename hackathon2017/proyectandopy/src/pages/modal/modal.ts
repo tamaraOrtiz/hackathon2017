@@ -6,6 +6,7 @@ import { PndData } from '../../providers/pnd';
 import { BasePage } from '../../app/base-page';
 import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-pnd',
@@ -19,8 +20,9 @@ export class ModalPage extends BasePage {
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
     public events: Events, public plt: Platform,
-    public raService: RatingData, public pService: PndData, public modalCtrl: ModalController, viewCtrl: ViewController) {
-    super(navCtrl, navParams, dataService);
+    public raService: RatingData, public pService: PndData, public modalCtrl: ModalController, viewCtrl: ViewController,
+    public socialSharing: SocialSharing, public platform: Platform) {
+    super(navCtrl, navParams, dataService, socialSharing, platform);
     this.info = this.navParams.data;
     this.viewC = viewCtrl;
     console.log(this.navParams);
