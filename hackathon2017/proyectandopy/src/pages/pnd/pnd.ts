@@ -19,6 +19,7 @@ export class PNDPage extends BasePage {
   entidades: Array<any>;
   general: any = {};
   eje: any = {};
+  estrategias: any = {};
   selectedNiveles: any;
   selectedEntidades: any;
   selectedAnhos: any;
@@ -103,6 +104,10 @@ export class PNDPage extends BasePage {
       console.log(record);
         this.eje = record;
     });
+    this.dataService.getQuery(this.pndService.getEstrategias(nivel, entidad, anho), true).then(record => {
+      console.log(record);
+        this.estrategias = record;
+    });
 
   }
   itemTapped(event, item) {
@@ -144,6 +149,10 @@ export class PNDPage extends BasePage {
     this.dataService.getQuery(this.pndService.getEjes(null, null, null), true).then(record => {
       console.log(record);
         this.eje = record;
+    });
+    this.dataService.getQuery(this.pndService.getEstrategias(null, null, null), true).then(record => {
+      console.log(record);
+        this.estrategias = record;
     });
   }
 

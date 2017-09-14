@@ -14,4 +14,9 @@ export class PndData extends BaseData {
 
     return `pndeje/?nivel=${nivelId}&entidad=${entidadId}&anho=${anho}`;
   }
+
+  getEstrategias(nivelId, entidadId, anho) {
+
+    return `pndestrategia/?nivel=${nivelId}&entidad=${entidadId}&anho=${anho}`;
+  }
 }
