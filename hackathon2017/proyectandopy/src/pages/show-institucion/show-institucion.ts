@@ -29,8 +29,6 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   tabs: string = "info";
 
-  chartsData: any
-
   presupuestos: Array<string>
 
   lineasAccion: any
@@ -43,21 +41,20 @@ export class ShowInstitucionPage extends ShowBasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
-    private socialSharing: SocialSharing, public plt: Platform, public http: Http) {
+    public socialSharing: SocialSharing, public plt: Platform, public http: Http) {
     super(navCtrl, navParams, socialSharing, plt);
     this.ratingService = raService;
     this.dataService = dataService;
-    this.charts = [];
     this.openbar = plt.is('core');
     this.tabactive = 'info'
   }
+
   openLink(link){
-  		this.iab.create(link,'_system',{location:'yes'});
+    this.iab.create(link,'_system',{location:'yes'});
   }
+
   opensidebar(){
     this.openbar = true;
-
-
   }
 
   changetab(_text){
@@ -66,38 +63,11 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   closesidebar(){
     this.openbar = false;
-
   }
-  regularShare(){
-
-      // share(message, subject, file, url)
-      if (this.plt.is('code') || this.plt.is('mobileweb')) {
-      // This will only print when on iOS
-        console.log('I am an iOS device!');
-
-      }else{
-        this.socialSharing.share("Testing, sharing this from inside an app I'm building right now", null, "www/assets/img/ejes.jpg", null);
-      }
-
-    }
-
-  twitterShare(){
-    this.socialSharing.shareViaTwitter("Testing, sharing this from inside an app I'm building right now", "www/assets/img/ejes.jpg", null);
-  }
-
-  instagramShare(){
-    this.socialSharing.shareViaInstagram(`Testing, sharing this from inside an app I'm building right now`, "www/assets/img/ejes.jpg");
-  }
-
-  whatsappShare(){
-    this.socialSharing.shareViaWhatsApp("Testing, sharing this from inside an app I'm building right now", "www/assets/img/ejes.jpg", null);
-  }
-
 
   ionViewDidEnter() {
-    this.dataService.getQuery(this.dataService.getResumenPrograma(this.item.nivelid, this.item.entidadid, undefined)).then(records => {
-      this.chartsData = this.structResumenPrograma(records);
-      this.presupuestos = Object.keys(this.chartsData);
+    this.dataService.getQuery(this.dataService.getResumenPrograma(this.item.nivelid, this.item.entidadid), true).then(records => {
+      this.presupuestos = records;
     });
     this.dataService.getQuery(this.dataService.getLineasAccion(
       this.item.nivelid,
@@ -110,10 +80,6 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
-  }
-
-  ngOnInit() {
-    //this.generateResumen();
   }
 
   pushItem(record: any) {
