@@ -31,12 +31,16 @@ export class BasePage {
 
   itemTapped(event, item) {}
 
-  share() {//message=null, image=null, url=null, via='facebook'
-    if(!this.platform.is('mobile')){
+  share(via='facebook', message=null, url=null, image=null) {//
+    let appnames = {
+      'facebook': `http://www.facebook.com/sharer.php?message=${message}&url=${url}`,
+      'twitter': `https://twitter.com/share?text=${message}&url=${url}`
+    };
+    if(this.platform.is('core') || !this.socialSharing.canShareVia(via)){
+      window.open(appnames[via], '_blank');
     } else {
-      this.socialSharing.shareViaFacebook("image")
+      this.socialSharing.shareVia(via, message);
     }
-
   }
 
 }

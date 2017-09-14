@@ -44,7 +44,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
     private socialSharing: SocialSharing, public plt: Platform, public http: Http) {
-    super(navCtrl, navParams);
+    super(navCtrl, navParams, socialSharing, plt);
     this.ratingService = raService;
     this.dataService = dataService;
     this.charts = [];

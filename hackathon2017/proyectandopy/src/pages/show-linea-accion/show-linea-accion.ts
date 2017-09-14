@@ -7,6 +7,9 @@ import * as d3 from "d3";
 import * as saveToPng from 'save-svg-as-png';
 import * as L from 'leaflet';
 import 'leaflet-search';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Platform } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-show-nivel',
@@ -22,8 +25,9 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   geo: any
   map: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: LineaAccionData) {
-    super(navCtrl, navParams);
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public dataService: LineaAccionData, public socialSharing: SocialSharing, public plt: Platform) {
+    super(navCtrl, navParams, socialSharing, plt);
     this.item = navParams.get('item');
 
   }
