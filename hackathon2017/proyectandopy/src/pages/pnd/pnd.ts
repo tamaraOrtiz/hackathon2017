@@ -99,6 +99,11 @@ export class PNDPage extends BasePage {
         loading.dismiss();
     });
 
+    this.dataService.getQuery(this.pndService.getEjes(nivel, entidad, anho), true).then(record => {
+      console.log(record);
+        this.eje = record;
+    });
+
   }
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!

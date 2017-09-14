@@ -119,25 +119,27 @@
               <ion-avatar class="c2" item-start>
                   <i class="fa fa-bank"></i>
               </ion-avatar>
-              <ion-label>3 Entidades</ion-label>
+              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['entidades'].length}} Entidades</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c2"  item-start>
                 <i class="fa fa-link" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>2 Objetivos</ion-label>
+              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['objetivos'].length}} Objetivos</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar  class="c2" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>1000 Personas</ion-label>
+              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['personas']}} Personas
+                <a (click)="openModal(eje['Reducción de pobreza y desarrollo social']['beneficiarios'])" style="text-transform: lowercase;">Ver mas</a>
+              </ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar  class="c2" item-start>
                 <i class="fa fa-money" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>100.000.000 gs.</ion-label>
+              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['monto']}} gs.</ion-label>
             </ion-col>
           </ion-row>
           <ion-row class=resumen>
@@ -147,26 +149,27 @@
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar  class="c3" item-start>
                   <i class="fa fa-bank"></i>
-              </ion-avatar>
-              <ion-label>3 Entidades</ion-label>
+                </ion-avatar>
+              <ion-label>{{eje["Crecimiento económico inclusivo"]['entidades'].length}} Entidades</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar  class="c3" item-start>
                 <i class="fa fa-link" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>2 Objetivos</ion-label>
+              <ion-label>{{eje["Crecimiento económico inclusivo"]['objetivos'].length}} Objetivos</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c3" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>1000 Personas</ion-label>
+              <ion-label>{{eje["Crecimiento económico inclusivo"]['personas']}} Personas
+                <a (click)="openModal(eje['Crecimiento económico inclusivo']['beneficiarios'])" style="text-transform: lowercase;">Ver mas</a></ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c3" item-start>
                 <i class="fa fa-money" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>100.000.000 gs.</ion-label>
+              <ion-label>{{eje["Crecimiento económico inclusivo"]['monto']}} gs.</ion-label>
             </ion-col>
           </ion-row>
           <ion-row class=resumen>
@@ -177,25 +180,26 @@
               <ion-avatar class="c4" item-start>
                   <i class="fa fa-bank"></i>
               </ion-avatar>
-              <ion-label>3 Entidades</ion-label>
+              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['entidades'].length}} Entidades</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                 <i class="fa fa-link" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>2 Objetivos</ion-label>
+              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['objetivos'].length}} Objetivos</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>1000 Personas</ion-label>
+              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['personas']}} Personas
+                <a (click)="openModal(eje['Inserción de Paraguay en el mundo']['beneficiarios'])" style="text-transform: lowercase;">Ver mas</a></ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                 <i class="fa fa-money" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>100.000.000 gs.</ion-label>
+              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['monto']}} gs.</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>
