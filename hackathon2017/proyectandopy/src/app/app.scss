@@ -1024,3 +1024,42 @@ ion-chip{
 .central-col{
   margin: auto !important;
 }
+
+
+.modal{
+  .item-md{
+    margin: 0;
+    border-bottom: 1px solid aliceblue;
+    h2{
+      font-size: 13px;
+    }
+
+  }
+  ion-avatar{
+    margin: auto;
+    text-align: center;
+    padding-top: 8px;
+    background: #00dae4;
+    color: white;
+    border-radius: 21px;
+    margin-right: 16px;
+  }
+
+}
+ion-header.modal{
+  background: white !important;
+  height: 42px;
+  .toolbar-title-md{
+    color: #127eb1 !important;
+  /* text-transform: uppercase; */
+  font-size: 15px;
+
+
+  }
+  button{
+    background: transparent;
+    i{
+          color: #8a8886;
+    }
+  }
+}

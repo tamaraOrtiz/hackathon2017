@@ -7,6 +7,7 @@ import { InstitucionPage } from '../pages/institucion/institucion';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PNDPage } from '../pages/pnd/pnd';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { ModalPage } from '../pages/modal/modal';
 import * as moment from 'moment';
 
 @Component({

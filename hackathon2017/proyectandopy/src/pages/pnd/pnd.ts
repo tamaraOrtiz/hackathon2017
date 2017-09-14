@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import {  ModalController, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
 import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
 import { PndData } from '../../providers/pnd';
 import { BasePage } from '../../app/base-page';
 import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { ModalPage } from '../../pages/modal/modal';
 
 @Component({
   selector: 'page-pnd',
@@ -16,8 +17,10 @@ export class PNDPage extends BasePage {
   items: Array<{title: string, note: string, icon: string}>;
   niveles: Array<any>;
   entidades: Array<any>;
+  general: any = {};
   selectedNiveles: any;
   selectedEntidades: any;
+  selectedAnhos: any;
   anhos: Array<any>;
   tabs: string = "resumen";
   ratingService: RatingData
@@ -31,13 +34,14 @@ export class PNDPage extends BasePage {
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
     public events: Events, public plt: Platform,
-    public raService: RatingData, public pService: PndData) {
+    public raService: RatingData, public pService: PndData, public modalCtrl: ModalController) {
     super(navCtrl, navParams, dataService);
     this.ratingService = raService;
     this.pndService = pService;
-    this.selectedNiveles = [];
-    this.selectedEntidades = [];
-    this.anhos = [2017,2018];
+    this.selectedNiveles = "null";
+    this.selectedEntidades = "null";
+    this.selectedAnhos = "null";
+    this.anhos = [2017,2018,2019];
     this.tabactive = 'general';
     this.openbar = plt.is('core');
 
@@ -49,6 +53,11 @@ export class PNDPage extends BasePage {
     this.openbar = true;
 
 
+  }
+  openModal(info) {
+
+    let modal = this.modalCtrl.create(ModalPage, info);
+    modal.present();
   }
   showFilter() {
     document.getElementById("filter-row").setAttribute('style', 'display:block !important');
@@ -64,6 +73,30 @@ export class PNDPage extends BasePage {
 
   closesidebar(){
     this.openbar = false;
+
+  }
+  filter(event, bar, loader=null) {
+    let val = bar ? event.target.value : '';
+    console.log(event && event.hasOwnProperty('target'));
+    let loading = loader ? loader : this.loadingCtrl.create({
+       content: 'Por favor espere...'
+    });
+    if(!loader){
+      loading.present();
+    }
+    let self = this;
+    let nivel = this.selectedNiveles;
+    let entidad = this.selectedEntidades;
+    let anho = this.selectedAnhos;
+    if (!nivel || !entidad || !anho) {
+      loading.dismiss();
+      return;
+    }
+    this.dataService.getQuery(this.pndService.getGeneral(nivel, entidad, anho), true).then(record => {
+      console.log(record);
+        this.general = record;
+        loading.dismiss();
+    });
 
   }
   itemTapped(event, item) {
@@ -97,6 +130,11 @@ export class PNDPage extends BasePage {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
+
+    this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {
+      console.log(record);
+        this.general = record;
+    });
   }
 
   structNiveles (meta):any {
@@ -110,6 +148,8 @@ export class PNDPage extends BasePage {
 
     return niveles;
   }
+
+
 
   structEntidades (meta):any {
     let entidades = [];

@@ -1,0 +1,22 @@
+<ion-header class="modal">
+  <ion-toolbar>
+    <ion-title>
+      Beneficiarios
+    </ion-title>
+    <button  menuToggle color=secondary (click)="dismiss()"> <!-- basic usage -->
+    <i class="fa fa-times" aria-hidden="true"></i></button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal">
+  <ion-list *ngFor="let inf of info | keys" >
+    <ion-item *ngIf="inf!='IGNORADOS' && info[inf].length == 2" >
+      <ion-avatar item-start>
+          <i class="{{info[inf][1]}}"></i>
+      </ion-avatar>
+      <div class="item-list">
+        <h2>{{info[inf][0]}} {{inf}}</h2>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
