@@ -81,7 +81,7 @@
                   <i class="fa fa-bank"></i>
               </ion-avatar>
               <ion-label>{{general.entidades}} Entidades
-                <a (click)="openModal(general.beneficiarios)" style="text-transform: lowercase;">Ver mas</a>
+
               </ion-label>
 
             </ion-col>
@@ -95,7 +95,10 @@
               <ion-avatar class="c1" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>{{general.personas}} Personas</ion-label>
+              <ion-label>{{general.personas}} Personas 
+                  <a (click)="openModal(general.beneficiarios)" style="text-transform: lowercase;">Ver mas</a>
+              </ion-label>
+
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c1" item-start>
