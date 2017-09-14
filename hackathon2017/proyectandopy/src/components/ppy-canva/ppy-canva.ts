@@ -1,6 +1,5 @@
 
 import { Component, Input, ViewChild } from '@angular/core';
-import { Chart } from 'chart.js';
 import * as d3 from "d3";
 import * as saveToPng from 'save-svg-as-png';
 import { Platform } from 'ionic-angular';
@@ -41,9 +40,15 @@ export class PpyCanva {
 
   options: Array<any>
 
+  smallScreen: boolean = false;
+
   @ViewChild('graph') graph;
 
   _presupuestos: Array<{ nombre: string, nombre_programas: string, programas: Array<any>}>;
+
+  public constructor(public pl: Platform) {
+    this.smallScreen = pl.width() < 768;
+  }
 
   @Input()
   set presupuestos(presupuestos: Array<{ nombre: string, nombre_programas: string, programas: Array<any>}>) {
@@ -57,6 +62,9 @@ export class PpyCanva {
     this.presupuestos.forEach(function(d) { presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas}); });
     this.options = presupuestosByName.values();
     this.selectData = presupuestosByName.keys()[0];
+  }
+
+  ngAfterViewInit() {
     this.generatePie();
   }
 
@@ -102,6 +110,10 @@ export class PpyCanva {
     let avances = d3.map();
   }
 
+  colores(n) {
+  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  return colores_g[parseInt(n) % colores_g.length];
+  }
   generatePie() {
     let self = this;
     let dispatch = d3.dispatch("load", "statechange");
@@ -111,18 +123,16 @@ export class PpyCanva {
 
     dispatch.on("load.pie", function(presupuestosByName) {
       let width  = this.graph.nativeElement.clientWidth * 0.8;
-      let height = this.graph.nativeElement.clientWidth * 0.8;
+      let height = this.graph.nativeElement.clientWidth;
       let radius = Math.min(width, height) / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
-      let color  = d3.scaleOrdinal()
-                     .range(this.backgroundColor);
 
       let legend = d3.select("#pie-info-legend");
       legend.html('');
 
       let arc = d3.arc()
-      .outerRadius(radius * 0.5)
-      .innerRadius(radius - 20);
+                  .outerRadius(radius - 10)
+                  .innerRadius(0);
 
       let pie = d3.pie()
       .sort(null)
@@ -142,7 +152,6 @@ export class PpyCanva {
       .attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
       let g = svg.selectAll(".arc")
       .data(pie(data))
       .enter().append("g")
@@ -152,8 +161,8 @@ export class PpyCanva {
       .attr("d", arc)
       .style("fill", function(d) {
         legend.append("p")
-              .html(`<i style="background:${color(d.data.value)}"></i> ${AppHelper.toTitleCase(d.data.name)}<br>`);
-        return color(d.data.value);
+              .html(`<i style="background:${self.colores(d.data.value)}"></i> ${AppHelper.toTitleCase(d.data.name)}<br>`);
+        return self.colores(d.data.value);
       });
 
       svg.append("div")
@@ -168,9 +177,9 @@ export class PpyCanva {
 
         g.append("path")
          .attr("d", arc)
-         .style("fill", function(d) { return color(d.data.value); })
+         .style("fill", function(d) { return self.colores(d.data.value); })
          .style("fill-opacity", .5) // set the fill opacity
-         .style("stroke", function(d) { return color(d.data.value); })    // set the line colour
+         .style("stroke", function(d) { return self.colores(d.data.value); })    // set the line colour
          .style("stroke-width", 2);
 
         g.on('click', function(d) {
@@ -193,7 +202,6 @@ export class PpyCanva {
   }
 
   d() {
-    console.log(d3.select('svg'));
     saveToPng.out$ = saveToPng;
     saveToPng.out$.saveSvgAsPng(d3.select('svg')['_groups'][0][0], "diagram.png");
   }

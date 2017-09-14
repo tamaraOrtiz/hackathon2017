@@ -693,6 +693,11 @@ ion-footer{
   border-radius: 5px;
 }
 
+.info.leaflet-control {
+  z-index: 0 !important;
+  position: block !important;
+}
+
 .info h4 {
   margin: 0 0 5px;
   color: #777;
@@ -950,7 +955,7 @@ rect.child {
 
 
 .filter-sidebar{
-  z-index: 80;
+  z-index: 10000;
   position: absolute;
   height: 100%;
   background:#e5e8ea !important;

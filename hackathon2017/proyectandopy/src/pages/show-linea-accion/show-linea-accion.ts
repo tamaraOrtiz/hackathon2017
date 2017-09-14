@@ -3,7 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { LineaAccionData } from '../../providers/linea-accion';
 import { AppHelper } from '../../helpers/app-helper';
-import 'leaflet';
+import * as d3 from "d3";
+import * as saveToPng from 'save-svg-as-png';
+import * as L from 'leaflet';
 import 'leaflet-search';
 
 @Component({
@@ -24,6 +26,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     super(navCtrl, navParams);
     this.item = navParams.get('item');
 
+  }
+  d() {
+    saveToPng.out$ = saveToPng;
+    saveToPng.out$.saveSvgAsPng(d3.select('svg')['_groups'][0][0], "diagram.png");
   }
 
   ionViewDidEnter() {
