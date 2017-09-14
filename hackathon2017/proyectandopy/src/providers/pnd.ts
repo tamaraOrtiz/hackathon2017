@@ -9,4 +9,9 @@ export class PndData extends BaseData {
 
     return `pnd/?nivel=${nivelId}&entidad=${entidadId}&anho=${anho}`;
   }
+
+  getEjes(nivelId, entidadId, anho) {
+
+    return `pndeje/?nivel=${nivelId}&entidad=${entidadId}&anho=${anho}`;
+  }
 }

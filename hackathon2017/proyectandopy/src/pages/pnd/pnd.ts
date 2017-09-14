@@ -18,6 +18,7 @@ export class PNDPage extends BasePage {
   niveles: Array<any>;
   entidades: Array<any>;
   general: any = {};
+  eje: any = {};
   selectedNiveles: any;
   selectedEntidades: any;
   selectedAnhos: any;
@@ -134,6 +135,10 @@ export class PNDPage extends BasePage {
     this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {
       console.log(record);
         this.general = record;
+    });
+    this.dataService.getQuery(this.pndService.getEjes(null, null, null), true).then(record => {
+      console.log(record);
+        this.eje = record;
     });
   }
 
