@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
@@ -8,7 +8,7 @@ import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EstadisticasPage } from '../estadisticas/estadisticas';
-import { Platform } from 'ionic-angular';
+import { Platform, Slides } from 'ionic-angular';
 
 
 
@@ -28,6 +28,7 @@ export class InstitucionPage extends BasePage {
   loading;
   openbar: any;
   rootPage: any = InstitucionPage;
+  @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
     menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
     super(navCtrl, navParams, dataService, socialSharing, platform);
@@ -48,6 +49,10 @@ export class InstitucionPage extends BasePage {
   closesidebar(){
     this.openbar = false;
 
+  }
+
+  goToSlide() {
+    this.slides.slideNext(100);
   }
 
   showSearch(value: boolean){
