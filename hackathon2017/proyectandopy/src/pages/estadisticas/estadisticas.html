@@ -41,10 +41,16 @@ Ionic pages and navigation.
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
     <div class='view-content'>
-      <ppy-canva [presupuestos]="presupuestos"></ppy-canva>
 
-
-
+      <ppy-canva [presupuestos]="presupuestos" *ngIf="presupuestos"></ppy-canva>
+      <div>
+        <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="d()">
+          <i class="fa fa-download"></i>
+        </a></ion-label>
+        <button class="empty-list" ion-item *ngIf="!presupuestos">
+          <h2>No hay Lineas de Acción</h2>
+        </button>
+      </div>
 
     </div>
 
