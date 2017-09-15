@@ -32,18 +32,16 @@ Ionic pages and navigation.
         <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('info')">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Información
         </button>
-        <button  ion-button item-end outline [ngClass]="(tabactive=='chart' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('chart')">
-          <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
-        </button>
+        
         <button  ion-button item-end outline [ngClass]="(tabactive=='la' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('la')">
           <i class="fa fa-line-chart" aria-hidden="true"></i> Lineas de Acción
         </button>
-        <button  ion-button item-end outline [ngClass]="(tabactive=='resumen' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('resumen')">
+        <!--<button  ion-button item-end outline [ngClass]="(tabactive=='resumen' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('resumen')">
           <i class="fa fa-sitemap" aria-hidden="true"></i> Resumen
         </button>
         <button  ion-button item-end outline [ngClass]="(tabactive=='map' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('map')">
           <i class="fa fa-map" aria-hidden="true"></i> Mapa
-        </button>
+        </button>-->
 
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>

@@ -10,7 +10,7 @@ Ionic pages and navigation.
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="app-subtitle">{{item.nombre}}</ion-title>
+    <ion-title class="app-subtitle">Entidad {{item.entidadid}}</ion-title>
   </ion-navbar>
 
 
@@ -29,28 +29,41 @@ Ionic pages and navigation.
             <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
-        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('info')">
+        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px; margin-bottom:10px;"  (click)="changetab('info')">
           <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
         </button>
+        <ion-label class="label-sidebar">Entidad: {{item.entidadid}}</ion-label>
+
+        <ion-label class="label-sidebar">Nivel: {{item.nivelid}}</ion-label>
+
 
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
     <div class='view-content'>
+      <ppy-canva [presupuestos]="presupuestos"></ppy-canva>
 
 
-      <div>
-        <ion-label class="title-page item-grouper">Estadísticas</ion-label>
-        <ppy-canva [presupuestos]="presupuestos" *ngIf="presupuestos"></ppy-canva>
-        <div *ngIf="!presupuestos">
-          No hay estadisticas
-        </div>
-      </div>
 
 
     </div>
 
 
+  </ion-col>
+  <ion-col   [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+    <ion-grid class="common-grid">
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
+          <div class="starts">
+            <ppy-rating [rating]="{page: 'show-pnd', entity_id: 1, entity_type: 'PND', score: calificacion, meta: '{}'}" [options]="[]"></ppy-rating>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center>
+          <ppy-comment [comment]="{page: 'show-pnd', entity_id: 1, entity_type: 'Estadistica', text: '', meta: null}"></ppy-comment>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
   </ion-col>
   </ion-row>
 

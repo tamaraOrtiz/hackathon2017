@@ -1,45 +1,52 @@
-<a class="leaflet-control-zoom-out" (click)="d()">
-  <i class="fa fa-download"></i>
-</a>
-<ion-item>
-  <ion-label hidden>Programas</ion-label>
-  <ion-select class="py-canva-select" [(ngModel)]="selectData" (ionChange)="onItemSelect($event)" cancelText="Cancelar">
-    <ion-option *ngFor="let option of options" value="{{option.nombre}}">{{option.nombre}}</ion-option>
-  </ion-select>
-</ion-item>
+<div>
+  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="d()">
+    <i class="fa fa-download"></i>
+  </a></ion-label>
 
-<ion-grid class="graph-canva">
-  <ion-row>
-    <ion-col col-xs-12 col-sm-12 col-lg-9>
-      <div #graph style="display:table; margin: 0 auto; width: 100%"></div>
-    </ion-col>
-    <ion-col col-3 *ngIf="!smallScreen">
-      <div class="pie-info leaflet-top leaflet-right">
-        <div class="info leaflet-control">
-          <h4>{{selectedTitle}}</h4>
-          <b id="label">Seleccione un programa</b><br>
-          <p id="count"></p>
-          <p id="percentage"></p>
-          <div id="detail"></div>
+  <ion-item>
+    <ion-label hidden>Programas</ion-label>
+    <ion-select class="py-canva-select" [(ngModel)]="selectData" (ionChange)="onItemSelect($event)" cancelText="Cancelar">
+      <ion-option *ngFor="let option of options" value="{{option.nombre}}">{{option.nombre}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid class="graph-canva">
+    <ion-row>
+      <ion-col col-xs-12 col-sm-12 col-lg-9>
+        <div #graph style="display:table; margin: 0 auto; width: 100%"></div>
+      </ion-col>
+      <ion-col col-3 *ngIf="!smallScreen">
+        <div class="pie-info leaflet-top leaflet-right">
+          <div class="info leaflet-control">
+            <h4>{{selectedTitle}}</h4>
+            <b id="label">Seleccione un programa</b><br>
+            <p id="count"></p>
+            <p id="percentage"></p>
+            <div id="detail"></div>
+          </div>
+          <div id="pie-info-legend" class="info legend leaflet-control"></div>
         </div>
-        <div id="pie-info-legend" class="info legend leaflet-control"></div>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row *ngIf="smallScreen">
-    <ion-col col-12>
-      <div class="pie-info leaflet-top leaflet-right">
-        <div class="info leaflet-control">
-          <h4>{{selectedTitle}}</h4>
-          <b id="label">Seleccione un programa</b><br>
-          <p id="count"></p>
-          <p id="percentage"></p>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="smallScreen">
+      <ion-col col-12>
+        <div class="pie-info leaflet-top leaflet-right">
+          <div class="info leaflet-control">
+            <h4>{{selectedTitle}}</h4>
+            <b id="label">Seleccione un programa</b><br>
+            <p id="count"></p>
+            <p id="percentage"></p>
+          </div>
+          <div id="pie-info-legend" class="info legend leaflet-control"></div>
         </div>
-        <div id="pie-info-legend" class="info legend leaflet-control"></div>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="!presupuestos">
+    No hay estadisticas
+  </div>
+</div>
+
 <style>
 #chart {                                                          /* NEW */
   height: 360px;                                                  /* NEW */

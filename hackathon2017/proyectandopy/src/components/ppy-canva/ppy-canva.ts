@@ -229,7 +229,7 @@ export class PpyCanva {
         if(self.plt.is('core')){
           var a = document.createElement('a');
           a.href = url;
-          a.download = 'somefilename.jpg';
+          a.download = 'estadistica.jpg';
           a.click();
         } else {
           //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {

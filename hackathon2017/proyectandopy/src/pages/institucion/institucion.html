@@ -40,7 +40,7 @@
         </div>
         <div class="chips-div">
           <ion-chip *ngFor="let nivel of selectedNiveles"  #chip>
-             <ion-label>{{niveles[nivel].nombre}}</ion-label>
+             <ion-label >{{niveles[nivel].nombre}}</ion-label>
              <button ion-button clear color=clear (click)="delete(chip, nivel)">
                <ion-icon name="close-circle"></ion-icon>
              </button>
@@ -73,7 +73,7 @@
           <div *ngFor="let nivel of groupedItems">
             <ion-item class="item-grouper">Nivel: {{nivel.name}}</ion-item>
             <div *ngFor="let entidad of nivel.entidades">
-              <ion-item class="item-grouper entidad-grouper">Entidad: {{entidad.name}}
+              <ion-item class="item-grouper middle-content entidad-grouper">Entidad: {{entidad.name}}
                 <button ion-button clear (click)="itemTappedEst($event, entidad.items[0])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
               <button ion-item class="success" *ngFor="let item of entidad.items" (click)="itemTapped($event, item)">

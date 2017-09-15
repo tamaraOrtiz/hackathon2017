@@ -133,12 +133,14 @@ export class InstitucionPage extends BasePage {
 
 
   itemTapped(event, item) {
+
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });
   }
 
   itemTappedEst(event, item) {
+
     this.navCtrl.push(EstadisticasPage, {
       item: item
     });
