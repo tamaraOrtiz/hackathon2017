@@ -1082,3 +1082,25 @@ svg {
   position: absolute;
   bottom: 37px;
 }
+
+
+.helpslide{
+  background: rgba(8, 106, 191, 0.36);
+  border-radius: 5px;
+  margin: 15px;
+  width: calc(100% - 30px);
+  min-height: 131px;
+  p{
+        font-size: 14px;
+        min-height: 60px;
+  }
+  .toolbar-content-md{
+    text-align: right;
+    margin-bottom: 14px;
+  }
+  .button-md-secondary {
+    color: #fff;
+    background-color: #1AD4CB;
+    box-shadow: none;
+}
+}

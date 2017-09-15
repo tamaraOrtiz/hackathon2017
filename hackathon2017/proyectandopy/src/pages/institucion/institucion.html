@@ -46,6 +46,26 @@
              </button>
            </ion-chip>
         </div>
+        <div>
+          <ion-slides pager class="helpslide">
+
+             <ion-slide >
+               <p>Necesitas Ayuda?</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <button ion-button color="secondary"  (click)="goToSlide()"> Si</button>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide style="background-color: blue">
+               <h2>Slide 2</h2>
+             </ion-slide>
+
+             <ion-slide style="background-color: red">
+               <h2>Slide 3</h2>
+             </ion-slide>
+
+           </ion-slides>
+        </div>
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
