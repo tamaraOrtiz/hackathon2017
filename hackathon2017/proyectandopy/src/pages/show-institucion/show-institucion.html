@@ -32,7 +32,7 @@ Ionic pages and navigation.
         <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('info')">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Información
         </button>
-        
+
         <button  ion-button item-end outline [ngClass]="(tabactive=='la' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('la')">
           <i class="fa fa-line-chart" aria-hidden="true"></i> Lineas de Acción
         </button>
@@ -175,8 +175,19 @@ Ionic pages and navigation.
               </ion-avatar>
               <div class="item-list">
                 <h2 style="text-transform: capitalize">{{lineaAccion.nombre}}</h2>
-                <h5>
-                  <ion-badge class="label_c1">{{lineaAccion.cantidadAvance}}/{{lineaAccion.cantidadProgramada}} {{lineaAccion.unidadMedida}}</ion-badge>
+                <h5 *ngIf="lineaAccion.cantidadAvance > lineaAccion.cantidadProgramada">
+                  <ion-badge class="label_c1">Beneficiarios: {{lineaAccion.cantidadAvance}} </ion-badge>
+                  <ion-badge class="label_c1">Meta: {{lineaAccion.cantidadProgramada}} {{lineaAccion.unidadMedida}}</ion-badge>
+                  <ion-badge class="label_c1"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</ion-badge>
+                </h5>
+                <h5 *ngIf="lineaAccion.cantidadAvance < lineaAccion.cantidadProgramada">
+                  <ion-badge class="label_c3">Beneficiarios: {{lineaAccion.cantidadAvance}} </ion-badge>
+                  <ion-badge class="label_c3">Meta: {{lineaAccion.cantidadProgramada}} {{lineaAccion.unidadMedida}}</ion-badge>
+                  <ion-badge class="label_c3"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</ion-badge>
+                </h5>
+                <h5 *ngIf="lineaAccion.cantidadAvance == lineaAccion.cantidadProgramada">
+                  <ion-badge class="label_c2">Beneficiarios: {{lineaAccion.cantidadAvance}} </ion-badge>
+                  <ion-badge class="label_c2">Meta: {{lineaAccion.cantidadProgramada}} {{lineaAccion.unidadMedida}}</ion-badge>
                   <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</ion-badge>
                 </h5>
               </div>

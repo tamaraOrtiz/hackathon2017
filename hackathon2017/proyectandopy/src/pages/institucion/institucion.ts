@@ -28,6 +28,7 @@ export class InstitucionPage extends BasePage {
   loading;
   openbar: any;
   rootPage: any = InstitucionPage;
+  inst : any = {};
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
     menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
@@ -72,6 +73,10 @@ export class InstitucionPage extends BasePage {
       this.filter(null, false, this.loading);
     }, function(errors){
       self.loading.dismiss();
+    });
+    this.dataService.getQuery(this.dataService.getInstituciones(), true).then(record => {
+      console.log(record);
+        this.inst = record;
     });
   }
 
@@ -129,11 +134,12 @@ export class InstitucionPage extends BasePage {
     }
     item.nombre = AppHelper.toTitleCase(item.nombre);
     groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
-  }
+
+    }
 
 
   itemTapped(event, item) {
-
+    console.log(item);
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });

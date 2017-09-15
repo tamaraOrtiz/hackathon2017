@@ -27,6 +27,10 @@ export class InstitucionData extends BaseData {
     let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
     return `lineas_de_accion/?nivel=${nivelId}&entidad=${entidadId}&institucion=${institucionId}`;
   }
+  getInstituciones() {
+
+    return `instituciones`;
+  }
 
   getNiveles(where: string) {
     return "?q=SELECT nivel_id, nivel_nombre, COUNT(DISTINCT entidad_id) FROM public.destinatarioproducto "+where+" GROUP BY nivel_id, nivel_nombre ORDER BY nivel_id ASC ;"
