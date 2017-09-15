@@ -53,7 +53,9 @@
           <div *ngFor="let nivel of groupedItems">
             <ion-item class="item-grouper">Nivel: {{nivel.name}}</ion-item>
             <div *ngFor="let entidad of nivel.entidades">
-              <ion-item class="item-grouper entidad-grouper">Entidad: {{entidad.name}}</ion-item>
+              <ion-item class="item-grouper entidad-grouper">Entidad: {{entidad.name}}
+                <button ion-button clear (click)="itemTappedEst($event, item)"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
+              </ion-item>
               <button ion-item class="success" *ngFor="let item of entidad.items" (click)="itemTapped($event, item)">
                 <ion-item>
                   <ion-avatar item-start>

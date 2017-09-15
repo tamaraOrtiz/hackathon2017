@@ -7,6 +7,7 @@ import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { EstadisticasPage } from '../estadisticas/estadisticas';
 import { Platform } from 'ionic-angular';
 
 
@@ -128,6 +129,12 @@ export class InstitucionPage extends BasePage {
 
   itemTapped(event, item) {
     this.navCtrl.push(ShowInstitucionPage, {
+      item: item
+    });
+  }
+
+  itemTappedEst(event, item) {
+    this.navCtrl.push(EstadisticasPage, {
       item: item
     });
   }

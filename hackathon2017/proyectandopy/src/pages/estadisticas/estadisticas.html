@@ -1,0 +1,89 @@
+<!--
+Generated template for the ShowNivelPage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-title class="app-title" col-12 >proyectandoPy</ion-title>
+  <ion-navbar id="subnavbar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="app-subtitle">{{item.nombre}}</ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+<ion-content >
+  <ion-fab *ngIf="!openbar" left bottom edge style="bottom: 10px;"  id="opensidebar" (click)="opensidebar()">
+      <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
+      <i class="fa fa-filter" aria-hidden="true"></i></button>
+    </ion-fab>
+
+  <ion-grid class="principal-grid">
+    <ion-row>
+
+      <ion-col *ngIf="openbar" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
+        <div *ngIf="openbar"  left top style="bottom: 10px;" class="closesidebar" >
+            <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
+            <i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('info')">
+          <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
+        </button>
+
+      </ion-col>
+      <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+
+    <div class='view-content'>
+
+
+      <div>
+        <ion-label class="title-page item-grouper">Estadísticas</ion-label>
+        <ppy-canva [presupuestos]="presupuestos" *ngIf="presupuestos"></ppy-canva>
+        <div *ngIf="!presupuestos">
+          No hay estadisticas
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </ion-col>
+  </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
+  </ion-toolbar>
+</ion-footer>
+<style>
+
+.node rect {
+  fill: #ddd;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.node tspan:last-child {
+  font-size: 9px;
+  fill-opacity: 0.8;
+}
+
+.node--internal text {
+  font-weight: bold;
+}
+
+.node--leaf rect {
+  fill-opacity: 0.6;
+}
+
+</style>

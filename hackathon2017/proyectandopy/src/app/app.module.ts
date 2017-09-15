@@ -19,6 +19,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ShowLineaAccionPage } from '../pages/show-linea-accion/show-linea-accion';
 import { PNDPage } from '../pages/pnd/pnd';
 import { ModalPage } from '../pages/modal/modal';
+import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,6 +48,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
     PpyComment,
     PNDPage,
     ModalPage,
+    EstadisticasPage,
     KeysPipe
   ],
   imports: [
@@ -68,6 +70,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
     TabsPage,
     TutorialPage,
     PNDPage,
+    EstadisticasPage,
     ModalPage
   ],
   schemas: [
