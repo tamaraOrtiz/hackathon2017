@@ -1,7 +1,7 @@
 
 import { Component, Input, ViewChild } from '@angular/core';
 import * as d3 from "d3";
-import * as saveToPng from 'save-svg-as-png';
+import * as html2canvas from "html2canvas";
 import { Platform } from 'ionic-angular';
 import { AppHelper } from '../../helpers/app-helper';
 
@@ -221,8 +221,16 @@ export class PpyCanva {
   }
 
   d() {
-    saveToPng.out$ = saveToPng;
-    saveToPng.out$.saveSvgAsPng(d3.select('svg')['_groups'][0][0], "diagram.png");
+    html2canvas(document.getElementsByClassName('graph-canva')[0],
+    {
+      onrendered: function (canvas) {
+        var a = document.createElement('a');
+        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        a.download = 'somefilename.jpg';
+        a.click();
+      }
+    });
   }
 
 }
