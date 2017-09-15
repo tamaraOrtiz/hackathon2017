@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BasePage } from '../../app/base-page';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
+import 'rxjs/add/operator/map';
+import { InstitucionData } from '../../providers/institucion';
+import { AppHelper } from '../../helpers/app-helper';
+import { LoadingController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Platform } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tutorial.html',
+  providers: [InstitucionData]
 })
-export class TutorialPage {
+export class TutorialPage extends BasePage {
   slides = [
     {
       title: "Plan Nacional de Desarrollo 2030",
@@ -44,7 +53,9 @@ export class TutorialPage {
     }
   ];
 
-  constructor(private iab: InAppBrowser) {
+  constructor(private iab: InAppBrowser, public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
+    menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
+    super(navCtrl, navParams, dataService, socialSharing, platform);
   }
 
   openLink(link){

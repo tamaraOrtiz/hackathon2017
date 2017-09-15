@@ -29,7 +29,7 @@ export class ShowBasePage {
 
   share(via='facebook', message=null, url=null, image=null) {//
     let appnames = {
-      'facebook': `http://www.facebook.com/sharer.php?message=${message}&url=${url}`,
+      'facebook': `http://www.facebook.com/sharer.php?summary=${message}&u=${url}`,
       'twitter': `https://twitter.com/share?text=${message}&url=${url}`
     };
     if(this.platform.is('core') || !this.socialSharing.canShareVia(via)){

@@ -14,11 +14,9 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 .tutorial-page {
 
   .toolbar-background {
-
     background: #fff;
     border-color: transparent;
   }
@@ -28,28 +26,35 @@
   }
 
   .slide-title {
+    font-size: 15px;
     margin-top: 0 !important;
-    height: 73px;
-    font-size: 13px !important;
     text-align: initial;
     padding: 15px;
     font-family: 'Muli', sans-serif;
     font-weight: bold;
     color: #0a7e84;
   }
-
+  .toolbar-content{
+    text-align: right;
+  }
   .slide-image {
     max-height: 50%;
-    max-width: 55%;
-    margin: 9px 0;
+    max-width: 60%;
+    margin: 18px 0;
   }
 
+  .button-clear-md-secondary {
+      border-color: transparent;
+      color: #c3658f;
+      background-color: transparent;
+      padding: 3px;
+    }
   b {
     font-weight: 500;
   }
 
   p {
-    padding: 0 20px;
+    padding: 0 40px;
     font-size: 14px;
     line-height: 1.5;
     color: #60646B;
@@ -58,42 +63,18 @@
       color: #000000;
     }
   }
-
-.button-clear-md-secondary {
-  color: #0c7f85;
-}
-  .scroll-content{
-    padding: 10px !important;
-  }
-  .tutorial-buttons{
-    position: absolute;
-    width: 180px;
-    right: -19px;
-    top: 30px;
-    .toolbar-background {
-      background: transparent !important;
-      border-color: transparent;
-    }
-    .icon-md{
-
-    }
-
-  }
-  .swiper-wrapper, .swiper-slide{
-    background: white;
-
-
-  }
-  .slide-zoom{
+  .swiper-slide{
     border: 2px solid aliceblue;
     border-radius: 5px;
 
   }
-  .swiper-pagination-bullet-active {
-    background: #1dc5d6;
-    opacity: 1;
+  .toolbar-md{
+    position: absolute;
+bottom: 5px;
   }
+
 }
+
 .analizer{
   top: 105px !important;
 }
