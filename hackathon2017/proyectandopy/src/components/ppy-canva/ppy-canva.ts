@@ -46,8 +46,8 @@ export class PpyCanva {
 
   _presupuestos: Array<any>;
 
-  public constructor(public pl: Platform) {
-    this.smallScreen = pl.width() < 768;
+  public constructor(public plt: Platform) {
+    this.smallScreen = plt.width() < 768;
   }
 
   @Input()
@@ -209,7 +209,7 @@ export class PpyCanva {
           Object.keys(d.data.detalle).forEach(function(k) {
             info.select('#detail')
                 .append("p")
-                .html(`${AppHelper.toTitleCase(k)} ${d.data.detalle[k]}<br>`);
+                .html(`${d.data.detalle[k]} ${k.toLowerCase()} <br>`);
           });
         });
       });
@@ -221,15 +221,25 @@ export class PpyCanva {
   }
 
   d() {
+    let self = this;
     html2canvas(document.getElementsByClassName('graph-canva')[0],
     {
       onrendered: function (canvas) {
-        var a = document.createElement('a');
-        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-        a.download = 'somefilename.jpg';
-        a.click();
+        let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        if(self.plt.is('core')){
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'somefilename.jpg';
+          a.click();
+        } else {
+          //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {
+          //  console.log('download complete: ' + entry.toURL());
+          //}, (error) => {
+            // handle error
+          //});
+        }
       }
+
     });
   }
 
