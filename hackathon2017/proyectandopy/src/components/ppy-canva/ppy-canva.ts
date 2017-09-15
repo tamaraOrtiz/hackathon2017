@@ -44,15 +44,24 @@ export class PpyCanva {
 
   @ViewChild('graph') graph;
 
-  _presupuestos: Array<{ nombre: string, nombre_programas: string, programas: Array<any>}>;
+  _presupuestos: Array<any>;
 
   public constructor(public pl: Platform) {
     this.smallScreen = pl.width() < 768;
   }
 
   @Input()
-  set presupuestos(presupuestos: Array<{ nombre: string, nombre_programas: string, programas: Array<any>}>) {
-    this._presupuestos = Object.keys(presupuestos).map(key=>presupuestos[key]);
+  set presupuestos(presupuestos: Array<any>) {
+    this._presupuestos = Object.keys(presupuestos).map(key=> {
+      let tipo = {};
+      tipo['nombre'] = key;
+      tipo['programas'] = Object.keys(presupuestos[key]).map(k=> {
+        let programa = {};
+        programa['nombre'] = k;
+        return Object.assign({}, programa, presupuestos[key][k]);
+      });
+      return tipo;
+    });
   }
 
   get presupuestos() { return this._presupuestos; }
@@ -65,7 +74,9 @@ export class PpyCanva {
   }
 
   ngAfterViewInit() {
-    this.generatePie();
+    if(this.options.length > 0){
+      this.generatePie();
+    }
   }
 
   onItemSelect($event) {
@@ -136,7 +147,9 @@ export class PpyCanva {
 
       let pie = d3.pie()
       .sort(null)
-      .value(function(d) { return d.value; });
+      .value(function(d) {
+        return d.total;
+      });
 
       d3.select(this.graph.nativeElement).html('');
 
@@ -161,8 +174,8 @@ export class PpyCanva {
       .attr("d", arc)
       .style("fill", function(d) {
         legend.append("p")
-              .html(`<i style="background:${self.colores(d.data.value)}"></i> ${AppHelper.toTitleCase(d.data.name)}<br>`);
-        return self.colores(d.data.value);
+              .html(`<i style="background:${self.colores(d.data.total)}"></i> ${AppHelper.toTitleCase(d.data.nombre)}<br>`);
+        return self.colores(d.data.total);
       });
 
       svg.append("div")
@@ -177,21 +190,27 @@ export class PpyCanva {
 
         g.append("path")
          .attr("d", arc)
-         .style("fill", function(d) { return self.colores(d.data.value); })
-         .style("fill-opacity", .5) // set the fill opacity
-         .style("stroke", function(d) { return self.colores(d.data.value); })    // set the line colour
+         .style("fill", function(d) { return self.colores(d.data.total); })
+         .style("fill-opacity", .5)
+         .style("stroke", function(d) { return self.colores(d.data.total); })
          .style("stroke-width", 2);
 
         g.on('click', function(d) {
-          let total = d3.sum(data.map(function(d) {              // NEW
-            return d.value;                                           // NEW
+          let total = d3.sum(data.map(function(d) {
+            return d.total;
           }));
           let info = d3.select('.pie-info');
-          let percent = Math.round(1000 * d.data.value / total)/10; // NEW
-          info.select('#label').html(AppHelper.toTitleCase(d.data.name));                // NEW
-          info.select('#count').html(d.data.value*1000000 + ' Gs');                // NEW
-          info.select('#percentage').html(percent + '%');             // NEW
-          info.style('display', 'block');                          // NEW
+          let percent = Math.round(1000 * d.data.total / total)/10;
+          info.select('#label').html(AppHelper.toTitleCase(d.data.nombre));
+          info.select('#count').html(d.data.total+" Beneficiarios");
+          info.select('#percentage').html(percent + '%');
+          info.select('#detail').html('');
+          info.style('display', 'block');
+          Object.keys(d.data.detalle).forEach(function(k) {
+            info.select('#detail')
+                .append("p")
+                .html(`${AppHelper.toTitleCase(k)} ${d.data.detalle[k]}<br>`);
+          });
         });
       });
     });

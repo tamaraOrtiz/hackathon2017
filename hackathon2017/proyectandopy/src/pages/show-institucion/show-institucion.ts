@@ -67,7 +67,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   ionViewDidEnter() {
     this.dataService.getQuery(this.dataService.getResumenPrograma(this.item.nivelid, this.item.entidadid), true).then(records => {
-      this.presupuestos = records;
+      this.presupuestos = Object.keys(records).length > 0 ? records : null;
     });
     this.dataService.getQuery(this.dataService.getLineasAccion(
       this.item.nivelid,
