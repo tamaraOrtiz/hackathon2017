@@ -3,8 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { LineaAccionData } from '../../providers/linea-accion';
 import { AppHelper } from '../../helpers/app-helper';
-import * as d3 from "d3";
-import * as saveToPng from 'save-svg-as-png';
+import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
 import 'leaflet-search';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -32,25 +31,45 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
   }
   d() {
-    saveToPng.out$ = saveToPng;
-    saveToPng.out$.saveSvgAsPng(d3.select('svg')['_groups'][0][0], "diagram.png");
+    let self = this;
+    html2canvas(document.getElementsByClassName('scroll-content')[0],
+    {
+      onrendered: function (canvas) {
+        let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        if(self.plt.is('core')){
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'somefilename.jpg';
+          a.click();
+        } else {
+          //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {
+          //  console.log('download complete: ' + entry.toURL());
+          //}, (error) => {
+            // handle error
+          //});
+        }
+      }
+
+    });
   }
 
   ionViewDidEnter() {
     let self = this;
-    let title = "Avances por distrito";
-    let multiplicador = [10000, 0.5, 1];
+    let title = "Avances por departamento";
     let op = 0;
     this.dataService.getParaguayMap().then(map => {
       this.paraguayGeoJson = map.features;
 
-    this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id, undefined)).then(records => {
-      this.chartsData = records;
-      for(let record of records) {
-        this.paraguayGeoJson.forEach( distrito => {
-          if (distrito.properties.dpto_desc === record.dist_nombre) {
-            distrito.properties['name'] = record.dist_nombre;
-            distrito.properties['value'] = multiplicador[op] * (record.m1 + record.m2 + record.m3 + record.m4);
+    this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
+      this.chartsData = (records as any).info_departamento;
+      for(let record of Object.keys(this.chartsData)) {
+        this.paraguayGeoJson.forEach( departamento => {
+          if (departamento.properties.deparmen === record || record === 'ALC. NACIONAL') {
+            departamento.properties['name'] = record;
+            departamento.properties['unidad'] = (records as any).unidad;
+            departamento.properties['meta'] = self.chartsData[record].cant_prog;
+            departamento.properties['avance'] = self.chartsData[record].cant_avance;
+            departamento.properties['value'] =  Math.round(1000 * self.chartsData[record].cant_avance / self.chartsData[record].cant_prog)/10;
           }
         });
       }
@@ -107,9 +126,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       });
 
       var overlays = {
-        "Costos": this.geo,
-        "Avances": this.geo,
-        "Metas": this.geo
+        "Metas vs Avances": this.geo,
       };
 
       var info = (L as any).control();
@@ -123,8 +140,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
         this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
-          '<b>' + props.distrito + '</b><br />' + Math.round(1500 * Math.random()) + ' Km'
-          : 'Seleccione un distrito');
+          '<b>' + props.name + '</b><br />' + props.avance + '/' + props.meta + ' ' + props.unidad
+          : 'Seleccione un departamento');
         };
 
         info.addTo(this.map);
@@ -136,14 +153,14 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         legend.onAdd = function (map) {
 
           var div = L.DomUtil.create('div', 'info legend'),
-          grades = [1000, 500, 200, 100, 50, 20, 10, 0],
+          grades = [100, 90, 75, 60, 45, 30, 15, 0],
           labels = [];
 
           // loop through our density intervals and generate a label with a colored square for each interval
           for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
             '<i style="background:' + self.getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            grades[i] +' - '+ grades[i + 1] + ' %<br>';
           }
 
           return div;
@@ -157,7 +174,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     style(feature) {
       let self = this;
-      let d = Math.round(1500 * Math.random());
+      let d = feature.properties.value;
       return {
         fillColor:self.getColor(d),
         weight: 1,
@@ -169,13 +186,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     }
 
     getColor(d) {
-      return d > 1000 ? '#490271' :
-      d > 500  ? '#932cb1' :
-      d > 200  ? '#e051d1' :
-      d > 100  ? '#ea73de' :
-      d > 50   ? '#f3a8eb' :
-      d > 20   ? '#e4c9ef' :
-      d > 10   ? '#d4e7f5' :
+      return d > 100 ? '#490271' :
+      d > 90  ? '#932cb1' :
+      d > 75  ? '#e051d1' :
+      d > 60  ? '#ea73de' :
+      d > 45   ? '#f3a8eb' :
+      d > 30   ? '#e4c9ef' :
+      d > 15   ? '#d4e7f5' :
       '#fbfbfb';
     }
 
