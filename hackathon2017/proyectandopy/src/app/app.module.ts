@@ -7,6 +7,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Facebook } from '@ionic-native/facebook';
 import { MomentModule } from 'angular2-moment';
+import { ProgressBarComponent } from '../components/progressbar/progressbar';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -47,6 +49,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
     PpyResumen,
     PpyRating,
     PpyComment,
+    ProgressBarComponent,
     PNDPage,
     ModalPage,
     EstadisticasPage,

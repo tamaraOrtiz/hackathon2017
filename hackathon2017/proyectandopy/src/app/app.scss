@@ -596,7 +596,7 @@ i.fa{
 
 .label_c3{
   background: transparent !important;
-  
+
   color: #078A76;
   padding-left: 0px !important;
   i.fa{
@@ -1145,4 +1145,60 @@ svg {
   background: transparent;
       color: #23908a !important;
       padding-left: 20px;
+}
+
+progressbar {
+
+    .progress-outer {
+        width: 96%;
+        margin-top: 9px;
+        padding: 3px;
+        text-align: center;
+        background-color: #f4f4f4;
+        border: 1px solid #dcdcdc;
+        color: #fff;
+        border-radius: 20px;
+    }
+
+    .progress-inner {
+        min-width: 15%;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 5px;
+        border-radius: 20px;
+
+    }
+
+}
+
+.label_c2{
+  progressbar {
+    .progress-inner {
+      background-color: #ec8437;
+    }
+  }
+}
+
+.label_c1{
+  progressbar {
+    .progress-inner {
+      background-color: #109483;
+    }
+  }
+}
+
+.label_c3{
+  progressbar {
+    .progress-inner {
+      background-color: #b30909;
+    }
+  }
+}
+
+.p-list{
+
+      i.fa{
+        margin-right: 8px;
+        font-size: 14px;
+      }
 }

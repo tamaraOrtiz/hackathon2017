@@ -35,9 +35,11 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   csvItems: any
 
+  loadProgress: any
   calificacion: any
   openbar: any
   tabactive:any
+  myParseInt: any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -47,6 +49,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.dataService = dataService;
     this.openbar = plt.is('core');
     this.tabactive = 'info'
+    this.myParseInt = parseInt;
   }
 
   openLink(link){
@@ -59,10 +62,20 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   changetab(_text){
     this.tabactive = _text;
+
   }
 
   closesidebar(){
     this.openbar = false;
+  }
+
+  progress(p, a){
+    let result = (a*100)/p;
+    if (a > p){
+      result= 100;
+    }
+  
+    return result;
   }
 
   ionViewDidEnter() {
