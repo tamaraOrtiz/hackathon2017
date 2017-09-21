@@ -8,6 +8,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { Facebook } from '@ionic-native/facebook';
 import { MomentModule } from 'angular2-moment';
 import { ProgressBarComponent } from '../components/progressbar/progressbar';
+import { TooltipsModule } from 'ionic-tooltips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { MyApp } from './app.component';
@@ -60,6 +62,8 @@ import { KeysPipe } from '../helpers/keys-pipe';
     HttpModule,
     IonicModule.forRoot(MyApp),
     MomentModule,
+    TooltipsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

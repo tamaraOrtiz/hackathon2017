@@ -168,21 +168,22 @@ Ionic pages and navigation.
         <ion-list>
           <div>
             <ion-item class="item-grouper">Lineas de Acción</ion-item>
-          <button ion-item class="success" *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
+          <button ion-item  class="success" *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
             <ion-item>
               <ion-avatar item-start>
                   <i class="fa fa-line-chart" aria-hidden="true"></i>
               </ion-avatar>
               <div class="item-list" style="width: 100%;">
-                <h2 style="text-transform: capitalize">{{lineaAccion.nombre}}</h2>
+                <h2 style="text-transform: capitalize">{{lineaAccion.nombre}}
+                </h2>
                 <p class="p-list"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</p>
-                <h5 class="label_c1" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) > 89">
+                <h5 class="label_c1" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) >= 90">
                   <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
                 </h5>
-                <h5 class="label_c3" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) < 50">
+                <h5 class="label_c3" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) < 70">
                   <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
                 </h5>
-                <h5 class="label_c2" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)>=50 && progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) <= 89">
+                <h5 class="label_c2" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)>=70 && progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) < 90">
                   <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
                 </h5>
               </div>

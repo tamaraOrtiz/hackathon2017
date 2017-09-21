@@ -23,11 +23,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   paraguayGeoJson: any
   geo: any
   map: any
-
+  openbar: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: LineaAccionData, public socialSharing: SocialSharing, public plt: Platform) {
     super(navCtrl, navParams, socialSharing, plt);
     this.item = navParams.get('item');
+    this.openbar = plt.is('core');
+    console.log(this.item);
 
   }
   d() {
@@ -184,7 +186,14 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         fillOpacity: 0.7
       };
     }
+    opensidebar(){
+      this.openbar = true;
+    }
 
+    closesidebar(){
+      this.openbar = false;
+
+    }
     getColor(d) {
       return d > 100 ? '#490271' :
       d > 90  ? '#932cb1' :

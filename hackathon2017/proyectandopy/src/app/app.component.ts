@@ -16,7 +16,7 @@ import * as moment from 'moment';
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = InstitucionPage;
+  rootPage: any = PNDPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
