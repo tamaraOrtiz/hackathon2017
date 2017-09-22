@@ -29,7 +29,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     super(navCtrl, navParams, socialSharing, plt);
     this.item = navParams.get('item');
     this.openbar = plt.is('core');
-    
+
 
   }
   d() {
@@ -64,9 +64,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
       this.chartsData = (records as any).info_departamento;
+      console.log(this.chartsData);
       for(let record of Object.keys(this.chartsData)) {
         this.paraguayGeoJson.forEach( departamento => {
-          if (departamento.properties.departmen === record || record === 'ALC. NACIONAL') {
+          if (departamento.properties.departamen === record) {
             departamento.properties['name'] = record;
             departamento.properties['unidad'] = (records as any).unidad;
             departamento.properties['meta'] = self.chartsData[record].cant_prog;
@@ -155,7 +156,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         legend.onAdd = function (map) {
 
           var div = L.DomUtil.create('div', 'info legend'),
-          grades = [100, 90, 75, 60, 45, 30, 15, 0],
+          grades = [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 0],
           labels = [];
 
           // loop through our density intervals and generate a label with a colored square for each interval
@@ -195,14 +196,16 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     }
     getColor(d) {
-      return d > 100 ? '#490271' :
-      d > 90  ? '#932cb1' :
-      d > 75  ? '#e051d1' :
-      d > 60  ? '#ea73de' :
-      d > 45   ? '#f3a8eb' :
-      d > 30   ? '#e4c9ef' :
-      d > 15   ? '#d4e7f5' :
-      '#fbfbfb';
+      return d >= 95 ? '#109483' :
+             d >= 90 ? '#6b9373' :
+             d >= 85 ? '#979163' :
+             d >= 80 ? '#bb8d53' :
+             d >= 75 ? '#dc8841' :
+             d >= 70 ? '#e67932' :
+             d >= 65 ? '#da6427' :
+             d >= 60 ? '#cd4d1d' :
+             d >= 55 ? '#c03313' :
+             '#b30909';
     }
 
 
