@@ -29,7 +29,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     super(navCtrl, navParams, socialSharing, plt);
     this.item = navParams.get('item');
     this.openbar = plt.is('core');
-    console.log(this.item);
+    
 
   }
   d() {

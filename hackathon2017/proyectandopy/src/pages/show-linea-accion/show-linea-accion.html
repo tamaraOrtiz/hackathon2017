@@ -26,11 +26,13 @@
           </div>
         <div id="filter-sidebar-div">
           <ion-list class="selec-header">
-         <ion-item>
-           <ion-label>Información</ion-label>
+         <ion-item class ='sidebarbutton active' style="margin-top:8px;"  (click)="changetab('general')">
+             
+             Información
+
          </ion-item>
          <ion-item>
-           <ion-label>Presupesto: <p>{{item.cantidadFinanciera}}</p></ion-label>
+           <ion-label>Presupuesto: <p>{{item.cantidadFinanciera}}</p></ion-label>
 
          </ion-item>
          <ion-item>
