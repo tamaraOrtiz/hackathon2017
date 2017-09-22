@@ -11,25 +11,6 @@ import { AppHelper } from '../../helpers/app-helper';
 })
 
 export class PpyCanva {
-  backgroundColor= [
-    'rgb(247, 109, 109)',
-    'rgb(247, 109, 187)',
-    'rgb(224, 109, 247)',
-    'rgb(148, 109, 247)',
-    'rgb(109, 141, 247)',
-    'rgb(109, 211, 247)',
-    'rgb(109, 247, 201)'
-  ];
-
-  borderColor= [
-    'rgba(255,99,132,1)',
-    'rgba(244, 164, 96, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)'
-  ];
   selectData: string
 
   selectedCharType: number
@@ -39,6 +20,8 @@ export class PpyCanva {
   titles = ['Inversión por Programa', 'Avances vs Metas', 'Costos vs Beneficiarios']
 
   options: Array<any>
+
+  hashColores: any = {};
 
   smallScreen: boolean = false;
 
@@ -121,10 +104,19 @@ export class PpyCanva {
     let avances = d3.map();
   }
 
-  colores(n) {
-  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
-  return colores_g[parseInt(n) % colores_g.length];
+  colores(key) {
+    let colors = ["#e1eef6", "#ff5f2e", "#fcbe32",
+                  "#004e66", "#2b90d9", "#ff4e50",
+                  "#008c9e", "#490a3d", "#ee6e9f",
+                  "#3b8686", "#ee2560", "#5c196b",
+                  "#b84a39", "#7200da", "#CBA6C3",
+                  "#67D5B5", "#C16200", "#D1B6E1"]
+    if(!this.hashColores[key]){
+      this.hashColores[key] = colors[Math.round(colors.length * Math.random())];
+    }
+    return this.hashColores[key];
   }
+
   generatePie() {
     let self = this;
     let dispatch = d3.dispatch("load", "statechange");
@@ -174,8 +166,8 @@ export class PpyCanva {
       .attr("d", arc)
       .style("fill", function(d) {
         legend.append("p")
-              .html(`<i style="background:${self.colores(d.data.total)}"></i> ${AppHelper.toTitleCase(d.data.nombre)}<br>`);
-        return self.colores(d.data.total);
+              .html(`<i style="background:${self.colores(d.data.nombre)}"></i> ${AppHelper.toTitleCase(d.data.nombre)}<br>`);
+        return self.colores(d.data.nombre);
       });
 
       svg.append("div")
@@ -190,9 +182,9 @@ export class PpyCanva {
 
         g.append("path")
          .attr("d", arc)
-         .style("fill", function(d) { return self.colores(d.data.total); })
+         .style("fill", function(d) { return self.colores(d.data.nombre); })
          .style("fill-opacity", .5)
-         .style("stroke", function(d) { return self.colores(d.data.total); })
+         .style("stroke", function(d) { return self.colores(d.data.nombre); })
          .style("stroke-width", 2);
 
         g.on('click', function(d) {
