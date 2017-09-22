@@ -156,11 +156,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         legend.onAdd = function (map) {
 
           var div = L.DomUtil.create('div', 'info legend'),
-          grades = [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 0],
+          grades = [100, 95, 90, 85, 80, 75, 70, 60, 40, 20, 10, 0],
           labels = [];
 
           // loop through our density intervals and generate a label with a colored square for each interval
-          for (var i = 0; i < grades.length; i++) {
+          for (var i = 0; i < grades.length -1; i++) {
             div.innerHTML +=
             '<i style="background:' + self.getColor(grades[i] + 1) + '"></i> ' +
             grades[i] +' - '+ grades[i + 1] + ' %<br>';
@@ -202,10 +202,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
              d >= 80 ? '#bb8d53' :
              d >= 75 ? '#dc8841' :
              d >= 70 ? '#e67932' :
-             d >= 65 ? '#da6427' :
-             d >= 60 ? '#cd4d1d' :
-             d >= 55 ? '#c03313' :
-             '#b30909';
+             d >= 60 ? '#da6427' :
+             d >= 40 ? '#cd4d1d' :
+             d >= 20 ? '#c03313' :
+             '#790606';
     }
 
 
