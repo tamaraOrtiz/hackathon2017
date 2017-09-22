@@ -31,7 +31,7 @@ export class ShowInstitucionPage extends ShowBasePage {
 
   presupuestos: Array<string>
 
-  lineasAccion: any
+  lineasAccion: any = []
 
   csvItems: any
 
@@ -74,7 +74,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     if (a > p){
       result= 100;
     }
-  
+
     return result;
   }
 

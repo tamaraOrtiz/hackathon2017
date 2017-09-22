@@ -66,7 +66,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       this.chartsData = (records as any).info_departamento;
       for(let record of Object.keys(this.chartsData)) {
         this.paraguayGeoJson.forEach( departamento => {
-          if (departamento.properties.deparmen === record || record === 'ALC. NACIONAL') {
+          if (departamento.properties.departmen === record || record === 'ALC. NACIONAL') {
             departamento.properties['name'] = record;
             departamento.properties['unidad'] = (records as any).unidad;
             departamento.properties['meta'] = self.chartsData[record].cant_prog;
