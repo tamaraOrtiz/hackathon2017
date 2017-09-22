@@ -13,13 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { InstitucionPage } from '../pages/institucion/institucion';
 import { ShowInstitucionPage } from '../pages/show-institucion/show-institucion';
-import { ShowNivelPage } from '../pages/show-nivel/show-nivel';
-import { ProgramaPage } from '../pages/programa/programa';
-import { MapaPage } from '../pages/mapa/mapa';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ShowLineaAccionPage } from '../pages/show-linea-accion/show-linea-accion';
 import { PNDPage } from '../pages/pnd/pnd';
@@ -38,14 +33,9 @@ import { KeysPipe } from '../helpers/keys-pipe';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     InstitucionPage,
-    ShowNivelPage,
     ShowInstitucionPage,
     ShowLineaAccionPage,
-    ProgramaPage,
-    MapaPage,
-    TabsPage,
     TutorialPage,
     PpyCanva,
     PpyResumen,
@@ -68,14 +58,9 @@ import { KeysPipe } from '../helpers/keys-pipe';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     InstitucionPage,
-    ShowNivelPage,
     ShowInstitucionPage,
     ShowLineaAccionPage,
-    ProgramaPage,
-    MapaPage,
-    TabsPage,
     TutorialPage,
     PNDPage,
     EstadisticasPage,
