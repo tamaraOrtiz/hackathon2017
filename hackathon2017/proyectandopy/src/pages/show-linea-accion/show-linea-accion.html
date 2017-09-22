@@ -25,12 +25,11 @@
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
         <div id="filter-sidebar-div">
+          <button  ion-button item-end right  outline class ='sidebarbutton active' style="margin-top:8px;"  (click)="changetab('general')">
+          
+            Información
+          </button>
           <ion-list class="selec-header">
-         <ion-item class ='sidebarbutton active' style="margin-top:8px;"  (click)="changetab('general')">
-             
-             Información
-
-         </ion-item>
          <ion-item>
            <ion-label>Presupuesto: <p>{{item.cantidadFinanciera}}</p></ion-label>
 
