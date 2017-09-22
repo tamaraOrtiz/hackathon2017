@@ -177,14 +177,14 @@ Ionic pages and navigation.
                 <h2 style="text-transform: capitalize">{{lineaAccion.nombre}}
                 </h2>
                 <p class="p-list"><i class="fa fa-money" aria-hidden="true"></i>{{lineaAccion.cantidadFinanciera}}</p>
-                <h5 class="label_c1" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) >= 90">
+                <h5 class="label_c1" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador) >= 90">
                   <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
                 </h5>
-                <h5 class="label_c3" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) < 70">
-                  <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
+                <h5 class="label_c3" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador) < 70">
+                  <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador)"></progressbar>
                 </h5>
-                <h5 class="label_c2" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)>=70 && progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance) < 90">
-                  <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance)"></progressbar>
+                <h5 class="label_c2" *ngIf="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador)>=70 && progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador) < 90">
+                  <progressbar [progress]="progress(lineaAccion.cantidadProgramada, lineaAccion.cantidadAvance, lineasAccion.cantidadPromedio, lineasAccion.cantidadDenominador)"></progressbar>
                 </h5>
               </div>
               <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>

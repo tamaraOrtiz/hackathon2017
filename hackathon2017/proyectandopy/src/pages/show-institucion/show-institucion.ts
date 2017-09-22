@@ -69,7 +69,14 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.openbar = false;
   }
 
-  progress(p, a){
+  progress(p, a, n, d){
+    let pr = 0;
+    if (d!=0){
+      pr = n/d;
+    }
+
+    a = a + pr;
+  
     let result = (a*100)/p;
     if (a > p){
       result= 100;
@@ -126,9 +133,12 @@ export class ShowInstitucionPage extends ShowBasePage {
         cantidadAvance: la.cantidad_avance,
         cantidadProgramada: la.cantidad_prog,
         unidadMedida: la.unidad_medida,
+        cantidadPromedio: la.cantidad_promedio,
+        cantidadDenominador: la.cantidad_denominador,
         ico: 'fa-users'
       });
     });
+    console.log(lineasAccion);
     return lineasAccion;
   }
 
