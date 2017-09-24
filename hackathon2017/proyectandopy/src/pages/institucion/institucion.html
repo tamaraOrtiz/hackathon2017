@@ -94,9 +94,9 @@
 
         <ion-list class='view-content'>
           <div *ngFor="let niv of _niveles | keys">
-            <ion-item class="item-grouper">Nivel: {{_niveles[niv]["nombre"]}}</ion-item>
+            <ion-item class="item-grouper">Nivel <p class="p_common_list">{{_niveles[niv]["nombre"]}}</p></ion-item>
             <div *ngFor="let ent of _niveles[niv]['entidades'] | keys">
-              <ion-item class="item-grouper middle-content entidad-grouper">Entidad: {{ _niveles[niv]["entidades"][ent]["nombre"]}}
+              <ion-item class="item-grouper middle-content entidad-grouper"><p class="p_sub_common_list">{{ _niveles[niv]["entidades"][ent]["nombre"]}}</p>
                 <button ion-button clear (click)="itemTappedEst($event, Object.keys(_niveles[niv]['entidades'][ent]['instituciones'])[0])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
               <button ion-item class="success" *ngFor="let item of _niveles[niv]['entidades'][ent]['instituciones'] | keys" (click)="itemTapped($event, _niveles[niv]['entidades'][ent]['instituciones'][item])">
@@ -106,10 +106,9 @@
                   </ion-avatar>
                   <div class="item-list">
                     <h2>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["nombre"]}}</h2>
-                    <h5 ><ion-badge class="label_c1"><i class="fa fa-users" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["cant_p"]}}</ion-badge>
-                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["cant_a"]}}</ion-badge>
-                    <ion-badge class="label_c2"><i class="fa fa-line-chart" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"]}}</ion-badge>
-                    <ion-badge class="label_c2"><i class="fa fa-line-chart" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["la"]}}</ion-badge>
+                    <h5 >
+                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"]}}</ion-badge>
+                    <ion-badge class="label_c4"><i class="fa fa-line-chart" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["la"]}}</ion-badge>
                   </h5>
                   </div>
                   <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>

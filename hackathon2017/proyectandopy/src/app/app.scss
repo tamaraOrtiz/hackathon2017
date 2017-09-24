@@ -1198,10 +1198,28 @@ progressbar {
   }
 }
 
+.label_c4{
+  color: #384867;
+  background: transparent !important;
+  i.fa{
+    padding-right: 5px;
+    font-size: 13px !important;
+  }
+}
 .p-list{
 
       i.fa{
         margin-right: 8px;
         font-size: 14px;
       }
+}
+
+.p_common_list{
+  font-size: 13px !important;
+}
+
+.p_sub_common_list{
+  width: calc(100% - 20px) !important;
+  font-size: 13px !important;
+  color: #67245e !important;
 }
