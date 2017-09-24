@@ -14,7 +14,7 @@ export class AppHelper {
   }
 
   numberFormatter(number) {
-    return this.numberFormatter(number.toString());
+    return this.numberFormat(number.toString());
   }
 
   isDeskTop(){
