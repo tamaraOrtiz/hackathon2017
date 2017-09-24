@@ -12,12 +12,15 @@
 
   <ion-grid class="graph-canva">
     <ion-row>
+      {{selectData}}
+    </ion-row>
+    <ion-row>
       <ion-col col-xs-12 col-sm-12 col-lg-9>
         <div #graph style="display:table; margin: 0 auto; width: 100%"></div>
       </ion-col>
       <ion-col col-3 *ngIf="!smallScreen">
         <div class="pie-info leaflet-top leaflet-right">
-          <div class="info leaflet-control">
+          <div class="info leaflet-control selection-info">
             <h4>{{selectedTitle}}</h4>
             <b id="label">Seleccione un programa</b><br>
             <p id="count"></p>
@@ -42,6 +45,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="d()">
+    <i class="fa fa-download"></i>
+  </a></ion-label>
 </div>
 
 <style>
@@ -70,4 +76,4 @@
     rect {
       stroke-width: 2;
     }
-    </style>
+</style>

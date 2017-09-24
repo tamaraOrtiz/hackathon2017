@@ -41,11 +41,11 @@ export class EstadisticasPage extends ShowBasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
-    public socialSharing: SocialSharing, public plt: Platform, public http: Http) {
-    super(navCtrl, navParams, socialSharing, plt);
+    public appHelper: AppHelper, public http: Http) {
+    super(navCtrl, navParams, appHelper);
     this.ratingService = raService;
     this.dataService = dataService;
-    this.openbar = plt.is('core');
+    this.openbar = appHelper.isDeskTop();
     this.tabactive = 'info'
   }
 
@@ -106,7 +106,7 @@ export class EstadisticasPage extends ShowBasePage {
     records.forEach(function (la) {
       lineasAccion.push({
         id: la.la_id,
-        nombre: AppHelper.toTitleCase(la.la_nombre),
+        nombre: this.appHelper.toTitleCase(la.la_nombre),
         cantidadFinanciera: la.cantidad_financiera,
         cantidadAvance: la.cantidad_avance,
         cantidadProgramada: la.cantidad_prog,

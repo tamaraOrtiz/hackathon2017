@@ -128,7 +128,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     records.forEach(function (la) {
       lineasAccion.push({
         id: la.la_id,
-        nombre: AppHelper.toTitleCase(la.la_nombre),
+        nombre: appHelper.toTitleCase(la.la_nombre),
         cantidadFinanciera: la.cantidad_financiera,
         cantidadAvance: la.cantidad_avance,
         cantidadProgramada: la.cantidad_prog,

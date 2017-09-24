@@ -52,7 +52,7 @@
     "font-awesome": "4.7.0",
     "fontawesome": "^4.7.2",
     "html-png-stream": "^1.1.0",
-    "html2canvas": "^0.5.0-beta4",
+    "html2canvas": "git+https://github.com/eKoopmans/html2canvas.git#develop",
     "ionic-angular": "3.5.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionic-tooltips": "^2.0.0",

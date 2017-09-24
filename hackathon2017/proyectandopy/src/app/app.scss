@@ -702,7 +702,7 @@ ion-footer{
 
 .info.leaflet-control {
   z-index: 0 !important;
-  position: block !important;
+  position: inherit !important;
 }
 
 .info h4 {
@@ -836,7 +836,7 @@ ion-footer{
 .pie-info{
   font-size: 10px;
   width: 100%;
-  height: 100%;
+  display: inline-block
 }
 
 .pie-legend{
@@ -847,6 +847,11 @@ ion-footer{
 
 .graph-canva {
   background: white;
+  display: inline-block!important;
+
+  .leaflet-top, .leaflet-bottom {
+    position: relative;
+  }
 }
 ppy-canva{
   .item-md{
@@ -912,7 +917,6 @@ ppy-rating{
   width:100%;
   p{
     font-size: 13px;
-    text-align: right;
     color: #464a3d;
   }
 }
@@ -1079,7 +1083,6 @@ ion-header.modal{
 }
 
 svg {
-  background-color: white;
   margin: 0 auto;
   display: block;
 }

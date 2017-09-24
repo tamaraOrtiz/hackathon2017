@@ -119,7 +119,7 @@ export class InstitucionPage extends BasePage {
       niveles[row.nivel_id] =
       {
         id: row.nivel_id,
-        nombre: AppHelper.toTitleCase(row.nivel_nombre),
+        nombre: appHelper.toTitleCase(row.nivel_nombre),
       };
     }
 
@@ -131,9 +131,9 @@ export class InstitucionPage extends BasePage {
       groupedItems[item.nivelid] = {name: this.niveles[item.nivelid].nombre, entidades: []};
     }
     if(groupedItems[item.nivelid]['entidades'][item.entidadid] === undefined) {
-      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: AppHelper.toTitleCase(item.entidadid), items: []};
+      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: appHelper.toTitleCase(item.entidadid), items: []};
     }
-    item.nombre = AppHelper.toTitleCase(item.nombre);
+    item.nombre = appHelper.toTitleCase(item.nombre);
     groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
 
     }

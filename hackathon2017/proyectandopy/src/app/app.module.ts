@@ -74,6 +74,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
     SplashScreen,
     InAppBrowser,
     SocialSharing,
+    AppHelper,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

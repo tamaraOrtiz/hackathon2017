@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { BaseData } from '../providers/base';
 import { ShowBasePage } from './show-base-page';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { Platform } from 'ionic-angular';
+import { AppHelper } from '../helpers/app-helper';
 
-@Injectable()
 export class BasePage {
   items: Array<any>
   where: string
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public dataService: BaseData, public socialSharing: SocialSharing, public platform: Platform) {
+              public dataService: BaseData, public appHelper: AppHelper) {
     this.items = [];
     this.where = undefined;
   }
@@ -30,17 +27,5 @@ export class BasePage {
   }
 
   itemTapped(event, item) {}
-
-  share(via='facebook', message=null, url=null, image=null) {//
-    let appnames = {
-      'facebook': `http://www.facebook.com/sharer.php?text=${message}&u=${url}`,
-      'twitter': `https://twitter.com/share?text=${message}&url=${url}`
-    };
-    if(this.platform.is('core') || !this.socialSharing.canShareVia(via)){
-      window.open(appnames[via], '_blank');
-    } else {
-      this.socialSharing.shareVia(via, message);
-    }
-  }
 
 }
