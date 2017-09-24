@@ -138,14 +138,13 @@ export class InstitucionPage extends BasePage {
 
 
   itemTapped(event, item) {
-    console.log(item);
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });
   }
 
   itemTappedEst(event, item) {
-
+    console.log(item)
     this.navCtrl.push(EstadisticasPage, {
       item: item
     });
@@ -156,13 +155,11 @@ export class InstitucionPage extends BasePage {
     if(all) {
       self.selectedNiveles = [];
       self.niveles.map(function(item) {
-        console.log(item.id);
         self.selectedNiveles.push(item.id);
       })
     } else {
       self.selectedNiveles = [];
     }
-    console.log(event);
   }
 
 }

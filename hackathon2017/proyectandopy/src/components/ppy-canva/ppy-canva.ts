@@ -120,7 +120,17 @@ export class PpyCanva {
 
     let presupuestosByName = d3.map();
     this.presupuestos.forEach(function(d) {
-      presupuestosByName.set(d.nombre, {nombre: d.nombre, programas: d.programas});
+      let otrosProgramas = { nombre: "Otros", programas: [] };
+      let total = d3.sum(d.programas.map(function(d) {
+        return d.total;
+      }));
+      d.programas.forEach(function(programa) {
+        if(programa.total/total <= 0.30){
+          
+        }
+        console.log(programa);
+      });
+      presupuestosByName.set(d.nombre, { nombre: d.nombre, programas: d.programas });
     });
 
     dispatch.on("load.pie", function(presupuestosByName) {

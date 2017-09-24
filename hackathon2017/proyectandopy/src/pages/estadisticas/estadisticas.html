@@ -10,7 +10,7 @@ Ionic pages and navigation.
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="app-subtitle">Entidad {{item.entidadid}}</ion-title>
+    <ion-title class="app-subtitle">{{item.entidadnombre}}</ion-title>
   </ion-navbar>
 
 
@@ -32,9 +32,9 @@ Ionic pages and navigation.
         <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px; margin-bottom:10px;"  (click)="changetab('info')">
           <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
         </button>
-        <ion-label class="label-sidebar">Entidad: {{item.entidadid}}</ion-label>
+        <ion-label class="label-sidebar">Entidad: {{item.entidadnombre}}</ion-label>
 
-        <ion-label class="label-sidebar">Nivel: {{item.nivelid}}</ion-label>
+        <ion-label class="label-sidebar">Nivel: {{item.nivelnombre}}</ion-label>
 
 
       </ion-col>
