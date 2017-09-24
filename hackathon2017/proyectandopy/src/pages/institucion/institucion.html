@@ -128,7 +128,7 @@
                   <div class="item-list">
                     <h2>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["nombre"]}}</h2>
                     <h5 >
-                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"]}}</ion-badge>
+                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{appHelper.numberFormatter(_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"])}}</ion-badge>
                     <ion-badge class="label_c4"><i class="fa fa-line-chart" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["la"]}}</ion-badge>
                   </h5>
                   </div>
