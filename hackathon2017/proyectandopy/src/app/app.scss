@@ -1277,3 +1277,17 @@ button:hover{
 
   }
 }
+.tooltip-menu{
+  position: absolute;
+  right: 0;
+  top: 23px;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #66666f;
+  i.fa{
+    font-size: 17px;
+  }
+
+}

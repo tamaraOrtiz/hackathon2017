@@ -29,14 +29,19 @@
         <div id="filter-sidebar-div">
           <ion-list class="selec-header">
          <ion-item>
-           <ion-label>Niveles</ion-label>
-           <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event, false)">
+           <ion-label style="max-width: 60px !important;">Niveles</ion-label>
+           <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event, false)" style="max-width: 56px !important;">
              <ion-option  *ngFor="let nivel of niveles | keys"  value="{{niveles[nivel].id}}" selected="selectedNiveles.contains(nivel)">{{niveles[nivel].nombre}}</ion-option>
 
            </ion-select>
-         </ion-item>
 
+
+         </ion-item>
        </ion-list>
+       <button ion-button tooltip="El Estado agrupa sus distintas instituciones en entidades y niveles, siendo los niveles el mayor agrupador" class="tooltip-menu" duration=6000 positionV="bottom" arrow>
+        <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+      </button>
+
         </div>
         <div class="chips-div">
           <ion-chip *ngFor="let nivel of selectedNiveles"  #chip>
@@ -102,9 +107,7 @@
           <div *ngFor="let niv of _niveles | keys">
             <ion-item class="item-grouper nivel-grouper">Nivel
                <p class="p_common_list">{{_niveles[niv]["nombre"]}}
-                 <button ion-button tooltip="El Estado agrupa sus distintas instituciones en entidades y niveles, siendo los niveles el mayor agrupador" class="tooltip-list" duration=6000 positionV="bottom" arrow>
-                   <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
-                 </button>
+
                </p>
 
             </ion-item>
