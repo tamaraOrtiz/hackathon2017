@@ -76,8 +76,8 @@ export class AppHelper {
     }
   }
 
-  shareDiv(div, via='facebook'){
-    this.share(via, null, null, this.getGenerateCanva(div, []));
+  shareDiv(div, excludedElements=[], via='facebook'){
+    this.share(via, null, null, this.getGenerateCanva(div, excludedElements));
   }
 
   keys(hash) {

@@ -1,7 +1,12 @@
 <div>
-  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'])">
-    <i class="fa fa-download"></i>
-  </a></ion-label>
+  <ion-label class="title-page item-grouper">Estadísticas
+    <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'])">
+      <i class="fa fa-download"></i>
+    </a>
+    <a class="leaflet-control-zoom-out" (click)="appHelper.shareDiv('.graph-canva', ['.selection-info'])">
+      <i class="fa fa-facebook"></i>
+    </a>
+  </ion-label>
 
   <ion-item>
     <ion-label hidden>Programas</ion-label>
