@@ -20,16 +20,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   paraguayGeoJson: any
   geo: any
   map: any
+  tabactive: any
   openbar: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: LineaAccionData, public appHelper: AppHelper) {
     super(navCtrl, navParams, appHelper);
     this.item = navParams.get('item');
     this.openbar = appHelper.isDeskTop();
-
+    this.tabactive = 'mapa';
 
   }
-
+  changetab(_text){
+    this.tabactive = _text;
+  }
   ionViewDidEnter() {
     let self = this;
     let title = "Avances por departamento";

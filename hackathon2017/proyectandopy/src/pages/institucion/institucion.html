@@ -127,8 +127,17 @@
                   </ion-avatar>
                   <div class="item-list">
                     <h2>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["nombre"]}}</h2>
+
                     <h5 >
-                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{appHelper.numberFormatter(_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"])}}</ion-badge>
+                      <p>
+                      <i class="fa fa-star" aria-hidden="true" [ngClass]="(_niveles[niv]['entidades'][ent]['instituciones'][item]['rating']>=1 ? 'normal-start' : 'especial-start')"  ></i>
+                      <i class="fa fa-star" aria-hidden="true" [ngClass]="((_niveles[niv]['entidades'][ent]['instituciones'][item]['rating']>1.5) ? 'normal-start' : 'especial-start')"  ></i>
+                        <i class="fa fa-star" aria-hidden="true" [ngClass]="((_niveles[niv]['entidades'][ent]['instituciones'][item]['rating']>2.5) ? 'normal-start' : 'especial-start')"  ></i>
+                        <i class="fa fa-star" aria-hidden="true" [ngClass]="((_niveles[niv]['entidades'][ent]['instituciones'][item]['rating']>3.5) ? 'normal-start' : 'especial-start')"  ></i>
+                        <i class="fa fa-star" aria-hidden="true" [ngClass]="((_niveles[niv]['entidades'][ent]['instituciones'][item]['rating']>4.5) ? 'normal-start' : 'especial-start')"  ></i>
+                        {{_niveles[niv]['entidades'][ent]['instituciones'][item]['comment']}} comentario/s
+                      </p>
+                    <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>{{appHelper.numberFormatter(_niveles[niv]["entidades"][ent]["instituciones"][item]["monto"])}} Gs.</ion-badge>
                     <ion-badge class="label_c4"><i class="fa fa-line-chart" aria-hidden="true"></i>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["la"]}}</ion-badge>
                   </h5>
                   </div>

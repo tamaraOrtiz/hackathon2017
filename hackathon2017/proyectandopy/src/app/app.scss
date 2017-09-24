@@ -177,7 +177,7 @@ ion-searchbar{
         line-height: 24px;
         background: white;
         p{
-          font-size: 11px !important;
+          font-size: 12px !important;
         }
         h3{
           padding: 9px 0;
@@ -961,8 +961,8 @@ rect.child {
 }
 .button-md:hover:not(.disable-hover),.buttonfilter:hover{
 
-  background: rgb(23, 119, 130) !important;
-  color: white;
+  background: transparent !important;
+  color: rgb(23, 119, 130) ;
 
 }
 
@@ -1005,7 +1005,7 @@ rect.child {
     }
   }
   .sidebarbutton:hover{
-    color: #fff;
+    color: rgb(23, 119, 130);
 
   }
   .sidebarbutton.active{
@@ -1265,7 +1265,7 @@ progressbar {
 }
 
 button:hover{
-  color: white !important;
+  color: rgb(23, 119, 130) !important;
 }
 
 .entidad-grouper button{
@@ -1278,7 +1278,7 @@ button:hover{
     font-size: 17px;
   }
   i.fa-info-circle:hover{
-    color: #fff !important;
+    color: rgb(23, 119, 130) !important;
 
   }
 }
@@ -1295,4 +1295,12 @@ button:hover{
     font-size: 17px;
   }
 
+}
+.normal-start{
+  color: #8aaee6;
+  font-size: 15px !important;
+}
+.especial-start{
+  color: #bfbebe;
+  font-size: 15px !important;
 }

@@ -25,13 +25,21 @@
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
         <div id="filter-sidebar-div">
-          <button  ion-button item-end right  outline class ='sidebarbutton active' style="margin-top:8px;"  (click)="changetab('general')">
+          <button  ion-button item-end outline [ngClass]="(tabactive=='mapa' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('mapa')">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            Mapa de Calor
+          </button>
+          <button  ion-button item-end outline [ngClass]="(tabactive=='barra' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('barra')">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+            Grafico de Barra
+          </button>
+          <button  ion-button item-end right  outline class ='sidebarbutton ' style="margin-top:8px;"  (click)="changetab('general')">
 
             Información
           </button>
           <ion-list class="selec-header">
          <ion-item>
-           <ion-label>Presupuesto: <p>{{item.cantidadFinanciera}}</p></ion-label>
+           <ion-label>Presupuesto: <p>{{appHelper.numberFormatter(item.cantidadFinanciera)}} Gs.</p></ion-label>
 
          </ion-item>
          <ion-item>
@@ -54,7 +62,7 @@
 
       </ion-col>
 
-      <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+      <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
         <ion-item class="item-grouper">Grafica
         </ion-item>
@@ -62,6 +70,12 @@
           <i class="fa fa-download"></i>
         </a>
         <div  style="height: calc(100% - 46px);" id="map"></div>
+      </ion-col>
+      <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+
+        <ion-item class="item-grouper">Grafica
+        </ion-item>
+
       </ion-col>
   </ion-row>
 
