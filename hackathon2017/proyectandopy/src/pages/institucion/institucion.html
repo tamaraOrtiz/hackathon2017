@@ -99,7 +99,9 @@
               <ion-item class="item-grouper middle-content entidad-grouper"><p class="p_sub_common_list">{{ _niveles[niv]["entidades"][ent]["nombre"]}}</p>
                 <button ion-button clear (click)="itemTappedEst($event, _niveles[niv]['entidades'][ent]['instituciones'][appHelper.keys(_niveles[niv]['entidades'][ent]['instituciones'])[0]])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
-              <button ion-item class="success" *ngFor="let item of _niveles[niv]['entidades'][ent]['instituciones'] | keys" (click)="itemTapped($event, _niveles[niv]['entidades'][ent]['instituciones'][item])">
+              <button ion-item class="success"
+               *ngFor="let item of _niveles[niv]['entidades'][ent]['instituciones'] | keys"
+               [ngClass]="(!(_niveles[niv]['entidades'][ent]['instituciones'][item]['monto']==0 && _niveles[niv]['entidades'][ent]['instituciones'][item]['la']==0) ? 'list_sin_info' : '')" (click)="itemTapped($event, _niveles[niv]['entidades'][ent]['instituciones'][item])">
                 <ion-item>
                   <ion-avatar item-start>
                       <i class="fa fa-bank"></i>
