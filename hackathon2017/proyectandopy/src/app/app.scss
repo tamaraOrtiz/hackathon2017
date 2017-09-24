@@ -582,6 +582,7 @@ ion-header{
   ion-label{
     color: #7355b7 !important;
     padding-left: 10px;
+    margin-bottom: 0;
   }
 }
 
@@ -1108,10 +1109,22 @@ svg {
   p{
         font-size: 14px;
         min-height: 60px;
+        margin-bottom: 0;
+        padding-left: 5px;
+        padding-right: 5px;
   }
   .toolbar-content-md{
-    text-align: right;
-    margin-bottom: 14px;
+
+    .right{
+      position: absolute;
+      right: 10px !important;
+      bottom: 4px !important;
+    }
+    .left{
+      position: absolute;
+      left: 10px !important;
+      bottom: 4px !important;
+    }
   }
   .button-md-secondary {
     color: #fff;
@@ -1227,5 +1240,40 @@ progressbar {
   background: #e9f1f5 !important;
   .item-inner, .item-md, .input-wrapper, .label.label-md{
     background: transparent !important;
+  }
+}
+.tooltip-list{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #66666f;
+  font-size: 13px;
+  position: relative;
+  top: -5px;
+}
+
+.nivel-grouper ion-label{
+  margin-bottom: 0px;
+  i.fa{
+    font-size: 17px;
+  }
+}
+
+button:hover{
+  color: white !important;
+}
+
+.entidad-grouper button{
+
+  position: relative !important;
+  top: -5px !important;
+
+  i.fa-info-circle{
+    color: #66666f !important;
+    font-size: 17px;
+  }
+  i.fa-info-circle:hover{
+    color: #fff !important;
+
   }
 }

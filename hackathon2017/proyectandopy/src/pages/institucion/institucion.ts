@@ -56,6 +56,10 @@ export class InstitucionPage extends BasePage {
     this.slides.slideNext(100);
   }
 
+  gobackSlide() {
+    this.slides.slidePrev(100);
+  }
+
   showSearch(value: boolean){
     this.showSearchBar = value;
   }

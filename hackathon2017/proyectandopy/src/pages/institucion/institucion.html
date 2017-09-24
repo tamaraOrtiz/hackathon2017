@@ -52,39 +52,45 @@
              <ion-slide >
                <p>Necesitas Ayuda?</p>
                <ion-toolbar class="tutorial-buttons">
-                 <button ion-button color="secondary"  (click)="goToSlide()"> Si</button>
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
 
              <ion-slide >
                <p>Aqui puedes ver el listado de las Intituciones, agrupadas por niveles y entidades (si quieres saber mas sobre esto puedes ir a la seccion de información)</p>
                <ion-toolbar class="tutorial-buttons">
-                 <button ion-button color="secondary"  (click)="goToSlide()"> Siguente</button>
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
 
              <ion-slide >
                <p>Tambien puedes filtrar la informacion dentro de este menu</p>
                <ion-toolbar class="tutorial-buttons">
-                 <button ion-button color="secondary"  (click)="goToSlide()"> Siguente</button>
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
 
              <ion-slide >
                <p>Dentro de cada Institucion puedes ver mas acerca de cada una, Visión, Misión, Lineas de Acción, entre Otros. Tambien puedes comentar y calificar esta Información</p>
                <ion-toolbar class="tutorial-buttons">
-                 <button ion-button color="secondary"  (click)="goToSlide()"> Siguente</button>
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Dentro de cada Entidad puedes ver un grafico que muestra la cantidad de beneficiarios de cada programa</p>
+               <p>Tambien dentro de cada Entidad puedes ver un grafico que muestra la cantidad de beneficiarios de cada programa</p>
                <ion-toolbar class="tutorial-buttons">
-                 <button ion-button color="secondary"  (click)="goToSlide()"> Siguente</button>
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
                <p>Esperamos haberte ayudado!</p>
-
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
              </ion-slide>
 
            </ion-slides>
@@ -94,9 +100,19 @@
 
         <ion-list class='view-content'>
           <div *ngFor="let niv of _niveles | keys">
-            <ion-item class="item-grouper">Nivel <p class="p_common_list">{{_niveles[niv]["nombre"]}}</p></ion-item>
+            <ion-item class="item-grouper nivel-grouper">Nivel
+               <p class="p_common_list">{{_niveles[niv]["nombre"]}}
+                 <button ion-button tooltip="El Estado agrupa sus distintas instituciones en entidades y niveles, siendo los niveles el mayor agrupador" class="tooltip-list" duration=6000 positionV="bottom" arrow>
+                   <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+                 </button>
+               </p>
+
+            </ion-item>
             <div *ngFor="let ent of _niveles[niv]['entidades'] | keys">
-              <ion-item class="item-grouper middle-content entidad-grouper"><p class="p_sub_common_list">{{ _niveles[niv]["entidades"][ent]["nombre"]}}</p>
+              <ion-item class="item-grouper middle-content entidad-grouper"><p class="p_sub_common_list">{{ _niveles[niv]["entidades"][ent]["nombre"]}}
+                <button ion-button tooltip="Al hacer click en icono de la derecha puedes ver la grafica que muestra los beneficiarios de la entidad" class="tooltip-list" duration=6000 positionV="bottom" arrow>
+                <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+              </button></p>
                 <button ion-button clear (click)="itemTappedEst($event, _niveles[niv]['entidades'][ent]['instituciones'][appHelper.keys(_niveles[niv]['entidades'][ent]['instituciones'])[0]])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
               <button ion-item class="success"
