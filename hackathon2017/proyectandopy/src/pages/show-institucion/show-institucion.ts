@@ -5,9 +5,7 @@ import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { Events } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
 import * as d3 from "d3";
 import { Http } from '@angular/http';
 import { AppHelper } from '../../helpers/app-helper';
@@ -86,11 +84,23 @@ export class ShowInstitucionPage extends ShowBasePage {
   }
 
   ionViewDidEnter() {
-    this.dataService.getQuery(this.dataService.getLineasAccion(
-      this.item.nivelid,
-      this.item.entidadid,
-      this.item.id, ''), true).then(records => {
-        this.lineasAccion = this.structLineasAccion(records);
+    this.dataService.getQuery(this.dataService.getInstitucion(this.item.id)).then(record => {
+      let institucion = record[0] as any;
+      let additionalData = { descripcion: institucion.descripcion,
+                             mision: institucion.mision,
+                             diagnostico: institucion.diagnostico,
+                             baselegal: institucion.baselegal,
+                             objetivo: institucion.objetivo,
+                             politica: institucion.politica,
+                             ruc: institucion.ruc
+                           };
+      this.item = Object.assign(this.item, additionalData);
+      this.dataService.getQuery(this.dataService.getLineasAccion(
+        this.item.nivelid,
+        this.item.entidadid,
+        this.item.id, ''), true).then(records => {
+          this.lineasAccion = this.structLineasAccion(records);
+      });
     });
 
     this.ratingService.getRating(this.item.id, 'Institucion').then(rating => {
@@ -139,7 +149,6 @@ export class ShowInstitucionPage extends ShowBasePage {
         ico: 'fa-users'
       });
     });
-    console.log(lineasAccion);
     return lineasAccion;
   }
 

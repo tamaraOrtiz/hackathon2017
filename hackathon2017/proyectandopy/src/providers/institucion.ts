@@ -31,6 +31,10 @@ export class InstitucionData extends BaseData {
     return `instituciones/?niveles=${niveles}`;
   }
 
+  getInstitucion(id) {
+    return `?q=SELECT nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones WHERE id='${id}' LIMIT 1`;
+  }
+
   getNiveles(where: string) {
     return "?q=SELECT nivel_id, nivel_nombre, COUNT(DISTINCT entidad_id) FROM public.destinatarioproducto "+where+" GROUP BY nivel_id, nivel_nombre ORDER BY nivel_id ASC ;"
   }

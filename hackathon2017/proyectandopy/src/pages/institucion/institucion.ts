@@ -75,8 +75,7 @@ export class InstitucionPage extends BasePage {
       self.loading.dismiss();
     });
     this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
-      console.log(record);
-        this._niveles = record;
+      this._niveles = record;
     });
   }
 
