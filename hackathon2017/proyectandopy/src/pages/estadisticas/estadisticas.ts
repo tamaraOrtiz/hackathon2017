@@ -5,9 +5,7 @@ import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ShowLineaAccionPage } from '../show-linea-accion/show-linea-accion';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { Events } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
 import * as d3 from "d3";
 import { Http } from '@angular/http';
 import { AppHelper } from '../../helpers/app-helper';
@@ -102,11 +100,12 @@ export class EstadisticasPage extends ShowBasePage {
   }
 
   structLineasAccion (records: Array<any>):any {
+    let self = this;
     let lineasAccion = [];
     records.forEach(function (la) {
       lineasAccion.push({
         id: la.la_id,
-        nombre: this.appHelper.toTitleCase(la.la_nombre),
+        nombre: self.appHelper.toTitleCase(la.la_nombre),
         cantidadFinanciera: la.cantidad_financiera,
         cantidadAvance: la.cantidad_avance,
         cantidadProgramada: la.cantidad_prog,

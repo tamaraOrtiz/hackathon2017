@@ -1,13 +1,13 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
+import { AppHelper } from '../helpers/app-helper';
 
 export class ShowBasePage {
 
   item: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public socialSharing: SocialSharing, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appHelper: AppHelper) {
     this.item = navParams.get('item');
   }
 
@@ -24,18 +24,6 @@ export class ShowBasePage {
         document.getElementById(h_id).style.display = 'block';
         event.classList.add(_class);
       }
-    }
-  }
-
-  share(via='facebook', message=null, url=null, image=null) {//
-    let appnames = {
-      'facebook': `http://www.facebook.com/sharer.php?summary=${message}&u=${url}`,
-      'twitter': `https://twitter.com/share?text=${message}&url=${url}`
-    };
-    if(this.platform.is('core') || !this.socialSharing.canShareVia(via)){
-      window.open(appnames[via], '_blank');
-    } else {
-      this.socialSharing.shareVia(via, message);
     }
   }
 

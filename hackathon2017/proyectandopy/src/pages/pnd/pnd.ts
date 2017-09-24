@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import {  ModalController, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
 import { PndData } from '../../providers/pnd';
 import { BasePage } from '../../app/base-page';
 import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { ModalPage } from '../../pages/modal/modal'
-import { SocialSharing } from '@ionic-native/social-sharing';;
+import { ModalPage } from '../../pages/modal/modal';
+import { AppHelper } from '../../helpers/app-helper';
 
 @Component({
   selector: 'page-pnd',
@@ -36,10 +36,9 @@ export class PNDPage extends BasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
-    public events: Events, public plt: Platform,
-    public socialSharing: SocialSharing,
-    public raService: RatingData, public pService: PndData, public modalCtrl: ModalController) {
-    super(navCtrl, navParams, dataService, socialSharing, plt);
+    public events: Events, public raService: RatingData,
+    public pService: PndData, public appHelper: AppHelper, public modalCtrl: ModalController) {
+    super(navCtrl, navParams, dataService, appHelper);
     this.ratingService = raService;
     this.pndService = pService;
     this.selectedNiveles = "null";
@@ -47,7 +46,7 @@ export class PNDPage extends BasePage {
     this.selectedAnhos = "null";
     this.anhos = [2017,2018,2019];
     this.tabactive = 'general';
-    this.openbar = plt.is('core');
+    this.openbar = appHelper.isDeskTop();
 
   }
   changetab(_text){

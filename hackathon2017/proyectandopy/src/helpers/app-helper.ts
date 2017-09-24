@@ -94,4 +94,8 @@ export class AppHelper {
   shareDiv(div, via='facebook'){
     this.share(via, null, null, this.getGenerateCanva(div));
   }
+
+  keys(hash) {
+    return Object.keys(hash);
+  }
 }

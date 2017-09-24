@@ -6,9 +6,8 @@ import { ShowInstitucionPage } from '../show-institucion/show-institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { EstadisticasPage } from '../estadisticas/estadisticas';
-import { Platform, Slides } from 'ionic-angular';
+import { Slides } from 'ionic-angular';
 
 
 
@@ -32,10 +31,10 @@ export class InstitucionPage extends BasePage {
   _niveles : any = {};
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
-    menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
-    super(navCtrl, navParams, dataService, socialSharing, platform);
+    menuCtrl: MenuController, public appHelper: AppHelper) {
+    super(navCtrl, navParams, dataService, appHelper);
     this.where = "borrado = 'false'";
-    this.openbar = platform.is('core');
+    this.openbar = appHelper.isDeskTop();
   }
 
   delete(chip: Element, value) {
@@ -119,7 +118,7 @@ export class InstitucionPage extends BasePage {
       niveles[row.nivel_id] =
       {
         id: row.nivel_id,
-        nombre: appHelper.toTitleCase(row.nivel_nombre),
+        nombre: this.appHelper.toTitleCase(row.nivel_nombre),
       };
     }
 
@@ -131,9 +130,9 @@ export class InstitucionPage extends BasePage {
       groupedItems[item.nivelid] = {name: this.niveles[item.nivelid].nombre, entidades: []};
     }
     if(groupedItems[item.nivelid]['entidades'][item.entidadid] === undefined) {
-      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: appHelper.toTitleCase(item.entidadid), items: []};
+      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: this.appHelper.toTitleCase(item.entidadid), items: []};
     }
-    item.nombre = appHelper.toTitleCase(item.nombre);
+    item.nombre = this.appHelper.toTitleCase(item.nombre);
     groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
 
     }
