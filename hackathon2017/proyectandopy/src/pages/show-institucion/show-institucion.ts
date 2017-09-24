@@ -43,11 +43,11 @@ export class ShowInstitucionPage extends ShowBasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
-    public socialSharing: SocialSharing, public plt: Platform, public http: Http) {
-    super(navCtrl, navParams, socialSharing, plt);
+    public appHelper: AppHelper, public http: Http) {
+    super(navCtrl, navParams, appHelper);
     this.ratingService = raService;
     this.dataService = dataService;
-    this.openbar = plt.is('core');
+    this.openbar = appHelper.isDeskTop();
     this.tabactive = 'info'
     this.myParseInt = parseInt;
   }
@@ -76,7 +76,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     }
 
     a = a + pr;
-  
+
     let result = (a*100)/p;
     if (a > p){
       result= 100;
@@ -124,11 +124,12 @@ export class ShowInstitucionPage extends ShowBasePage {
   }
 
   structLineasAccion (records: Array<any>):any {
+    let self = this;
     let lineasAccion = [];
     records.forEach(function (la) {
       lineasAccion.push({
         id: la.la_id,
-        nombre: appHelper.toTitleCase(la.la_nombre),
+        nombre: self.appHelper.toTitleCase(la.la_nombre),
         cantidadFinanciera: la.cantidad_financiera,
         cantidadAvance: la.cantidad_avance,
         cantidadProgramada: la.cantidad_prog,

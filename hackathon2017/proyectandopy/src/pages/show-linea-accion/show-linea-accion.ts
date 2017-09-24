@@ -6,9 +6,6 @@ import { AppHelper } from '../../helpers/app-helper';
 import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
 import 'leaflet-search';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { Platform } from 'ionic-angular';
-
 
 @Component({
   selector: 'page-show-nivel',
@@ -25,34 +22,12 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   map: any
   openbar: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public dataService: LineaAccionData, public socialSharing: SocialSharing, public plt: Platform) {
-    super(navCtrl, navParams, socialSharing, plt);
+    public dataService: LineaAccionData, public appHelper: AppHelper) {
+    super(navCtrl, navParams, appHelper);
     this.item = navParams.get('item');
-    this.openbar = plt.is('core');
+    this.openbar = appHelper.isDeskTop();
 
 
-  }
-  d() {
-    let self = this;
-    html2canvas(document.getElementsByClassName('scroll-content')[0],
-    {
-      onrendered: function (canvas) {
-        let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-        if(self.plt.is('core')){
-          var a = document.createElement('a');
-          a.href = url;
-          a.download = 'somefilename.jpg';
-          a.click();
-        } else {
-          //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {
-          //  console.log('download complete: ' + entry.toURL());
-          //}, (error) => {
-            // handle error
-          //});
-        }
-      }
-
-    });
   }
 
   ionViewDidEnter() {
