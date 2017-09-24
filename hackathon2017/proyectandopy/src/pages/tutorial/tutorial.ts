@@ -6,8 +6,6 @@ import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { LoadingController } from 'ionic-angular';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { Platform } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tutorial.html',
@@ -54,8 +52,8 @@ export class TutorialPage extends BasePage {
   ];
 
   constructor(private iab: InAppBrowser, public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
-    menuCtrl: MenuController, public socialSharing: SocialSharing, public platform: Platform) {
-    super(navCtrl, navParams, dataService, socialSharing, platform);
+    menuCtrl: MenuController, public appHelper: AppHelper) {
+    super(navCtrl, navParams, dataService, appHelper);
   }
 
   openLink(link){
