@@ -27,9 +27,8 @@ export class InstitucionData extends BaseData {
     let where = conditions !== undefined ? `WHERE ${conditions} AND ` : 'WHERE ';
     return `lineas_de_accion/?nivel=${nivelId}&entidad=${entidadId}&institucion=${institucionId}`;
   }
-  getInstituciones() {
-
-    return `instituciones`;
+  getInstituciones(niveles) {
+    return `instituciones/?niveles=${niveles}`;
   }
 
   getNiveles(where: string) {

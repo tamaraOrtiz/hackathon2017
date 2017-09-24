@@ -84,7 +84,7 @@
              </ion-slide>
              <ion-slide >
                <p>Esperamos haberte ayudado!</p>
-               
+
              </ion-slide>
 
            </ion-slides>
@@ -93,19 +93,19 @@
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
         <ion-list class='view-content'>
-          <div *ngFor="let nivel of groupedItems">
-            <ion-item class="item-grouper">Nivel: {{nivel.name}}</ion-item>
-            <div *ngFor="let entidad of nivel.entidades">
-              <ion-item class="item-grouper middle-content entidad-grouper">Entidad: {{entidad.name}}
-                <button ion-button clear (click)="itemTappedEst($event, entidad.items[0])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
+          <div *ngFor="let niv of _niveles | keys">
+            <ion-item class="item-grouper">Nivel: {{_niveles[niv]["nombre"]}}</ion-item>
+            <div *ngFor="let ent of _niveles[niv]['entidades'] | keys">
+              <ion-item class="item-grouper middle-content entidad-grouper">Entidad: {{ _niveles[niv]["entidades"][ent]["nombre"]}}
+                <button ion-button clear (click)="itemTappedEst($event, Object.keys(_niveles[niv]['entidades'][ent]['instituciones'])[0])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
-              <button ion-item class="success" *ngFor="let item of entidad.items" (click)="itemTapped($event, item)">
+              <button ion-item class="success" *ngFor="let item of _niveles[niv]['entidades'][ent]['instituciones'] | keys" (click)="itemTapped($event, _niveles[niv]['entidades'][ent]['instituciones'][item])">
                 <ion-item>
                   <ion-avatar item-start>
                       <i class="fa fa-bank"></i>
                   </ion-avatar>
                   <div class="item-list">
-                    <h2>{{item.nombre}}</h2>
+                    <h2>{{_niveles[niv]["entidades"][ent]["instituciones"][item]["nombre"]}}</h2>
                     <h5 ><ion-badge class="label_c1"><i class="fa fa-users" aria-hidden="true"></i>26000000000</ion-badge>
                     <ion-badge class="label_c2"><i class="fa fa-money" aria-hidden="true"></i>130</ion-badge>
                     <ion-badge class="label_c2"><i class="fa fa-line-chart" aria-hidden="true"></i>10</ion-badge></h5>
