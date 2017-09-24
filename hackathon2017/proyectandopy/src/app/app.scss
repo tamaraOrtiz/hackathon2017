@@ -976,7 +976,7 @@ rect.child {
   overflow-y: auto;
   padding: 0 !important;
   font-family: 'Muli', sans-serif;
-
+    max-height: calc(100% - 147px) !important;
   .closesidebar{
     text-align: end;
 /* color: bisque; */
