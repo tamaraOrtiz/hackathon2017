@@ -1,5 +1,5 @@
 <div>
-  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', [])">
+  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'])">
     <i class="fa fa-download"></i>
   </a></ion-label>
 
@@ -11,8 +11,8 @@
   </ion-item>
 
   <ion-grid class="graph-canva">
-    <ion-row>
-      {{selectData}}
+    <ion-row class="">
+      <label>Beneficiarios por {{selectData}}</label>
     </ion-row>
     <ion-row>
       <ion-col col-xs-12 col-sm-12 col-lg-9>

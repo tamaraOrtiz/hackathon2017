@@ -26,29 +26,25 @@ export class AppHelper {
     let self = this;
     return new Promise<any>((resolve) => {
       let target = self.getElement(div);
-      html2canvas(target, {onclone: function(document) {
-        excludedElements.forEach(function (div) {
-          let element = self.getElement(div);
-          if(element !== null) {
-            element.style.display = 'none';
-          }
-        });
-      }}).then( canvas => {
+      html2canvas(target, {
+        onclone: function(doc) {
+          excludedElements.forEach(function (div) {
+            let element = self.getElement(div, doc);
+            console.log(element);
+            if(element !== null) {
+              element.style.display = 'none';
+            }
+          });
+        }
+      }).then( canvas => {
         let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
         resolve(url);
       });
     });
   }
 
-  getElement(identifier) {
-    let element = null;
-    if(identifier.startsWith('.')){
-      element = document.getElementsByClassName(identifier.replace('.',''))[0];
-    } else if(identifier.startsWith('#')){
-      element = document.getElementById(identifier.replace('#',''));
-    }
-    console.log(element)
-    return element;
+  getElement(identifier, dom=document) {
+    return dom.querySelector(identifier);
   }
 
   download(div, excludedElements) {

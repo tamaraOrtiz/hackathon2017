@@ -126,7 +126,6 @@ export class PpyCanva {
         return d.total;
       }));
       d.programas.forEach(function(programa) {
-        console.log(programa);
         if(programa.total * 1.0 / total <= 0.10){
           otrosProgramas.total+= programa.total;
 
@@ -189,7 +188,6 @@ export class PpyCanva {
       g.append("path")
       .attr("d", arc)
       .style("fill", function(d) {
-        console.log(d.data);
         legend.append("p")
               .html(`<i style="background:${self.colores(d.data.nombre)}"></i> ${self.appHelper.toTitleCase(d.data.nombre)}<br>`);
         return self.colores(d.data.nombre);
@@ -212,7 +210,7 @@ export class PpyCanva {
          .style("stroke", function(d) { return self.colores(d.data.nombre); })
          .style("stroke-width", 2)
         g.append("text")
-	       .attr("transform", function(d) { console.log(d); return "translate(" + arc.centroid(d) + ")"; })
+	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 	       .text(function(d) { return numberFormatter(d.data.total.toString());})
          .style("font-size", function(d) {
            let width = d3.select(this.previousSibling).node().getBBox().width;
