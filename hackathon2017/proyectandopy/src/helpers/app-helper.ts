@@ -2,12 +2,19 @@ import { Injectable } from '@angular/core';
 import * as html2canvas from "html2canvas";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
-
+import * as d3 from "d3";
 @Injectable()
 export class AppHelper {
 
-  constructor(public socialSharing: SocialSharing, public platform: Platform) {
+  numberFormat: any;
 
+  constructor(public socialSharing: SocialSharing, public platform: Platform) {
+    let localeFormatter = d3.formatLocale({ "decimal": ",", "thousands": ".", "grouping": [3]});
+    this.numberFormat = localeFormatter.format(",.2f")
+  }
+
+  numberFormatter(number) {
+    return this.numberFormatter(number.toString());
   }
 
   isDeskTop(){

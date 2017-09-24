@@ -146,9 +146,6 @@ export class PpyCanva {
       let radius = Math.min(width, height) / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 
-      let localeFormatter = d3.formatLocale({ "decimal": ",", "thousands": ".", "grouping": [3]});
-      let numberFormatter = localeFormatter.format(",.2f")
-
       let legend = d3.select("#pie-info-legend");
       legend.html('');
 
@@ -211,11 +208,11 @@ export class PpyCanva {
          .style("stroke-width", 2)
         g.append("text")
 	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-	       .text(function(d) { return numberFormatter(d.data.total.toString());})
+	       .text(function(d) { return self.appHelper.numberFormatter(d.data.total);})
          .style("font-size", function(d) {
            let width = d3.select(this.previousSibling).node().getBBox().width;
 
-           return `${self.appHelper.fontSizeforWidth(width, numberFormatter(d.data.total.toString()))}`;
+           return `${self.appHelper.fontSizeforWidth(width, self.appHelper.numberFormatter(d.data.total))}`;
          })
          .style("text-anchor","middle")
 	       .style("fill", "#fff");
@@ -224,14 +221,14 @@ export class PpyCanva {
           let info = d3.select('.pie-info');
           let percent = Math.round(1000 * d.data.total / total)/10;
           info.select('#label').html(self.appHelper.toTitleCase(d.data.nombre));
-          info.select('#count').html(numberFormatter(d.data.total.toString())+" Beneficiarios");
-          info.select('#percentage').html(numberFormatter(percent.toString()) + '%');
+          info.select('#count').html(self.appHelper.numberFormatter(d.data.total)+" Beneficiarios");
+          info.select('#percentage').html(self.appHelper.numberFormatter(percent) + '%');
           info.select('#detail').html('');
           info.style('display', 'block');
           Object.keys(d.data.detalle).forEach(function(k) {
             info.select('#detail')
                 .append("p")
-                .html(`${numberFormatter(d.data.detalle[k].toString())} ${k.toLowerCase()} <br>`);
+                .html(`${self.appHelper.numberFormatter(d.data.detalle[k])} ${k.toLowerCase()} <br>`);
           });
         });
       });
