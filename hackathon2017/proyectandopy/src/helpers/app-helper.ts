@@ -22,9 +22,18 @@ export class AppHelper {
     return width / text.length * 0.85;
   }
 
-  getGenerateCanva(div){
+  getGenerateCanva(div, excludedElements){
+    let self = this;
     return new Promise<any>((resolve) => {
-      html2canvas(div).subscribe( canvas => {
+      let target = self.getElement(div);
+      html2canvas(target, {onclone: function(document) {
+        excludedElements.forEach(function (div) {
+          let element = self.getElement(div);
+          if(element !== null) {
+            element.style.display = 'none';
+          }
+        });
+      }}).then( canvas => {
         let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
         resolve(url);
       });
@@ -34,33 +43,17 @@ export class AppHelper {
   getElement(identifier) {
     let element = null;
     if(identifier.startsWith('.')){
-      let element = document.getElementsByClassName(identifier.replace('.',''));
+      element = document.getElementsByClassName(identifier.replace('.',''))[0];
     } else if(identifier.startsWith('#')){
-      let element = document.getElementById(identifier.replace('#',''));
+      element = document.getElementById(identifier.replace('#',''));
     }
+    console.log(element)
     return element;
   }
 
   download(div, excludedElements) {
     let self = this;
-    let target = self.getElement(div);
-    let ignoredElements = [];
-    excludedElements.forEach(function (div) {
-      let element = self.getElement(div);
-      if(element !== null) {
-        element.style.display = 'none';
-        ignoredElements.push(element);
-      }
-    });
-
-    target.style.overflow="visible !important";
-    target.style.height="auto !important";
-    target.style.maxHeight="auto !important";
-
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-    self.getGenerateCanva(div).then(function (url) {
-
+    self.getGenerateCanva(div, excludedElements).then(function (url) {
       if(self.platform.is('core')){
         var a = document.createElement('a');
         a.href = url;
@@ -72,10 +65,6 @@ export class AppHelper {
         //}, (error) => {
         //});
       }
-
-      ignoredElements.forEach(function (element) {
-        element.style.display = 'block';
-      });
     });
   }
 
@@ -92,10 +81,17 @@ export class AppHelper {
   }
 
   shareDiv(div, via='facebook'){
-    this.share(via, null, null, this.getGenerateCanva(div));
+    this.share(via, null, null, this.getGenerateCanva(div, []));
   }
 
   keys(hash) {
     return Object.keys(hash);
+  }
+
+  combineHashes(source, destination) {
+    this.keys(source).forEach(function(k) {
+      let amount = destination[k] === undefined ? 0 :destination[k];
+      destination[k] = amount + source[k];
+    });
   }
 }

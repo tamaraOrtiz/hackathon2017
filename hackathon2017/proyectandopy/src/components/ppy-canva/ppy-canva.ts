@@ -120,17 +120,25 @@ export class PpyCanva {
 
     let presupuestosByName = d3.map();
     this.presupuestos.forEach(function(d) {
-      let otrosProgramas = { nombre: "Otros", programas: [] };
+      let otrosProgramas = { nombre: "Otros", total: 0, detalle: {} };
+      let programas = [];
       let total = d3.sum(d.programas.map(function(d) {
         return d.total;
       }));
       d.programas.forEach(function(programa) {
-        if(programa.total/total <= 0.30){
-          
-        }
         console.log(programa);
+        if(programa.total * 1.0 / total <= 0.10){
+          otrosProgramas.total+= programa.total;
+
+          self.appHelper.combineHashes(programa.detalle, otrosProgramas.detalle);
+        } else {
+          programas.push(programa);
+        }
       });
-      presupuestosByName.set(d.nombre, { nombre: d.nombre, programas: d.programas });
+      if(otrosProgramas.total > 0) {
+        programas.push(otrosProgramas);
+      }
+      presupuestosByName.set(d.nombre, { nombre: d.nombre, programas: programas });
     });
 
     dispatch.on("load.pie", function(presupuestosByName) {
@@ -181,6 +189,7 @@ export class PpyCanva {
       g.append("path")
       .attr("d", arc)
       .style("fill", function(d) {
+        console.log(d.data);
         legend.append("p")
               .html(`<i style="background:${self.colores(d.data.nombre)}"></i> ${self.appHelper.toTitleCase(d.data.nombre)}<br>`);
         return self.colores(d.data.nombre);
