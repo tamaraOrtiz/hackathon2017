@@ -44,6 +44,7 @@ export class AppHelper {
           });
         }
       }).then( canvas => {
+        console.log(canvas.toDataURL("image/jpeg"));
         let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
         resolve(url);
       });
@@ -71,20 +72,31 @@ export class AppHelper {
     });
   }
 
-  share(via='facebook', message=null, url=null, image=null) {//
+  share(via='facebook', message=null, url=null, image=null) {
+    url = url ? url : 'https://proyectandopy.com';
+    image = 'http://fiuni.edu.py/img/logo-fiuni.png';
     let appnames = {
-      'facebook': `http://www.facebook.com/sharer.php?summary=${message}&u=${url}`,
+      'facebook': `http://www.facebook.com/sharer.php?summary=${message}&u=${url}&image=${image}`,
       'twitter': `https://twitter.com/share?text=${message}&url=${url}`
     };
     if(this.platform.is('core') || !this.socialSharing.canShareVia(via)){
       window.open(appnames[via], '_blank');
     } else {
-      this.socialSharing.shareVia(via, message);
+      this.socialSharing.shareWithOptions({
+        message: 'share this', // not supported on some apps (Facebook, Instagram)
+        subject: 'the subject', // fi. for email
+        files: [image], // an array of filenames either locally or remotely
+        url: 'https://www.website.com/foo/#bar?a=b',
+        chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+      });//(via, message, '', url, image);
     }
   }
 
   shareDiv(div, excludedElements=[], via='facebook'){
-    this.share(via, null, null, this.getGenerateCanva(div, excludedElements));
+    this.getGenerateCanva(div, excludedElements).then((image) => {
+
+      this.share(via, null, null, image);
+    });
   }
 
   keys(hash) {

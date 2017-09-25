@@ -141,9 +141,9 @@ export class PpyCanva {
     });
 
     dispatch.on("load.pie", function(presupuestosByName) {
-      let width  = this.smallScreen ? 350 : 500;
+      let width  = this.smallScreen ? 450 : 600;
       let height = width * 0.9;
-      let radius = Math.min(width, height) / 2;
+      let radius = Math.min(width, height) * 0.9 / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 
       let legend = d3.select("#pie-info-legend");
@@ -152,6 +152,9 @@ export class PpyCanva {
       let arc = d3.arc()
                   .outerRadius(radius - 10)
                   .innerRadius(0);
+      let outerArc = d3.arc()
+            	         .innerRadius(0)
+            	         .outerRadius(width-100);
 
       let pie = d3.pie()
       .sort(null)
@@ -176,7 +179,7 @@ export class PpyCanva {
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+      .attr("transform", "translate(" + (width-100) / 2 + "," + height / 2 + ")");
       let g = svg.selectAll(".arc")
       .data(pie(data))
       .enter().append("g")
@@ -207,15 +210,40 @@ export class PpyCanva {
          .style("stroke", function(d) { return self.colores(d.data.nombre); })
          .style("stroke-width", 2)
         g.append("text")
-	       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-	       .text(function(d) { return self.appHelper.numberFormatter(d.data.total);})
-         .style("font-size", function(d) {
-           let width = d3.select(this.previousSibling).node().getBBox().width;
-
-           return `${self.appHelper.fontSizeforWidth(width, self.appHelper.numberFormatter(d.data.total))}`;
+        .attr("transform", function(d) {
+          let c = arc.centroid(d),
+          x = c[0],
+          y = c[1],
+          h = Math.sqrt(x*x + y*y);
+          let c1= arc.centroid(d);
+          let c2= outerArc.centroid(d);
+          return "translate(" + c1[0] +  ',' +
+          c2[1] +  ")";
+        })
+        .attr("dy", ".35em")
+        .text(function(d) {
+           let percent = Math.round(1000 * d.data.total / total)/10;
+           return self.appHelper.numberFormatter(percent)+'%';
          })
+         .style("font-size","1em")
          .style("text-anchor","middle")
-	       .style("fill", "#fff");
+	       .style("fill", "black");
+
+        g.append("polyline")
+         .attr("points", function(d) {
+           let c = arc.centroid(d),
+           x = c[0],
+           y = c[1],
+           h = Math.sqrt(x*x + y*y);
+           let c1= arc.centroid(d);
+           let c2= outerArc.centroid(d);
+           return [arc.centroid(d), [(x/h * (radius+10))+20, (y/h * (radius+10))], [c1[0], c2[1]]];
+         })
+         .style("opacity", ".3")
+         .style("stroke", "black")
+         .style("stroke-width", "2px")
+         .style("fill", "none")
+
 
         g.on('click', function(d) {
           let info = d3.select('.pie-info');

@@ -16,8 +16,10 @@
   </ion-item>
 
   <ion-grid class="graph-canva">
-    <ion-row class="">
-      <label>Beneficiarios por {{selectData}}</label>
+    <ion-row class="" style="display: none;">
+      <ion-col col-xs-12 col-sm-12 col-lg-9>
+        <h3 class="graph-title">Beneficiarios por {{selectData}}</h3>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-xs-12 col-sm-12 col-lg-9>
@@ -50,9 +52,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-label class="title-page item-grouper">Estadísticas <a class="leaflet-control-zoom-out" (click)="d()">
-    <i class="fa fa-download"></i>
-  </a></ion-label>
 </div>
 
 <style>

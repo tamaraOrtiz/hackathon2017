@@ -18,6 +18,23 @@ export class BaseData {
     this.apiUrl = "https://proyectando-api.herokuapp.com/api/";
   }
 
+  postToFlickr(title, image){
+    let self = this;
+    return new Promise<any>((resolve, reject) => {
+      self.http.post('https://up.flickr.com/services/upload/', {
+        photo: image,
+        title: title,
+        is_public: 1,
+        api_key: '603713384958c55d8a54fc78a03306cd',
+        secret: 'bb1f2c6ec8c8a183'
+      }).subscribe( response => {
+        resolve(this.data);
+      }, error => {
+        reject(error);
+      })
+    });
+  }
+
   getAll(conditions: string) {
     let where = conditions !== undefined ? "WHERE "+conditions : "";
     return new Promise<Array<any>>((resolve, reject) => {
