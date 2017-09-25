@@ -143,7 +143,7 @@ export class PpyCanva {
     dispatch.on("load.pie", function(presupuestosByName) {
       let width  = this.smallScreen ? 450 : 600;
       let height = width * 0.9;
-      let radius = Math.min(width, height) * 0.9 / 2;
+      let radius = Math.min(width, width) * 0.8 / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 
       let legend = d3.select("#pie-info-legend");
@@ -153,8 +153,8 @@ export class PpyCanva {
                   .outerRadius(radius - 10)
                   .innerRadius(0);
       let outerArc = d3.arc()
-            	         .innerRadius(0)
-            	         .outerRadius(width-100);
+            	         .outerRadius(width-100)
+                       .innerRadius(0);
 
       let pie = d3.pie()
       .sort(null)
@@ -177,9 +177,9 @@ export class PpyCanva {
       .append("svg")
       .attr("fill", "white")
       .attr("width", width)
-      .attr("height", height)
+      .attr("height", width)
       .append("g")
-      .attr("transform", "translate(" + (width-100) / 2 + "," + height / 2 + ")");
+      .attr("transform", "translate(" + width / 2 + "," + width / 2 + ")");
       let g = svg.selectAll(".arc")
       .data(pie(data))
       .enter().append("g")
@@ -189,7 +189,11 @@ export class PpyCanva {
       .attr("d", arc)
       .style("fill", function(d) {
         legend.append("p")
-              .html(`<i style="background:${self.colores(d.data.nombre)}"></i> ${self.appHelper.toTitleCase(d.data.nombre)}<br>`);
+              .html(`<i style="background:${self.colores(d.data.nombre)}"></i>
+              <div style="margin-left: 18px;">
+                <p class="program-name">${self.appHelper.toTitleCase(d.data.nombre)}</p>
+                <p class="program-info">Cant. benef: ${self.appHelper.numberFormatter(d.data.total)}</p>
+              </div>`);
         return self.colores(d.data.nombre);
       });
 
@@ -213,11 +217,10 @@ export class PpyCanva {
         .attr("transform", function(d) {
           let c = arc.centroid(d),
           x = c[0],
-          y = c[1],
-          h = Math.sqrt(x*x + y*y);
-          let c1= arc.centroid(d);
+          y = c[1];
           let c2= outerArc.centroid(d);
-          return "translate(" + c1[0] +  ',' +
+          console.log(d);
+          return "translate(" + (c2[0] < 0 ? -255 : 255) +  ',' +
           c2[1] +  ")";
         })
         .attr("dy", ".35em")
@@ -231,13 +234,11 @@ export class PpyCanva {
 
         g.append("polyline")
          .attr("points", function(d) {
-           let c = arc.centroid(d),
+           let c = outerArc.centroid(d),
            x = c[0],
            y = c[1],
            h = Math.sqrt(x*x + y*y);
-           let c1= arc.centroid(d);
-           let c2= outerArc.centroid(d);
-           return [arc.centroid(d), [(x/h * (radius+10))+20, (y/h * (radius+10))], [c1[0], c2[1]]];
+           return [arc.centroid(d), [x/h * radius, c[1]], [(x < 0 ? -210 : 210), c[1]]];
          })
          .style("opacity", ".3")
          .style("stroke", "black")

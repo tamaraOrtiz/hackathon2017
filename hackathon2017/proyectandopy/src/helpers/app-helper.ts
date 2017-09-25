@@ -14,7 +14,7 @@ export class AppHelper {
   }
 
   numberFormatter(number) {
-    return this.numberFormat(number.toString());
+    return this.numberFormat(number.toString()).replace(/,0+/,'');
   }
 
   isDeskTop(){
@@ -29,7 +29,7 @@ export class AppHelper {
     return width / text.length * 0.85;
   }
 
-  getGenerateCanva(div, excludedElements){
+  getGenerateCanva(div, excludedElements, showElements=[]){
     let self = this;
     return new Promise<any>((resolve) => {
       let target = self.getElement(div);
@@ -37,14 +37,20 @@ export class AppHelper {
         onclone: function(doc) {
           excludedElements.forEach(function (div) {
             let element = self.getElement(div, doc);
-            console.log(element);
             if(element !== null) {
               element.style.display = 'none';
             }
           });
+          showElements.forEach(function (div) {
+            let element = self.getElement(div, doc);
+            console.log(div);
+            console.log(element);
+            if(element !== null) {
+              element.style.display = 'block';
+            }
+          });
         }
       }).then( canvas => {
-        console.log(canvas.toDataURL("image/jpeg"));
         let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
         resolve(url);
       });
@@ -55,9 +61,10 @@ export class AppHelper {
     return dom.querySelector(identifier);
   }
 
-  download(div, excludedElements) {
+  download(div, excludedElements=[], showElements=[]) {
+    console.log(showElements);
     let self = this;
-    self.getGenerateCanva(div, excludedElements).then(function (url) {
+    self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
       if(self.platform.is('core')){
         var a = document.createElement('a');
         a.href = url;
