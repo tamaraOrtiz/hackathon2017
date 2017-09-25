@@ -81,6 +81,7 @@ export class InstitucionPage extends BasePage {
     this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
       this._niveles = record;
     });
+
   }
 
   filter(event, bar, loader=null) {
@@ -142,6 +143,7 @@ export class InstitucionPage extends BasePage {
 
 
   itemTapped(event, item) {
+    this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");
     this.navCtrl.push(ShowInstitucionPage, {
       item: item
     });

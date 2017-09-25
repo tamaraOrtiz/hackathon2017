@@ -56,6 +56,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       }
       this.map = L.map('map').setView([-23.88, -55.76], 6);
 
+      
       this.geo = new L.GeoJSON(this.paraguayGeoJson, {
         style: function (feature) {
           return (self.style(feature));

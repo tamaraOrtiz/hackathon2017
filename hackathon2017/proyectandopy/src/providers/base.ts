@@ -88,6 +88,7 @@ export class BaseData {
 
   getEntity(entityType, id){
 
+
   }
 
 
@@ -100,6 +101,17 @@ export class BaseData {
       }, error => {
         this.events.publish(`${entityType}:saved:error`,entity);
         reject(error);
+      });
+    });
+  }
+
+  pushEvent(entityType, entityID, eventType, page){
+    return new Promise<any>((resolve, reject) => {
+      let _data = {"entity_id":entityID, "entity_type":entityType, "event_type":eventType, "page":page}
+      this.http.post(`${this.apiUrl}event/`, _data).subscribe( data => {
+
+      }, error => {
+        console.log(error);
       });
     });
   }
