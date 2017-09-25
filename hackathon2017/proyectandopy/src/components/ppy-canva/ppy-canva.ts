@@ -192,7 +192,7 @@ export class PpyCanva {
               .html(`<i style="background:${self.colores(d.data.nombre)}"></i>
               <div style="margin-left: 18px;">
                 <p class="program-name">${self.appHelper.toTitleCase(d.data.nombre)}</p>
-                <p class="program-info">Cant. benef: ${self.appHelper.numberFormatter(d.data.total)}</p>
+                <p class="program-info">Cant.: ${self.appHelper.numberFormatter(d.data.total)} beneficiarios</p>
               </div>`);
         return self.colores(d.data.nombre);
       });

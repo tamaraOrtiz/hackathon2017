@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { RatingData } from '../../providers/rating';
 import { ToastController } from 'ionic-angular';
@@ -12,6 +12,8 @@ import { ToastController } from 'ionic-angular';
 
 export class PpyRating {
 
+  @ViewChild('ratingElement') ratingElement;
+
   _options: Array<string>
 
   _rating: { page: string, entity_id: string, entity_type: string, score: number, meta: string };
@@ -24,41 +26,62 @@ export class PpyRating {
               'La infomación es completa y clara.'];
 
   constructor(public events: Events, public dataService: RatingData, public toastCtrl: ToastController) {
-    events.subscribe('rating:retrieve', (rating, time) => {
-      if (document.getElementById("rating-text") === null) {
-        return;
+    let self = this;
+    self.events.subscribe('rating:retrieve', (rating, time) => {
+      if(rating.entity_id == self.rating.entity_id &&
+         rating.entity_type == self.rating.entity_type &&
+         rating.page == self.rating.page){
+           self.loadRating();
       }
-      this.setRating(rating, true);
     });
-    events.subscribe('rating:saved:success', (rating) => {
-      if (document.getElementById("rating-text") === null) {
-        return;
+    self.events.subscribe('rating:saved:success', (rating) => {
+      if(rating.entity_id == self.rating.entity_id &&
+         rating.entity_type == self.rating.entity_type &&
+         rating.page == self.rating.page){
+           self.afterSaveRating('success');
       }
-      let toast = this.toastCtrl.create({
-        message: 'Tu calificación fue enviada con exito!',
-        duration: 3000,
-        position: 'top',
-        cssClass: "toast-success"
-      });
-      toast.present();
-      document.getElementById("send-rating").style.display = 'none';
-      document.getElementById("col-rating").style.display = 'none';
-      dataService.getRating(this.rating.entity_id, this.rating.entity_type).then( rating => {
-        this.setRating(rating, false);
-      });
     });
-    events.subscribe('rating:saved:error', (rating) => {
-      if (document.getElementById("rating-text") === null) {
-        return;
+    self.events.subscribe('rating:saved:error', (rating) => {
+      if(rating.entity_id == self.rating.entity_id &&
+         rating.entity_type == self.rating.entity_type &&
+         rating.page == self.rating.page){
+           self.afterSaveRating('error');
       }
-      let toast = this.toastCtrl.create({
-        message: 'Tu calificación no fue guardada, vuelve a intentarlo mas tarde!',
-        duration: 3000,
-        position: 'top',
-        cssClass: "toast-error"
-      });
-      toast.present();
     });
+  }
+
+
+  loadRating(){
+    let self = this;
+    let element = this.ratingElement.nativeElement;
+    if (element.querySelector("#rating-text") === null) {
+      return;
+    }
+    self.setRating(self.rating, true);
+  }
+
+  afterSaveRating(result='success'){
+    let self = this;
+    let element = this.ratingElement.nativeElement;
+    let message = result === 'success' ? 'Tu calificación fue enviada con exito!' :
+      'Tu calificación no fue guardada, vuelve a intentarlo mas tarde!';
+    if (element.querySelector("#rating-text") === null) {
+      return;
+    }
+    let toast = self.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      cssClass: `toast-${result}`
+    });
+    toast.present();
+    if(result === 'sucess'){
+      element.querySelector("#send-rating").style.display = 'none';
+      element.querySelector("#col-rating").style.display = 'none';
+      self.dataService.getRating(self.rating.entity_id, self.rating.entity_type).then( rating => {
+        self.setRating(rating, false);
+      });
+    }
   }
 
   @Input()
@@ -79,16 +102,18 @@ export class PpyRating {
     return this._rating;
   }
 
+
   setRating(number, init){
     this.rating.score = number;
     this.rating.meta = this._options[0];
-    document.getElementById("rating-text").innerHTML = this.ratingText[Math.floor(number)];
+    let element = this.ratingElement.nativeElement;
+    element.querySelector("#rating-text").innerHTML = this.ratingText[Math.floor(number)];
     if(!init){
-      document.getElementById("send-rating").style.display = 'block';
-      document.getElementById("col-rating").style.display = 'block';
+      element.querySelector("#send-rating").style.display = 'block';
+      element.querySelector("#col-rating").style.display = 'block';
     }
     for (let i = 1; i < 6; i++) {
-      var el = document.getElementById("star-"+i.toString());
+      var el = element.querySelector("#star-"+i.toString());
       if(i<=number){
         el.classList.add("check");
       }else{
