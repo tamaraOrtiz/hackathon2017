@@ -38,14 +38,14 @@ export class PpyRating {
       if(rating.entity_id == self.rating.entity_id &&
          rating.entity_type == self.rating.entity_type &&
          rating.page == self.rating.page){
-           self.afterSaveRating('success');
+           self.afterSaveRating(rating, 'success');
       }
     });
     self.events.subscribe('rating:saved:error', (rating) => {
       if(rating.entity_id == self.rating.entity_id &&
          rating.entity_type == self.rating.entity_type &&
          rating.page == self.rating.page){
-           self.afterSaveRating('error');
+           self.afterSaveRating(rating, 'error');
       }
     });
   }
@@ -60,7 +60,7 @@ export class PpyRating {
     self.setRating(self.rating, true);
   }
 
-  afterSaveRating(result='success'){
+  afterSaveRating(rating, result='success'){
     let self = this;
     let element = this.ratingElement.nativeElement;
     let message = result === 'success' ? 'Tu calificación fue enviada con exito!' :
@@ -75,12 +75,10 @@ export class PpyRating {
       cssClass: `toast-${result}`
     });
     toast.present();
-    if(result === 'sucess'){
+    if(result === 'success'){
       element.querySelector("#send-rating").style.display = 'none';
       element.querySelector("#col-rating").style.display = 'none';
-      self.dataService.getRating(self.rating.entity_id, self.rating.entity_type).then( rating => {
-        self.setRating(rating, false);
-      });
+      self.setRating(rating.score, false);
     }
   }
 

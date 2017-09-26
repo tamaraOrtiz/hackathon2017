@@ -36,6 +36,7 @@ export class EstadisticasPage extends ShowBasePage {
   calificacion: any
   openbar: any
   tabactive:any
+  id: any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -45,6 +46,7 @@ export class EstadisticasPage extends ShowBasePage {
     this.dataService = dataService;
     this.openbar = appHelper.isDeskTop();
     this.tabactive = 'info'
+    this.id = `${this.item.nivelid}_${this.item.entidadid}`
   }
 
   openLink(link){
@@ -69,7 +71,7 @@ export class EstadisticasPage extends ShowBasePage {
     });
 
 
-    this.ratingService.getRating(this.item.id, 'Institucion').then(rating => {
+    this.ratingService.getRating(this.id, 'Estadistica').then(rating => {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
