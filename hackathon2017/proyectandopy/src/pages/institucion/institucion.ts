@@ -150,6 +150,7 @@ export class InstitucionPage extends BasePage {
   }
 
   itemTappedEst(event, item) {
+    this.dataService.pushEvent("Entidad", item.nivelid+"_"+item.entityid, "view", "institucion_list");
     this.navCtrl.push(EstadisticasPage, {
       item: item
     });

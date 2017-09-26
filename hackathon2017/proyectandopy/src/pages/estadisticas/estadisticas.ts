@@ -36,6 +36,7 @@ export class EstadisticasPage extends ShowBasePage {
   calificacion: any
   openbar: any
   tabactive:any
+  _events: any = {};
   id: any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
@@ -74,6 +75,10 @@ export class EstadisticasPage extends ShowBasePage {
     this.ratingService.getRating(this.id, 'Estadistica').then(rating => {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
+    });
+
+    this.dataService.getEvents(this.item.nivelid+"_"+this.item.entityid, "Entidad").then(data => {
+      this._events = data;
     });
   }
 
