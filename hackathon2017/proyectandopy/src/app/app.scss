@@ -1251,6 +1251,7 @@ progressbar {
   width: calc(100% - 20px) !important;
   font-size: 13px !important;
   color: #67245e !important;
+  font-weight: 500;
 }
 .common-list button.item-md.list_sin_info{
   background: #e9f1f5 !important;
@@ -1324,4 +1325,14 @@ button:hover{
   padding-left: 8px;
   margin-top: 0;
   color: #686965 !important;
+}
+
+.metrica-label{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #c3c1c1;
+  margin: 15px;
+  border-radius: 5px;
+  color: #6b6b6b;
+  font-style: italic;
 }

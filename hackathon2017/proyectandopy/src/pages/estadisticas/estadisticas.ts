@@ -37,6 +37,8 @@ export class EstadisticasPage extends ShowBasePage {
   openbar: any
   tabactive:any
   _events: any = {};
+  count_view = 0
+  count_download = 0
   id: any
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
@@ -77,8 +79,11 @@ export class EstadisticasPage extends ShowBasePage {
       this.events.publish('rating:retrieve', rating, Date.now());
     });
 
-    this.dataService.getEvents(this.item.nivelid+"_"+this.item.entityid, "Entidad").then(data => {
+    this.dataService.getEvents("Entidad", this.item.nivelid+"_"+this.item.entidadid).then(data => {
       this._events = data;
+      if("view" in this._events){
+        this.count_view = this._events["view"]
+      }
     });
   }
 
