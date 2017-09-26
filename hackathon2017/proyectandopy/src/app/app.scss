@@ -486,6 +486,11 @@ ppy-comment{
     margin-top: -5px;
     color: #1d6fad !important;
   }
+  i.fa{
+    height: 17px;
+    margin-top: -5px;
+    font-size: 13px;
+  }
 
 }
 .right{
@@ -1014,6 +1019,11 @@ rect.child {
     color: #fff;
 
   }
+  .sidebarinfo{
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
 
 }
 
@@ -1234,6 +1244,7 @@ progressbar {
 
 .p_common_list{
   font-size: 13px !important;
+  font-weight: normal;
 }
 
 .p_sub_common_list{
@@ -1303,4 +1314,14 @@ button:hover{
 .especial-start{
   color: #bfbebe;
   font-size: 15px !important;
+}
+
+.program-name{
+  margin-bottom: 0;
+}
+
+.program-info{
+  padding-left: 8px;
+  margin-top: 0;
+  color: #686965 !important;
 }

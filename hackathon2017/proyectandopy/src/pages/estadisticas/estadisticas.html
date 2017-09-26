@@ -29,14 +29,21 @@ Ionic pages and navigation.
             <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
-        <button  ion-button item-end right  outline [ngClass]="(tabactive=='info' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px; margin-bottom:10px;"  (click)="changetab('info')">
-          <i class="fa fa-pie-chart" aria-hidden="true"></i> Estadisticas
+
+        <button  ion-button item-end right  outline class ='sidebarbutton sidebarinfo' style="margin-top:8px;"  (click)="changetab('general')">
+
+          Información
         </button>
-        <ion-label class="label-sidebar">Entidad: {{item.entidadnombre}}</ion-label>
+        <ion-list class="selec-header">
+        <ion-item>
+         <ion-label>Entidad: <p>{{item.entidadnombre}}</p></ion-label>
 
-        <ion-label class="label-sidebar">Nivel: {{item.nivelnombre}}</ion-label>
+        </ion-item>
+        <ion-item>
+         <ion-label>Nivel: <p>{{item.nivelnombre}}</p></ion-label>
 
-
+        </ion-item>
+      </ion-list>
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 

@@ -102,12 +102,12 @@ export class PpyCanva {
   }
 
   colores(key) {
-    let colors = ["#e1eef6", "#ff5f2e", "#fcbe32",
-                  "#004e66", "#2b90d9", "#ff4e50",
-                  "#008c9e", "#490a3d", "#ee6e9f",
-                  "#3b8686", "#ee2560", "#5c196b",
-                  "#b84a39", "#7200da", "#CBA6C3",
-                  "#67D5B5", "#C16200", "#D1B6E1"]
+    let colors = ["#46b9ff", "#f9567d", "#f54bea",
+                  "#4b62f5", "#4be8f5", "#4bf5f3",
+                  "#4bf5a4", "#77f54b", "#bef54b",
+                  "#f5de4b", "#f59f4b", "#987a13",
+                  "#4e9813", "#139878", "#1177a5",
+                  "#112ca5", "#5c11a5", "#a51179"]
     if(!this.hashColores[key]){
       this.hashColores[key] = colors[Math.round(colors.length * Math.random())];
     }

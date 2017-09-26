@@ -116,4 +116,14 @@ export class BaseData {
     });
   }
 
+  getEvents(entityType, entityId){
+    return new Promise<any>((resolve, reject) => {
+      this.http.get(`${this.apiUrl}get_events?entity_id=${entityId}&entity_type=${entityType}`).map( res => res.json()).subscribe( data => {
+        resolve(data);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
 }

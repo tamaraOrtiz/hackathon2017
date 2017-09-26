@@ -150,7 +150,6 @@ export class InstitucionPage extends BasePage {
   }
 
   itemTappedEst(event, item) {
-    console.log(item)
     this.navCtrl.push(EstadisticasPage, {
       item: item
     });
