@@ -85,6 +85,9 @@ export class EstadisticasPage extends ShowBasePage {
       if("view" in this._events){
         this.count_view = this._events["view"]
       }
+      if("download" in this._events){
+        this.count_download = this._events["download"]
+      }
     });
   }
 
