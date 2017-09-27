@@ -43,8 +43,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
       this.chartsData = (records as any).info_departamento;
       console.log(this.chartsData);
-      for(let record of Object.keys(this.chartsData)) {
-        this.paraguayGeoJson.forEach( departamento => {
+      this.paraguayGeoJson.forEach( departamento => {
+        for(let record of Object.keys(this.chartsData)) {
           if (departamento.properties.departamen === record) {
             departamento.properties['name'] = record;
             departamento.properties['unidad'] = (records as any).unidad;
@@ -52,11 +52,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
             departamento.properties['avance'] = self.chartsData[record].cant_avance;
             departamento.properties['value'] =  Math.round(1000 * self.chartsData[record].cant_avance / self.chartsData[record].cant_prog)/10;
           }
-        });
-      }
+        }
+        if (departamento.properties.name == undefined) {
+          departamento.properties['name'] = departamento.properties.departamen;
+          departamento.properties['unidad'] = '';
+          departamento.properties['meta'] = -1;
+          departamento.properties['avance'] = -1;
+          departamento.properties['value'] = -1;
+        }
+      });
       this.map = L.map('map').setView([-23.88, -55.76], 6);
 
-      
+
       this.geo = new L.GeoJSON(this.paraguayGeoJson, {
         style: function (feature) {
           return (self.style(feature));
@@ -68,8 +75,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
             });
 
             (layer as any).setStyle({
-              weight: 5,
-              color: '#c599ea',
+              weight: 8,
+              color: '#fcf9ff',
               dashArray: '',
               fillOpacity: 0.7
             });
@@ -122,7 +129,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
         this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
-          '<b>' + props.name + '</b><br />' + props.avance + '/' + props.meta + ' ' + props.unidad
+          '<b>' + props.name + '</b><br />' + (props.avance == -1 ? 'Sin Datos' : (props.avance + '/' + props.meta + ' ' + props.unidad))
           : 'Seleccione un departamento');
         };
 
@@ -138,7 +145,6 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           grades = [100, 95, 90, 85, 80, 75, 70, 60, 40, 20, 10, 0],
           labels = [];
 
-          // loop through our density intervals and generate a label with a colored square for each interval
           for (var i = 0; i < grades.length -1; i++) {
             div.innerHTML +=
             '<i style="background:' + self.getColor(grades[i] + 1) + '"></i> ' +
@@ -184,6 +190,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
              d >= 60 ? '#da6427' :
              d >= 40 ? '#cd4d1d' :
              d >= 20 ? '#c03313' :
+             d == -1 ? 'gray'    :
              '#790606';
     }
 
