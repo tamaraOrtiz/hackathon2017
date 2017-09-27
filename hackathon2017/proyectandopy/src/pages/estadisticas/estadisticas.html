@@ -50,7 +50,7 @@ Ionic pages and navigation.
 
     <div class='view-content'>
 
-      <ppy-canva [presupuestos]="presupuestos" *ngIf="presupuestos"></ppy-canva>
+      <ppy-canva [presupuestos]="presupuestos" [item]="item" *ngIf="presupuestos"></ppy-canva>
       <div>
         <button class="empty-list" ion-item *ngIf="!presupuestos">
           <h2>No hay Datos para graficar</h2>

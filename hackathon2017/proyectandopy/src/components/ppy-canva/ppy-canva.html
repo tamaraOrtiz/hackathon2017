@@ -1,6 +1,6 @@
 <div>
   <ion-label class="title-page item-grouper">Estadísticas
-    <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'], ['.graph-title'])">
+    <a class="leaflet-control-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica')">
       <i class="fa fa-download"></i>
     </a>
     <a class="leaflet-control-zoom-out" (click)="appHelper.shareDiv('.graph-canva', ['.selection-info'])">

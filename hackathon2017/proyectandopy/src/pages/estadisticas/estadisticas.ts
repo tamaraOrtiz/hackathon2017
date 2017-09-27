@@ -48,6 +48,7 @@ export class EstadisticasPage extends ShowBasePage {
     this.ratingService = raService;
     this.dataService = dataService;
     this.openbar = appHelper.isDeskTop();
+    appHelper.provider = dataService;
     this.tabactive = 'info'
     this.id = `${this.item.nivelid}_${this.item.entidadid}`
   }

@@ -26,6 +26,8 @@ export class PpyCanva {
 
   _presupuestos: Array<any>;
 
+  _item: any
+
   public constructor(public appHelper: AppHelper) {
     this.smallScreen = appHelper.platform.width() < 768;
   }
@@ -44,7 +46,15 @@ export class PpyCanva {
     });
   }
 
+
   get presupuestos() { return this._presupuestos; }
+
+  @Input()
+  set item(item: any) {
+    this._item = item;
+  }
+
+  get item() { return this._item; }
 
   ngOnInit() {
     let presupuestosByName = d3.map();
@@ -52,6 +62,7 @@ export class PpyCanva {
     this.options = presupuestosByName.values();
     this.selectData = presupuestosByName.keys()[0];
   }
+
 
   ngAfterViewInit() {
     if(this.options.length > 0){

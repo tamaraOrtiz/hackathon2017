@@ -7,6 +7,7 @@ import * as d3 from "d3";
 export class AppHelper {
 
   numberFormat: any;
+  provider: any;
 
   constructor(public socialSharing: SocialSharing, public platform: Platform) {
     let localeFormatter = d3.formatLocale({ "decimal": ",", "thousands": ".", "grouping": [3]});
@@ -61,8 +62,9 @@ export class AppHelper {
     return dom.querySelector(identifier);
   }
 
-  download(div, excludedElements=[], showElements=[]) {
+  download(div, excludedElements=[], showElements=[], entidad, id, page) {
     console.log(showElements);
+    this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
     self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
       if(self.platform.is('core')){
