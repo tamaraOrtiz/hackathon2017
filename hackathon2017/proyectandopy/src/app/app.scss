@@ -1336,3 +1336,24 @@ button:hover{
   color: #6b6b6b;
   font-style: italic;
 }
+
+.pnd-toolbar{
+  padding: 0 !important;
+  ion-grid{
+    padding: 0 !important;
+  }
+  .sidebarbutton{
+    border: none !important;
+    span{
+      color: #e6e6e6;
+      font-size: 14px;
+      text-transform: capitalize;
+      i.fa{
+          padding-right: 10px;
+      }
+    }
+  }
+  .sidebarbutton.active{
+    border-bottom: 3px solid #fca5ff !important;
+  }
+}

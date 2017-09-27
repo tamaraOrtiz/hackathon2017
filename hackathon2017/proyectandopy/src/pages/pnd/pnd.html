@@ -6,8 +6,26 @@
     </button>
     <ion-title class="app-subtitle"><ion-label> PND </ion-label>
     </ion-title>
-
   </ion-navbar>
+  <ion-toolbar *ngIf="shownab" class="pnd-toolbar">
+    <ion-grid>
+      <ion-row>
+        <ion-col  ion-button item-end right outline [ngClass]="(tabactive=='general' ? 'sidebarbutton active' : 'sidebarbutton')"   (click)="changetab('general')">
+          <i class="fa fa-th-list" aria-hidden="true"></i>
+          General
+        </ion-col>
+        <ion-col  ion-button item-end outline [ngClass]="(tabactive=='eje' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('eje')">
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+          Ejes
+        </ion-col>
+        <ion-col  ion-button item-end outline [ngClass]="(tabactive=='estrategia' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('estrategia')">
+          <i class="fa fa-handshake-o" aria-hidden="true"></i>
+          Estrategias
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
 </ion-header>
 
 <ion-content  class="common-list">
@@ -22,15 +40,15 @@
             <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
-        <button  ion-button item-end right  outline [ngClass]="(tabactive=='general' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('general')">
+        <button *ngIf="!shownab"  ion-button item-end right  outline [ngClass]="(tabactive=='general' ? 'sidebarbutton active' : 'sidebarbutton')" style="margin-top:8px;"  (click)="changetab('general')">
           <i class="fa fa-th-list" aria-hidden="true"></i>
           General
         </button>
-        <button  ion-button item-end outline [ngClass]="(tabactive=='eje' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('eje')">
+        <button *ngIf="!shownab" ion-button item-end outline [ngClass]="(tabactive=='eje' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('eje')">
           <i class="fa fa-cogs" aria-hidden="true"></i>
           Ejes
         </button>
-        <button  ion-button item-end outline [ngClass]="(tabactive=='estrategia' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('estrategia')">
+        <button *ngIf="!shownab" ion-button item-end outline [ngClass]="(tabactive=='estrategia' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('estrategia')">
           <i class="fa fa-handshake-o" aria-hidden="true"></i>
           Estrategias
         </button>
@@ -67,7 +85,68 @@
         </ion-select>
       </ion-item>
         </ion-list>
+        <div>
+          <ion-slides pager class="helpslide">
 
+             <ion-slide >
+               <p>Necesitas Ayuda?</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide >
+               <p>Aqui puedes ver la información del Plan Nacional de Desarrollo 2030</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>El contenido esta dividido en tres secciones, General(La Informacion global del PND), Ejes(La Informacion agrupada por cada eje estrategico del PND), Estrategias(La Informacion agrupada por cada eje estrategico y estrategia del PND)</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Esta Información muestra la cantidad de entidades involucradas en PND, los cantidad de Objetivos que buscan cumplir, El presuspuesto asignado para llevar a cabo el plan y la cantidad de beneficiarios.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide >
+               <p>Al hacer click en "ver más" dentro de beneficiarios puedes ver en detalle cada beneficiario del PND</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Tambien puedes filtrar la informacion por Nivel, Entidad y Año.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Ademas puedes comentar y calificar esta Información.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Esperamos haberte ayudado!</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+           </ion-slides>
+        </div>
       </ion-col>
 
         <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>

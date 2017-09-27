@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { InstitucionData } from '../../providers/institucion';
 import { RatingData } from '../../providers/rating';
@@ -8,6 +8,8 @@ import { Events } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ModalPage } from '../../pages/modal/modal';
 import { AppHelper } from '../../helpers/app-helper';
+import { Slides } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-pnd',
@@ -31,8 +33,9 @@ export class PNDPage extends BasePage {
   calificacion: any
   tabactive:any
   openbar: any
+  shownab: any
   loading;
-
+  @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
@@ -47,8 +50,18 @@ export class PNDPage extends BasePage {
     this.anhos = [2017,2018,2019];
     this.tabactive = 'general';
     this.openbar = appHelper.isDeskTop();
+    this.shownab = !appHelper.isDeskTop();
 
   }
+
+  goToSlide() {
+    this.slides.slideNext(100);
+  }
+
+  gobackSlide() {
+    this.slides.slidePrev(100);
+  }
+
   changetab(_text){
     this.tabactive = _text;
   }
