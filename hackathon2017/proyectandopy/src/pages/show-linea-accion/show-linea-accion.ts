@@ -42,15 +42,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
       this.chartsData = (records as any).info_departamento;
-      console.log(this.chartsData);
       this.paraguayGeoJson.forEach( departamento => {
-        for(let record of Object.keys(this.chartsData)) {
-          if (departamento.properties.departamen === record) {
-            departamento.properties['name'] = record;
+        for(let name of Object.keys(this.chartsData)) {
+          let record = self.chartsData[name];
+          if (departamento.properties.departamen === name) {
+            departamento.properties['name'] = name;
             departamento.properties['unidad'] = (records as any).unidad;
-            departamento.properties['meta'] = self.chartsData[record].cant_prog;
-            departamento.properties['avance'] = self.chartsData[record].cant_avance;
-            departamento.properties['value'] =  Math.round(1000 * self.chartsData[record].cant_avance / self.chartsData[record].cant_prog)/10;
+            departamento.properties['meta'] = record.cant_prog;
+            departamento.properties['avance'] = record.cant_avance;
+            departamento.properties['value'] = {};
+            departamento.properties['value']['avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador ? record.cantidad_denominador : 1);
+            departamento.properties['value']['porcentaje'] =  Math.round(1000 * departamento.properties['value']['avances'] / record.cant_prog)/10;
+            departamento.properties['value']['inversion'] =  record.total;
+
           }
         }
         if (departamento.properties.name == undefined) {
@@ -58,20 +62,23 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           departamento.properties['unidad'] = '';
           departamento.properties['meta'] = -1;
           departamento.properties['avance'] = -1;
-          departamento.properties['value'] = -1;
+          departamento.properties['value'] = {};
+          departamento.properties['value']['avances'] = -1;
+          departamento.properties['value']['porcentaje'] = -1;
+          departamento.properties['value']['inversion'] = -1;
         }
       });
       this.map = L.map('map').setView([-23.88, -55.76], 6);
 
 
-      this.geo = new L.GeoJSON(this.paraguayGeoJson, {
+      let geoPorcentaje = new L.GeoJSON(this.paraguayGeoJson, {
         style: function (feature) {
-          return (self.style(feature));
+          return (self.style(feature, 'porcentaje'));
         },
         onEachFeature: function (feature: any, layer) {
           layer.on('click', function (e) {
-            Object.keys(self.geo._layers).map (key => {
-              self.geo.resetStyle(self.geo._layers[key]);
+            Object.keys((geoPorcentaje as any)._layers).map (key => {
+              (geoPorcentaje as any).resetStyle((geoPorcentaje as any)._layers[key]);
             });
 
             (layer as any).setStyle({
@@ -81,7 +88,51 @@ export class ShowLineaAccionPage extends ShowBasePage  {
               fillOpacity: 0.7
             });
             self.map.fitBounds((layer as any).getBounds());
-            info.update(feature.properties);
+            info.update(feature.properties, 'porcentaje');
+          });
+        }
+      }).addTo(this.map);
+
+      let geoAvances = new L.GeoJSON(this.paraguayGeoJson, {
+        style: function (feature) {
+          return (self.style(feature, 'avances'));
+        },
+        onEachFeature: function (feature: any, layer) {
+          layer.on('click', function (e) {
+            Object.keys((geoAvances as any)._layers).map (key => {
+              (geoAvances as any).resetStyle((geoAvances as any)._layers[key]);
+            });
+
+            (layer as any).setStyle({
+              weight: 8,
+              color: '#fcf9ff',
+              dashArray: '',
+              fillOpacity: 0.7
+            });
+            self.map.fitBounds((layer as any).getBounds());
+            info.update(feature.properties, 'avances');
+          });
+        }
+      }).addTo(this.map);
+
+      let geoInversion = new L.GeoJSON(this.paraguayGeoJson, {
+        style: function (feature) {
+          return (self.style(feature, 'inversion'));
+        },
+        onEachFeature: function (feature: any, layer) {
+          layer.on('click', function (e) {
+            Object.keys((geoInversion as any)._layers).map (key => {
+              (geoInversion as any).resetStyle((geoInversion as any)._layers[key]);
+            });
+
+            (layer as any).setStyle({
+              weight: 8,
+              color: '#fcf9ff',
+              dashArray: '',
+              fillOpacity: 0.7
+            });
+            self.map.fitBounds((layer as any).getBounds());
+            info.update(feature.properties, 'inversion');
           });
         }
       }).addTo(this.map);
@@ -91,51 +142,34 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         propertyName: 'name',
         marker: false,
         moveToLocation: function(latlng, title, map) {
-          //map.fitBounds( latlng.layer.getBounds() );
           var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-          map.setView(latlng, zoom); // access the zoom
+          map.setView(latlng, zoom);
         }
       }).addTo(this.map);
 
-      searchControl.on('search:locationfound', function(e) {
-
-        //console.log('search:locationfound', );
-
-        //map.removeLayer(this._markerSearch)
-
-        e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
-        if(e.layer._popup)
-        e.layer.openPopup();
-
-      }).on('search:collapsed', function(e) {
-
-        self.geo.eachLayer(function(layer) {	//restore feature color
-          self.geo.resetStyle(layer);
-        });
-      });
-
-      var overlays = {
-        "Metas vs Avances": this.geo,
+      let overlays = {
+        "Metas vs Avances": geoPorcentaje,
+        "Avances": geoAvances,
+        "Inversión": geoInversion
       };
 
       var info = (L as any).control();
 
       info.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this._div = L.DomUtil.create('div', 'info');
         this.update();
         return this._div;
       };
 
-      // method that we will use to update the control based on feature properties passed
-      info.update = function (props) {
+      info.update = function (props, layer) {
         this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
-          '<b>' + props.name + '</b><br />' + (props.avance == -1 ? 'Sin Datos' : (props.avance + '/' + props.meta + ' ' + props.unidad))
+          '<b>' + props.name + '</b><br />' + (props.value[layer] == -1 ? 'Sin Datos' : props.value[layer])
           : 'Seleccione un departamento');
         };
 
         info.addTo(this.map);
 
-        L.control.layers(null, overlays, {position: 'bottomleft'}).addTo(this.map);
+        L.control.layers(overlays, {}, {position: 'bottomleft'}).addTo(this.map);
 
         var legend = (L as any).control({position: 'bottomright'});
 
@@ -160,9 +194,9 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       })
     }
 
-    style(feature) {
+    style(feature, layer) {
       let self = this;
-      let d = feature.properties.value;
+      let d = feature.properties.value[layer];
       return {
         fillColor:self.getColor(d),
         weight: 1,
