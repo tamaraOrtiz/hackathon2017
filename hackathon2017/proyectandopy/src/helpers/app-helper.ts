@@ -118,4 +118,17 @@ export class AppHelper {
       destination[k] = amount + source[k];
     });
   }
+
+  getRange(min, max, n) {
+    let r = [];
+    let s = Math.round((max-min) /n);
+    if(s === 0) {
+      return r;
+    }
+    for(let i = max; i > min; i-=s) {
+      r.push(i);
+    }
+    r.push(min);
+    return r;
+  }
 }
