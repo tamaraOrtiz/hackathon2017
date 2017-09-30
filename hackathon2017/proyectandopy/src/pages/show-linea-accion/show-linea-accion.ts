@@ -39,21 +39,23 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     let op = 0;
     let maxInversion = Number.MIN_VALUE
     let maxAvance = Number.MIN_VALUE
+    let unidad = null;
     this.dataService.getParaguayMap().then(map => {
       this.paraguayGeoJson = map.features;
 
       this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
         this.chartsData = (records as any).info_departamento;
+        unidad = (records as any).unidad;
         this.paraguayGeoJson.forEach( departamento => {
           for(let name of Object.keys(this.chartsData)) {
             let record = self.chartsData[name];
             if (departamento.properties.departamen === name) {
               departamento.properties['name'] = name;
-              departamento.properties['unidad'] = (records as any).unidad;
+              departamento.properties['unidad'] = unidad;
               departamento.properties['meta'] = record.cant_prog;
               departamento.properties['avance'] = record.cant_avance;
               departamento.properties['value'] = {};
-              departamento.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador ? record.cantidad_denominador : 1);
+              departamento.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
               departamento.properties['value']['Metas vs Avances'] =  Math.round(1000 * departamento.properties['value']['Avances'] / record.cant_prog)/10;
               maxAvance = departamento.properties['value']['Avances'] > maxAvance ? departamento.properties['value']['Avances'] : maxAvance;
             }
@@ -67,13 +69,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
             departamento.properties['value']['Avances'] = -1;
             departamento.properties['value']['Metas vs Avances'] = -1;
             maxInversion = -1;
-            maxAvance = -1;
           }
         });
+
         self.ranges = {
           "Metas vs Avances": [100, 95, 90, 85, 80, 75, 70, 60, 40, 20, 10, 0],
-          "Avances": this.appHelper.getRange(0, maxAvance, 10)
+          "Avances": this.appHelper.getRange(0, maxAvance, 9)
         }
+
+        let unidades = {
+          "Metas vs Avances": {"nombre":"Porcentaje", "simbolo": "%"},
+          "Avances": {"nombre": unidad, "simbolo": unidad}
+        }
+
         this.map = L.map('map').setView([-23.88, -55.76], 6);
 
 
@@ -146,7 +154,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
         info.update = function (props, layer) {
           this._div.innerHTML = `<h4>${title}</h4>` +  (props ?
-            '<b>' + props.name + '</b><br />' + (props.value[layer] == -1 ? 'Sin Datos' : props.value[layer])
+            '<b>' + props.name + '</b><br />' + (props.value[layer] == -1 ? 'Sin Datos' : `${props.value[layer]} ${unidades[layer]["simbolo"]}`)
             : 'Seleccione un departamento');
         };
 
@@ -163,16 +171,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         }
 
         this.map.on('baselayerchange', function (eventLayer) {
+          console.log(eventLayer.name);
           legend.update(eventLayer.name);
+          info.update();
         });
 
         legend.update = function (layer){
           let grades = self.ranges[layer];
-          this._div.innerHTML = '';
+          this._div.innerHTML = `<h4>${unidades[layer]["nombre"]}</h4>`;
           for (var i = 0; i < grades.length -1; i++) {
             this._div.innerHTML +=
               '<i style="background:' + self.getColor(grades[i] + 1, layer) + '"></i> ' +
-              grades[i] +' - '+ grades[i + 1] + ' %<br>';
+              grades[i] +' - '+ grades[i + 1] + '<br>';
           }
         };
 
