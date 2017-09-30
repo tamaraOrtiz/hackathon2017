@@ -62,7 +62,7 @@
              </ion-slide>
 
              <ion-slide >
-               <p>Aqui puedes ver el listado de las Intituciones, agrupadas por niveles y entidades (si quieres saber mas sobre esto puedes ir a la seccion de información)</p>
+               <p>Aquí puedes ver el listado de las Instituciones, agrupadas por niveles y entidades (si quieres saber más sobre esto puedes ir a la sección de información).</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -70,7 +70,7 @@
              </ion-slide>
 
              <ion-slide >
-               <p>Tambien puedes filtrar la informacion dentro de este menu</p>
+               <p>También puedes filtrar la información dentro de este menú.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -78,14 +78,22 @@
              </ion-slide>
 
              <ion-slide >
-               <p>Dentro de cada Institucion puedes ver mas acerca de cada una, Visión, Misión, Lineas de Acción, entre Otros. Tambien puedes comentar y calificar esta Información</p>
+               <p>Dentro de cada Institución puedes ver mas acerca de cada una; Visión, Misión, Líneas de Acción, entre Otros.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Tambien dentro de cada Entidad puedes ver un grafico que muestra la cantidad de beneficiarios de cada programa</p>
+               <p>Tambien puedes comentar y calificar esta Información.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide >
+               <p>Además dentro de cada Entidad puedes ver un gráfico que muestra la cantidad de beneficiarios de cada programa</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -150,14 +158,14 @@
           </div>
         </ion-list>
       </ion-col>
+      <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+        <ppy-footer></ppy-footer>
+      </ion-col>
     </ion-row>
+
+
 
   </ion-grid>
 
 
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
-  </ion-toolbar>
-</ion-footer>

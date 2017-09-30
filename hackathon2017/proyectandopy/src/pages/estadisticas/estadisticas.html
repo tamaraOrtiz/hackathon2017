@@ -45,6 +45,68 @@ Ionic pages and navigation.
         </ion-item>
       </ion-list>
       <ion-label class="metrica-label">{{count_view}} visita/s - {{count_download}} descarga/s</ion-label>
+      <div>
+      <ion-slides pager class="helpslide">
+
+         <ion-slide >
+           <p>Necesitas Ayuda?</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+
+         <ion-slide >
+           <p>Aquí puedes ver una gráfica de los beneficiarios de la entidad seleccionada</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+         <ion-slide >
+           <p>Esta gráfica muestra el porcentaje de beneficiarios por cada programa</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+         <ion-slide >
+           <p>Un programa establece los objetivos resultados y metas que deben cumplirse mediante un conjunto de acciones</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+
+         <ion-slide >
+           <p>Estos programas están agrupados según su tipo, y a través del selector que está sobre la gráfica puedes cambiar el tipo de programa</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+         <ion-slide >
+           <p>Al seleccionar una porción del gráfico puedes ver más información acerca del programa seleccionado</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+         <ion-slide >
+           <p>También puedes comentar y calificar esta información.</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+         <ion-slide >
+           <p>Esperamos haberte ayudado!</p>
+           <ion-toolbar class="tutorial-buttons">
+             <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+           </ion-toolbar>
+         </ion-slide>
+
+       </ion-slides>
+     </div>
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
@@ -75,6 +137,10 @@ Ionic pages and navigation.
 
       </ion-row>
     </ion-grid>
+
+  </ion-col>
+  <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+    <ppy-footer></ppy-footer>
   </ion-col>
   </ion-row>
 
@@ -82,11 +148,7 @@ Ionic pages and navigation.
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
-  </ion-toolbar>
-</ion-footer>
+
 <style>
 
 .node rect {

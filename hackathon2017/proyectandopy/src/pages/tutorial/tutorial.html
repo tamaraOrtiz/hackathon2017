@@ -11,28 +11,37 @@
 <ion-content class="tutorial-page" padding>
   <ion-fab left bottom edge style="bottom: 10px;" #fab>
          <button color=secondary ion-fab><i class="fa fa-share-alt" aria-hidden="true"></i></button>
-         <ion-fab-list side="right">
-           <button ion-fab  clear (click)="share('facebook', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-           <button ion-fab  clear (click)="share('twitter', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
-
+         <ion-fab-list side="top">
+           <button ion-fab  color="facebook" (click)="share('facebook', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+           <button ion-fab  color="twitter" (click)="share('twitter', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+           <button ion-fab color="file" clear (click)="openLink('http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/pnd2030.pdf')"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+           <button ion-fab color="link" clear (click)="openLink('http://www.stp.gov.py/pnd/')"> <ion-icon name="link"></ion-icon></button>
          </ion-fab-list>
        </ion-fab>
-  <ion-slides pager>
-    <ion-slide  *ngFor="let slide of slides">
-      <h2 class="slide-title color-{{slide.cont}}" [innerHTML]="slide.title"></h2>
-      <ion-toolbar class="tutorial-buttons">
-        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/pnd2030.pdf')"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
-        <button ion-button color="secondary" clear (click)="openLink('http://www.stp.gov.py/pnd/')"> <ion-icon name="link"></ion-icon></button>
-      </ion-toolbar>
-      <img [src]="slide.image" class="slide-image"/>
+       <ion-grid class="principal-grid">
+         <ion-row>
+           <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+              <ion-slides pager>
+                <ion-slide  *ngFor="let slide of _slides">
+                  <h2 class="slide-title color-{{slide.cont}}" [innerHTML]="slide.title"></h2>
+                  <ion-toolbar>
+                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+                </ion-toolbar>
 
-      <p [innerHTML]="slide.description"></p>
-    </ion-slide>
+                  <img [src]="slide.image" class="slide-image" />
 
-  </ion-slides>
+                  <p [innerHTML]="slide.description"></p>
+                </ion-slide>
+
+              </ion-slides>
+
+          </ion-col>
+          <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+              <ppy-footer></ppy-footer>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
-  </ion-toolbar>
-</ion-footer>

@@ -15,15 +15,34 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 .tutorial-page {
-
+  .scroll-content{
+    padding: 0 !important;
+  }
+  ion-slides{
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+    margin: 10px;
+  }
   .toolbar-background {
-    background: #fff;
     border-color: transparent;
   }
-
   .slide-zoom {
-    height: 100%;
+      height: 100%;
+    }
+  ion-toolbar{
+    position: absolute;
+    top: 50%;
+    .left{
+      position: absolute;
+      left: 0;
+      top: 0;
+      left: 10px;
+    }
+    .right{
+        right: 10px !important;
+    }
   }
+
 
   .slide-title {
     font-size: 15px;
@@ -34,12 +53,11 @@
     font-weight: bold;
     color: #0a7e84;
   }
-  .toolbar-content{
-    text-align: right;
-  }
+
   .slide-image {
     max-height: 50%;
-    max-width: 60%;
+    width: 22%;
+    min-width: 170px;
     margin: 18px 0;
   }
 
@@ -54,24 +72,22 @@
   }
 
   p {
-    padding: 0 40px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #60646B;
+    padding: 23px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #60646B;
+      margin: 0;
+      padding-bottom: 30px;
 
     b {
       color: #000000;
     }
   }
   .swiper-slide{
-    border: 2px solid aliceblue;
-    border-radius: 5px;
+
 
   }
-  .toolbar-md{
-    position: absolute;
-bottom: 5px;
-  }
+
 
 }
 
@@ -981,7 +997,7 @@ rect.child {
   overflow-y: auto;
   padding: 0 !important;
   font-family: 'Muli', sans-serif;
-    max-height: calc(100% - 183px) !important;
+    max-height: calc(100% - 148px) !important;
   .closesidebar{
     text-align: end;
 /* color: bisque; */
@@ -1116,6 +1132,10 @@ svg {
   margin: 15px;
   width: calc(100% - 30px);
   min-height: 131px;
+  height: 30%;
+  ion-slide{
+    width: 100%;
+  }
   p{
         font-size: 14px;
         min-height: 60px;
@@ -1356,4 +1376,83 @@ button:hover{
   .sidebarbutton.active{
     border-bottom: 3px solid #fca5ff !important;
   }
+}
+
+
+.ppy-footer{
+  background: url(/assets/img/emblema.png) no-repeat left top;
+  background-size: contain;
+  background-position-x: 20px;
+  ion-grid{
+    background: transparent;
+    padding: 0;
+    ion-row{
+        background: rgba(60, 61, 62, 0.97);
+    }
+    ion-col{
+        background: transparent !important;
+          margin: auto !important;
+          .links-footer{
+            padding-top: 15px;
+            button{
+              transition: none;
+              height: 40px;
+              width: 40px;
+              margin: 15px;
+              color: white;
+              background: #1762a2;
+              border-radius: 25px;
+              margin-top: 0;
+              align-content: center;
+              justify-content: flex-start;
+              vertical-align: text-bottom;
+            }
+            .twitter-button{
+              background: #1bb2f3;
+              margin-left: 0;
+            }
+            text-align: center;
+            a{
+              color: transparent !important;
+            }
+          }
+          a{
+            color: #cbcbcc;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 13px !important;
+          }
+          h5{
+            padding-left: 25px;
+            color: #d4d3d2;
+            font-size: 14px !important;
+          }
+
+    }
+  }
+}
+
+
+.footer_col{
+  margin: 0 !important;
+  width: 100% !important;
+
+max-width: 100%;
+flex: 100%;
+}
+.footer_content{
+  display: table-cell;
+  vertical-align: bottom;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  /* display: inline-flex; */
+  -webkit-flex-flow: row nowrap;
+  -moz-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end;
+}
+ppy-footer{
+  width: 100%;
 }

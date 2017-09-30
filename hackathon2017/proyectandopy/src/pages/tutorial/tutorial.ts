@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BasePage } from '../../app/base-page';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
@@ -6,13 +6,15 @@ import 'rxjs/add/operator/map';
 import { InstitucionData } from '../../providers/institucion';
 import { AppHelper } from '../../helpers/app-helper';
 import { LoadingController } from 'ionic-angular';
+import { Slides } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tutorial.html',
   providers: [InstitucionData]
 })
+
 export class TutorialPage extends BasePage {
-  slides = [
+  _slides = [
     {
       title: "Plan Nacional de Desarrollo 2030",
       description: "El <b>Plan Nacional de Desarrollo 2030 o PND</b> busca coordinar las acciones de los Poderes del Estado, niveles de Gobierno, sociedad civil y sector privado a fin de mejorar la gestión del País",
@@ -27,7 +29,7 @@ export class TutorialPage extends BasePage {
     },
     {
       title: "Niveles",
-      description: "Actualmente existen <b>11 Niveles</b> que agrupan las distintas entidades del Gobierno, entre ellas están los tres poderes del Estado, entidades y empresas públicas, universidades, entre otros.",
+      description: "Actualmente existen <b>un conjunto de Niveles</b> que agrupan las distintas entidades del Gobierno, entre ellas están los tres poderes del Estado, entidades y empresas públicas, universidades, entre otros.",
       image: "assets/img/24.svg",
       cont:"3",
     },
@@ -50,7 +52,7 @@ export class TutorialPage extends BasePage {
       cont:"6",
     }
   ];
-
+  @ViewChild(Slides) slides: Slides;
   constructor(private iab: InAppBrowser, public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
     menuCtrl: MenuController, public appHelper: AppHelper) {
     super(navCtrl, navParams, dataService, appHelper);
@@ -58,5 +60,13 @@ export class TutorialPage extends BasePage {
 
   openLink(link){
   		this.iab.create(link,'_system',{location:'yes'});
+  }
+
+  goToSlide() {
+    this.slides.slideNext(100);
+  }
+
+  gobackSlide() {
+    this.slides.slidePrev(100);
   }
 }

@@ -27,6 +27,7 @@ import { PpyCanva } from '../components/ppy-canva/ppy-canva';
 import { PpyResumen } from '../components/ppy-resumen/ppy-resumen';
 import { PpyRating } from '../components/ppy-rating/ppy-rating';
 import { PpyComment } from '../components/ppy-comment/ppy-comment';
+import { PpyFooter } from '../components/ppy-footer/ppy-footer';
 import { AppHelper } from '../helpers/app-helper';
 import { KeysPipe } from '../helpers/keys-pipe';
 
@@ -38,6 +39,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
     ShowLineaAccionPage,
     TutorialPage,
     PpyCanva,
+    PpyFooter,
     PpyResumen,
     PpyRating,
     PpyComment,

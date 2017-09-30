@@ -96,21 +96,21 @@
              </ion-slide>
 
              <ion-slide >
-               <p>Aqui puedes ver la información del Plan Nacional de Desarrollo 2030</p>
+               <p>Aquí puedes ver la información del Plan Nacional de Desarrollo 2030</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>El contenido esta dividido en tres secciones: General(La Informacion global del PND), Ejes(La Informacion agrupada por cada eje estrategico del PND), Estrategias(La Informacion agrupada por cada eje estrategico y estrategia del PND)</p>
+               <p>El contenido está dividido en tres secciones: General (La Información global del PND), Ejes (La Información agrupada por cada eje estratégico del PND) y Estrategias (La Información agrupada por cada eje estratégico y estrategia del PND)</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Esta Información muestra la cantidad de entidades involucradas en PND, la cantidad de Objetivos que buscan cumplir, El presuspuesto asignado para llevar a cabo el plan y la cantidad de beneficiarios.</p>
+               <p>Esta Información muestra la cantidad de entidades involucradas en el PND, la cantidad de Objetivos que buscan cumplir, El presupuesto asignado para llevar a cabo el plan y la cantidad de beneficiarios.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -125,14 +125,14 @@
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Tambien puedes filtrar la informacion por Nivel, Entidad y Año.</p>
+               <p>También puedes filtrar la información por Nivel, Entidad y Año.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Ademas puedes comentar y calificar esta Información.</p>
+               <p>Además puedes comentar y calificar esta Información.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -403,13 +403,12 @@
           </ion-row>
         </ion-grid>
       </ion-col>
+      <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+        <ppy-footer></ppy-footer>
+      </ion-col>
     </ion-row>
+
   </ion-grid>
 
 
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>@Hackathon2017 - Senatics - STP</ion-title>
-  </ion-toolbar>
-</ion-footer>

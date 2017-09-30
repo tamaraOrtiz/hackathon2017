@@ -9,7 +9,7 @@ import { Events } from 'ionic-angular';
 import * as d3 from "d3";
 import { Http } from '@angular/http';
 import { AppHelper } from '../../helpers/app-helper';
-
+import { Slides } from 'ionic-angular';
 
 @Component({
   selector: 'page-estadisticas',
@@ -40,6 +40,7 @@ export class EstadisticasPage extends ShowBasePage {
   count_view = 0
   count_download = 0
   id: any
+  @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -90,7 +91,13 @@ export class EstadisticasPage extends ShowBasePage {
       }
     });
   }
+  goToSlide() {
+    this.slides.slideNext(100);
+  }
 
+  gobackSlide() {
+    this.slides.slidePrev(100);
+  }
   pushItem(record: any) {
 
   }
