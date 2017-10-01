@@ -146,6 +146,8 @@ export class ShowInstitucionPage extends ShowBasePage {
         unidadMedida: la.unidad_medida,
         cantidadPromedio: la.cantidad_promedio,
         cantidadDenominador: la.cantidad_denominador,
+        avance_metas: la.avance_metas,
+        programa_metas: la.programa_metas,
         ico: 'fa-users'
       });
     });

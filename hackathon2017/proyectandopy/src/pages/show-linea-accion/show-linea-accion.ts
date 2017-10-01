@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ShowBasePage } from '../../app/show-base-page';
 import { LineaAccionData } from '../../providers/linea-accion';
 import { AppHelper } from '../../helpers/app-helper';
 import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
+import * as d3 from "d3";
 import 'leaflet-search';
 
 @Component({
@@ -14,7 +15,7 @@ import 'leaflet-search';
 })
 
 export class ShowLineaAccionPage extends ShowBasePage  {
-
+  @ViewChild('graph') graph;
   item: any
   chartsData: Array<any>
   paraguayGeoJson: any
@@ -34,7 +35,97 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     changetab(_text){
       this.tabactive = _text;
     }
-    ionViewDidEnter() {
+
+    ionViewDidEnter(){
+      this.generateMap();
+      this.generateStackChart();
+    }
+
+    generateStackChart() {
+      let self = this;
+
+      let n = 4;
+      let m = 2;
+      console.log(this.item.avance_metas);
+      var xz = d3.range(m),
+    yz = d3.range(n).map(function() { return bumps(m); }),
+    y01z = d3.stack().keys(d3.range(n))(d3.transpose(yz)),
+    yMax = d3.max(yz, function(y) { return d3.max(y); }),
+    y1Max = d3.max(y01z, function(y) { return d3.max(y, function(d) { return d[1]; }); });
+
+var svg = d3.select(this.graph.nativeElement);
+let
+    margin = {top: 40, right: 10, bottom: 20, left: 10};
+    let width  = 600 - margin.left - margin.right;
+    let height = 600 - margin.top - margin.bottom;
+    let g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scaleBand()
+    .domain(xz)
+    .rangeRound([0, width])
+    .padding(0.08);
+
+var y = d3.scaleLinear()
+    .domain([0, y1Max])
+    .range([height, 0]);
+
+var color = d3.scaleOrdinal()
+    .domain(d3.range(n))
+    .range(d3.schemeCategory20c);
+
+var series = g.selectAll(".series")
+  .data(y01z)
+  .enter().append("g")
+    .attr("fill", function(d, i) { return color(i); });
+
+var rect = series.selectAll("rect")
+  .data(function(d) { return d; })
+  .enter().append("rect")
+    .attr("x", function(d, i) { return x(i); })
+    .attr("y", height)
+    .attr("width", x.bandwidth())
+    .attr("height", 0);
+
+rect.transition()
+    .delay(function(d, i) { return i * 10; })
+    .attr("y", function(d) { return y(d[1]); })
+    .attr("height", function(d) { return y(d[0]) - y(d[1]); });
+
+g.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x)
+        .tickSize(0)
+        .tickPadding(6));
+      function bumps(m) {
+  var values = [], i, j, w, x, y, z;
+
+  // Initialize with uniform random values in [0.1, 0.2).
+  for (i = 0; i < m; ++i) {
+    values[i] = 0.1 + 0.1 * Math.random();
+  }
+
+  // Add five random bumps.
+  for (j = 0; j < 5; ++j) {
+    x = 1 / (0.1 + Math.random());
+    y = 2 * Math.random() - 0.5;
+    z = 10 / (0.1 + Math.random());
+    for (i = 0; i < m; i++) {
+      w = (i / m - y) * z;
+      values[i] += x * Math.exp(-w * w);
+    }
+  }
+
+  // Ensure all values are positive.
+  for (i = 0; i < m; ++i) {
+    values[i] = Math.max(0, values[i]);
+  }
+
+  return values;
+}
+    }
+
+    generateMap() {
       let self = this;
       let maxAvance = Number.MIN_VALUE;
       let maxMeta = Number.MIN_VALUE;
