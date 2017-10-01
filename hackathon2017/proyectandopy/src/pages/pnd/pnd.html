@@ -33,9 +33,9 @@
       <button ion-fab  menuToggle color=secondary> <!-- basic usage -->
       <i class="fa fa-filter" aria-hidden="true"></i></button>
     </ion-fab>
-  <ion-grid>
+  <ion-grid class="pnd_grid">
     <ion-row>
-      <ion-col *ngIf="openbar" class="filter-sidebar"  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
+      <ion-col *ngIf="openbar" class="filter-sidebar "  id="filter-sidebar" col-sm-8 col-8 col-md-8  col-lg-2 col-xl-2>
         <div *ngIf="openbar"  left top style="bottom: 10px;" class="closesidebar" >
             <button  menuToggle color=secondary (click)="closesidebar()"> <!-- basic usage -->
             <i class="fa fa-times" aria-hidden="true"></i></button>
@@ -149,13 +149,13 @@
         </div>
       </ion-col>
 
-        <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+        <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" class="pnd-general" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
-          <ion-row class=resumen>
+          <ion-row class=resumen [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
             <ion-col class="title c1" col-12>
               <ion-label>Totales</ion-label>
             </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c1" item-start>
                   <i class="fa fa-bank"></i>
               </ion-avatar>
@@ -164,24 +164,24 @@
               </ion-label>
 
             </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1" item-start>
-                <i class="fa fa-link" aria-hidden="true"></i>
+            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1"  item-start>
+                <i class="fa fa-link" aria-hidden="true" ></i>
               </ion-avatar>
               <ion-label>{{general.objetivos}} Objetivos</ion-label>
             </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c1" item-start>
-                  <i class="fa fa-users"></i>
+                  <i class="fa fa-users" ></i>
               </ion-avatar>
               <ion-label>{{general.personas}} Personas
-                  <a (click)="openModal(general.beneficiarios)" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
+                  <a (click)="openModal(general.beneficiarios)"  style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
               </ion-label>
 
             </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1" item-start>
-                <i class="fa fa-money" aria-hidden="true"></i>
+            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+              <ion-avatar class="c1"  item-start>
+                <i class="fa fa-money"  aria-hidden="true"></i>
               </ion-avatar>
               <ion-label>{{general.monto}} gs.</ion-label>
             </ion-col>
@@ -386,8 +386,6 @@
 
         </ion-grid>
       </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col   [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid class="common-grid">
           <ion-row>

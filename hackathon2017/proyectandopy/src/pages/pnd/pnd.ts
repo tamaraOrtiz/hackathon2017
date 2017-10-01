@@ -34,6 +34,7 @@ export class PNDPage extends BasePage {
   tabactive:any
   openbar: any
   shownab: any
+
   loading;
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -51,6 +52,8 @@ export class PNDPage extends BasePage {
     this.tabactive = 'general';
     this.openbar = appHelper.isDeskTop();
     this.shownab = !appHelper.isDeskTop();
+    
+
 
   }
 

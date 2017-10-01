@@ -833,10 +833,16 @@ ion-footer{
       display: inline-flex;
     }
   }
+  .title.c5{
+    border-bottom: 2px solid #6fb4e4;
+    color: #6fb4e4;
+  }
+
   .title.c1{
     border-bottom: 2px solid #0b62b1;
     color: #0b62b1;
   }
+
   .title.c2{
     border-bottom: 2px solid #19a5a1;
     color: #19a5a1;
@@ -897,7 +903,7 @@ ppy-canva{
 
   }
   .c1{
-    background: #0b62b1;
+    background: #6fb4e4;
   }
   .c2{
     background: #19a5a1;
@@ -1426,6 +1432,8 @@ button:hover{
             padding-left: 25px;
             color: #d4d3d2;
             font-size: 14px !important;
+            padding-top: 15px;
+            margin-top: 5px !important;
           }
 
     }
@@ -1455,4 +1463,46 @@ flex: 100%;
 }
 ppy-footer{
   width: 100%;
+}
+
+.pnd_grid{
+  height: 100%;
+  .pnd-general{
+
+    .item-resumen{
+      ion-avatar{
+        width: 93px;
+      }
+    }
+
+  }
+  .pnd-deskop{
+    .item-resumen{
+      height: 150px;
+      ion-avatar{
+        padding-top: 55px;
+        i.fa{
+          font-size: 33px;
+        }
+      }
+    }
+    .pndeye{
+      bottom: 81px;
+    }
+  }
+
+  .pnd-app{
+    .item-resumen{
+      height: 108px;
+      ion-avatar{
+        padding-top: 35px;
+        i.fa{
+          font-size: 23px;
+        }
+      }
+    }
+    .pndeye{
+      bottom: 63px;
+    }
+  }
 }
