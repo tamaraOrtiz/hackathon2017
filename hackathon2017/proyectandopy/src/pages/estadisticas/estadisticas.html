@@ -113,13 +113,13 @@ Ionic pages and navigation.
     <div class='view-content'>
 
       <ppy-canva [presupuestos]="presupuestos" [item]="item" *ngIf="presupuestos"></ppy-canva>
-      <div>
-        <button class="empty-list" ion-item *ngIf="!presupuestos">
-          <h2>No hay Datos para graficar</h2>
-        </button>
-      </div>
+      <div *ngIf="!presupuestos">
+        <ion-label class="title-page item-grouper">Estadísticas
 
+        </ion-label>
+        <h2 class="sin-data">No hay Datos para mostrar</h2>
     </div>
+  </div>
 
 
   </ion-col>
