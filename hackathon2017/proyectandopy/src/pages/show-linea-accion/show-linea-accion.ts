@@ -175,9 +175,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
               }
             }).addTo(this.map);
 
+            let type = 'Avances';
+
             let geoAlcanceNacional = new L.GeoJSON(this.paraguayGeoJson, {
               style: function (feature) {
-                return (self.style(feature, 'Avances'));
+                return (self.style(feature,type));
               },
               onEachFeature: function (feature: any, layer) {
                 layer.on('click', function (e) {
@@ -192,8 +194,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     fillOpacity: 0.7
                   });
                   self.map.fitBounds((layer as any).getBounds());
-                  console.log(feature);
-                  info.update(feature.properties, 'Avances');
+                  info.update(feature.properties, type);
                 });
               }
             });
@@ -246,11 +247,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     (geoAvances as any).resetStyle((geoAvances as any)._layers[key]);
                   });
                 }
+                type = eventLayer.name;
                 if(self.map.hasLayer(geoAlcanceNacional)){
+                  self.map.removeLayer(geoAlcanceNacional);
+                  Object.keys((geoAlcanceNacional as any)._layers).map (key => {
+                    (geoAlcanceNacional as any).resetStyle((geoAlcanceNacional as any)._layers[key]);
+                  });
+                  geoAlcanceNacional.addTo(self.map)
                   geoAlcanceNacional.bringToFront();
                 }
                 legend.update(eventLayer.name);
                 info.update(null, eventLayer.name);
+
               });
 
               legend.update = function (layer){
