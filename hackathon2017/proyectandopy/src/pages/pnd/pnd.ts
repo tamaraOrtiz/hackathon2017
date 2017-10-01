@@ -18,8 +18,8 @@ import { Slides } from 'ionic-angular';
 })
 export class PNDPage extends BasePage {
   items: Array<{title: string, note: string, icon: string}>;
-  niveles: Array<any>;
-  entidades: Array<any>;
+  niveles: Array<any> = [];
+  entidades: Array<any> = [];
   general: any = {};
   eje: any = {};
   estrategias: any = {};
@@ -49,10 +49,10 @@ export class PNDPage extends BasePage {
     this.selectedEntidades = "null";
     this.selectedAnhos = "null";
     this.anhos = [2017,2018,2019];
-    this.tabactive = 'general';
+    this.tabactive = 'eje';
     this.openbar = appHelper.isDeskTop();
     this.shownab = !appHelper.isDeskTop();
-    
+
 
 
   }
@@ -188,8 +188,10 @@ export class PNDPage extends BasePage {
 
 
   structEntidades (meta):any {
+
     let entidades = [];
     for(let row of meta) {
+      console.log(row);
       entidades.push({
         id: row.nivelid+"_"+row.entidadid,
         nombre: row.nombre,

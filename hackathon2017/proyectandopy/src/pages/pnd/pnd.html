@@ -52,7 +52,7 @@
           <i class="fa fa-handshake-o" aria-hidden="true"></i>
           Estrategias
         </button>
-        <ion-list style="margin-top: 15px;">
+        <ion-list style="margin-top: 15px; width: 90%;">
           <ion-item class="filter-select labelfilter">
 
           <ion-label>Nivel</ion-label>
@@ -150,8 +150,8 @@
       </ion-col>
 
         <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" class="pnd-general" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
-        <ion-grid>
-          <ion-row class=resumen [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
+        <ion-grid >
+          <ion-row class="resumen view-content"  [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
             <ion-col class="title c1" col-12>
               <ion-label>Totales</ion-label>
             </ion-col>
@@ -190,7 +190,7 @@
       </ion-col>
       <ion-col *ngIf="tabactive=='eje'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
-          <ion-row class=resumen>
+          <ion-row class="resumen view-content" *ngIf="eje['Reducción de pobreza y desarrollo social']">
             <ion-col class="title c2" col-12>
               <ion-label>Eje 1: Reducción de pobreza y desarrollo social</ion-label>
             </ion-col>
@@ -220,8 +220,7 @@
               </ion-avatar>
               <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['monto']}} gs.</ion-label>
             </ion-col>
-          </ion-row>
-          <ion-row class=resumen>
+
             <ion-col class="title c3" col-12>
               <ion-label>Eje 2: Crecimiento económico inclusivo</ion-label>
             </ion-col>
@@ -250,8 +249,7 @@
               </ion-avatar>
               <ion-label>{{eje["Crecimiento económico inclusivo"]['monto']}} gs.</ion-label>
             </ion-col>
-          </ion-row>
-          <ion-row  class=resumen>
+
             <ion-col class="title c4" col-12>
               <ion-label>Eje 3: Inserción de Paraguay en el mundo</ion-label>
             </ion-col>
@@ -285,7 +283,7 @@
       </ion-col>
       <ion-col *ngIf="tabactive=='estrategia'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
-          <ion-row  *ngFor="let est of estrategias | keys" class=resumen>
+          <ion-row  *ngFor="let est of estrategias | keys" class="resumen view-content">
             <ion-col class="title c1" col-12 >
               <ion-label>{{est}}</ion-label>
             </ion-col>
