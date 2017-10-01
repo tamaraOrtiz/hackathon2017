@@ -69,7 +69,7 @@
         <a class="leaflet-control-zoom-out" (click)="appHelper.download('#map')">
           <i class="fa fa-download"></i>
         </a>
-        <div  style="height: calc(100% - 46px);" id="map"></div>
+        <div id="map" style="height: 70vh;"></div>
       </ion-col>
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
@@ -78,7 +78,7 @@
         <svg width="960" height="500"></svg>
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
-        
+        <ppy-footer></ppy-footer>
       </ion-col>
   </ion-row>
 
