@@ -111,7 +111,7 @@
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
-        <ion-list class='view-content'>
+        <ion-list class='view-content' >
           <div *ngFor="let niv of _niveles | keys">
             <ion-item class="item-grouper nivel-grouper">Nivel
                <p class="p_common_list">{{_niveles[niv]["nombre"]}}

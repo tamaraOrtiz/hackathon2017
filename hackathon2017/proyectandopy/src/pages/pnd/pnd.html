@@ -52,6 +52,7 @@
           <i class="fa fa-handshake-o" aria-hidden="true"></i>
           Estrategias
         </button>
+
         <ion-list style="margin-top: 15px; width: 90%;">
           <ion-item class="filter-select labelfilter">
 
@@ -85,6 +86,7 @@
         </ion-select>
       </ion-item>
         </ion-list>
+        <ion-label class="metrica-label">{{count_view}} visita/s - {{count_download}} descarga/s</ion-label>
         <div>
           <ion-slides pager class="helpslide">
 
@@ -151,103 +153,130 @@
 
         <ion-col *ngIf="tabactive=='general'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" class="pnd-general" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid >
-          <ion-row class="resumen view-content"  [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
-            <ion-col class="title c1" col-12>
-              <ion-label>Totales</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1" item-start>
-                  <i class="fa fa-bank"></i>
-              </ion-avatar>
-              <ion-label>{{general.entidades}} Entidades
-
+          <ion-row class="resumen"  [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
+            <ion-col class="title c5" col-12>
+              <ion-label>General
+                <a class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_totales', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndgeneral.jpg')">
+                  <i class="fa fa-download"></i>
+                </a>
               </ion-label>
+            </ion-col>
+            <ion-col class="resumen view-content pnd_totales">
+              <ion-grid >
+                <ion-row>
+                  <ion-col class="title c1" col-12>
+                    <ion-label>Totales
 
-            </ion-col>
-            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1"  item-start>
-                <i class="fa fa-link" aria-hidden="true" ></i>
-              </ion-avatar>
-              <ion-label>{{general.objetivos}} Objetivos</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1" item-start>
-                  <i class="fa fa-users" ></i>
-              </ion-avatar>
-              <ion-label>{{general.personas}} Personas
-                  <a (click)="openModal(general.beneficiarios)"  style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
-              </ion-label>
+                    </ion-label>
+                  </ion-col>
+                  <ion-col class=" item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c1" item-start>
+                        <i class="fa fa-bank"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(general.entidades)}} Entidades
 
-            </ion-col>
-            <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c1"  item-start>
-                <i class="fa fa-money"  aria-hidden="true"></i>
-              </ion-avatar>
-              <ion-label>{{general.monto}} gs.</ion-label>
+                    </ion-label>
+
+                  </ion-col>
+                  <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c1"  item-start>
+                      <i class="fa fa-link" aria-hidden="true" ></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(general.objetivos)}} Objetivos</ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c1" item-start>
+                        <i class="fa fa-users" ></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(general.personas)}} Personas
+                        <a (click)="openModal(general.beneficiarios)" class="vermas" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
+                    </ion-label>
+
+                  </ion-col>
+                  <ion-col class="item-resumen"  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c1"  item-start>
+                      <i class="fa fa-money"  aria-hidden="true"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(general.monto)}} gs.</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
       <ion-col *ngIf="tabactive=='eje'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid>
-          <ion-row class="resumen view-content" *ngIf="eje['Reducción de pobreza y desarrollo social']">
-            <ion-col class="title c2" col-12>
-              <ion-label>Eje 1: Reducción de pobreza y desarrollo social</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c2" item-start>
-                  <i class="fa fa-bank"></i>
-              </ion-avatar>
-              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['entidades'].length}} Entidades</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar class="c2"  item-start>
-                <i class="fa fa-link" aria-hidden="true"></i>
-              </ion-avatar>
-              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['objetivos'].length}} Objetivos</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar  class="c2" item-start>
-                  <i class="fa fa-users"></i>
-              </ion-avatar>
-              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['personas']}} Personas
-                <a (click)="openModal(eje['Reducción de pobreza y desarrollo social']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
+          <ion-row *ngIf="eje['Reducción de pobreza y desarrollo social']">
+            <ion-col class="resumen"  col-12>
+              <ion-label class="title c5">Ejes
+                <a class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_eje', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndeje.jpg')">
+                  <i class="fa fa-download"></i>
+                </a>
               </ion-label>
             </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar  class="c2" item-start>
-                <i class="fa fa-money" aria-hidden="true"></i>
-              </ion-avatar>
-              <ion-label>{{eje["Reducción de pobreza y desarrollo social"]['monto']}} gs.</ion-label>
-            </ion-col>
+            <ion-col class="resumen view-content pnd_eje" >
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="title c2" col-12>
+                    <ion-label>Eje 1: Reducción de pobreza y desarrollo social
 
-            <ion-col class="title c3" col-12>
-              <ion-label>Eje 2: Crecimiento económico inclusivo</ion-label>
-            </ion-col>
-            <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
-              <ion-avatar  class="c3" item-start>
-                  <i class="fa fa-bank"></i>
-                </ion-avatar>
-              <ion-label>{{eje["Crecimiento económico inclusivo"]['entidades'].length}} Entidades</ion-label>
-            </ion-col>
+                    </ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c2" item-start>
+                        <i class="fa fa-bank"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(eje["Reducción de pobreza y desarrollo social"]['entidades'].length)}} Entidades</ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar class="c2"  item-start>
+                      <i class="fa fa-link" aria-hidden="true"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(eje["Reducción de pobreza y desarrollo social"]['objetivos'].length)}} Objetivos</ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar  class="c2" item-start>
+                        <i class="fa fa-users"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(eje["Reducción de pobreza y desarrollo social"]['personas'])}} Personas
+                      <a (click)="openModal(eje['Reducción de pobreza y desarrollo social']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a>
+                    </ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar  class="c2" item-start>
+                      <i class="fa fa-money" aria-hidden="true"></i>
+                    </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(eje["Reducción de pobreza y desarrollo social"]['monto'])}} gs.</ion-label>
+                  </ion-col>
+
+                  <ion-col class="title c3" col-12>
+                    <ion-label>Eje 2: Crecimiento económico inclusivo</ion-label>
+                  </ion-col>
+                  <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
+                    <ion-avatar  class="c3" item-start>
+                        <i class="fa fa-bank"></i>
+                      </ion-avatar>
+                    <ion-label>{{appHelper.numberFormatter(eje["Crecimiento económico inclusivo"]['entidades'].length)}} Entidades</ion-label>
+                  </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar  class="c3" item-start>
                 <i class="fa fa-link" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>{{eje["Crecimiento económico inclusivo"]['objetivos'].length}} Objetivos</ion-label>
+              <ion-label>{{appHelper.numberFormatter(eje["Crecimiento económico inclusivo"]['objetivos'].length)}} Objetivos</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c3" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>{{eje["Crecimiento económico inclusivo"]['personas']}} Personas
+              <ion-label>{{appHelper.numberFormatter(eje["Crecimiento económico inclusivo"]['personas'])}} Personas
                 <a (click)="openModal(eje['Crecimiento económico inclusivo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c3" item-start>
                 <i class="fa fa-money" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>{{eje["Crecimiento económico inclusivo"]['monto']}} gs.</ion-label>
+              <ion-label>{{appHelper.numberFormatter(eje["Crecimiento económico inclusivo"]['monto'])}} gs.</ion-label>
             </ion-col>
 
             <ion-col class="title c4" col-12>
@@ -257,133 +286,153 @@
               <ion-avatar class="c4" item-start>
                   <i class="fa fa-bank"></i>
               </ion-avatar>
-              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['entidades'].length}} Entidades</ion-label>
+              <ion-label>{{appHelper.numberFormatter(eje["Inserción de Paraguay en el mundo"]['entidades'].length)}} Entidades</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                 <i class="fa fa-link" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['objetivos'].length}} Objetivos</ion-label>
+              <ion-label>{{appHelper.numberFormatter(eje["Inserción de Paraguay en el mundo"]['objetivos'].length)}} Objetivos</ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                   <i class="fa fa-users"></i>
               </ion-avatar>
-              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['personas']}} Personas
+              <ion-label>{{appHelper.numberFormatter(eje["Inserción de Paraguay en el mundo"]['personas'])}} Personas
                 <a (click)="openModal(eje['Inserción de Paraguay en el mundo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
                 <i class="fa fa-money" aria-hidden="true"></i>
               </ion-avatar>
-              <ion-label>{{eje["Inserción de Paraguay en el mundo"]['monto']}} gs.</ion-label>
+              <ion-label>{{appHelper.numberFormatter(eje["Inserción de Paraguay en el mundo"]['monto'])}} gs.</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-col>
       <ion-col *ngIf="tabactive=='estrategia'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
-        <ion-grid>
-          <ion-row  *ngFor="let est of estrategias | keys" class="resumen view-content">
-            <ion-col class="title c1" col-12 >
-              <ion-label>{{est}}</ion-label>
+        <ion-grid >
+          <ion-row  >
+            <ion-col class="resumen"  col-12>
+              <ion-label class="title c5">Estrategias
+                <a class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd-estrategia', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndestrategias.jpg')">
+                  <i class="fa fa-download"></i>
+                </a>
+              </ion-label>
             </ion-col>
-            <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
+            <ion-col class="pnd-estrategia view-content">
               <ion-grid>
-                <ion-row class=resumen>
-                  <ion-col class="item-resumen" col-12 >
-                    <ion-avatar class="c2" item-start>
-                        <i class="fa fa-bank"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Reducción de pobreza y desarrollo social"]['entidades'].length}} Entidades</ion-label>
+                <ion-row  *ngFor="let est of estrategias | keys" class="resumen ">
+                  <ion-col class="title c1" col-12 >
+                    <ion-label>{{est}}
+
+                    </ion-label>
                   </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c2" item-start>
-                      <i class="fa fa-link" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Reducción de pobreza y desarrollo social"]['objetivos'].length}} Objetivos</ion-label>
+                  <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
+                    <ion-grid>
+                      <ion-row class=resumen>
+                        <ion-col class="item-resumen" col-12 >
+                          <ion-avatar class="c2" item-start>
+                              <i class="fa fa-bank"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Reducción de pobreza y desarrollo social"]['entidades'].length)}} Entidades</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c2" item-start>
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Reducción de pobreza y desarrollo social"]['objetivos'].length)}} Objetivos</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c2" item-start>
+                              <i class="fa fa-users"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Reducción de pobreza y desarrollo social"]['personas'])}} Personas
+                            <a (click)="openModal(estrategias[est]['Reducción de pobreza y desarrollo social']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c2" item-start>
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Reducción de pobreza y desarrollo social"]['monto'])}} gs.</ion-label>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c2" item-start>
-                        <i class="fa fa-users"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Reducción de pobreza y desarrollo social"]['personas']}} Personas
-                      <a (click)="openModal(estrategias[est]['Reducción de pobreza y desarrollo social']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
+                  <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
+                    <ion-grid>
+                      <ion-row class=resumen>
+                        <ion-col class="item-resumen" col-12 >
+                          <ion-avatar class="c3" item-start>
+                              <i class="fa fa-bank"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Crecimiento económico inclusivo"]['entidades'].length)}} Entidades</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c3" item-start>
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Crecimiento económico inclusivo"]['objetivos'].length)}} Objetivos</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c3" item-start>
+                              <i class="fa fa-users"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Crecimiento económico inclusivo"]['personas'])}} Personas
+                            <a (click)="openModal(estrategias[est]['Crecimiento económico inclusivo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c3" item-start>
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Crecimiento económico inclusivo"]['monto'])}} gs.</ion-label>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c2" item-start>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Reducción de pobreza y desarrollo social"]['monto']}} gs.</ion-label>
+                  <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
+                    <ion-grid>
+                      <ion-row class=resumen>
+                        <ion-col class="item-resumen" col-12 >
+                          <ion-avatar class="c4" item-start>
+                              <i class="fa fa-bank"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Inserción de Paraguay en el mundo"]['entidades'].length)}} Entidades</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c4" item-start>
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Inserción de Paraguay en el mundo"]['objetivos'].length)}} Objetivos</ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c4" item-start>
+                              <i class="fa fa-users"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Inserción de Paraguay en el mundo"]['personas'])}} Personas
+                            <a (click)="openModal(estrategias[est]['Inserción de Paraguay en el mundo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
+                        </ion-col>
+                        <ion-col class="item-resumen" col-12>
+                          <ion-avatar class="c4" item-start>
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                          </ion-avatar>
+                          <ion-label>{{appHelper.numberFormatter(estrategias[est]["Inserción de Paraguay en el mundo"]['monto'])}} gs.</ion-label>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   </ion-col>
                 </ion-row>
-              </ion-grid>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
-              <ion-grid>
-                <ion-row class=resumen>
-                  <ion-col class="item-resumen" col-12 >
-                    <ion-avatar class="c3" item-start>
-                        <i class="fa fa-bank"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Crecimiento económico inclusivo"]['entidades'].length}} Entidades</ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c3" item-start>
-                      <i class="fa fa-link" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Crecimiento económico inclusivo"]['objetivos'].length}} Objetivos</ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c3" item-start>
-                        <i class="fa fa-users"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Crecimiento económico inclusivo"]['personas']}} Personas
-                      <a (click)="openModal(estrategias[est]['Crecimiento económico inclusivo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c3" item-start>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Crecimiento económico inclusivo"]['monto']}} gs.</ion-label>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
-            <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
-              <ion-grid>
-                <ion-row class=resumen>
-                  <ion-col class="item-resumen" col-12 >
-                    <ion-avatar class="c4" item-start>
-                        <i class="fa fa-bank"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Inserción de Paraguay en el mundo"]['entidades'].length}} Entidades</ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c4" item-start>
-                      <i class="fa fa-link" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Inserción de Paraguay en el mundo"]['objetivos'].length}} Objetivos</ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c4" item-start>
-                        <i class="fa fa-users"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Inserción de Paraguay en el mundo"]['personas']}} Personas
-                      <a (click)="openModal(estrategias[est]['Inserción de Paraguay en el mundo']['beneficiarios'])" style="text-transform: lowercase;"><i class="fa fa-eye pndeye" aria-hidden="true"></i> Ver mas</a></ion-label>
-                  </ion-col>
-                  <ion-col class="item-resumen" col-12>
-                    <ion-avatar class="c4" item-start>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                    </ion-avatar>
-                    <ion-label>{{estrategias[est]["Inserción de Paraguay en el mundo"]['monto']}} gs.</ion-label>
-                  </ion-col>
-                </ion-row>
+
               </ion-grid>
             </ion-col>
           </ion-row>
+              </ion-grid>
+            </ion-col>
 
-        </ion-grid>
-      </ion-col>
+
       <ion-col   [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
         <ion-grid class="common-grid">
           <ion-row>

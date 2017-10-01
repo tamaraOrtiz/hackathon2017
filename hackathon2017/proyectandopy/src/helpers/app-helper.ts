@@ -62,14 +62,14 @@ export class AppHelper {
     return dom.querySelector(identifier);
   }
 
-  download(div, excludedElements=[], showElements=[], entidad, id, page) {
+  download(div, excludedElements=[], showElements=[], entidad, id, page, filename) {
     this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
     self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
       if(self.platform.is('core')){
         var a = document.createElement('a');
         a.href = url;
-        a.download = 'estadistica.jpg';
+        a.download = filename;
         a.click();
       } else {
         //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {

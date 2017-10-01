@@ -122,6 +122,7 @@ export class BaseData {
       let _data = {"entity_id":entityID, "entity_type":entityType, "event_type":eventType, "page":page}
       this.http.post(`${this.apiUrl}event/`, _data).subscribe( data => {
 
+          this.events.publish(`${entityType}:${eventType}:saved:success`, (data as any)._body);
       }, error => {
         console.log(error);
       });

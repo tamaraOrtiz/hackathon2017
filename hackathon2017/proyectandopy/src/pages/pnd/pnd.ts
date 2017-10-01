@@ -34,7 +34,8 @@ export class PNDPage extends BasePage {
   tabactive:any
   openbar: any
   shownab: any
-
+  count_view = 0
+  count_download = 0
   loading;
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -52,8 +53,13 @@ export class PNDPage extends BasePage {
     this.tabactive = 'eje';
     this.openbar = appHelper.isDeskTop();
     this.shownab = !appHelper.isDeskTop();
-
-
+    this.events.subscribe('Pnd:view:saved:success', (data) => {
+      this.count_view = data;
+    });
+    this.events.subscribe('Pnd:download:saved:success', (data) => {
+      this.count_download = data;
+    });
+    appHelper.provider = dataService;
 
   }
 
@@ -139,6 +145,7 @@ export class PNDPage extends BasePage {
     this.loading = this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
+    this.dataService.pushEvent("Pnd", 1, "view", "pnd_view");
 
     this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
@@ -160,16 +167,25 @@ export class PNDPage extends BasePage {
     });
 
     this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {
-      console.log(record);
+
         this.general = record;
     });
     this.dataService.getQuery(this.pndService.getEjes(null, null, null), true).then(record => {
-      console.log(record);
+
         this.eje = record;
     });
     this.dataService.getQuery(this.pndService.getEstrategias(null, null, null), true).then(record => {
-      console.log(record);
+
         this.estrategias = record;
+    });
+    this.dataService.getEvents("Pnd", 1).then(data => {
+      this.events = data;
+      if("view" in this.events){
+        this.count_view = this.events["view"]
+      }
+      if("download" in this.events){
+        this.count_download = this.events["download"]
+      }
     });
   }
 

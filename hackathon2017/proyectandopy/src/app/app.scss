@@ -817,6 +817,9 @@ ion-footer{
   color: #8e3b6b;
 }
 
+.pnd_totales{
+  margin-top: 0 !important;
+}
 .resumen{
   background: white;
   .title{
@@ -834,8 +837,18 @@ ion-footer{
     }
   }
   .title.c5{
-    border-bottom: 2px solid #6fb4e4;
-    color: #6fb4e4;
+    color: #423a6f;
+    padding: 0 !important;
+    margin: 5px;
+    text-align: left;
+    padding-left: 17px !important;
+    a{
+      padding-left: 10px;
+      color: #423a6f;
+      i.fa{
+        color: #423a6f;
+      }
+    }
   }
 
   .title.c1{

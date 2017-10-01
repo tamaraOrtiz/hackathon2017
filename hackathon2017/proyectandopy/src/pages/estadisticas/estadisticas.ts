@@ -52,6 +52,9 @@ export class EstadisticasPage extends ShowBasePage {
     appHelper.provider = dataService;
     this.tabactive = 'info'
     this.id = `${this.item.nivelid}_${this.item.entidadid}`
+    this.events.subscribe('Entidad:download:saved:success', (data) => {
+      this.count_download = data;
+    });
   }
 
   openLink(link){
