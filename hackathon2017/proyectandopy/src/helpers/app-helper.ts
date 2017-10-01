@@ -63,8 +63,7 @@ export class AppHelper {
   }
 
   download(div, excludedElements=[], showElements=[], entidad, id, page) {
-    console.log(showElements);
-    this.provider.pushEvent(entidad, id, "download", page)
+    //this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
     self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
       if(self.platform.is('core')){

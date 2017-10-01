@@ -10,6 +10,7 @@ export class BaseData {
   apiUrl: string
   data: Array<any>
   paraguayGeoJson: any
+  departamentoParaguayGeoJson: any
   jsonExample: any
   allQuery: string
 
@@ -65,9 +66,20 @@ export class BaseData {
 
   getParaguayMap(){
     return new Promise<any>((resolve, reject) => {
-      this.http.get('assets/jsons/paraguay_2002_departamentos.geojson').map(res => res.json()).subscribe( data => {
+      this.http.get('assets/jsons/paraguay.geojson').map(res => res.json()).subscribe( data => {
         this.paraguayGeoJson = data;
         resolve(this.paraguayGeoJson);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  getDepartamentoParaguayMap(){
+    return new Promise<any>((resolve, reject) => {
+      this.http.get('assets/jsons/paraguay_2002_departamentos.geojson').map(res => res.json()).subscribe( data => {
+        this.departamentoParaguayGeoJson = data;
+        resolve(this.departamentoParaguayGeoJson);
       }, error => {
         reject(error);
       });
