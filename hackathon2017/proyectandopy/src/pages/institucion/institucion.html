@@ -45,7 +45,7 @@
         </div>
         <div class="chips-div">
           <ion-chip *ngFor="let nivel of selectedNiveles"  #chip>
-             <ion-label >{{niveles[nivel].nombre}}</ion-label>
+             <ion-label>{{niveles[nivel].nombre}}</ion-label>
              <button ion-button clear color=clear (click)="delete(chip, nivel)">
                <ion-icon name="close-circle"></ion-icon>
              </button>

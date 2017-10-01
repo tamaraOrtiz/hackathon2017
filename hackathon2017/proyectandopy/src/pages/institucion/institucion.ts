@@ -77,11 +77,12 @@ export class InstitucionPage extends BasePage {
       this.filter(null, false, this.loading);
     }, function(errors){
       self.loading.dismiss();
+    }).then(result => {
+      this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
+        this._niveles = record;
+        self.loading.dismiss();
+      });
     });
-    this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
-      this._niveles = record;
-    });
-
   }
 
   filter(event, bar, loader=null) {
@@ -138,9 +139,7 @@ export class InstitucionPage extends BasePage {
     }
     item.nombre = this.appHelper.toTitleCase(item.nombre);
     groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
-
-    }
-
+  }
 
   itemTapped(event, item) {
     this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");
