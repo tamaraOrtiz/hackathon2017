@@ -98,7 +98,7 @@ var yAxis = d3.axisLeft()
           .enter().append("rect")
             .style("fill", "steelblue")
             .attr("x", function(d) { return x('Metas vs Avances'); })
-            .attr("width", x.rangeBand())
+            .attr("width", x.bandwidth())
             .attr("y", function(d) { return y(d.properties['Metas vs Avances']); })
             .attr("height", function(d) { return height - y(d.properties['Metas vs Avances']); });
     }
