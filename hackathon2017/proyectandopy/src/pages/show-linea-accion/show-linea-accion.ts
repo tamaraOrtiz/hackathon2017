@@ -34,11 +34,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     }
     changetab(_text){
       this.tabactive = _text;
+      if(_text == 'barra'){
+        this.generateStackChart();
+      }
     }
 
     ionViewDidEnter(){
       this.generateMap();
-      this.generateStackChart();
     }
 
     generateStackChart() {

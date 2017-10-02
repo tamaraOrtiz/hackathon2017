@@ -66,7 +66,7 @@ export class BaseData {
 
   getParaguayMap(){
     return new Promise<any>((resolve, reject) => {
-      this.http.get('assets/jsons/paraguay.geojson').map(res => res.json()).subscribe( data => {
+      this.http.get('assets/jsons/paraguay_2002_limites_nacionales.geojson').map(res => res.json()).subscribe( data => {
         this.paraguayGeoJson = data;
         resolve(this.paraguayGeoJson);
       }, error => {
