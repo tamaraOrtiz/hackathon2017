@@ -46,85 +46,61 @@ export class ShowLineaAccionPage extends ShowBasePage  {
     generateStackChart() {
       let self = this;
 
-      let n = 4;
-      let m = 2;
-      console.log(this.item.avance_metas);
-      var xz = d3.range(m),
-    yz = d3.range(n).map(function() { return bumps(m); }),
-    y01z = d3.stack().keys(d3.range(n))(d3.transpose(yz)),
-    yMax = d3.max(yz, function(y) { return d3.max(y); }),
-    y1Max = d3.max(y01z, function(y) { return d3.max(y, function(d) { return d[1]; }); });
+      // set the dimensions and margins of the graph
+      var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      width = 960,
+      height = 500;
 
-var svg = d3.select(this.graph.nativeElement);
-let
-    margin = {top: 40, right: 10, bottom: 20, left: 10};
-    let width  = 600 - margin.left - margin.right;
-    let height = 600 - margin.top - margin.bottom;
-    let g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      var x = d3.scaleLinear().range([margin.left, width - margin.right]).domain([0, width]);
 
-var x = d3.scaleBand()
-    .domain(xz)
-    .rangeRound([0, width])
-    .padding(0.08);
+var y = d3.scaleLinear().range([height - margin.top, margin.bottom]).domain([0, height]);
 
-var y = d3.scaleLinear()
-    .domain([0, y1Max])
-    .range([height, 0]);
 
-var color = d3.scaleOrdinal()
-    .domain(d3.range(n))
-    .range(d3.schemeCategory20c);
+var xAxis = d3.axisBottom()
+    .scale(x);
 
-var series = g.selectAll(".series")
-  .data(y01z)
-  .enter().append("g")
-    .attr("fill", function(d, i) { return color(i); });
+var yAxis = d3.axisLeft()
+    .scale(y);
 
-var rect = series.selectAll("rect")
-  .data(function(d) { return d; })
-  .enter().append("rect")
-    .attr("x", function(d, i) { return x(i); })
-    .attr("y", height)
-    .attr("width", x.bandwidth())
-    .attr("height", 0);
 
-rect.transition()
-    .delay(function(d, i) { return i * 10; })
-    .attr("y", function(d) { return y(d[1]); })
-    .attr("height", function(d) { return y(d[0]) - y(d[1]); });
+    var svg = d3.select(this.graph.nativeElement).append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-g.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x)
-        .tickSize(0)
-        .tickPadding(6));
-      function bumps(m) {
-  var values = [], i, j, w, x, y, z;
+          x.domain(this.departamentoGeoJson.map(function(d) { return 'Metas vs Avances'; }));
+        y.domain([0, d3.max(this.departamentoGeoJson, function(d) { return d.properties['Metas vs Avances']; })]);
 
-  // Initialize with uniform random values in [0.1, 0.2).
-  for (i = 0; i < m; ++i) {
-    values[i] = 0.1 + 0.1 * Math.random();
-  }
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+          .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)" );
 
-  // Add five random bumps.
-  for (j = 0; j < 5; ++j) {
-    x = 1 / (0.1 + Math.random());
-    y = 2 * Math.random() - 0.5;
-    z = 10 / (0.1 + Math.random());
-    for (i = 0; i < m; i++) {
-      w = (i / m - y) * z;
-      values[i] += x * Math.exp(-w * w);
-    }
-  }
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Value ($)");
 
-  // Ensure all values are positive.
-  for (i = 0; i < m; ++i) {
-    values[i] = Math.max(0, values[i]);
-  }
-
-  return values;
-}
+        svg.selectAll("bar")
+            .data(this.departamentoGeoJson)
+          .enter().append("rect")
+            .style("fill", "steelblue")
+            .attr("x", function(d) { return x('Metas vs Avances'); })
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(d.properties['Metas vs Avances']); })
+            .attr("height", function(d) { return height - y(d.properties['Metas vs Avances']); });
     }
 
     generateMap() {
@@ -150,7 +126,7 @@ g.append("g")
                 departamento.properties['value'] = {};
                 departamento.properties['value']['Metas'] = record.cant_prog;
                 departamento.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
-                departamento.properties['value']['Metas vs Avances'] =  Math.round(1000 * departamento.properties['value']['Avances'] / record.cant_prog)/10;
+                departamento.properties['value']['Metas vs Avances'] =  Math.round(1000 * departamento.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1))/10;
                 maxAvance = departamento.properties['value']['Avances'] > maxAvance ? departamento.properties['value']['Avances'] : maxAvance;
                 maxMeta = departamento.properties['value']['Metas'] > maxMeta ? departamento.properties['value']['Metas'] : maxMeta;
               }

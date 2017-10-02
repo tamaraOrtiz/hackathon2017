@@ -102,7 +102,6 @@ export class PNDPage extends BasePage {
   }
   filter(event, bar, loader=null) {
     let val = bar ? event.target.value : '';
-    console.log(event && event.hasOwnProperty('target'));
     let loading = loader ? loader : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
@@ -118,17 +117,14 @@ export class PNDPage extends BasePage {
       return;
     }
     this.dataService.getQuery(this.pndService.getGeneral(nivel, entidad, anho), true).then(record => {
-      console.log(record);
         this.general = record;
         loading.dismiss();
     });
 
     this.dataService.getQuery(this.pndService.getEjes(nivel, entidad, anho), true).then(record => {
-      console.log(record);
         this.eje = record;
     });
     this.dataService.getQuery(this.pndService.getEstrategias(nivel, entidad, anho), true).then(record => {
-      console.log(record);
         this.estrategias = record;
     });
 
@@ -207,7 +203,6 @@ export class PNDPage extends BasePage {
 
     let entidades = [];
     for(let row of meta) {
-      console.log(row);
       entidades.push({
         id: row.nivelid+"_"+row.entidadid,
         nombre: row.nombre,

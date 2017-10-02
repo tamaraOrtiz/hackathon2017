@@ -70,17 +70,18 @@ export class InstitucionPage extends BasePage {
        content: 'Por favor espere...'
     });
 
-    this.loading.present();
-    this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
-      this.niveles = this.structNiveles(records);
-      this.selectedNiveles = Object.keys(this.niveles);
-      this.filter(null, false, this.loading);
-    }, function(errors){
-      self.loading.dismiss();
-    }).then(result => {
-      this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
-        this._niveles = record;
+    this.loading.present().then(() => {
+      this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
+        this.niveles = this.structNiveles(records);
+        this.selectedNiveles = Object.keys(this.niveles);
+        this.filter(null, false, this.loading);
+      }, function(errors){
         self.loading.dismiss();
+      }).then(result => {
+        this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
+          this._niveles = record;
+          self.loading.dismiss();
+        });
       });
     });
   }

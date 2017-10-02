@@ -26,8 +26,9 @@ export class PpyComment {
         position: 'top',
         cssClass: "toast-success"
       });
-      toast.present();
-      this.getComments(this.lastPage);
+      toast.present().then(() => {
+        this.getComments(this.lastPage);
+      });  
     });
     events.subscribe('comment:saved:error', (comment) => {
       let toast = this.toastCtrl.create({
