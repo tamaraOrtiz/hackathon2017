@@ -48,8 +48,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
       // set the dimensions and margins of the graph
       let margin = {top: 20, right: 20, bottom: 20, left: 20},
-      width = 960,
-      height = 600;
+      width = 900,
+      height = 700;
 
       let y0 = d3.scaleBand()
                  .rangeRound([margin.top, height-margin.bottom-margin.top])
@@ -59,7 +59,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                  .padding(0.05);
 
       let x = d3.scaleLinear()
-                .rangeRound([0, width-margin.right-margin.left]);
+                .rangeRound([0, width/2]);
 
       let z = d3.scaleOrdinal()
                 .range(["#98abc5", "#8a89a6"]);
@@ -78,7 +78,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                 .attr("width", width)
                 .attr("height", height)
                 .append("g")
-                .attr("width", width-margin.right-margin.left)
+                .attr("width", width/2)
                 .attr("height", height-margin.bottom-margin.top)
                 .attr("transform", "translate(100, 5)");
       svg.selectAll("g")
@@ -91,7 +91,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
          .attr("y", function(d) { return y1(d.key); })
          .attr("x", margin.left)
          .attr("height", y1.bandwidth())
-         .attr("width", function(d) { return width - x(d.value); })
+         .attr("width", function(d) { return x(d.value >= 0 ? d.value : 0); })
          .attr("fill", function(d) { return z(d.key); });
 
       svg.append("g")
@@ -101,8 +101,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
       svg.append("g")
        .attr("class", "axis")
-       .call(d3.axisTop(x).ticks(null, "s"))
-       .attr("transform", "translate("+ margin.left + ", 20)")
+       .call(d3.axisBottom(x).ticks(null, "s"))
+       .attr("transform", "translate("+ margin.left + ", "+ (height-margin.bottom-margin.top) +")")
        .append("text")
        .attr("y", 2)
        .attr("x", x(x.ticks().pop()) + 0.5)
@@ -112,26 +112,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
        .attr("text-anchor", "start")
        .text("Beneficiarios");
 
-      let legend = svg.append("g")
-                    .attr("font-family", "sans-serif")
-                    .attr("font-size", 10)
-                    .attr("text-anchor", "end")
-                    .selectAll("g")
-                    .data(keys.slice().reverse())
-                    .enter().append("g")
-                    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+            let legend = d3.select("#pie-info-legend");
 
-      legend.append("rect")
-            .attr("x", width - 19)
-            .attr("width", 19)
-            .attr("height", 19)
-            .attr("fill", z);
-
-      legend.append("text")
-            .attr("x", width - 24)
-            .attr("y", 9.5)
-            .attr("dy", "0.32em")
-            .text(function(d) { return d; });
+            legend.selectAll("g")
+            .data(keys.slice().reverse())
+            .enter().append("g")
+            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+            keys.slice().reverse().forEach( key => {
+              legend.append("p")
+                    .html(`<i style="background:${z(key)}"></i>
+                    <div style="margin-left: 18px;">
+                      <p class="program-name">${key}</p>
+                    </div>`);
+            })
     }
 
     generateMap() {
