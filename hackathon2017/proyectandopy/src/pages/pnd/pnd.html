@@ -220,7 +220,9 @@
                 <ion-row>
                   <ion-col class="title c2" col-12>
                     <ion-label>Eje 1: Reducción de pobreza y desarrollo social
-
+                      <button ion-button style="height: 20px;" tooltip="Esta eje está relacionado a la capacidad de la sociedad paraguaya para cubrir las necesidades humanas básicas de sus ciudadanos, ciudadanas y comunidades." class="tooltip-list" duration=6000 positionV="bottom">
+                      <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+                      </button>
                     </ion-label>
                   </ion-col>
                   <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
@@ -251,7 +253,11 @@
                   </ion-col>
 
                   <ion-col class="title c3" col-12>
-                    <ion-label>Eje 2: Crecimiento económico inclusivo</ion-label>
+                    <ion-label>Eje 2: Crecimiento económico inclusivo
+                      <button ion-button style="height: 20px;" tooltip="Corresponde al aceleramiento del ritmo de crecimiento y a la diversificación productiva, promoviendo la participación de todos los agentes económicos y compartiendo los resultados del crecimiento principalmente con el 40% de la población de menores ingresos." class="tooltip-list" duration=6000 positionV="bottom">
+                      <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+                      </button>
+                    </ion-label>
                   </ion-col>
                   <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
                     <ion-avatar  class="c3" item-start>
@@ -280,7 +286,11 @@
             </ion-col>
 
             <ion-col class="title c4" col-12>
-              <ion-label>Eje 3: Inserción de Paraguay en el mundo</ion-label>
+              <ion-label>Eje 3: Inserción de Paraguay en el mundo
+                <button ion-button style="height: 20px;" tooltip="Propone posicionar y mejorar la imagen país; fortalecer la participación nacional en los foros internacionales; asignar recursos para ampliar la integración económica; y fortalecer vínculos para la incorporación de tecnología y conocimientos." class="tooltip-list" duration=6000 positionV="bottom">
+                <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+                </button>
+              </ion-label>
             </ion-col>
             <ion-col class="item-resumen" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6>
               <ion-avatar class="c4" item-start>
@@ -328,7 +338,9 @@
                 <ion-row  *ngFor="let est of estrategias | keys" class="resumen ">
                   <ion-col class="title c1" col-12 >
                     <ion-label>{{est}}
-
+                      <button ion-button style="height: 20px;" tooltip="{{info_est[est]}}" class="tooltip-list" duration=6000 positionV="bottom">
+                      <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+                      </button>
                     </ion-label>
                   </ion-col>
                   <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
