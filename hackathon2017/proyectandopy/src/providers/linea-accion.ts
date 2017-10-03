@@ -20,8 +20,8 @@ export class LineaAccionData extends BaseData {
     return `?q=SELECT avance.* FROM avance LEFT JOIN public.accionhasproducto ON avance.accion_id = public.accionhasproducto.accionid ${where} public.accionhasproducto.nivel = '${nivelId}' AND public.accionhasproducto.entidad = '${entidadId}'`;
   }
 
-  getLineasAccionDetalle(id) {
-    return `departamentos/?la=${id}`;
+  getLineasAccionDetalle(id, nivel, entidad, institucion) {
+    return `departamentos/?la=${id}&nivel=${nivel}&entidad=${entidad}&institucion=${institucion}`;
   }
 
   getLineasAccion(id, conditions) {

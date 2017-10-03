@@ -47,70 +47,72 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let self = this;
 
       // set the dimensions and margins of the graph
-      let margin = {top: 20, right: 20, bottom: 30, left: 40},
+      let margin = {top: 20, right: 20, bottom: 20, left: 20},
       width = 960,
-      height = 500;
+      height = 600;
 
-      let x0 = d3.scaleBand()
-                 .rangeRound([0, width])
+      let y0 = d3.scaleBand()
+                 .rangeRound([margin.top, height-margin.bottom-margin.top])
                  .paddingInner(0.1);
 
-      let x1 = d3.scaleBand()
+      let y1 = d3.scaleBand()
                  .padding(0.05);
 
-      let y = d3.scaleLinear()
-                .rangeRound([height, 0]);
+      let x = d3.scaleLinear()
+                .rangeRound([0, width-margin.right-margin.left]);
 
       let z = d3.scaleOrdinal()
                 .range(["#98abc5", "#8a89a6"]);
 
       let keys = ['Avances', 'Metas'];
-      x0.domain(this.departamentoGeoJson.map(function(d) { return d.properties.name; }));
-      x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+      y0.domain(this.departamentoGeoJson.map(function(d) { return d.properties.name; }));
+      y1.domain(keys).rangeRound([0, y0.bandwidth()]);
 
-      y.domain([0, d3.max(this.departamentoGeoJson, function(d) {
+      x.domain([0, d3.max(this.departamentoGeoJson, function(d) {
         return d3.max(keys, function(key) { return d.properties.value[key]; });
       })]).nice();
 
-      let g = d3.select(this.graph.nativeElement)
+      let svg = d3.select(this.graph.nativeElement)
                 .append("svg")
+                .attr("fill", "white")
                 .attr("width", width)
-                .attr("heigth", height)
+                .attr("height", height)
                 .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-      console.log(x0());
-      g.append("g")
-       .selectAll("g")
-       .data(this.departamentoGeoJson)
-       .enter().append("g")
-       .attr("transform", function(d) { return "translate(" + x0(d.properties.name) + ",0)"; })
-       .selectAll("rect")
-       .data(function(d) { return keys.map(function(key) { return {key: key, value: d.properties.value[key]}; }); })
-       .enter().append("rect")
-       .attr("x", function(d) { return x1(d.key); })
-       .attr("y", function(d) { return y(d.value); })
-       .attr("width", x1.bandwidth())
-       .attr("height", function(d) { return height - y(d.value); })
-       .attr("fill", function(d) { return z(d.key); });
+                .attr("width", width-margin.right-margin.left)
+                .attr("height", height-margin.bottom-margin.top)
+                .attr("transform", "translate(100, 5)");
+      svg.selectAll("g")
+         .data(this.departamentoGeoJson)
+         .enter().append("g")
+         .attr("transform", function(d) { return "translate(0, " + y0(d.properties.name) + ")"; })
+         .selectAll("rect")
+         .data(function(d) { return keys.map(function(key) { return {key: key, value: d.properties.value[key]}; }); })
+         .enter().append("rect")
+         .attr("y", function(d) { return y1(d.key); })
+         .attr("x", margin.left)
+         .attr("height", y1.bandwidth())
+         .attr("width", function(d) { return width - x(d.value); })
+         .attr("fill", function(d) { return z(d.key); });
 
-      g.append("g")
+      svg.append("g")
        .attr("class", "axis")
-       .attr("transform", "translate(0," + height + ")")
-       .call(d3.axisBottom(x0));
+       .call(d3.axisLeft(y0))
+       .attr("transform", "translate(" + margin.left + ", 0)");
 
-      g.append("g")
+      svg.append("g")
        .attr("class", "axis")
-       .call(d3.axisLeft(y).ticks(null, "s"))
+       .call(d3.axisTop(x).ticks(null, "s"))
+       .attr("transform", "translate("+ margin.left + ", 20)")
        .append("text")
-       .attr("x", 2)
-       .attr("y", y(y.ticks().pop()) + 0.5)
-       .attr("dy", "0.32em")
+       .attr("y", 2)
+       .attr("x", x(x.ticks().pop()) + 0.5)
+       .attr("dx", "0.32em")
        .attr("fill", "#000")
        .attr("font-weight", "bold")
        .attr("text-anchor", "start")
-       .text("Population");
+       .text("Beneficiarios");
 
-      let legend = g.append("g")
+      let legend = svg.append("g")
                     .attr("font-family", "sans-serif")
                     .attr("font-size", 10)
                     .attr("text-anchor", "end")
@@ -140,8 +142,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let alcanceNacional = null;
       this.dataService.getDepartamentoParaguayMap().then(map => {
         this.departamentoGeoJson = map.features;
-
-        this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id), true).then(records => {
+        console.log(this.item);
+        this.dataService.getQuery(this.dataService.getLineasAccionDetalle(this.item.id, this.item.nivel, this.item.entidad, this.item.institucion), true).then(records => {
           this.chartsData = (records as any).info_departamento;
           unidad = (records as any).unidad;
           this.departamentoGeoJson.forEach( departamento => {
