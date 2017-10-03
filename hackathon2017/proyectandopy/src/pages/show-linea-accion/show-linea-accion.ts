@@ -47,60 +47,89 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let self = this;
 
       // set the dimensions and margins of the graph
-      var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      let margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = 960,
       height = 500;
 
-      var x = d3.scaleLinear().range([margin.left, width - margin.right]).domain([0, width]);
+      let x0 = d3.scaleBand()
+                 .rangeRound([0, width])
+                 .paddingInner(0.1);
 
-var y = d3.scaleLinear().range([height - margin.top, margin.bottom]).domain([0, height]);
+      let x1 = d3.scaleBand()
+                 .padding(0.05);
 
+      let y = d3.scaleLinear()
+                .rangeRound([height, 0]);
 
-var xAxis = d3.axisBottom()
-    .scale(x);
+      let z = d3.scaleOrdinal()
+                .range(["#98abc5", "#8a89a6"]);
 
-var yAxis = d3.axisLeft()
-    .scale(y);
+      let keys = ['Avances', 'Metas'];
+      x0.domain(this.departamentoGeoJson.map(function(d) { return d.properties.name; }));
+      x1.domain(keys).rangeRound([0, x0.bandwidth()]);
 
+      y.domain([0, d3.max(this.departamentoGeoJson, function(d) {
+        return d3.max(keys, function(key) { return d.properties.value[key]; });
+      })]).nice();
 
-    var svg = d3.select(this.graph.nativeElement).append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+      let g = d3.select(this.graph.nativeElement)
+                .append("svg")
+                .attr("width", width)
+                .attr("heigth", height)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      console.log(x0());
+      g.append("g")
+       .selectAll("g")
+       .data(this.departamentoGeoJson)
+       .enter().append("g")
+       .attr("transform", function(d) { return "translate(" + x0(d.properties.name) + ",0)"; })
+       .selectAll("rect")
+       .data(function(d) { return keys.map(function(key) { return {key: key, value: d.properties.value[key]}; }); })
+       .enter().append("rect")
+       .attr("x", function(d) { return x1(d.key); })
+       .attr("y", function(d) { return y(d.value); })
+       .attr("width", x1.bandwidth())
+       .attr("height", function(d) { return height - y(d.value); })
+       .attr("fill", function(d) { return z(d.key); });
 
-          x.domain(this.departamentoGeoJson.map(function(d) { return 'Metas vs Avances'; }));
-        y.domain([0, d3.max(this.departamentoGeoJson, function(d) { return d.properties['Metas vs Avances']; })]);
+      g.append("g")
+       .attr("class", "axis")
+       .attr("transform", "translate(0," + height + ")")
+       .call(d3.axisBottom(x0));
 
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-          .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-90)" );
+      g.append("g")
+       .attr("class", "axis")
+       .call(d3.axisLeft(y).ticks(null, "s"))
+       .append("text")
+       .attr("x", 2)
+       .attr("y", y(y.ticks().pop()) + 0.5)
+       .attr("dy", "0.32em")
+       .attr("fill", "#000")
+       .attr("font-weight", "bold")
+       .attr("text-anchor", "start")
+       .text("Population");
 
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-          .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Value ($)");
+      let legend = g.append("g")
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", 10)
+                    .attr("text-anchor", "end")
+                    .selectAll("g")
+                    .data(keys.slice().reverse())
+                    .enter().append("g")
+                    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-        svg.selectAll("bar")
-            .data(this.departamentoGeoJson)
-          .enter().append("rect")
-            .style("fill", "steelblue")
-            .attr("x", function(d) { return x('Metas vs Avances'); })
-            .attr("width", x.bandwidth())
-            .attr("y", function(d) { return y(d.properties['Metas vs Avances']); })
-            .attr("height", function(d) { return height - y(d.properties['Metas vs Avances']); });
+      legend.append("rect")
+            .attr("x", width - 19)
+            .attr("width", 19)
+            .attr("height", 19)
+            .attr("fill", z);
+
+      legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9.5)
+            .attr("dy", "0.32em")
+            .text(function(d) { return d; });
     }
 
     generateMap() {
@@ -279,7 +308,7 @@ var yAxis = d3.axisLeft()
             if(alcanceNacional){
               Object.assign(capas, {"Alcance Nacional": geoAlcanceNacional});
             }
-            var info = (L as any).control();
+            let info = (L as any).control();
 
             info.onAdd = function (map) {
               this._div = L.DomUtil.create('div', 'info');
@@ -333,7 +362,7 @@ var yAxis = d3.axisLeft()
               legend.update = function (layer){
                 let grades = self.ranges[layer];
                 this._div.innerHTML = `<h4>${unidades[layer]["nombre"]}</h4>`;
-                for (var i = 0; i < grades.length -1; i++) {
+                for (let i = 0; i < grades.length -1; i++) {
                   this._div.innerHTML +=
                   '<i style="background:' + self.getColor(grades[i] + 1, layer) + '"></i> ' +
                   self.appHelper.numberFormatter(grades[i]) +' - '+ self.appHelper.numberFormatter(grades[i + 1]) + '<br>';
@@ -392,7 +421,7 @@ var yAxis = d3.axisLeft()
 
 
       highlightFeature(e) {
-        var layer = e.target;
+        let layer = e.target;
         layer.setStyle({
           weight: 1,
           color: '#5E1A75',
