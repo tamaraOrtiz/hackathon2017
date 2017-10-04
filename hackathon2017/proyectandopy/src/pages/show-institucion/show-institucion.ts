@@ -142,7 +142,16 @@ export class ShowInstitucionPage extends ShowBasePage {
     let self = this;
     let lineasAccion = [];
     records.forEach(function (la) {
-      console.log(la);
+      let pr = 0;
+      if (la.cantidad_denominador!=0){
+        pr = la.cantidad_promedio/la.cantidad_denominador;
+      }
+      let avance = la.cantidad_avance + pr;
+      pr = 0;
+      if (la.cantidad_prog_denominador!=0){
+        pr = la.cantidad_prog_promedio/la.cantidad_prog_denominador;
+      }
+      let progr = la.cantidad_prog + pr
       lineasAccion.push({
         id: la.la_id,
         nivel: la.nivel,
@@ -150,8 +159,8 @@ export class ShowInstitucionPage extends ShowBasePage {
         institucion: la.institucion,
         nombre: self.appHelper.toTitleCase(la.la_nombre),
         cantidadFinanciera: la.cantidad_financiera,
-        cantidadAvance: la.cantidad_avance,
-        cantidadProgramada: la.cantidad_prog,
+        cantidadAvance: avance,
+        cantidadProgramada: progr,
         unidadMedida: la.unidad_medida,
         cantidadPromedio: la.cantidad_promedio,
         cantidadDenominador: la.cantidad_denominador,

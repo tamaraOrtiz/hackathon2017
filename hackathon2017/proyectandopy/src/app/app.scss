@@ -1529,3 +1529,11 @@ ppy-footer{
     height: 63px;
     padding: 15px;
 }
+
+
+.institucion_col{
+  height: 100%;
+  .view-content{
+    min-height: 450px;
+  }
+}
