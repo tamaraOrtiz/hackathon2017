@@ -48,6 +48,9 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.openbar = appHelper.isDeskTop();
     this.tabactive = 'info'
     this.myParseInt = parseInt;
+    if(!this.item){
+      this.item = { id: navParams.data.ins_id }
+    }
   }
 
   openLink(link){
@@ -86,7 +89,9 @@ export class ShowInstitucionPage extends ShowBasePage {
   ionViewDidEnter() {
     this.dataService.getQuery(this.dataService.getInstitucion(this.item.id)).then(record => {
       let institucion = record[0] as any;
-      let additionalData = { descripcion: institucion.descripcion,
+      let additionalData = {
+                             nombre: institucion.nombre,  
+                             descripcion: institucion.descripcion,
                              mision: institucion.mision,
                              diagnostico: institucion.diagnostico,
                              baselegal: institucion.baselegal,
