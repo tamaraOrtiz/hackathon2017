@@ -32,6 +32,7 @@ export class ShowInstitucionPage extends ShowBasePage {
   lineasAccion: any = []
 
   csvItems: any
+  events: any;
 
   loadProgress: any
   calificacion: any
@@ -43,7 +44,7 @@ export class ShowInstitucionPage extends ShowBasePage {
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
-    private iab: InAppBrowser, public events: Events,
+    private iab: InAppBrowser, public eventHandler: Events,
     public appHelper: AppHelper, public http: Http) {
     super(navCtrl, navParams, appHelper);
     this.ratingService = raService;
@@ -54,10 +55,10 @@ export class ShowInstitucionPage extends ShowBasePage {
     if(!this.item){
       this.item = { id: navParams.data.ins_id }
     }
-    this.events.subscribe('Institucion:view:saved:success', (data) => {
+    this.eventHandler.subscribe('Institucion:view:saved:success', (data) => {
       this.count_view = data;
     });
-    this.events.subscribe('Institucion:download:saved:success', (data) => {
+    this.eventHandler.subscribe('Institucion:download:saved:success', (data) => {
       this.count_download = data;
     });
   }
@@ -111,7 +112,7 @@ export class ShowInstitucionPage extends ShowBasePage {
                              entidadid: institucion.entidadid
                            };
       console.log(additionalData)
-      console.log(institucion)                     
+      console.log(institucion)
       this.item = Object.assign(this.item, additionalData);
       this.dataService.getQuery(this.dataService.getLineasAccion(
         this.item.nivelid,
@@ -123,11 +124,10 @@ export class ShowInstitucionPage extends ShowBasePage {
 
     this.ratingService.getRating(this.item.id, 'Institucion').then(rating => {
       this.calificacion = rating;
-      this.events.publish('rating:retrieve', rating, Date.now());
+      this.eventHandler.publish('rating:retrieve', rating, Date.now());
     });
 
     this.dataService.getEvents("Institucion", this.item.id).then(data => {
-      console.log(this.item.id);
       this.events = data;
       if("view" in this.events){
         this.count_view = this.events["view"]
