@@ -129,8 +129,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     generateMap() {
       let self = this;
-      let maxAvance = Number.MIN_VALUE;
-      let maxMeta = Number.MIN_VALUE;
+      let maxAvance = Number.NEGATIVE_INFINITY;
+      let maxMeta = Number.NEGATIVE_INFINITY;
       let unidad = null;
       let alcanceNacional = null;
       this.dataService.getDepartamentoParaguayMap().then(map => {
@@ -364,6 +364,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                   '<i style="background:' + self.getColor(grades[i] + 1, layer) + '"></i> ' +
                   self.appHelper.numberFormatter(grades[i]) +' - '+ self.appHelper.numberFormatter(grades[i + 1]) + '<br>';
                 }
+                if(grades.length == 0) {
+                  this._div.innerHTML +=
+                  '<i style="background:#F0F0F0;"></i>0<br>';
+                }
               };
 
               legend.addTo(this.map);
@@ -400,7 +404,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           return '';
         }
         if(range.length == 0){
-          return 'gray';
+          if(d == -1){
+            return 'gray';
+          } else if(d == 0) {
+            return '#F0F0F0';
+          }
         }
         return d >= range[0] ? '#109483' :
         d >= range[1] ? '#6b9373' :

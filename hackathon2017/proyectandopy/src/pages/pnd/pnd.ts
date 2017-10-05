@@ -36,6 +36,7 @@ export class PNDPage extends BasePage {
   shownab: any
   count_view = 0
   count_download = 0
+  events: any
   info_est= {"Igualdad de oportunidades": "Nivela las oportunidades de todas las personas desde el comienzo de sus vidas, para que las circunstancias de nacimiento como el género, la etnicidad, el lugar de nacimiento y el entorno familiar, que están fuera del control personal, no ejerzan influencia sobre las oportunidades de vida del individuo.",
               "Gestión pública eficiente y transparente": "Implica satisfacer las necesidades de la población, coordinando las áreas funcionales para eliminar la fragmentación de tareas, optimizando los recursos, ofreciendo información veraz de todos los actos de gestión pública de interés para la sociedad",
               "Desarrollo y ordenamiento territorial": 'Define un modelo de ocupación y organización del territorio paraguayo, señalando las acciones territoriales prioritarias (reducción de pobreza, servicios, infraestructura, gestión de riesgos, entre otros), y arreglos institucionales necesarios para su adecuado funcionamiento (acuerdos programáticos para intervención en territorio, desconcentración administrativa y medidas graduales de descentralización).',
@@ -45,7 +46,7 @@ export class PNDPage extends BasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData,
     public loadingCtrl: LoadingController,
-    public events: Events, public raService: RatingData,
+    public eventHandler: Events, public raService: RatingData,
     public pService: PndData, public appHelper: AppHelper, public modalCtrl: ModalController) {
     super(navCtrl, navParams, dataService, appHelper);
     this.ratingService = raService;
@@ -57,10 +58,10 @@ export class PNDPage extends BasePage {
     this.tabactive = 'eje';
     this.openbar = appHelper.isDeskTop();
     this.shownab = !appHelper.isDeskTop();
-    this.events.subscribe('Pnd:view:saved:success', (data) => {
+    this.eventHandler.subscribe('Pnd:view:saved:success', (data) => {
       this.count_view = data;
     });
-    this.events.subscribe('Pnd:download:saved:success', (data) => {
+    this.eventHandler.subscribe('Pnd:download:saved:success', (data) => {
       this.count_download = data;
     });
     appHelper.provider = dataService;
@@ -163,7 +164,7 @@ export class PNDPage extends BasePage {
 
     this.ratingService.getRating(1, 'PND').then(rating => {
       this.calificacion = rating;
-      this.events.publish('rating:retrieve', rating, Date.now());
+      this.eventHandler.publish('rating:retrieve', rating, Date.now());
     });
 
     this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {

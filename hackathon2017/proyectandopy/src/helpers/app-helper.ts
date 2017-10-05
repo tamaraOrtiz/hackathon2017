@@ -44,8 +44,6 @@ export class AppHelper {
           });
           showElements.forEach(function (div) {
             let element = self.getElement(div, doc);
-            console.log(div);
-            console.log(element);
             if(element !== null) {
               element.style.display = 'block';
             }
@@ -121,7 +119,10 @@ export class AppHelper {
 
   getRange(min, max, n) {
     let r = [];
-    let s = Math.round((max-min) /n);
+    let s = Math.round((max-min) /n * 100) / 100;
+    if(s >= 10) {
+      s = Math.round(s);
+    }
     if(s === 0) {
       return r;
     }
