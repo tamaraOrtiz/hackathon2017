@@ -36,14 +36,14 @@ export class EstadisticasPage extends ShowBasePage {
   calificacion: any
   openbar: any
   tabactive:any
-  _events: any = {};
+  events: any = {};
   count_view = 0
   count_download = 0
   id: any
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
-    private iab: InAppBrowser, public events: Events,
+    private iab: InAppBrowser, public eventHandler: Events,
     public appHelper: AppHelper, public http: Http) {
     super(navCtrl, navParams, appHelper);
     this.ratingService = raService;
@@ -52,7 +52,7 @@ export class EstadisticasPage extends ShowBasePage {
     appHelper.provider = dataService;
     this.tabactive = 'info'
     this.id = `${this.item.nivelid}_${this.item.entidadid}`
-    this.events.subscribe('Entidad:download:saved:success', (data) => {
+    this.eventHandler.subscribe('Entidad:download:saved:success', (data) => {
       this.count_download = data;
     });
   }
@@ -81,16 +81,16 @@ export class EstadisticasPage extends ShowBasePage {
 
     this.ratingService.getRating(this.id, 'Estadistica').then(rating => {
       this.calificacion = rating;
-      this.events.publish('rating:retrieve', rating, Date.now());
+      this.eventHandler.publish('rating:retrieve', rating, Date.now());
     });
 
     this.dataService.getEvents("Entidad", this.item.nivelid+"_"+this.item.entidadid).then(data => {
-      this._events = data;
-      if("view" in this._events){
-        this.count_view = this._events["view"]
+      this.events = data;
+      if("view" in this.events){
+        this.count_view = this.events["view"]
       }
-      if("download" in this._events){
-        this.count_download = this._events["download"]
+      if("download" in this.events){
+        this.count_download = this.events["download"]
       }
     });
   }
