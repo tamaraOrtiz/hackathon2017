@@ -64,6 +64,7 @@ export class InstitucionPage extends BasePage {
     this.showSearchBar = value;
   }
 
+
   ionViewDidEnter(){
     let self = this;
     this.loading = this.loadingCtrl.create({
@@ -87,35 +88,18 @@ export class InstitucionPage extends BasePage {
   }
 
   filter(event, bar, loader=null) {
-    let val = bar && (event.target.value !== null || event.target.value !== undefined) ? event.target.value : '';
+    console.log(this.selectedNiveles);
     let loading = loader ? loader : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
     if(!loader){
       loading.present();
     }
-    let self = this;
-    let niveles = this.selectedNiveles.length > 0 ? `nivelid IN ('${this.selectedNiveles.join('\',\'')}')` : null;
-    if (!niveles) {
-      loading.dismiss();
-      return;
-    }
-    let query = (bar && val.trim() !== '') ? `nombre ILIKE '%25${val}%25' AND ${niveles}` : niveles;
-    this.dataService.getAll(query).then(records => {
-      self.pushItems(records);
-
-      let groupedItems = {}
-      self.items.map(function(item) {
-        self.groupItems(groupedItems, item);
-      });
-      self.groupedItems = (<any> Object).values(groupedItems);
-      self.groupedItems.map(function(item) {
-        item.entidades = (<any> Object).values(item.entidades);
-      });
-      loading.dismiss();
-    }, function(errors){
+    this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
+      this._niveles = record;
       loading.dismiss();
     });
+
   }
 
   structNiveles (meta):any {
@@ -131,16 +115,7 @@ export class InstitucionPage extends BasePage {
     return niveles;
   }
 
-  groupItems(groupedItems, item) {
-    if(groupedItems[item.nivelid] === undefined) {
-      groupedItems[item.nivelid] = {name: this.niveles[item.nivelid].nombre, entidades: []};
-    }
-    if(groupedItems[item.nivelid]['entidades'][item.entidadid] === undefined) {
-      groupedItems[item.nivelid]['entidades'][item.entidadid] = {name: this.appHelper.toTitleCase(item.entidadid), items: []};
-    }
-    item.nombre = this.appHelper.toTitleCase(item.nombre);
-    groupedItems[item.nivelid]['entidades'][item.entidadid]['items'].push(item);
-  }
+  
 
   itemTapped(event, item) {
     this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");
