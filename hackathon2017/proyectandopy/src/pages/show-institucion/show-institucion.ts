@@ -111,8 +111,6 @@ export class ShowInstitucionPage extends ShowBasePage {
                              nivelid: institucion.nivelid,
                              entidadid: institucion.entidadid
                            };
-      console.log(additionalData)
-      console.log(institucion)
       this.item = Object.assign(this.item, additionalData);
       this.dataService.getQuery(this.dataService.getLineasAccion(
         this.item.nivelid,
@@ -153,6 +151,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.navCtrl.push(ShowLineaAccionPage, {
       item: item
     });
+    this.dataService.pushEvent("lineasAccion", item.institucion+"_"+item.id, "view", "institucion_list");
   }
 
   structResumenPrograma (meta):any {

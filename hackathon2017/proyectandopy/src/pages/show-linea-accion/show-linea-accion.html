@@ -57,6 +57,69 @@
          </ion-item>
 
        </ion-list>
+       <ion-label class="metrica-label">{{count_view}} visita/s - {{count_download}} descarga/s</ion-label>
+       <div>
+         <ion-slides pager class="helpslide">
+
+            <ion-slide >
+              <p>Necesitas Ayuda?</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+
+            <ion-slide >
+              <p>Aquí puedes ver la información de esta Institución</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+            <ion-slide >
+              <p>Misión, Visión, Objetivos, entre otros. Si quieres ver mas acerca de esto puedes hacer click en el enlace que está a lado del titulo: “Informacion”.</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+            <ion-slide >
+              <p>También puedes calificar cada sección de la Información, y comentar sobre la misma.</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+
+            <ion-slide >
+              <p>En la sección de Líneas de Acción puedes ver las líneas de acción de esta Institución. Los colores indican el progreso de cada línea.</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+            <ion-slide >
+              <p>Además puedes ver el presupuesto destinado para cada linea de accion.</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+            <ion-slide >
+              <p>Y si haces click dentro de la línea de acción podrás ver mas sobre la misma.</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+            <ion-slide >
+              <p>Esperamos haberte ayudado!</p>
+              <ion-toolbar class="tutorial-buttons">
+                <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+              </ion-toolbar>
+            </ion-slide>
+
+          </ion-slides>
+       </div>
         </div>
 
 
@@ -65,7 +128,7 @@
       <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
         <ion-item class="item-grouper">Grafica
-          <a class="leaflet-control-zoom-out" (click)="appHelper.download('#map', [], [], 'Institucion', item.institucion, 'linea_de_Accion_show', 'mapa')">
+          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map', [], [], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa')">
             <i class="fa fa-download"></i>
           </a>
         </ion-item>
@@ -75,7 +138,7 @@
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
         <ion-item class="item-grouper">Grafica
-          <a class="leaflet-control-zoom-out" (click)="appHelper.download('#map')">
+          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map')">
             <i class="fa fa-download"></i>
           </a>
         </ion-item>

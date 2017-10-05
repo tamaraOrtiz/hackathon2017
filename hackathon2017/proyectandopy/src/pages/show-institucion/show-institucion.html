@@ -61,14 +61,14 @@ Ionic pages and navigation.
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>Misión, Visión, Objetivos, entre otros, si quieres ver mas acerca de esto puedes hacer click en el enlace que está a lado del titulo: “Informacion”.</p>
+               <p>Misión, Visión, Objetivos, entre otros. Si quieres ver mas acerca de esto puedes hacer click en el enlace que está a lado del titulo: “Informacion”.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
                </ion-toolbar>
              </ion-slide>
              <ion-slide >
-               <p>También puedes comentar y calificar cada sección de la Información, y comentar sobre la misma.</p>
+               <p>También puedes calificar cada sección de la Información, y comentar sobre la misma.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -76,7 +76,7 @@ Ionic pages and navigation.
              </ion-slide>
 
              <ion-slide >
-               <p>También en la sección de Líneas de Acción puedes ver las líneas de acción de esta Institución, los colores indican el progreso de cada línea.</p>
+               <p>En la sección de Líneas de Acción puedes ver las líneas de acción de esta Institución. Los colores indican el progreso de cada línea.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
@@ -112,7 +112,7 @@ Ionic pages and navigation.
     <div class='view-content'>
         <div class="show-info" *ngIf="tabactive=='info'">
             <ion-label class="title-page item-grouper">Información
-              <button ion-button clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon></button>
+              <button ion-button clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon name="link"></ion-icon></button>
             </ion-label>
             <ion-grid>
               <ion-row>

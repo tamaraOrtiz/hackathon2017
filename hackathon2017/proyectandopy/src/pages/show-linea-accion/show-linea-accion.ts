@@ -7,6 +7,7 @@ import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
 import * as d3 from "d3";
 import 'leaflet-search';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-show-nivel',
@@ -25,12 +26,22 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   tabactive: any
   openbar: any;
   ranges: {}
+  count_view = 0
+  count_download = 0
+  events: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public dataService: LineaAccionData, public appHelper: AppHelper) {
+    public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper) {
       super(navCtrl, navParams, appHelper);
       this.item = navParams.get('item');
       this.openbar = appHelper.isDeskTop();
       this.tabactive = 'mapa';
+      this.eventHandler.subscribe('lineasAccion:view:saved:success', (data) => {
+        this.count_view = data;
+      });
+      this.eventHandler.subscribe('lineasAccion:download:saved:success', (data) => {
+        this.count_download = data;
+      });
+
     }
     changetab(_text){
       this.tabactive = _text;
@@ -41,6 +52,15 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     ionViewDidEnter(){
       this.generateMap();
+      this.dataService.getEvents("lineasAccion", this.item.institucion+"_"+this.item.id).then(data => {
+        this.events = data;
+        if("view" in this.events){
+          this.count_view = this.events["view"]
+        }
+        if("download" in this.events){
+          this.count_download = this.events["download"]
+        }
+      });
     }
 
     generateStackChart() {
