@@ -106,8 +106,12 @@ export class ShowInstitucionPage extends ShowBasePage {
                              baselegal: institucion.baselegal,
                              objetivo: institucion.objetivo,
                              politica: institucion.politica,
-                             ruc: institucion.ruc
+                             ruc: institucion.ruc,
+                             nivelid: institucion.nivelid,
+                             entidadid: institucion.entidadid
                            };
+      console.log(additionalData)
+      console.log(institucion)                     
       this.item = Object.assign(this.item, additionalData);
       this.dataService.getQuery(this.dataService.getLineasAccion(
         this.item.nivelid,

@@ -32,7 +32,7 @@ export class InstitucionData extends BaseData {
   }
 
   getInstitucion(id) {
-    return `?q=SELECT nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones WHERE id='${id}' LIMIT 1`;
+    return `?q=SELECT nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones WHERE id='${id}' LIMIT 1`;
   }
 
   getNiveles(where: string) {
