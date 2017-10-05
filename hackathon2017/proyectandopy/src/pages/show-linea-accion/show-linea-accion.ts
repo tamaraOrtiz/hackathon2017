@@ -26,6 +26,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   map: any
   tabactive: any
   openbar: any;
+  alcanceNacional: any;
   ranges: {}
   count_view = 0
   count_download = 0
@@ -94,6 +95,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                 .range(["#98abc5", "#8a89a6"]);
 
       let keys = ['Avances', 'Metas'];
+      let data = this.departamentoGeoJson.map(function(d) { return d.properties; });
+      if(this.alcanceNacional){
+        Object.assign(data, this.alcanceNacional);
+      }
       y0.domain(this.departamentoGeoJson.map(function(d) { return d.properties.name; }));
       y1.domain(keys).rangeRound([0, y0.bandwidth()]);
 
@@ -121,7 +126,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
          .attr("x", margin.left)
          .attr("height", y1.bandwidth())
          .attr("width", function(d) { return x(d.value >= 0 ? d.value : 0); })
-         .attr("fill", function(d) { return z(d.key); });
+         .attr("fill", function(d) { return z(d.key); })
+         .append("text")
+         .attr("fill", "white")
+         .text(function(d) { return x(d.value >= 0 ? d.value : 0); });
 
       svg.append("g")
        .attr("class", "axis")
@@ -141,19 +149,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
        .attr("text-anchor", "start")
        .text("Beneficiarios");
 
-            let legend = d3.select("#pie-info-legend");
+      let legend = d3.select("#pie-info-legend");
 
-            legend.selectAll("g")
-            .data(keys.slice().reverse())
-            .enter().append("g")
-            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-            keys.slice().reverse().forEach( key => {
-              legend.append("p")
-                    .html(`<i style="background:${z(key)}"></i>
-                    <div style="margin-left: 18px;">
-                      <p class="program-name">${key}</p>
-                    </div>`);
-            })
+      legend.selectAll("g")
+      .data(keys.slice().reverse())
+      .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      keys.slice().reverse().forEach( key => {
+        legend.append("p")
+              .html(`<i style="background:${z(key)}"></i>
+              <div style="margin-left: 18px;">
+                <p class="program-name">${key}</p>
+              </div>`);
+      })
     }
 
     generateMap() {
@@ -161,7 +169,6 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let maxAvance = Number.NEGATIVE_INFINITY;
       let maxMeta = Number.NEGATIVE_INFINITY;
       let unidad = null;
-      let alcanceNacional = null;
       this.dataService.getDepartamentoParaguayMap().then(map => {
         this.departamentoGeoJson = map.features;
         console.log(this.item);
@@ -186,18 +193,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
               }
 
               if (name === 'ALC. NACIONAL') {
-                alcanceNacional = {properties: {}};
-                alcanceNacional.properties['name'] = name;
-                alcanceNacional.properties['unidad'] = unidad;
-                alcanceNacional.properties['meta'] = record.cant_prog;
-                alcanceNacional.properties['avance'] = record.cant_avance;
-                alcanceNacional.properties['value'] = {};
-                alcanceNacional.properties['value']['Metas'] = record.cant_prog;
-                alcanceNacional.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
-                let porcentaje = alcanceNacional.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1);
-                alcanceNacional.properties['value']['Metas vs Avances'] =  Math.round(1000 * (porcentaje <= 1 ? porcentaje : 1))/10;
-                maxAvance = alcanceNacional.properties['value']['Avances'] > maxAvance ? alcanceNacional.properties['value']['Avances'] : maxAvance;
-                maxMeta = alcanceNacional.properties['value']['Metas'] > maxMeta ? alcanceNacional.properties['value']['Metas'] : maxMeta;
+                this.alcanceNacional = {properties: {}};
+                this.alcanceNacional.properties['name'] = name;
+                this.alcanceNacional.properties['unidad'] = unidad;
+                this.alcanceNacional.properties['meta'] = record.cant_prog;
+                this.alcanceNacional.properties['avance'] = record.cant_avance;
+                this.alcanceNacional.properties['value'] = {};
+                this.alcanceNacional.properties['value']['Metas'] = record.cant_prog;
+                this.alcanceNacional.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
+                let porcentaje = this.alcanceNacional.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1);
+                this.alcanceNacional.properties['value']['Metas vs Avances'] =  Math.round(1000 * (porcentaje <= 1 ? porcentaje : 1))/10;
+                maxAvance = this.alcanceNacional.properties['value']['Avances'] > maxAvance ? this.alcanceNacional.properties['value']['Avances'] : maxAvance;
+                maxMeta = this.alcanceNacional.properties['value']['Metas'] > maxMeta ? this.alcanceNacional.properties['value']['Metas'] : maxMeta;
               }
             }
             if (departamento.properties.name == undefined) {
@@ -213,16 +220,16 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           });
           this.dataService.getParaguayMap().then(map => {
             this.paraguayGeoJson = map.features;
-            if(alcanceNacional){
+            if(this.alcanceNacional){
               this.paraguayGeoJson.forEach( paraguay => {
-                paraguay.properties = alcanceNacional.properties;
+                paraguay.properties = this.alcanceNacional.properties;
               });
             }
 
             self.ranges = {
               "Metas vs Avances": [100, 95, 90, 85, 80, 75, 70, 60, 40, 20, 10, 0],
-              "Avances": this.appHelper.getRange(0, maxAvance, 10),
-              "Metas": this.appHelper.getRange(0, maxMeta, 10)
+              "Avances": this.appHelper.getRange(0, maxAvance, maxAvance < 10 ? 4 : 11),
+              "Metas": this.appHelper.getRange(0, maxMeta, maxMeta < 10 ? 4 : 11)
             }
 
             let unidades = {
@@ -247,13 +254,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     weight: 8,
                     color: '#fcf9ff',
                     dashArray: '',
-                    fillOpacity: 0.7
+                    fillOpacity: 1
                   });
                   self.map.fitBounds((layer as any).getBounds());
                   info.update(feature.properties, 'Metas vs Avances');
                 });
               }
-            });
+            }).addTo(this.map);
 
             let geoMetas = new L.GeoJSON(this.departamentoGeoJson, {
               style: function (feature) {
@@ -269,7 +276,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     weight: 8,
                     color: '#fcf9ff',
                     dashArray: '',
-                    fillOpacity: 0.7
+                    fillOpacity: 1
                   });
                   self.map.fitBounds((layer as any).getBounds());
                   info.update(feature.properties, 'Metas');
@@ -291,15 +298,15 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     weight: 8,
                     color: '#fcf9ff',
                     dashArray: '',
-                    fillOpacity: 0.7
+                    fillOpacity: 1
                   });
                   self.map.fitBounds((layer as any).getBounds());
                   info.update(feature.properties, 'Avances');
                 });
               }
-            }).addTo(this.map);
+            })
 
-            let type = 'Avances';
+            let type = 'Metas vs Avances';
 
             let geoAlcanceNacional = new L.GeoJSON(this.paraguayGeoJson, {
               style: function (feature) {
@@ -315,7 +322,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                     weight: 8,
                     color: '#fcf9ff',
                     dashArray: '',
-                    fillOpacity: 0.7
+                    fillOpacity: 1
                   });
                   self.map.fitBounds((layer as any).getBounds());
                   info.update(feature.properties, type);
@@ -331,19 +338,18 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
             let capas = {};
 
-            if(alcanceNacional){
+            if(this.alcanceNacional){
               Object.assign(capas, {"Alcance Nacional": geoAlcanceNacional});
             }
             let info = (L as any).control();
 
             info.onAdd = function (map) {
               this._div = L.DomUtil.create('div', 'info');
-              this.update(null, 'Avances');
+              this.update(null, 'Metas vs Avances');
               return this._div;
             };
 
             info.update = function (props, layer) {
-              console.log(props);
               this._div.innerHTML = `<h4>${unidades[layer].titulo}</h4>` +  (props ?
                 '<b>' + props.name + '</b><br />' + (props.value[layer] == -1 ? 'Sin Datos' : `${self.appHelper.numberFormatter(props.value[layer])} ${unidades[layer]["simbolo"]}`)
                 : 'Seleccione un departamento');
@@ -357,7 +363,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
               legend.onAdd = function (map) {
                 this._div = L.DomUtil.create('div', 'info legend');
-                this.update('Avances');
+                this.update('Metas vs Avances');
                 return this._div;
               }
 
@@ -366,18 +372,34 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                   Object.keys((geoPorcentaje as any)._layers).map (key => {
                     (geoPorcentaje as any).resetStyle((geoPorcentaje as any)._layers[key]);
                   });
-                } else {
+                  Object.keys((geoMetas as any)._layers).map (key => {
+                    (geoMetas as any).resetStyle((geoMetas as any)._layers[key]);
+                  });
+
+                } else if(eventLayer.name == 'Metas') {
                   Object.keys((geoAvances as any)._layers).map (key => {
                     (geoAvances as any).resetStyle((geoAvances as any)._layers[key]);
+                  });
+                  Object.keys((geoPorcentaje as any)._layers).map (key => {
+                    (geoPorcentaje as any).resetStyle((geoPorcentaje as any)._layers[key]);
+                  });
+                } else if(eventLayer.name == 'Meta vs Avances') {
+                  Object.keys((geoAvances as any)._layers).map (key => {
+                    (geoAvances as any).resetStyle((geoAvances as any)._layers[key]);
+                  });
+                  Object.keys((geoMetas as any)._layers).map (key => {
+                    (geoMetas as any).resetStyle((geoMetas as any)._layers[key]);
                   });
                 }
                 type = eventLayer.name;
                 if(self.map.hasLayer(geoAlcanceNacional)){
                   self.map.removeLayer(geoAlcanceNacional);
+                  geoAlcanceNacional.addTo(self.map);
                   Object.keys((geoAlcanceNacional as any)._layers).map (key => {
-                    (geoAlcanceNacional as any).resetStyle((geoAlcanceNacional as any)._layers[key]);
+                    let layer = (geoAlcanceNacional as any)._layers[key];
+                    (geoAlcanceNacional as any).resetStyle(layer);
+                    (geoAlcanceNacional as any)._layers[key].setStyle(self.style(layer.feature, type));
                   });
-                  geoAlcanceNacional.addTo(self.map)
                   geoAlcanceNacional.bringToFront();
                 }
                 legend.update(eventLayer.name);
@@ -385,17 +407,25 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
               });
 
+              this.map.on('overlayadd', function (eventLayer) {
+                Object.keys((geoAlcanceNacional as any)._layers).map (key => {
+                  let layer = (geoAlcanceNacional as any)._layers[key];
+                  (geoAlcanceNacional as any).resetStyle(layer);
+                  (geoAlcanceNacional as any)._layers[key].setStyle(self.style(layer.feature, type));
+                });
+              });
+
               legend.update = function (layer){
                 let grades = self.ranges[layer];
                 this._div.innerHTML = `<h4>${unidades[layer]["nombre"]}</h4>`;
                 for (let i = 0; i < grades.length -1; i++) {
                   this._div.innerHTML +=
-                  '<i style="background:' + self.getColor(grades[i] + 1, layer) + '"></i> ' +
+                  '<i style="background:' + self.getColor(grades[i + 1], layer) + '"></i> ' +
                   self.appHelper.numberFormatter(grades[i]) +' - '+ self.appHelper.numberFormatter(grades[i + 1]) + '<br>';
                 }
                 if(grades.length == 0) {
                   this._div.innerHTML +=
-                  '<i style="background:#F0F0F0;"></i>0<br>';
+                  '<i style="background:#E5E5E5;"></i>0<br>';
                 }
               };
 
@@ -417,9 +447,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           opacity: 1,
           color: 'white',
           dashArray: '1',
-          fillOpacity: 0.7
+          fillOpacity: 1
         };
       }
+
       opensidebar(){
         this.openbar = true;
       }
@@ -427,6 +458,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       closesidebar(){
         this.openbar = false;
       }
+
       getColor(d, layer) {
         let range = this.ranges[layer];
         if(range == undefined){
@@ -436,18 +468,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           if(d == -1){
             return 'gray';
           } else if(d == 0) {
-            return '#F0F0F0';
+            return '#E5E5E5';
           }
         }
-        return d >= range[0] ? '#109483' :
-        d >= range[1] ? '#6b9373' :
-        d >= range[2] ? '#979163' :
-        d >= range[3] ? '#bb8d53' :
-        d >= range[4] ? '#dc8841' :
-        d >= range[5] ? '#e67932' :
-        d >= range[6] ? '#da6427' :
-        d >= range[7] ? '#cd4d1d' :
-        d >= range[8] ? '#c03313' :
+        return d >= range[1] ? '#109483' :
+        d >= range[2] ? '#6b9373' :
+        d >= range[3] ? '#979163' :
+        d >= range[4] ? '#bb8d53' :
+        d >= range[5] ? '#dc8841' :
+        d >= range[6] ? '#e67932' :
+        d >= range[7] ? '#da6427' :
+        d >= range[8] ? '#cd4d1d' :
+        d >= range[9] ? '#c03313' :
+        d >= range[10] ? '#a3210d' :
         d == -1 ? 'gray'    :
         '#790606';
       }
@@ -460,7 +493,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           weight: 1,
           color: '#5E1A75',
           dashArray: '',
-          fillOpacity: 0.7
+          fillOpacity: 1
 
         });
         if (!L.Browser.ie && !L.Browser.edge) {
