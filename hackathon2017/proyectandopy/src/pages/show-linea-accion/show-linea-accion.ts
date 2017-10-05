@@ -150,7 +150,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                 departamento.properties['value'] = {};
                 departamento.properties['value']['Metas'] = record.cant_prog;
                 departamento.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
-                departamento.properties['value']['Metas vs Avances'] =  Math.round(1000 * departamento.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1))/10;
+                let porcentaje = (departamento.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1));
+                departamento.properties['value']['Metas vs Avances'] =  Math.round(1000 * (porcentaje <= 1 ? porcentaje : 1))/10;
                 maxAvance = departamento.properties['value']['Avances'] > maxAvance ? departamento.properties['value']['Avances'] : maxAvance;
                 maxMeta = departamento.properties['value']['Metas'] > maxMeta ? departamento.properties['value']['Metas'] : maxMeta;
               }
@@ -164,7 +165,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
                 alcanceNacional.properties['value'] = {};
                 alcanceNacional.properties['value']['Metas'] = record.cant_prog;
                 alcanceNacional.properties['value']['Avances'] =  record.cant_avance + record.cant_promedio/(record.cantidad_denominador > 0 ? record.cantidad_denominador : 1);
-                alcanceNacional.properties['value']['Metas vs Avances'] =  Math.round(1000 * alcanceNacional.properties['value']['Avances'] / record.cant_prog)/10;
+                let porcentaje = alcanceNacional.properties['value']['Avances'] / (record.cant_prog > 0 ? record.cant_prog : 1);
+                alcanceNacional.properties['value']['Metas vs Avances'] =  Math.round(1000 * (porcentaje <= 1 ? porcentaje : 1))/10;
                 maxAvance = alcanceNacional.properties['value']['Avances'] > maxAvance ? alcanceNacional.properties['value']['Avances'] : maxAvance;
                 maxMeta = alcanceNacional.properties['value']['Metas'] > maxMeta ? alcanceNacional.properties['value']['Metas'] : maxMeta;
               }
