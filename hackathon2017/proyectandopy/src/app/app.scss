@@ -1545,3 +1545,19 @@ ppy-footer{
   }
   padding-left: 10px;
 }
+
+.label-with-info{
+  ion-label{
+    margin: 3px !important;
+  }
+
+  .button-with-info{
+    position: inherit;
+    vertical-align: middle;
+    padding: 0 0.6em;
+    height: 25px;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    color: #66666f !important;
+  }
+}

@@ -118,8 +118,11 @@ Ionic pages and navigation.
 
     <div class='view-content'>
         <div class="show-info" *ngIf="tabactive=='info'">
-            <ion-label class="title-page item-grouper">Información
+            <ion-label class="title-page item-grouper label-with-info">Información
               <button ion-button clear (click)="openLink('http://www.stp.gov.py/v1/instrumentos-spr/')"><ion-icon name="link"></ion-icon></button>
+              <button ion-button tooltip="Cada sección de la Información puede ser calificada, con tu opinión se podra mejorar la gestión del País!" class="button-with-info tooltip-menu" duration=6000 positionV="bottom" arrow>
+               <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+             </button>
             </ion-label>
             <ion-grid>
               <ion-row>
@@ -237,7 +240,11 @@ Ionic pages and navigation.
       <div *ngIf="tabactive=='la'" class="common-list" style="margin-bottom: 0;">
         <ion-list>
           <div>
-            <ion-item class="item-grouper">Lineas de Acción</ion-item>
+            <ion-item class="item-grouper label-with-info">Lineas de Acción
+              <button ion-button tooltip="El color de la barra de progreso indica el avance de la linea de acción; Verde: > 90%, Naranja: >= 70% y <= 90% y Rojo: <70%" class="button-with-info tooltip-menu" duration=6000 positionV="bottom" arrow>
+               <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
+             </button>
+            </ion-item>
           <button ion-item  class="success" *ngFor="let lineaAccion of lineasAccion" (click)="lineaAccionTapped($event, lineaAccion)">
             <ion-item>
               <ion-avatar item-start>
