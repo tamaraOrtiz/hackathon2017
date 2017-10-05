@@ -9,7 +9,7 @@ import { Events } from 'ionic-angular';
 import * as d3 from "d3";
 import { Http } from '@angular/http';
 import { AppHelper } from '../../helpers/app-helper';
-
+import { Slides } from 'ionic-angular';
 
 @Component({
   selector: 'page-show-institucion',
@@ -38,6 +38,9 @@ export class ShowInstitucionPage extends ShowBasePage {
   openbar: any
   tabactive:any
   myParseInt: any
+  count_view = 0
+  count_download = 0
+  @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: InstitucionData, public raService: RatingData,
     private iab: InAppBrowser, public events: Events,
@@ -51,6 +54,12 @@ export class ShowInstitucionPage extends ShowBasePage {
     if(!this.item){
       this.item = { id: navParams.data.ins_id }
     }
+    this.events.subscribe('Institucion:view:saved:success', (data) => {
+      this.count_view = data;
+    });
+    this.events.subscribe('Institucion:download:saved:success', (data) => {
+      this.count_download = data;
+    });
   }
 
   openLink(link){
@@ -90,7 +99,7 @@ export class ShowInstitucionPage extends ShowBasePage {
     this.dataService.getQuery(this.dataService.getInstitucion(this.item.id)).then(record => {
       let institucion = record[0] as any;
       let additionalData = {
-                             nombre: institucion.nombre,  
+                             nombre: institucion.nombre,
                              descripcion: institucion.descripcion,
                              mision: institucion.mision,
                              diagnostico: institucion.diagnostico,
@@ -112,6 +121,24 @@ export class ShowInstitucionPage extends ShowBasePage {
       this.calificacion = rating;
       this.events.publish('rating:retrieve', rating, Date.now());
     });
+
+    this.dataService.getEvents("Institucion", this.item.id).then(data => {
+      console.log(this.item.id);
+      this.events = data;
+      if("view" in this.events){
+        this.count_view = this.events["view"]
+      }
+      if("download" in this.events){
+        this.count_download = this.events["download"]
+      }
+    });
+  }
+  goToSlide() {
+    this.slides.slideNext(100);
+  }
+
+  gobackSlide() {
+    this.slides.slidePrev(100);
   }
 
   pushItem(record: any) {

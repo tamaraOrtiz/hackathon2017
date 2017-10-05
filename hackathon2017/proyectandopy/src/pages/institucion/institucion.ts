@@ -144,6 +144,7 @@ export class InstitucionPage extends BasePage {
 
   itemTapped(event, item) {
     this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");
+    console.log(item.id);
     this.navCtrl.push(ShowInstitucionPage, {
       item: item,
       ins_id: item.id

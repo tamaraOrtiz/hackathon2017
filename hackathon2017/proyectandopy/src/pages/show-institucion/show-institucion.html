@@ -42,6 +42,69 @@ Ionic pages and navigation.
         <button  ion-button item-end outline [ngClass]="(tabactive=='map' ? 'sidebarbutton active' : 'sidebarbutton')" (click)="changetab('map')">
           <i class="fa fa-map" aria-hidden="true"></i> Mapa
         </button>-->
+        <ion-label class="metrica-label">{{count_view}} visita/s - {{count_download}} descarga/s</ion-label>
+        <div>
+          <ion-slides pager class="helpslide">
+
+             <ion-slide >
+               <p>Necesitas Ayuda?</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide >
+               <p>Aquí puedes ver la información del Plan Nacional de Desarrollo 2030</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>El contenido está dividido en tres secciones: General (La Información global del PND), Ejes (La Información agrupada por cada eje estratégico del PND) y Estrategias (La Información agrupada por cada eje estratégico y estrategia del PND)</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Esta Información muestra la cantidad de entidades involucradas en el PND, la cantidad de Objetivos que buscan cumplir, El presupuesto asignado para llevar a cabo el plan y la cantidad de beneficiarios.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+             <ion-slide >
+               <p>Al hacer click en "ver más" dentro de beneficiarios puedes ver en detalle cada beneficiario del PND</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>También puedes filtrar la información por Nivel, Entidad y Año.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Además puedes comentar y calificar esta Información.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>Esperamos haberte ayudado!</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+
+           </ion-slides>
+        </div>
 
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>

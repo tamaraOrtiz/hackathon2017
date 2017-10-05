@@ -65,7 +65,7 @@
       <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
         <ion-item class="item-grouper">Grafica
-          <a class="leaflet-control-zoom-out" (click)="appHelper.download('#map')">
+          <a class="leaflet-control-zoom-out" (click)="appHelper.download('#map', [], [], 'Institucion', item.institucion, 'linea_de_Accion_show', 'mapa')">
             <i class="fa fa-download"></i>
           </a>
         </ion-item>
