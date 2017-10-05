@@ -76,7 +76,14 @@ Ionic pages and navigation.
              </ion-slide>
 
              <ion-slide >
-               <p>En la sección de Líneas de Acción puedes ver las líneas de acción de esta Institución. Los colores indican el progreso de cada línea.</p>
+               <p>En la sección de Líneas de Acción puedes ver las líneas de acción de esta Institución con su resperctiva información.</p>
+               <ion-toolbar class="tutorial-buttons">
+                 <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
+                 <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>
+               </ion-toolbar>
+             </ion-slide>
+             <ion-slide >
+               <p>La barra debajo de cada línea de acción indica el progreso de la misma. Los colores indican el estado actual.</p>
                <ion-toolbar class="tutorial-buttons">
                  <ion-icon right class="right" name="ios-arrow-forward" color="default"  (click)="goToSlide()"></ion-icon>
                  <ion-icon left class="left" name="ios-arrow-back" color="default"  (click)="gobackSlide()"></ion-icon>

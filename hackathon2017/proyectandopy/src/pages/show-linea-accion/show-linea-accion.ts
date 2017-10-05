@@ -7,6 +7,7 @@ import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
 import * as d3 from "d3";
 import 'leaflet-search';
+import { Slides } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 
 @Component({
@@ -29,6 +30,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   count_view = 0
   count_download = 0
   events: any;
+  @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper) {
       super(navCtrl, navParams, appHelper);
@@ -63,6 +65,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       });
     }
 
+    goToSlide() {
+      this.slides.slideNext(100);
+    }
+
+    gobackSlide() {
+      this.slides.slidePrev(100);
+    }
     generateStackChart() {
       let self = this;
 
