@@ -5,6 +5,7 @@ import { LineaAccionData } from '../../providers/linea-accion';
 import { AppHelper } from '../../helpers/app-helper';
 import * as html2canvas from "html2canvas";
 import * as L from 'leaflet';
+import { LoadingController } from 'ionic-angular';
 import * as d3 from "d3";
 import 'leaflet-search';
 import { Slides } from 'ionic-angular';
@@ -32,11 +33,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   maxAvance = Number.NEGATIVE_INFINITY;
   maxMeta = Number.NEGATIVE_INFINITY;
   unidad = null;
-
+  loading;
 
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper) {
+    public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper, public loadingCtrl: LoadingController) {
       super(navCtrl, navParams, appHelper);
       this.item = navParams.get('item');
       this.openbar = appHelper.isDeskTop();
@@ -52,6 +53,12 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
     }
     changetab(_text){
+      this.loading = this.loadingCtrl.create({
+         content: 'Por favor espere...'
+      });
+      if(this.loading){
+        this.loading.present();
+      }
       let self = this;
       self.tabactive = _text;
       if(_text == 'mapa') {
@@ -64,10 +71,20 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           self.generateBarChartForLineaAccion();
         }, 1000);
       }
+      if(self.loading){
+          self.loading.dismiss();
+          self.loading = null;
+      }
     }
 
     ionViewDidEnter(){
       let self = this;
+      this.loading = this.loadingCtrl.create({
+         content: 'Por favor espere...'
+      });
+      if(this.loading){
+        this.loading.present();
+      }
       self.dataService.getEvents("lineasAccion", self.item.institucion+"_"+self.item.id).then(data => {
         self.events = data;
         if("view" in self.events){
@@ -79,7 +96,12 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         self.getGeoJsonData().then(() => {
           self.generateMap();
         });
+        if(self.loading){
+            self.loading.dismiss();
+            self.loading = null;
+        }
       });
+
     }
 
     goToSlide() {
