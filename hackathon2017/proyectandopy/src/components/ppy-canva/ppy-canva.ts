@@ -230,7 +230,6 @@ export class PpyCanva {
           x = c[0],
           y = c[1];
           let c2= outerArc.centroid(d);
-          console.log(d);
           return "translate(" + (c2[0] < 0 ? -255 : 255) +  ',' +
           c2[1] +  ")";
         })

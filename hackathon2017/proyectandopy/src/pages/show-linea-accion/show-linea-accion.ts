@@ -47,6 +47,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       this.eventHandler.subscribe('lineasAccion:download:saved:success', (data) => {
         this.count_download = data;
       });
+      appHelper.provider = dataService;
+      console.log(this.item);
 
     }
     changetab(_text){
@@ -58,7 +60,8 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         }, 1000);
       } else if(_text == 'barra') {
         setTimeout(function(){
-          self.generateStackChart();
+          self.generateBarChart();
+          self.generateBarChartForLineaAccion();
         }, 1000);
       }
     }
@@ -152,16 +155,19 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       });
     }
 
-    generateStackChart() {
+    generateBarChart() {
       let self = this;
 
       // set the dimensions and margins of the graph
       let margin = {top: 20, right: 20, bottom: 20, left: 20};
-      let data = this.departamentoGeoJson.filter(function(d) { d.properties.meta != -1; });
+      let data = this.departamentoGeoJson.filter(function(d) { return d.properties.meta != -1; });
+      if(self.alcanceNacional){
+        data.push(self.alcanceNacional);
+      }
 
       let width = 900;
 
-      let height = data.length >= 10 ? 700 : data.length >= 5 ? 500 : 300 ;
+      let height = data.length >= 10 ? 900 : data.length >= 5 ? 500 : 300 ;
 
       let y0 = d3.scaleBand()
       .rangeRound([margin.top, height-margin.bottom-margin.top])
@@ -174,19 +180,14 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .rangeRound([0, width/2]);
 
       let z = d3.scaleOrdinal()
-      .range(["#98abc5", "#8a89a6"]);
+      .range(["#a51179", "#139878"]);
 
       let keys = ['Avances', 'Metas'];
 
-      if(this.alcanceNacional){
-        Object.assign(data, this.alcanceNacional);
-      }
       y0.domain(data.map(function(d) { return d.properties.name; }));
       y1.domain(keys).rangeRound([0, y0.bandwidth()]);
 
-      x.domain([0, d3.max(data, function(d) {
-        return d3.max(keys, function(key) { return d.properties.value[key]; });
-      })]).nice();
+      x.domain([0, self.maxMeta >= self.maxAvance ? self.maxMeta : self.maxAvance]).nice();
 
       let svg = d3.select("#graph")
       .append("svg")
@@ -197,21 +198,31 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("width", width/2)
       .attr("height", height-margin.bottom-margin.top)
       .attr("transform", "translate(100, 5)");
-      svg.selectAll("g")
+      let rects = svg.selectAll("g")
       .data(data)
       .enter().append("g")
       .attr("transform", function(d) { return "translate(0, " + y0(d.properties.name) + ")"; })
       .selectAll("rect")
       .data(function(d) { return keys.map(function(key) { return {key: key, value: d.properties.value[key]}; }); })
-      .enter().append("rect")
+
+      rects.enter().append("rect")
       .attr("y", function(d) { return y1(d.key); })
       .attr("x", margin.left)
       .attr("height", y1.bandwidth())
-      .attr("width", function(d) { return x(d.value >= 0 ? d.value : 0); })
-      .attr("fill", function(d) { return z(d.key); })
-      .append("text")
-      .attr("fill", "white")
-      .text(function(d) { return x(d.value >= 0 ? d.value : 0); });
+      .attr("width", function(d) { return x(d.value) > 0 ? x(d.value) : 1; })
+      .style("fill", function(d) { return z(d.key); })
+      .style("fill-opacity", .5)
+      .style("stroke", function(d) { return z(d.key); })
+      .style("stroke-width", 2)
+
+      rects.enter().append("text")
+      .attr("text-anchor", "start")
+      .attr("dominant-baseline", "central")
+      .attr("x", function(d) { return margin.left + (x(d.value) > 0 ? x(d.value) : 20)/2; })
+      .attr("y", function(d) { return y1.bandwidth()/2 + y1(d.key); })
+      .style("font-size", function() { return data.length > 5 ? "0.8em" : "1.2em";})
+      .style("fill", "black")
+      .text(function(d) { return self.appHelper.numberFormatter(d.value); });
 
       svg.append("g")
       .attr("class", "axis")
@@ -229,7 +240,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("fill", "#000")
       .attr("font-weight", "bold")
       .attr("text-anchor", "start")
-      .text("Beneficiarios");
+      .text(self.unidad);
 
       let legend = d3.select("#pie-info-legend");
 
@@ -244,6 +255,114 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         <p class="program-name">${key}</p>
         </div>`);
       })
+    }
+
+    generateBarChartForLineaAccion() {
+      let self = this;
+
+      // set the dimensions and margins of the graph
+      let margin = {top: 20, right: 20, bottom: 20, left: 20};
+      let data = Object.keys(self.item.avance_metas).map(function(k) {
+        console.log(k);
+        console.log(self.item);
+        return {key: k,
+          value: {
+            "Avances": self.item.avance_metas[k]+(self.item.promedio_metas[k])/(self.item.denominador_metas[k] > 0 ? self.item.denominador_metas[k] : 1),
+            "Programacion": self.item.programa_metas[k]+(self.item.programa_promedio_metas[k])/(self.item.programa_denominador_metas[k] > 0 ? self.item.programa_denominador_metas[k] : 1)
+          }
+        }
+      });
+
+      let width = 900;
+
+      let height = data.length >= 10 ? 900 : data.length >= 5 ? 500 : 300 ;
+
+      let x0 = d3.scaleBand()
+      .rangeRound([margin.left, width-margin.left-margin.right])
+      .paddingInner(0.1);
+
+      let x1 = d3.scaleBand()
+      .padding(0.05);
+
+      let y = d3.scaleLinear()
+      .rangeRound([0, height/2]);
+
+      let z = d3.scaleOrdinal()
+      .range(["#a51179", "#139878"]);
+
+      let keys = ['Avances', 'Programacion'];
+
+      x0.domain(['m1', 'm2', 'm3', 'm4']);
+      x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+
+      y.domain([0, self.maxMeta >= self.maxAvance ? self.maxMeta : self.maxAvance]).nice();
+
+      let svg = d3.select("#graph2")
+      .append("svg")
+      .attr("fill", "white")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("width", width/2)
+      .attr("height", height-margin.bottom-margin.top)
+      .attr("transform", "translate(100, 5)");
+      let rects = svg.selectAll("g")
+      .data(data)
+      .enter().append("g")
+      .attr("transform", function(d) { return "translate(" + x0(d.key) + ", 0)"; })
+      .selectAll("rect")
+      .data(function(d) { return keys.map(function(key) { console.log(d); return {key: key, value: d.value[key]}; }); })
+
+      rects.enter().append("rect")
+      .attr("x", function(d) { return x1(d.key); })
+      .attr("y", margin.bottom)
+      .attr("width", x1.bandwidth())
+      .attr("height", function(d) { return y(d.value) > 0 ? y(d.value) : 1; })
+      .style("fill", function(d) { return z(d.key); })
+      .style("fill-opacity", .5)
+      .style("stroke", function(d) { return z(d.key); })
+      .style("stroke-width", 2)
+
+      rects.enter().append("text")
+      .attr("text-anchor", "start")
+      .attr("dominant-baseline", "central")
+      .attr("y", function(d) { return margin.top + (y(d.value) > 0 ? y(d.value) : 20)/2; })
+      .attr("x", function(d) { return x1.bandwidth()/2 + x1(d.key); })
+      .style("font-size", function() { return data.length > 5 ? "0.8em" : "1.2em";})
+      .style("fill", "black")
+      .text(function(d) { return self.appHelper.numberFormatter(d.value); });
+
+      svg.append("g")
+      .attr("class", "axis")
+      .call(d3.axisBottom(x0))
+      .attr("transform", "translate("+ margin.left + ", "+ (height) +")")
+
+      svg.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y).ticks(null, "s"))
+      .attr("transform", "translate(" + margin.left + ", 0)")
+      .append("text")
+      .attr("x", 2)
+      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text(self.unidad);
+
+      let legend = d3.select("#pie-info-legend2");
+
+      legend.selectAll("g")
+      .data(keys.slice().reverse())
+      .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      keys.slice().reverse().forEach( key => {
+        legend.append("p")
+        .html(`<i style="background:${z(key)}"></i>
+        <div style="margin-left: 18px;">
+        <p class="program-name">${key}</p>
+        </div>`);
+      });
     }
 
     generateMap() {

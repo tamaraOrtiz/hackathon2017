@@ -196,6 +196,10 @@ export class ShowInstitucionPage extends ShowBasePage {
         cantidadDenominador: la.cantidad_denominador,
         avance_metas: la.avance_metas,
         programa_metas: la.programa_metas,
+        promedio_metas: la.promedio_metas,
+        programa_denominador_metas: la.programa_denominador_metas,
+        programa_promedio_metas: la.programa_promedio_metas,
+        denominador_metas: la.denominador_metas,
         ico: 'fa-users'
       });
     });

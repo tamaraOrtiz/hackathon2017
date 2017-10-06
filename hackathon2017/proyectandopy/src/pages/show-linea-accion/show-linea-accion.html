@@ -158,15 +158,15 @@
       </ion-col>
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
-        <ion-item class="item-grouper">Grafica
-          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map')">
+        <ion-item class="item-grouper">Gráfica
+          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva', [], ['.graph-title'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
             <i class="fa fa-download"></i>
           </a>
         </ion-item>
         <ion-grid class="graph-canva">
           <ion-row class="graph-title" style="display: none;">
             <ion-col col-xs-12 col-sm-12 col-lg-9 style="text-align: center;">
-              <h3>Beneficiarios por {{selectData}}</h3>
+              <h3>{{item.nombre}}</h3>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -176,14 +176,31 @@
             </ion-col>
             <ion-col col-3 *ngIf="!smallScreen">
               <div class="pie-info leaflet-top leaflet-right">
-                <div class="info leaflet-control selection-info">
-                  <h4>{{selectedTitle}}</h4>
-                  <b id="label">Seleccione un programa</b><br>
-                  <p id="count"></p>
-                  <p id="percentage"></p>
-                  <div id="detail"></div>
-                </div>
                 <div id="pie-info-legend" class="info legend leaflet-control"></div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-item class="item-grouper">Gráfica
+          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva', [], ['.graph-title'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
+            <i class="fa fa-download"></i>
+          </a>
+        </ion-item>
+        <ion-grid class="graph-canva2">
+          <ion-row class="graph-title2" style="display: none;">
+            <ion-col col-xs-12 col-sm-12 col-lg-9 style="text-align: center;">
+              <h3>{{item.nombre}}</h3>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-xs-12 col-sm-12 col-lg-9>
+              <div id="graph2" style="display:table; margin: 0 auto; width: 100%">
+              </div>
+            </ion-col>
+            <ion-col col-3 *ngIf="!smallScreen">
+              <div class="pie-info leaflet-top leaflet-right">
+                <div id="pie-info-legend2" class="info legend leaflet-control"></div>
               </div>
             </ion-col>
           </ion-row>
