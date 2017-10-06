@@ -65,7 +65,10 @@ export class InstitucionPage extends BasePage {
     let self =this
     this.showSearchBar = value;
     setTimeout(function(){
-      self.searchbar.setFocus();
+      if(self.searchbar){
+        self.searchbar.setFocus();
+      }
+
     }, 500);
 
   }
