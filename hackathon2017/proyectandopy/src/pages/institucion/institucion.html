@@ -29,7 +29,7 @@
         <div id="filter-sidebar-div">
           <ion-list class="selec-header">
          <ion-item>
-           <ion-label style="max-width: 60px !important;">Niveles</ion-label>
+           <ion-label style="max-width: 60px !important;">Niveles </ion-label>
            <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event, false)" style="max-width: 56px !important;">
              <ion-option  *ngFor="let nivel of niveles | keys" value="{{niveles[nivel].id}}" selected="selectedNiveles.contains(nivel)">{{niveles[nivel].nombre}}</ion-option>
 
@@ -46,8 +46,8 @@
 
         </div>
         <div class="chips-div">
-          <ion-chip *ngFor="let nivel of selectedNiveles"  #chip>
-             <ion-label>{{niveles[nivel].nombre}}</ion-label>
+          <ion-chip *ngFor="let nivel of selectedNiveles"  #chip (click)="gochip(chip, nivel)">
+             <ion-label class="chip_text">{{niveles[nivel].nombre}}</ion-label>
              <button ion-button clear color=clear (click)="delete(chip, nivel)">
                <ion-icon name="close-circle"></ion-icon>
              </button>

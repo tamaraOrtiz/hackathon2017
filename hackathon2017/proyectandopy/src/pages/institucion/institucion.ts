@@ -44,6 +44,32 @@ export class InstitucionPage extends BasePage {
     this.filter(null, false);
   }
 
+  gochip(chip: Element, value) {
+    let self = this;
+    let htmlch = chip.innerHTML
+    chip.innerHTML= "<ion-chip class='chip chip-md chip-transition' style='background: #4986d8; width:"+(chip as any).offsetWidth+"px !important;'><ion-label class='chip_text label label-md'><i class='fa fa-arrow-right' aria-hidden='true'></i></ion-label></ion-chip>";
+    chip.querySelector(".chip-transition").addEventListener('click', function(e) {
+      chip.innerHTML= htmlch;
+      chip.querySelector(".ion-md-close-circle").addEventListener('click', function(e) {
+        chip.remove();
+        this.selectedNiveles.splice(this.selectedNiveles.indexOf(value), 1);
+        this.filter(null, false);
+      });
+       self.selectedNiveles = [value];
+    });
+
+    setTimeout(function(){
+      chip.innerHTML= htmlch;
+      chip.querySelector(".ion-md-close-circle").addEventListener('click', function(e) {
+        chip.remove();
+        self.selectedNiveles.splice(self.selectedNiveles.indexOf(value), 1);
+        self.filter(null, false);
+      });
+    }, 3000);
+
+  }
+
+
   opensidebar(){
     this.openbar = true;
   }

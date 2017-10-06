@@ -1593,3 +1593,36 @@ ppy-footer{
 ion-backdrop{
   opacity: 0.85 !important;
 }
+
+
+.chip_text{
+
+  i.fa{
+    vertical-align: middle;
+    color: aliceblue;
+    font-size: 15px;
+
+
+  }
+}
+.chips-div{
+  ion-chip{
+    cursor: pointer;
+  }
+}
+
+.chip-transition{
+  animation: pulse ;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+
+
+@keyframes pulse {
+  0% {
+    background-color: #001F3F;
+  }
+  100% {
+    background-color: #4986d8;
+  }
+}
