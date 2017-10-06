@@ -4,11 +4,11 @@
     <ion-row>
       <ion-col col-9>
         <h5> Califica esta información </h5>
-        <i class="fa fa-star" aria-hidden="true" id="star-1" (click)="setRating(1)"></i>
-        <i class="fa fa-star" aria-hidden="true" id="star-2" (click)="setRating(2)"></i>
-        <i class="fa fa-star" aria-hidden="true" id="star-3" (click)="setRating(3)"></i>
-        <i class="fa fa-star" aria-hidden="true" id="star-4" (click)="setRating(4)"></i>
-        <i class="fa fa-star" aria-hidden="true" id="star-5" (click)="setRating(5)"></i>
+        <i class="fa fa-star" [ngClass]="(rating.score >= 0.5 ? 'check' : '')" aria-hidden="true" id="star-1" (click)="setRating(1)"></i>
+        <i class="fa fa-star" [ngClass]="(rating.score >= 1.5 ? 'check' : '')" aria-hidden="true" id="star-2" (click)="setRating(2)"></i>
+        <i class="fa fa-star" [ngClass]="(rating.score >= 2.5 ? 'check' : '')" aria-hidden="true" id="star-3" (click)="setRating(3)"></i>
+        <i class="fa fa-star" [ngClass]="(rating.score >= 3.5 ? 'check' : '')" aria-hidden="true" id="star-4" (click)="setRating(4)"></i>
+        <i class="fa fa-star" [ngClass]="(rating.score >= 4.5 ? 'check' : '')" aria-hidden="true" id="star-5" (click)="setRating(5)"></i>
         <ion-label id="rating-text" class="calificacion"></ion-label>
       </ion-col>
       <ion-col col-3>
