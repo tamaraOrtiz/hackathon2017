@@ -9,11 +9,11 @@
 </ion-header>
 
 <ion-content class="tutorial-page" padding>
-  <ion-fab left bottom edge style="bottom: 10px;" #fab>
+  <ion-fab right bottom edge style="bottom: 10px;" #fab>
          <button color=secondary ion-fab><i class="fa fa-share-alt" aria-hidden="true"></i></button>
          <ion-fab-list side="top">
-           <button ion-fab  color="facebook" (click)="share('facebook', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-           <button ion-fab  color="twitter" (click)="share('twitter', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+           <button ion-fab  color="facebook" (click)="appHelper.share('facebook', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+           <button ion-fab  color="twitter" (click)="appHelper.share('twitter', 'PND 2030 - ProyectandoPy','http://www.stp.gov.py/pnd/')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
            <button ion-fab color="file" clear (click)="openLink('http://www.stp.gov.py/pnd/wp-content/uploads/2014/12/pnd2030.pdf')"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
            <button ion-fab color="link" clear (click)="openLink('http://www.stp.gov.py/pnd/')"> <ion-icon name="link"></ion-icon></button>
          </ion-fab-list>
