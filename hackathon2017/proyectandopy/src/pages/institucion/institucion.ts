@@ -8,7 +8,7 @@ import { BasePage } from '../../app/base-page';
 import { LoadingController } from 'ionic-angular';
 import { EstadisticasPage } from '../estadisticas/estadisticas';
 import { Slides } from 'ionic-angular';
-
+import { Searchbar } from 'ionic-angular';
 
 
 @Component({
@@ -30,6 +30,7 @@ export class InstitucionPage extends BasePage {
   inst : any = {};
   _niveles : any = {};
   @ViewChild(Slides) slides: Slides;
+  @ViewChild('searchbar') searchbar:Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
     menuCtrl: MenuController, public appHelper: AppHelper) {
     super(navCtrl, navParams, dataService, appHelper);
@@ -61,7 +62,12 @@ export class InstitucionPage extends BasePage {
   }
 
   showSearch(value: boolean){
+    let self =this
     this.showSearchBar = value;
+    setTimeout(function(){
+      self.searchbar.setFocus();
+    }, 500);
+
   }
 
 
@@ -92,7 +98,35 @@ export class InstitucionPage extends BasePage {
       });
     });
   }
+  filtersearch(event, bar, loader=null) {
+    let val = bar && (event.target.value !== null || event.target.value !== undefined) ? event.target.value : '';
+    let loading = loader ? loader : this.loadingCtrl.create({
+       content: 'Por favor espere...'
+    });
+    if(!loader){
+      loading.present();
+    }
 
+    if(this.selectedNiveles.length == 0){
+      this.dataService.getQuery(this.dataService.filterInstituciones(["-1"],""), true).then(record => {
+        this._niveles = record;
+        if(loading){
+          loading.dismiss();
+          loading = null;
+      	}
+      });
+    }else{
+      this.dataService.getQuery(this.dataService.filterInstituciones(this.selectedNiveles,val), true).then(record => {
+        this._niveles = record;
+        if(loading){
+          loading.dismiss();
+          loading = null;
+      	}
+      });
+    }
+
+
+  }
   add_all_niveles(){
      this.selectedNiveles = Object.keys(this.niveles);
 
@@ -110,7 +144,7 @@ export class InstitucionPage extends BasePage {
     if(!loader){
       loading.present();
     }
-    console.log(this.selectedNiveles);
+
     if(this.selectedNiveles.length == 0){
       this.dataService.getQuery(this.dataService.getInstituciones(["-1"]), true).then(record => {
         this._niveles = record;

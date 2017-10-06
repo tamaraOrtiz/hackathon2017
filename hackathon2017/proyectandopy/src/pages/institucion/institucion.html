@@ -6,7 +6,7 @@
       <button ion-button clear (click)="showSearch(true)"><ion-icon name="search"></ion-icon></button>
     </ion-title>
   </ion-navbar>
-  <ion-searchbar *ngIf="showSearchBar" [showCancelButton]=true [animated]=true (ionInput)="filter($event, true)" placeholder="Buscar" (ionCancel)="showSearch(false)">
+  <ion-searchbar *ngIf="showSearchBar" [showCancelButton]=true [animated]=true #searchbar (search)="filtersearch($event, true)" placeholder="Buscar" (ionCancel)="showSearch(false)">
   </ion-searchbar>
 </ion-header>
 

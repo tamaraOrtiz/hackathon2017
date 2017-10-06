@@ -31,6 +31,10 @@ export class InstitucionData extends BaseData {
     return `instituciones/?niveles=${niveles}`;
   }
 
+  filterInstituciones(niveles, text) {
+    return `filtro_instituciones/?niveles=${niveles}&text=${text}`;
+  }
+
   getInstitucion(id) {
     return `?q=SELECT nivelid, entidadid, nombre, baselegal, descripcion, diagnostico, fechaactualizacion, mision, objetivo, politica, vision, ruc FROM public.instituciones WHERE id='${id}' LIMIT 1`;
   }
