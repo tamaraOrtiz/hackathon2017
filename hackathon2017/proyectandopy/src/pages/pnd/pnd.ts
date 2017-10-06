@@ -118,12 +118,18 @@ export class PNDPage extends BasePage {
     let entidad = this.selectedEntidades;
     let anho = this.selectedAnhos;
     if (!nivel || !entidad || !anho) {
-      loading.dismiss();
+      if(loading){
+        loading.dismiss();
+        loading = null;
+      }
       return;
     }
     this.dataService.getQuery(this.pndService.getGeneral(nivel, entidad, anho), true).then(record => {
         this.general = record;
-        loading.dismiss();
+        if(loading){
+          loading.dismiss();
+          loading = null;
+      	}
     });
 
     this.dataService.getQuery(this.pndService.getEjes(nivel, entidad, anho), true).then(record => {
@@ -154,6 +160,7 @@ export class PNDPage extends BasePage {
       this.dataService.getAll(this.where).then(records => {
         this.entidades = this.structEntidades(records);
         if(self.loading){
+
             self.loading.dismiss();
             self.loading = null;
         }

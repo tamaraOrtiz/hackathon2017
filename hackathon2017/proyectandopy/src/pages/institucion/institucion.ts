@@ -75,7 +75,6 @@ export class InstitucionPage extends BasePage {
       this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
         this.niveles = this.structNiveles(records);
         this.selectedNiveles = Object.keys(this.niveles);
-        this.filter(null, false, null);
       }, function(errors){
         if(self.loading){
             self.loading.dismiss();
