@@ -770,7 +770,7 @@ ion-footer{
   font-size: 13px;
   line-height: 32px;
   color: rgba(255, 255, 255, 0.87);
-  background: rgba(17, 196, 224, 0.72) !important;
+  background: rgba(95, 67, 173, 0.68) !important;
   margin: 2px 12px;
   max-width: 100px !important;
   text-align: center;
@@ -1047,12 +1047,13 @@ rect.child {
     }
   }
   .sidebarbutton:hover{
-    color: rgb(23, 119, 130);
+    color: #5f43ad !important;
+    border: none !important;
 
   }
   .sidebarbutton.active{
-    background: #077075;
-    border: 1px solid #085461;
+    background: #5f43ad;
+    border: 1px solid #3b0861;
     color: #fff;
 
   }
@@ -1560,4 +1561,35 @@ ppy-footer{
     margin-top: 2px;
     color: #66666f !important;
   }
+}
+
+
+.select-all{
+
+    background: #5f43ad;
+    font-size: 12px;
+    text-transform: capitalize;
+    min-width: 80%;
+    i.fa{
+      font-size: 12px;
+      padding-right: 10px;
+    }
+}
+
+
+
+.select-all-div{
+  width: 100%;
+  text-align: center;
+      margin-bottom: 5px;
+      button.select-all:hover{
+          color: white !important;
+          background: #9543ad !important;
+
+
+      }
+}
+
+ion-backdrop{
+  opacity: 0.85 !important;
 }

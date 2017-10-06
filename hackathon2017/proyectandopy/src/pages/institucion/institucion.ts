@@ -87,35 +87,53 @@ export class InstitucionPage extends BasePage {
     });
   }
 
+  add_all_niveles(){
+     this.selectedNiveles = Object.keys(this.niveles);
+
+   }
+   remove_all_niveles(){
+      this.selectedNiveles = [];
+      this._niveles = {};
+
+    }
+
   filter(event, bar, loader=null) {
-    console.log(this.selectedNiveles);
     let loading = loader ? loader : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
     if(!loader){
       loading.present();
     }
-    this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
-      this._niveles = record;
-      loading.dismiss();
-    });
+    console.log(this.selectedNiveles);
+    if(this.selectedNiveles.length == 0){
+      this.dataService.getQuery(this.dataService.getInstituciones(["-1"]), true).then(record => {
+        this._niveles = record;
+        loading.dismiss();
+      });
+    }else{
+      this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
+        this._niveles = record;
+        loading.dismiss();
+      });
+    }
+
 
   }
 
   structNiveles (meta):any {
     let niveles = [];
     for(let row of meta) {
-      niveles[row.nivel_id] =
+      niveles[row.nivel] =
       {
-        id: row.nivel_id,
-        nombre: this.appHelper.toTitleCase(row.nivel_nombre),
+        id: row.nivel,
+        nombre: this.appHelper.toTitleCase(row.nombrenivel),
       };
     }
 
     return niveles;
   }
 
-  
+
 
   itemTapped(event, item) {
     this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");

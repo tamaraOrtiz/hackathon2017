@@ -31,13 +31,15 @@
          <ion-item>
            <ion-label style="max-width: 60px !important;">Niveles</ion-label>
            <ion-select [(ngModel)]="selectedNiveles" multiple="true" cancelText="Cancelar" okText="Filtrar" (ionChange)="filter($event, false)" style="max-width: 56px !important;">
-             <ion-option  *ngFor="let nivel of niveles | keys"  value="{{niveles[nivel].id}}" selected="selectedNiveles.contains(nivel)">{{niveles[nivel].nombre}}</ion-option>
+             <ion-option  *ngFor="let nivel of niveles | keys" value="{{niveles[nivel].id}}" selected="selectedNiveles.contains(nivel)">{{niveles[nivel].nombre}}</ion-option>
 
            </ion-select>
 
 
+
          </ion-item>
        </ion-list>
+       <div class="select-all-div"><button ion-button center class="select-all" (click)="add_all_niveles();"><i class="fa fa-check" aria-hidden="true"></i> Seleccionar Todos</button></div>
        <button ion-button tooltip="El Estado agrupa sus distintas instituciones en entidades y niveles, siendo los niveles el mayor agrupador" class="tooltip-menu" duration=6000 positionV="bottom" arrow>
         <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
       </button>
@@ -111,7 +113,7 @@
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" class="institucion_col" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
-        <ion-list class='view-content' >
+        <ion-list class='view-content'  >
           <div *ngFor="let niv of _niveles | keys">
             <ion-item class="item-grouper nivel-grouper">Nivel
                <p class="p_common_list">{{_niveles[niv]["nombre"]}}

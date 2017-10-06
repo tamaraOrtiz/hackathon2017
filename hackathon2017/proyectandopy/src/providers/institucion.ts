@@ -36,7 +36,7 @@ export class InstitucionData extends BaseData {
   }
 
   getNiveles(where: string) {
-    return "?q=SELECT nivel_id, nivel_nombre, COUNT(DISTINCT entidad_id) FROM public.destinatarioproducto "+where+" GROUP BY nivel_id, nivel_nombre ORDER BY nivel_id ASC ;"
+    return "?q=SELECT nivel, nombrenivel FROM public.niveles_spr "+where+" ORDER BY nombrenivel ASC ;"
   }
 
 
