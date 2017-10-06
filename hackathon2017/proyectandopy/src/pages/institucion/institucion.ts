@@ -96,6 +96,11 @@ export class InstitucionPage extends BasePage {
       }
 
     }, 500);
+    if (!value){
+      
+      self.filter(null, false);
+    }
+
 
   }
 
