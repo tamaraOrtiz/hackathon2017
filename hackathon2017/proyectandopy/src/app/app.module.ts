@@ -52,12 +52,7 @@ import { KeysPipe } from '../helpers/keys-pipe';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp, {}, { links: [
-        { component: PNDPage, name: 'PND', segment: 'pnd' },
-        { component: InstitucionPage, name: 'Instituciones', segment: 'instituciones' },
-        { component: ShowInstitucionPage, name: 'Institucion', segment: 'instituciones/:ins_id', defaultHistory: [InstitucionPage]}
-      ]
-    }),
+    IonicModule.forRoot(MyApp),
     MomentModule,
     TooltipsModule,
     BrowserAnimationsModule

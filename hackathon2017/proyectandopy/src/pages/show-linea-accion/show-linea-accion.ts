@@ -49,7 +49,6 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         this.count_download = data;
       });
       appHelper.provider = dataService;
-      console.log(this.item);
 
     }
     changetab(_text){
@@ -94,7 +93,9 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           self.count_download = self.events["download"]
         }
         self.getGeoJsonData().then(() => {
-          self.generateMap();
+          if (!self.map) {
+            self.generateMap();
+          }
         });
         if(self.loading){
             self.loading.dismiss();
