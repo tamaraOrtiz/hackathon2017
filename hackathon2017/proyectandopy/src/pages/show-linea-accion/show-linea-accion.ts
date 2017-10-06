@@ -278,14 +278,14 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let height = data.length >= 10 ? 900 : data.length >= 5 ? 500 : 300 ;
 
       let x0 = d3.scaleBand()
-      .rangeRound([margin.left, width-margin.left-margin.right])
+      .rangeRound([margin.left, width/2-margin.left-margin.right])
       .paddingInner(0.1);
 
       let x1 = d3.scaleBand()
       .padding(0.05);
 
       let y = d3.scaleLinear()
-      .rangeRound([0, height/2]);
+      .rangeRound([0, (height-margin.bottom-margin.top)]);
 
       let z = d3.scaleOrdinal()
       .range(["#a51179", "#139878"]);
@@ -295,7 +295,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       x0.domain(['m1', 'm2', 'm3', 'm4']);
       x1.domain(keys).rangeRound([0, x0.bandwidth()]);
 
-      y.domain([0, self.maxMeta >= self.maxAvance ? self.maxMeta : self.maxAvance]).nice();
+      y.domain([self.maxMeta >= self.maxAvance ? self.maxMeta : self.maxAvance, 0]).nice();
 
       let svg = d3.select("#graph2")
       .append("svg")
@@ -304,38 +304,32 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("height", height)
       .append("g")
       .attr("width", width/2)
-      .attr("height", height-margin.bottom-margin.top)
+      .attr("height", height-margin.bottom)
       .attr("transform", "translate(100, 5)");
       let rects = svg.selectAll("g")
       .data(data)
       .enter().append("g")
       .attr("transform", function(d) { return "translate(" + x0(d.key) + ", 0)"; })
       .selectAll("rect")
-      .data(function(d) { return keys.map(function(key) { console.log(d); return {key: key, value: d.value[key]}; }); })
+      .data(function(d) { return keys.map(function(key) { return {key: key, value: d.value[key]}; }); })
 
       rects.enter().append("rect")
       .attr("x", function(d) { return x1(d.key); })
-      .attr("y", margin.bottom)
+      .attr("y", function(d) { return y(d.value); })
       .attr("width", x1.bandwidth())
-      .attr("height", function(d) { return y(d.value) > 0 ? y(d.value) : 1; })
+      .attr("height", function(d) {
+        let result = (height-margin.bottom-margin.top) - y(d.value);
+        return result == 0 ? 1 : result;
+      })
       .style("fill", function(d) { return z(d.key); })
       .style("fill-opacity", .5)
       .style("stroke", function(d) { return z(d.key); })
       .style("stroke-width", 2)
 
-      rects.enter().append("text")
-      .attr("text-anchor", "start")
-      .attr("dominant-baseline", "central")
-      .attr("y", function(d) { return margin.top + (y(d.value) > 0 ? y(d.value) : 20)/2; })
-      .attr("x", function(d) { return x1.bandwidth()/2 + x1(d.key); })
-      .style("font-size", function() { return data.length > 5 ? "0.8em" : "1.2em";})
-      .style("fill", "black")
-      .text(function(d) { return self.appHelper.numberFormatter(d.value); });
-
       svg.append("g")
       .attr("class", "axis")
       .call(d3.axisBottom(x0))
-      .attr("transform", "translate("+ margin.left + ", "+ (height) +")")
+      .attr("transform", "translate(0, "+ (height-margin.bottom-margin.top) +")")
 
       svg.append("g")
       .attr("class", "axis")
@@ -343,7 +337,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("transform", "translate(" + margin.left + ", 0)")
       .append("text")
       .attr("x", 2)
-      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("y", 0)
       .attr("dy", "0.32em")
       .attr("fill", "#000")
       .attr("font-weight", "bold")

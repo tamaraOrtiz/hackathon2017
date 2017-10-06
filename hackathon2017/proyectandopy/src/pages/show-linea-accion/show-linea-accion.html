@@ -167,6 +167,7 @@
           <ion-row class="graph-title" style="display: none;">
             <ion-col col-xs-12 col-sm-12 col-lg-9 style="text-align: center;">
               <h3>{{item.nombre}}</h3>
+              <h5>Metas y Avances</h5>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -183,14 +184,15 @@
         </ion-grid>
 
         <ion-item class="item-grouper">Gráfica
-          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva', [], ['.graph-title'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
+          <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva-2', [], ['.graph-title-2'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
             <i class="fa fa-download"></i>
           </a>
         </ion-item>
-        <ion-grid class="graph-canva2">
-          <ion-row class="graph-title2" style="display: none;">
+        <ion-grid class="graph-canva graph-canva-2">
+          <ion-row class="graph-title graph-title-2" style="display: none;">
             <ion-col col-xs-12 col-sm-12 col-lg-9 style="text-align: center;">
               <h3>{{item.nombre}}</h3>
+              <h5>Metas trimestrales</h5>
             </ion-col>
           </ion-row>
           <ion-row>
