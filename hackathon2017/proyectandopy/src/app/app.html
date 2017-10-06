@@ -19,9 +19,9 @@
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false">
+<ion-nav #content swipeBackEnabled="false">
 </ion-nav>
-<ion-tabs>
+<ion-tabs selectedIndex="1">
   <ion-tab tabIcon="albums" tabUrlPath="principal" tabTitle="PND" [root]="PND"></ion-tab>
   <ion-tab tabIcon="home" tabUrlPath="principal" tabTitle="Instituciones" [root]="Instituciones"></ion-tab>
   <ion-tab tabIcon="information-circle" tabUrlPath="principal" tabTitle="Información" [root]="Informacion"></ion-tab>

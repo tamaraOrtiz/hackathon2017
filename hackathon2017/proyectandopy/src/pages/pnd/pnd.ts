@@ -143,7 +143,7 @@ export class PNDPage extends BasePage {
 
   ionViewDidEnter(){
     let self = this;
-    this.loading = this.loadingCtrl.create({
+    this.loading = this.loading ? this.loading : this.loadingCtrl.create({
        content: 'Por favor espere...'
     });
     this.dataService.pushEvent("Pnd", 1, "view", "pnd_view");
@@ -151,15 +151,23 @@ export class PNDPage extends BasePage {
     this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
+      this.dataService.getAll(this.where).then(records => {
+        this.entidades = this.structEntidades(records);
+        if(self.loading){
+            self.loading.dismiss();
+            self.loading = null;
+        }
+      }, function(errors){
+        if(self.loading){
+            self.loading.dismiss();
+            self.loading = null;
+        }
+      });
     }, function(errors){
-      self.loading.dismiss();
-    });
-
-    this.dataService.getAll(this.where).then(records => {
-      this.entidades = this.structEntidades(records);
-      this.loading.dismiss();
-    }, function(errors){
-      self.loading.dismiss();
+      if(self.loading){
+          self.loading.dismiss();
+          self.loading = null;
+      }
     });
 
     this.ratingService.getRating(1, 'PND').then(rating => {
@@ -168,7 +176,6 @@ export class PNDPage extends BasePage {
     });
 
     this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {
-
         this.general = record;
     });
     this.dataService.getQuery(this.pndService.getEjes(null, null, null), true).then(record => {

@@ -75,13 +75,20 @@ export class InstitucionPage extends BasePage {
       this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
         this.niveles = this.structNiveles(records);
         this.selectedNiveles = Object.keys(this.niveles);
-        this.filter(null, false, this.loading);
+        this.filter(null, false, null);
       }, function(errors){
-        self.loading.dismiss();
+        if(self.loading){
+            self.loading.dismiss();
+            self.loading = null;
+            alert("error");
+        }
       }).then(result => {
         this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
           this._niveles = record;
-          self.loading.dismiss();
+          if(self.loading){
+              self.loading.dismiss();
+              self.loading = null;
+          }
         });
       });
     });
@@ -108,12 +115,18 @@ export class InstitucionPage extends BasePage {
     if(this.selectedNiveles.length == 0){
       this.dataService.getQuery(this.dataService.getInstituciones(["-1"]), true).then(record => {
         this._niveles = record;
-        loading.dismiss();
+        if(loading){
+          loading.dismiss();
+          loading = null;
+      	}
       });
     }else{
       this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
         this._niveles = record;
-        loading.dismiss();
+        if(loading){
+          loading.dismiss();
+          loading = null;
+      	}
       });
     }
 
