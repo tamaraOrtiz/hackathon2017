@@ -318,7 +318,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       x0.domain(['m1', 'm2', 'm3', 'm4']);
       x1.domain(keys).rangeRound([0, x0.bandwidth()]);
 
-      y.domain([self.maxMeta >= self.maxAvance ? self.maxMeta : self.maxAvance, 0]).nice();
+      y.domain([d3.max(data, function(d) {
+        return d3.max(Object.keys(d.value), function(v) {
+          return d.value[v];
+        });
+      }), 0]).nice();
 
       let svg = d3.select("#graph2")
       .append("svg")
@@ -342,6 +346,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("width", x1.bandwidth())
       .attr("height", function(d) {
         let result = (height-margin.bottom-margin.top) - y(d.value);
+        console.log(result);
         return result == 0 ? 1 : result;
       })
       .style("fill", function(d) { return z(d.key); })

@@ -4,6 +4,12 @@ import { Events } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
 
+/**
+ * @name BaseData
+ * @description Clase base de la cual heredan todos los providers y su objetivo
+ * es obtener los registros de los datasets disponibles en datos.gov.py
+ *
+ */
 @Injectable()
 export class BaseData {
   stpUrl: string
@@ -36,6 +42,12 @@ export class BaseData {
     });
   }
 
+  /**
+   * @name getAll
+   * @argument conditions: equivalente a un where de  sql
+   * @description methodo para listar todos los registros de una tabla sql
+   *
+   */
   getAll(conditions: string) {
     let where = conditions !== undefined ? "WHERE "+conditions : "";
     return new Promise<Array<any>>((resolve, reject) => {
@@ -48,6 +60,7 @@ export class BaseData {
     });
   }
 
+  
   getQuery(sql: string, api=false){
     let _url = api ? this.apiUrl : this.stpUrl;
     return new Promise<Array<any>>((resolve, reject) => {
