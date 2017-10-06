@@ -158,7 +158,10 @@
       </ion-col>
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
-        <ion-item class="item-grouper">Gráfica
+        <ion-item class="item-grouper">Gráfico de Barras
+
+        </ion-item>
+        <ion-item class="subtitle-graph">Gráfico de barra por Departamento
           <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva', [], ['.graph-title'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
             <i class="fa fa-download"></i>
           </a>
@@ -183,7 +186,7 @@
           </ion-row>
         </ion-grid>
 
-        <ion-item class="item-grouper">Gráfica
+        <ion-item class="subtitle-graph">Gráfico de barra Trimestral
           <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva-2', [], ['.graph-title-2'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
             <i class="fa fa-download"></i>
           </a>

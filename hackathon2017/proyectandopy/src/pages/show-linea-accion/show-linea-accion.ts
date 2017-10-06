@@ -180,7 +180,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .rangeRound([0, width/2]);
 
       let z = d3.scaleOrdinal()
-      .range(["#a51179", "#139878"]);
+      .range(["rgb(164, 72, 214)", "rgb(100, 177, 255)"]);
 
       let keys = ['Avances', 'Metas'];
 
@@ -218,7 +218,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       rects.enter().append("text")
       .attr("text-anchor", "start")
       .attr("dominant-baseline", "central")
-      .attr("x", function(d) { return margin.left + (x(d.value) > 0 ? x(d.value) : 20)/2; })
+      .attr("x", function(d) { return margin.left + (x(d.value) > 0 ? x(d.value) : 20) + 5; })
       .attr("y", function(d) { return y1.bandwidth()/2 + y1(d.key); })
       .style("font-size", function() { return data.length > 5 ? "0.8em" : "1.2em";})
       .style("fill", "black")
@@ -288,7 +288,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .rangeRound([0, (height-margin.bottom-margin.top)]);
 
       let z = d3.scaleOrdinal()
-      .range(["#a51179", "#139878"]);
+      .range(["rgb(164, 72, 214)", "rgb(100, 177, 255)"]);
 
       let keys = ['Avances', 'Programacion'];
 

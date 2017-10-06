@@ -1626,3 +1626,13 @@ ion-backdrop{
     background-color: #4986d8;
   }
 }
+
+
+.subtitle-graph{
+  .input-wrapper, .item-inner{
+    border-bottom: none !important;
+    ion-label{
+      font-size:  13px;
+    }
+  }
+}
