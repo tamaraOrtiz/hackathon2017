@@ -124,6 +124,14 @@ export class PNDPage extends BasePage {
       }
       return;
     }
+    this.dataService.getQuery(this.dataService.getEntidades("where nivel='"+nivel+"'")).then(records => {
+      this.entidades = this.structEntidades(records);
+    }, function(errors){
+      if(self.loading){
+          self.loading.dismiss();
+          self.loading = null;
+      }
+    });
     this.dataService.getQuery(this.pndService.getGeneral(nivel, entidad, anho), true).then(record => {
         this.general = record;
         if(loading){
@@ -157,19 +165,14 @@ export class PNDPage extends BasePage {
     this.loading.present();
     this.dataService.getQuery(this.dataService.getNiveles("")).then(records => {
       this.niveles = this.structNiveles(records);
-      this.dataService.getAll(this.where).then(records => {
-        this.entidades = this.structEntidades(records);
-        if(self.loading){
-
-            self.loading.dismiss();
-            self.loading = null;
-        }
-      }, function(errors){
-        if(self.loading){
-            self.loading.dismiss();
-            self.loading = null;
-        }
-      });
+    }, function(errors){
+      if(self.loading){
+          self.loading.dismiss();
+          self.loading = null;
+      }
+    });
+    this.dataService.getQuery(this.dataService.getEntidades("where nivel=")).then(records => {
+      this.entidades = this.structEntidades(records);
     }, function(errors){
       if(self.loading){
           self.loading.dismiss();
@@ -181,7 +184,7 @@ export class PNDPage extends BasePage {
       this.calificacion = rating;
       this.eventHandler.publish('rating:retrieve', rating, Date.now());
     });
-
+    this.entidades = [];
     this.dataService.getQuery(this.pndService.getGeneral(null, null, null), true).then(record => {
         this.general = record;
     });
@@ -208,8 +211,8 @@ export class PNDPage extends BasePage {
     let niveles = [];
     for(let row of meta) {
       niveles.push({
-        id: row.nivel_id,
-        nombre: row.nivel_nombre,
+        id: row.nivel,
+        nombre: row.nombrenivel,
       });
     }
 
@@ -223,8 +226,8 @@ export class PNDPage extends BasePage {
     let entidades = [];
     for(let row of meta) {
       entidades.push({
-        id: row.nivelid+"_"+row.entidadid,
-        nombre: row.nombre,
+        id: row.entidad,
+        nombre: row.nombreentidad,
       });
     }
 

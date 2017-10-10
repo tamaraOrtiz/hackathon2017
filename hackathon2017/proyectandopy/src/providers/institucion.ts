@@ -43,6 +43,10 @@ export class InstitucionData extends BaseData {
     return "?q=SELECT nivel, nombrenivel FROM public.niveles_spr "+where+" ORDER BY nombrenivel ASC ;"
   }
 
+  getEntidades(where: string) {
+    return "?q=SELECT entidad, nombreentidad FROM public.entidades_spr "+where+" ORDER BY nombreentidad ASC ;"
+  }
+
 
 
 }
