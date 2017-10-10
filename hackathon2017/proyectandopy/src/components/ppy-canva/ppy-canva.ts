@@ -30,6 +30,7 @@ export class PpyCanva {
 
   public constructor(public appHelper: AppHelper) {
     this.smallScreen = appHelper.platform.width() < 768;
+    console.log(appHelper.platform.width());
   }
 
   @Input()
@@ -152,9 +153,9 @@ export class PpyCanva {
     });
 
     dispatch.on("load.pie", function(presupuestosByName) {
-      let width  = this.smallScreen ? 450 : 600;
+      let width  = this.smallScreen ? this.appHelper.platform.width() * 0.9 : 600;
       let height = width * 0.9;
-      let radius = Math.min(width, width) * 0.8 / 2;
+      let radius = width * 0.8 / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 
       let legend = d3.select("#pie-info-legend");
@@ -226,9 +227,7 @@ export class PpyCanva {
          .style("stroke-width", 2)
         g.append("text")
         .attr("transform", function(d) {
-          let c = arc.centroid(d),
-          x = c[0],
-          y = c[1];
+          let c = arc.centroid(d);
           let c2= outerArc.centroid(d);
           return "translate(" + (c2[0] < 0 ? -255 : 255) +  ',' +
           c2[1] +  ")";

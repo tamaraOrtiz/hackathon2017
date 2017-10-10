@@ -188,7 +188,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         data.push(self.alcanceNacional);
       }
 
-      let width = 900;
+      let width = self.appHelper.platform.width() * 0.9;
 
       let height = data.length >= 10 ? 900 : data.length >= 5 ? 500 : 300 ;
 

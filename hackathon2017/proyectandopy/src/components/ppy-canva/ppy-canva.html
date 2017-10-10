@@ -40,15 +40,15 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="smallScreen">
-      <ion-col col-12>
+      <ion-col col-xs-12 col-sm-12>
         <div class="pie-info leaflet-top leaflet-right">
-          <div class="info leaflet-control">
+          <div class="info leaflet-control  leaflet-center">
             <h4>{{selectedTitle}}</h4>
             <b id="label">Seleccione un programa</b><br>
             <p id="count"></p>
             <p id="percentage"></p>
           </div>
-          <div id="pie-info-legend" class="info legend leaflet-control"></div>
+          <div id="pie-info-legend" class="info legend leaflet-control leaflet-center"></div>
         </div>
       </ion-col>
     </ion-row>

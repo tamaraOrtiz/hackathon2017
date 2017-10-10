@@ -142,8 +142,6 @@
           </ion-slides>
        </div>
         </div>
-
-
       </ion-col>
 
       <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
@@ -153,8 +151,13 @@
             <i class="fa fa-download"></i>
           </a>
         </ion-item>
-
-        <div id="map" style="height: 70vh;"></div>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-xs-12 col-sm-12 col-lg-9>
+              <div id="map" style="height: 70vh;"></div>
+            </ion-col>
+          </ion-row>  
+        </ion-grid>
       </ion-col>
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
@@ -180,7 +183,7 @@
             </ion-col>
             <ion-col col-3 *ngIf="!smallScreen">
               <div class="pie-info leaflet-top leaflet-right">
-                <div id="pie-info-legend" class="info legend leaflet-control"></div>
+                <div id="pie-info-legend" class="info legend leaflet-control leaflet-center"></div>
               </div>
             </ion-col>
           </ion-row>
@@ -200,12 +203,12 @@
           </ion-row>
           <ion-row>
             <ion-col col-xs-12 col-sm-12 col-lg-9>
-              <div id="graph2" style="display:table; margin: 0 auto; width: 100%">
+              <div id="graph2" style="display:table; margin: 0 10px auto; width: 100%">
               </div>
             </ion-col>
-            <ion-col col-3 *ngIf="!smallScreen">
+            <ion-col col-xs-12 col-sm-12 *ngIf="!smallScreen">
               <div class="pie-info leaflet-top leaflet-right">
-                <div id="pie-info-legend2" class="info legend leaflet-control"></div>
+                <div id="pie-info-legend2" class="info legend leaflet-control leaflet-center"></div>
               </div>
             </ion-col>
           </ion-row>

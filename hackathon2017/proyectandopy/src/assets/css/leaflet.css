@@ -339,7 +339,7 @@
 	border-radius: 5px;
 	}
 .leaflet-control-layers-toggle {
-	background-image: url(/assets/img/layers.png);
+	background-image: url(../assets/img/layers.png);
 	width: 36px;
 	height: 36px;
 	}

@@ -2,14 +2,21 @@ import { Injectable } from '@angular/core';
 import * as html2canvas from "html2canvas";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import { ToastController } from 'ionic-angular';
 import * as d3 from "d3";
 @Injectable()
 export class AppHelper {
 
   numberFormat: any;
   provider: any;
+  fileTransfer: FileTransferObject = this.transfer.create();
 
-  constructor(public socialSharing: SocialSharing, public platform: Platform) {
+  constructor(public socialSharing: SocialSharing, public platform: Platform,
+    private transfer: FileTransfer, private file: File, public toastCtrl: ToastController,
+    private fileOpener: FileOpener) {
     let localeFormatter = d3.formatLocale({ "decimal": ",", "thousands": ".", "grouping": [3]});
     this.numberFormat = localeFormatter.format(",.2f")
   }
@@ -20,6 +27,10 @@ export class AppHelper {
 
   isDeskTop(){
     return this.platform.is('core');
+  }
+
+  isBrowser(){
+    return this.platform.is('core') || this.platform.is('mobileweb');
   }
 
   toTitleCase(str){
@@ -64,16 +75,38 @@ export class AppHelper {
     this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
     self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
-      if(self.platform.is('core')){
+      if(self.isBrowser()){
         var a = document.createElement('a');
         a.href = url;
         a.download = filename;
         a.click();
       } else {
-        //self.fileTransfer.download(url, self.file.dataDirectory + 'file.pdf').then((entry) => {
-        //  console.log('download complete: ' + entry.toURL());
-        //}, (error) => {
-        //});
+        console.log(`${self.file.cacheDirectory}${filename}`);
+        self.fileTransfer.download("http://www.set.gov.py/portal/rest/jcr/repository/collaboration/sites/PARAGUAY-SET/medias/images/2017/bannerHome2017.jpg", `${self.file.cacheDirectory}${filename}`).then((entry) => {
+
+          let toast = self.toastCtrl.create({
+            message: "Se ha descargado correctamente",
+            duration: 3000,
+            position: 'top',
+            cssClass: "toast-success"
+          });
+          toast.present();
+          console.log(entry.toURL());
+          self.fileOpener.open(entry.toURL(), 'image/jpg')
+              .then(() => toast.present())
+              .catch(e => console.log('Error openening file', e));
+          console.log(entry.toURL());
+
+        }, (error) => {
+          console.log(error);
+          let toast = self.toastCtrl.create({
+            message: "No se pudo descargar la imagen",
+            duration: 3000,
+            position: 'top',
+            cssClass: "toast-error"
+          });
+          toast.present();
+        });
       }
     });
   }
