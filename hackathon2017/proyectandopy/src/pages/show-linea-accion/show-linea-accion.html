@@ -144,7 +144,8 @@
         </div>
       </ion-col>
 
-      <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+      <ion-col *ngIf="tabactive=='mapa'" [ngClass]="(!openbar ? 'central-col' : 'normal-col ')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+        <div class="view-content">
 
         <ion-item class="item-grouper">Grafica
           <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map', [], [], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa')">
@@ -160,7 +161,7 @@
         </ion-grid>
       </ion-col>
       <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
-
+        <div class="view-content">
         <ion-item class="item-grouper">Gráfico de Barras
 
         </ion-item>
@@ -213,7 +214,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-
+</div>
       </ion-col>
 
       <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>

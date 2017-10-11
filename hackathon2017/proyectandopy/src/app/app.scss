@@ -298,6 +298,9 @@ ion-searchbar{
     font-family: 'Muli', sans-serif;
     color: #eff6ff !important;
     text-transform: uppercase;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    width: calc(100% - 20px);
     display: inline-flex;
     padding-right: 0;
     ion-icon{
@@ -1082,7 +1085,11 @@ border: 2px solid aliceblue;
 border-radius: 5px;
 margin: 15px;
 }
-
+.view-content-la{
+  border: 2px solid aliceblue;
+  border-radius: 5px;
+  
+}
 ion-chip{
   max-width: 95%;
 }

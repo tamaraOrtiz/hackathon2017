@@ -97,7 +97,7 @@ export class InstitucionPage extends BasePage {
 
     }, 500);
     if (!value){
-      
+
       self.filter(null, false);
     }
 
@@ -123,6 +123,7 @@ export class InstitucionPage extends BasePage {
         }
       }).then(result => {
         this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
+        
           this._niveles = record;
           if(self.loading){
               self.loading.dismiss();

@@ -123,9 +123,10 @@
             </ion-item>
             <div *ngFor="let ent of _niveles[niv]['entidades'] | keys">
               <ion-item class="item-grouper middle-content entidad-grouper"><p class="p_sub_common_list">{{ _niveles[niv]["entidades"][ent]["nombre"]}}
+                </p>
                 <button ion-button tooltip="Al hacer click en icono de la derecha puedes ver la grafica que muestra los beneficiarios de la entidad" class="tooltip-list" duration=6000 positionV="bottom" arrow>
                 <i class="fa fa-info-circle" clear color='light' aria-hidden="true"></i>
-              </button></p>
+              </button>
                 <button ion-button clear (click)="itemTappedEst($event, _niveles[niv]['entidades'][ent]['instituciones'][appHelper.keys(_niveles[niv]['entidades'][ent]['instituciones'])[0]])"><i class="fa fa-pie-chart" aria-hidden="true"></i> </button>
               </ion-item>
               <button ion-item class="success"
