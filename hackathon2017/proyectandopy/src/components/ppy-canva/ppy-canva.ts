@@ -165,7 +165,7 @@ export class PpyCanva {
                   .outerRadius(radius - 10)
                   .innerRadius(0);
       let outerArc = d3.arc()
-            	         .outerRadius(width-100)
+            	         .outerRadius(width-(width*0.333))
                        .innerRadius(0);
 
       let pie = d3.pie()

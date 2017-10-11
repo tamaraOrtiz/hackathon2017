@@ -1088,7 +1088,7 @@ margin: 15px;
 .view-content-la{
   border: 2px solid aliceblue;
   border-radius: 5px;
-  
+
 }
 ion-chip{
   max-width: 95%;
@@ -1650,4 +1650,10 @@ ion-backdrop{
 
 #opensidebar{
   right:30px;
+}
+
+.leaflet-control-center {
+  margin-top: 10px !important;
+  margin: 0 auto;
+
 }

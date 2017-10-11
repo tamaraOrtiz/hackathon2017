@@ -296,24 +296,24 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         }
       });
 
-      let width = 900;
+      let width = self.appHelper.platform.width() * 0.9;
 
-      let height = data.length >= 10 ? 900 : data.length >= 5 ? 500 : 300 ;
+      let height = width < 500 ? width : 500;
 
       let x0 = d3.scaleBand()
-      .rangeRound([margin.left, width/2-margin.left-margin.right])
+      .rangeRound([margin.left, width*0.7-margin.left-margin.right])
       .paddingInner(0.1);
 
       let x1 = d3.scaleBand()
       .padding(0.05);
 
       let y = d3.scaleLinear()
-      .rangeRound([0, (height-margin.bottom-margin.top)]);
+      .rangeRound([10, (height-margin.bottom-margin.top)]);
 
       let z = d3.scaleOrdinal()
       .range(["rgb(164, 72, 214)", "rgb(100, 177, 255)"]);
 
-      let keys = ['Avances', 'Programacion'];
+      let keys = ['Avances', 'Programación'];
 
       x0.domain(['m1', 'm2', 'm3', 'm4']);
       x1.domain(keys).rangeRound([0, x0.bandwidth()]);
@@ -330,7 +330,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("width", width/2)
+      .attr("width", width*0.7)
       .attr("height", height-margin.bottom)
       .attr("transform", "translate(100, 5)");
       let rects = svg.selectAll("g")
