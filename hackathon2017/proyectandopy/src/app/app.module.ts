@@ -13,7 +13,6 @@ import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 import { MyApp } from './app.component';
@@ -83,8 +82,8 @@ import { KeysPipe } from '../helpers/keys-pipe';
     AppHelper,
     FileTransfer,
     File,
-    AndroidPermissions,
     FileOpener,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

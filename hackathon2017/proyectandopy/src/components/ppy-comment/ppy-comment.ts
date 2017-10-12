@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { CommentData } from '../../providers/comment';
 import { ToastController } from 'ionic-angular';
+import { FacebookProvider } from '../../providers/facebook/facebook-provider';
 
 @Component({
   selector: 'ppy-comment',
   templateUrl: 'ppy-comment.html',
-  providers: [CommentData]
+  providers: [CommentData, FacebookProvider]
 })
 
 export class PpyComment {
@@ -15,23 +16,28 @@ export class PpyComment {
   service: CommentData
   lastPage: number
   isLoading = false
+  userData: any
 
-  constructor(public events: Events, public dataService: CommentData, public toastCtrl: ToastController) {
-    this.service = dataService;
-    this.lastPage = 0;
+  constructor(public events: Events, public dataService: CommentData,
+    public toastCtrl: ToastController,
+    private facebookProvider: FacebookProvider) {
+    let self = this;
+    self.service = dataService;
+    self.lastPage = 0;
+
     events.subscribe('comment:saved:success', (comment) => {
-      let toast = this.toastCtrl.create({
+      let toast = self.toastCtrl.create({
         message: 'Tu opinión fue enviada con exito!',
         duration: 3000,
         position: 'top',
         cssClass: "toast-success"
       });
       toast.present().then(() => {
-        this.getComments(this.lastPage);
-      });  
+        self.getComments(self.lastPage);
+      });
     });
     events.subscribe('comment:saved:error', (comment) => {
-      let toast = this.toastCtrl.create({
+      let toast = self.toastCtrl.create({
         message: 'Tu opinión no fue guardada, vuelve a intentarlo mas tarde!',
         duration: 3000,
         position: 'top',
@@ -39,6 +45,9 @@ export class PpyComment {
       });
       toast.present();
     });
+    events.subscribe('Facebook:LoggedIn', (userData) => {
+      self.userData = userData;
+    })
   }
 
   ngOnInit() {
@@ -55,7 +64,7 @@ export class PpyComment {
   }
 
   @Input()
-  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: string }) {
+  set comment(comment: { page: string, entity_id: string, entity_type: string, text: string, meta: any }) {
     this._comment = comment;
   }
 
@@ -64,6 +73,10 @@ export class PpyComment {
   }
 
   pushComment(){
+    this.comment.meta = this.comment.meta ? this.comment.meta : {};
+    this.comment.meta['firstName'] = this.userData.firstName;
+    this.comment.meta['picture'] = this.userData.picture;
+    this.comment.meta['userId'] = this.userData.userId;
     this.dataService.push(this.comment);
   }
 

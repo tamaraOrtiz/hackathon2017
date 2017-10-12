@@ -51,6 +51,7 @@
         "d3-scale-chromatic": "^1.1.1",
         "dom-to-image": "^2.5.2",
         "es6-promise-plugin": "^4.1.0",
+        "firebase": "^4.5.0",
         "font-awesome": "4.7.0",
         "fontawesome": "^4.7.2",
         "html-png-stream": "^1.1.0",

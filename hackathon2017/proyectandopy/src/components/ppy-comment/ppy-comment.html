@@ -3,7 +3,8 @@
   <form #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
   <ion-item>
     <ion-avatar item-start>
-      <i class="fa fa-comments-o" aria-hidden="true"></i>
+      <img src="{{userData.picture}}" *ngIf="userData"/>
+      <i class="fa fa-comments-o" aria-hidden="true" *ngIf="!userData"></i>
     </ion-avatar>
 
     <ion-textarea type="text" required [(ngModel)]="comment.text" ngControl="text" name="text" placeholder="Danos tu opinión"></ion-textarea>
@@ -11,14 +12,14 @@
 <button ion-button id="send-comment" (click)="pushComment()"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
 </form>
 </div>
-
+<button (click)="facebookProvider.logIn()">LOG IN</button>
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start>
-        <ion-icon name="person"></ion-icon>
+        <img src="{{comment.meta.picture}}" *ngIf="comment.meta"/>
     </ion-avatar>
     <div class="item-list">
-      <h2>Anónimo</h2>
+      <h2>{{comment.meta ? comment.meta.firstName : 'Anónimo]'}}</h2>
       <p>{{comment.text}}</p>
       <ion-note item-end edge right>{{comment.commented_at | amTimeAgo }}</ion-note>
 
