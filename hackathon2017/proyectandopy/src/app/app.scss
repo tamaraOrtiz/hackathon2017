@@ -821,9 +821,7 @@ ion-footer{
   color: #8e3b6b;
 }
 
-.pnd_totales{
-  margin-top: 0 !important;
-}
+
 .resumen{
   background: white;
   .title{
@@ -843,10 +841,10 @@ ion-footer{
   .title.c5{
     color: #423a6f;
     padding: 0 !important;
-    margin: 5px;
     text-align: left;
     padding-left: 17px !important;
     padding-top: 10px !important;
+    margin: 9px 8px 13px 5px;
 
     a{
 
@@ -1327,7 +1325,7 @@ top: -5px;
 }
 
 button:hover{
-  color: rgb(23, 119, 130) !important;
+  background: rgb(23, 119, 130) !important;
 }
 
 .entidad-grouper button{

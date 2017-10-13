@@ -111,10 +111,11 @@ export class AppHelper {
     });
   }
 
-  downloadjson(entidad, id, page, filename, _object, elem: Element) {
+  downloadjson(entidad, id, page, filename, _object, _elem: Element) {
     this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
+    var elem = (_elem as any)._elementRef.nativeElement;
     elem.setAttribute("href",     dataStr     );
     elem.setAttribute("download", filename);
 
