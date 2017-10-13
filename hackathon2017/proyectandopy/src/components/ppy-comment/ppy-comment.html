@@ -2,20 +2,20 @@
 
   <form #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
   <ion-item>
-    <ion-avatar item-start>
+    <ion-avatar item-start style="padding: 0;">
       <img src="{{userData.picture}}" *ngIf="userData"/>
       <i class="fa fa-comments-o" aria-hidden="true" *ngIf="!userData"></i>
     </ion-avatar>
 
     <ion-textarea type="text" required [(ngModel)]="comment.text" ngControl="text" name="text" placeholder="Danos tu opinión"></ion-textarea>
   </ion-item>
-<button ion-button id="send-comment" (click)="pushComment()"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
+<button ion-button id="send-comment" (click)="pushComment()" *ngIf="userData"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
 </form>
 </div>
-<button (click)="facebookProvider.logIn()">LOG IN</button>
+<button (click)="facebookProvider.logIn()" *ngIf="!userData">LOG IN</button>
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
-    <ion-avatar item-start>
+    <ion-avatar item-start style="padding: 0;">
         <img src="{{comment.meta.picture}}" *ngIf="comment.meta"/>
     </ion-avatar>
     <div class="item-list">
