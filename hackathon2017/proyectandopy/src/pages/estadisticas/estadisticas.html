@@ -30,10 +30,10 @@ Ionic pages and navigation.
             <i class="fa fa-times" aria-hidden="true"></i></button>
           </div>
 
-        <button  ion-button item-end right  outline class ='sidebarbutton sidebarinfo' style="margin-top:8px;"  (click)="changetab('general')">
+        <ion-label item-end right  outline class ='sidebarbutton sidebarinfo' style="margin-top:8px;" >
 
           Información
-        </button>
+        </ion-label>
         <ion-list class="selec-header">
         <ion-item>
          <ion-label>Entidad: <p>{{item.entidadnombre}}</p></ion-label>
@@ -108,7 +108,7 @@ Ionic pages and navigation.
        </ion-slides>
      </div>
       </ion-col>
-      <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+      <ion-col [ngClass]="(!openbar ? 'central-col' : 'normal-col')" class="estad_col" col-12 col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
 
     <div class='view-content'>
 
