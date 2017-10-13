@@ -1703,3 +1703,13 @@ ion-backdrop{
     font-size: 17px;
   }
 }
+
+.tutorial-fab{
+  right: 30px !important;
+  ion-fab-list{
+    button{
+      height: 35px;
+      width: 35px;
+    }
+  }
+}
