@@ -19,7 +19,7 @@
         <img src="{{comment.meta.picture}}" *ngIf="comment.meta"/>
     </ion-avatar>
     <div class="item-list">
-      <h2>{{comment.meta ? comment.meta.firstName : 'Anónimo]'}}</h2>
+      <h2>{{comment.meta ? comment.meta.name : 'Anónimo]'}}</h2>
       <p>{{comment.text}}</p>
       <ion-note item-end edge right>{{comment.commented_at | amTimeAgo }}</ion-note>
 

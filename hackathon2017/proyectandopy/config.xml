@@ -83,6 +83,8 @@
     <allow-navigation href="http://192.168.0.12:8101" />
     <allow-navigation href="http://192.168.0.18:8101" />
     <allow-navigation href="http://192.168.0.18:8100" />
+    <allow-navigation href="http://192.168.0.11:8100" />
+    <allow-navigation href="http://192.168.0.11:8001" />
     <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.1.1">

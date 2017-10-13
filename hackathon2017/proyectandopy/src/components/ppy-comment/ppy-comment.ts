@@ -74,7 +74,8 @@ export class PpyComment {
 
   pushComment(){
     this.comment.meta = this.comment.meta ? this.comment.meta : {};
-    this.comment.meta['firstName'] = this.userData.firstName;
+    this.comment.meta['name'] = this.userData.name;
+    this.comment.meta['email'] = this.userData.email;
     this.comment.meta['picture'] = this.userData.picture;
     this.comment.meta['userId'] = this.userData.userId;
     this.dataService.push(this.comment);
