@@ -111,6 +111,14 @@ export class AppHelper {
     });
   }
 
+  downloadjson(entidad, id, page, filename, _object, elem: Element) {
+    this.provider.pushEvent(entidad, id, "download", page)
+    let self = this;
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
+    elem.setAttribute("href",     dataStr     );
+    elem.setAttribute("download", filename);
+
+  }
   share(via='facebook', message=null, url=null, image=null) {
     url = url ? url : 'https://proyectandopy.com';
     image = 'http://fiuni.edu.py/img/logo-fiuni.png';

@@ -849,7 +849,7 @@ ion-footer{
     padding-top: 10px !important;
 
     a{
-      padding-left: 10px;
+
       color: #423a6f;
       i.fa{
         color: #423a6f;
@@ -1688,4 +1688,20 @@ ion-backdrop{
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 
+}
+
+.fab[mini]{
+  top:0;
+  background: #6a8dfb;
+  ion-icon{
+    font-size: 12px;
+  }
+}
+.download-fab{
+  top:-5px;
+}
+.download-fablist{
+  .fab ion-icon{
+    font-size: 17px;
+  }
 }

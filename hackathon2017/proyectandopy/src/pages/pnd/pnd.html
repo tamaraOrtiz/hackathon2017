@@ -210,9 +210,19 @@
           <ion-row *ngIf="eje['Reducción de pobreza y desarrollo social']">
             <ion-col class="resumen"  col-12>
               <ion-label class="title c5">Ejes
-                <a class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_eje', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndeje.jpg')">
-                  <i class="fa fa-download"></i>
-                </a>
+                <ion-fab class="download-fab">
+                  <button ion-fab mini><ion-icon name="md-download"></ion-icon></button>
+                  <ion-fab-list side="right" class="download-fablist">
+                    <a ion-fab class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_eje', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndeje.jpg')">
+                    <ion-icon name="ios-image"></ion-icon>
+                    </a>
+                    <a ion-fab  class="" #pndeje (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pndeje.json', eje, pndeje)">
+                      <ion-icon name="code-download"></ion-icon>
+                    </a>
+                  </ion-fab-list>
+                </ion-fab>
+
+
               </ion-label>
             </ion-col>
             <ion-col class="resumen view-content pnd_eje" >
