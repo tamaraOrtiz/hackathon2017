@@ -48,6 +48,9 @@ export class PpyComment {
     events.subscribe('Facebook:LoggedIn', (userData) => {
       self.userData = userData;
     })
+    events.subscribe('Facebook:LoggedOut', () => {
+      self.userData = null;
+    })
   }
 
   ngOnInit() {

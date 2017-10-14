@@ -301,7 +301,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       let height = width < 500 ? width : 500;
 
       let x0 = d3.scaleBand()
-      .rangeRound([margin.left, width*0.7-margin.left-margin.right])
+      .rangeRound([margin.left, width/2-margin.left-margin.right])
       .paddingInner(0.1);
 
       let x1 = d3.scaleBand()
@@ -330,7 +330,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("width", width)
       .attr("height", height)
       .append("g")
-      .attr("width", width*0.7)
+      .attr("width", width/2)
       .attr("height", height-margin.bottom)
       .attr("transform", "translate(100, 5)");
       let rects = svg.selectAll("g")
@@ -346,7 +346,6 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .attr("width", x1.bandwidth())
       .attr("height", function(d) {
         let result = (height-margin.bottom-margin.top) - y(d.value);
-        console.log(result);
         return result == 0 ? 1 : result;
       })
       .style("fill", function(d) { return z(d.key); })

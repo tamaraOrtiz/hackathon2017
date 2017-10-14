@@ -13,6 +13,7 @@
 </form>
 </div>
 <button (click)="facebookProvider.logIn()" *ngIf="!userData">LOG IN</button>
+<button (click)="facebookProvider.logOut()" *ngIf="userData">LOG OUT</button>
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start style="padding: 0;">
