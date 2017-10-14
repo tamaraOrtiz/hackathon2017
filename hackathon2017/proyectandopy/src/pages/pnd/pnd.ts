@@ -171,14 +171,6 @@ export class PNDPage extends BasePage {
           self.loading = null;
       }
     });
-    this.dataService.getQuery(this.dataService.getEntidades("where nivel=")).then(records => {
-      this.entidades = this.structEntidades(records);
-    }, function(errors){
-      if(self.loading){
-          self.loading.dismiss();
-          self.loading = null;
-      }
-    });
 
     this.ratingService.getRating(1, 'PND').then(rating => {
       this.calificacion = rating;
@@ -205,6 +197,10 @@ export class PNDPage extends BasePage {
         this.count_download = this.events["download"]
       }
     });
+    if(self.loading){
+        self.loading.dismiss();
+        self.loading = null;
+    }
   }
 
   structNiveles (meta):any {

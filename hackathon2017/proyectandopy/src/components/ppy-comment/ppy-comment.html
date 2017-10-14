@@ -4,7 +4,7 @@
   <ion-item>
     <ion-avatar item-start style="padding: 0;">
       <img src="{{userData.picture}}" *ngIf="userData"/>
-      <i class="fa fa-comments-o" aria-hidden="true" *ngIf="!userData"></i>
+      <i class="fa fa-comments-o" style="margin-top: 7px;" aria-hidden="true" *ngIf="!userData"></i>
     </ion-avatar>
 
     <ion-textarea type="text" required [(ngModel)]="comment.text" ngControl="text" name="text" placeholder="Danos tu opinión"></ion-textarea>
