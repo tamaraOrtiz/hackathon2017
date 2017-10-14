@@ -1,6 +1,5 @@
 
 import { Component, Input, ViewChild } from '@angular/core';
-import { Chart } from 'chart.js';
 import * as d3 from "d3";
 import { Platform } from 'ionic-angular';
 import { AppHelper } from '../../helpers/app-helper';

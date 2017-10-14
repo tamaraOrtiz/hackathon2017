@@ -12,7 +12,7 @@ export class AppHelper {
 
   numberFormat: any;
   provider: any;
-  fileTransfer: FileTransferObject = this.transfer.create();
+  fileTransfer: FileTransferObject;
 
   constructor(public socialSharing: SocialSharing, public platform: Platform,
     private transfer: FileTransfer, private file: File, public toastCtrl: ToastController,
@@ -81,32 +81,34 @@ export class AppHelper {
         a.download = filename;
         a.click();
       } else {
-        console.log(`${self.file.cacheDirectory}${filename}`);
-        self.fileTransfer.download("http://www.set.gov.py/portal/rest/jcr/repository/collaboration/sites/PARAGUAY-SET/medias/images/2017/bannerHome2017.jpg", `${self.file.cacheDirectory}${filename}`).then((entry) => {
+        self.platform.ready().then(() => {
+          const fileTransfer: FileTransferObject = self.transfer.create();
+          fileTransfer.download(url, `${self.file.dataDirectory}${filename}`).then((entry) => {
+            let toast = self.toastCtrl.create({
+              message: "Se ha descargado correctamente",
+              duration: 3000,
+              position: 'top',
+              cssClass: "toast-success"
+            });
+            toast.present();
+            console.log(entry.toURL());
+            self.fileOpener.open(entry.toURL(), 'image/jpg')
+            .catch(e => {
+              console.log('Error openening file', e)
+            });
+            console.log(entry.toURL());
 
-          let toast = self.toastCtrl.create({
-            message: "Se ha descargado correctamente",
-            duration: 3000,
-            position: 'top',
-            cssClass: "toast-success"
-          });
-          toast.present();
-          console.log(entry.toURL());
-          self.fileOpener.open(entry.toURL(), 'image/jpg')
-              .then(() => toast.present())
-              .catch(e => console.log('Error openening file', e));
-          console.log(entry.toURL());
-
-        }, (error) => {
-          console.log(error);
-          let toast = self.toastCtrl.create({
-            message: "No se pudo descargar la imagen",
-            duration: 3000,
-            position: 'top',
-            cssClass: "toast-error"
-          });
-          toast.present();
-        });
+          }, (error) => {
+            console.log(error);
+            let toast = self.toastCtrl.create({
+              message: "No se pudo descargar la imagen",
+              duration: 3000,
+              position: 'top',
+              cssClass: "toast-error"
+            });
+            toast.present();
+          })
+       });
       }
     });
   }
@@ -117,10 +119,37 @@ export class AppHelper {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
     var elem = (_elem as any)._elementRef.nativeElement;
     if(self.isBrowser()){
-      elem.setAttribute("href",     dataStr     );
+      elem.setAttribute("href", dataStr);
       elem.setAttribute("download", filename);
     } else {
+       self.platform.ready().then(() => {
+         const fileTransfer: FileTransferObject = self.transfer.create();
+         fileTransfer.download(dataStr, `${self.file.dataDirectory}${filename}`).then((entry) => {
+           let toast = self.toastCtrl.create({
+             message: "Se ha descargado correctamente",
+             duration: 3000,
+             position: 'top',
+             cssClass: "toast-success"
+           });
+           toast.present();
+           console.log(entry.toURL());
+           self.fileOpener.open(entry.toURL(), 'image/jpg')
+           .catch(e => {
+             console.log('Error openening file', e)
+           });
+           console.log(entry.toURL());
 
+         }, (error) => {
+           console.log(error);
+           let toast = self.toastCtrl.create({
+             message: "No se pudo descargar la imagen",
+             duration: 3000,
+             position: 'top',
+             cssClass: "toast-error"
+           });
+           toast.present();
+         })
+      });
     }
   }
 
