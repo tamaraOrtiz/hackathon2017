@@ -1,5 +1,4 @@
 import { NavController, NavParams } from 'ionic-angular';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
 import { AppHelper } from '../helpers/app-helper';
 
