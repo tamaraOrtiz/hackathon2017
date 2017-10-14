@@ -9,11 +9,14 @@
 
     <ion-textarea type="text" required [(ngModel)]="comment.text" ngControl="text" name="text" placeholder="Danos tu opinión"></ion-textarea>
   </ion-item>
-<button ion-button id="send-comment" (click)="pushComment()" *ngIf="userData"><ion-icon class="send" md="ios-send" ></ion-icon>Enviar</button>
+
+<div class="facebook-div">
+  <button ion-button class="facebook-comment" right (click)="facebookProvider.logIn()" *ngIf="!userData">Inicia Sesión con Facebook <i class="fa fa-facebook" aria-hidden="true"></i></button>
+  <button ion-button id="send-comment" (click)="pushComment()" *ngIf="isvalid()">Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+  <button ion-button class="facebook-comment" (click)="facebookProvider.logOut()" *ngIf="userData">Cerrar Sesión <i class="fa fa-facebook" aria-hidden="true"></i></button>
+</div>
 </form>
 </div>
-<button (click)="facebookProvider.logIn()" *ngIf="!userData">LOG IN</button>
-<button (click)="facebookProvider.logOut()" *ngIf="userData">LOG OUT</button>
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start style="padding: 0;">
@@ -31,9 +34,3 @@
     <a *ngIf="!isLoading" (click)="getComments(lastPage)">Cargar más comentarios</a>
   </ion-item>
 </ion-list>
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>

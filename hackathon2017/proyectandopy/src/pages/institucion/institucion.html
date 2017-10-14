@@ -160,9 +160,14 @@
                   </div>
                   <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="right"></ion-icon>
                 </ion-item>
+
               </button>
             </div>
           </div>
+          <ion-item>
+            <span *ngIf="isLoading">Cargando instituciones...</span>
+            <a *ngIf="isValid" (click)="getMasInstituciones()">Cargar más instituciones</a>
+          </ion-item>
         </ion-list>
       </ion-col>
       <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>

@@ -29,6 +29,10 @@ export class InstitucionPage extends BasePage {
   rootPage: any = InstitucionPage;
   inst : any = {};
   _niveles : any = {};
+  _niveles_relevantes = [11,12,13];
+  niveles_ids: Array<any> = [];
+  isLoading: boolean = false
+  isValid: boolean = true
   @ViewChild(Slides) slides: Slides;
   @ViewChild('searchbar') searchbar:Searchbar;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: InstitucionData, public loadingCtrl: LoadingController,
@@ -122,8 +126,8 @@ export class InstitucionPage extends BasePage {
             alert("error");
         }
       }).then(result => {
-        this.dataService.getQuery(this.dataService.getInstituciones([]), true).then(record => {
-        
+        this.dataService.getQuery(this.dataService.getInstituciones(this._niveles_relevantes), true).then(record => {
+
           this._niveles = record;
           if(self.loading){
               self.loading.dismiss();
@@ -132,6 +136,7 @@ export class InstitucionPage extends BasePage {
         });
       });
     });
+
   }
   filtersearch(event, bar, loader=null) {
     let val = bar && (event.target.value !== null || event.target.value !== undefined) ? event.target.value : '';
@@ -209,6 +214,9 @@ export class InstitucionPage extends BasePage {
         id: row.nivel,
         nombre: this.appHelper.toTitleCase(row.nombrenivel),
       };
+      if (!(row.nivel in this._niveles_relevantes)){
+        this.niveles_ids.push(row.nivel);
+      }
     }
 
     return niveles;
@@ -242,5 +250,35 @@ export class InstitucionPage extends BasePage {
       self.selectedNiveles = [];
     }
   }
+  getMasInstituciones(){
 
+    this.isLoading = true;
+    this.isValid = false;
+    let self = this;
+    if (this.niveles_ids.length > 0){
+      let items = [];
+      let item = this.niveles_ids.pop();
+      items = [item];
+      this._niveles_relevantes.push(item);
+        if (this.niveles_ids.length > 1){
+            item = this.niveles_ids.pop();
+            items.push(item);
+            this._niveles_relevantes.push(item);
+        }
+        let result = this._niveles;
+         this.dataService.getQuery(this.dataService.getInstituciones(items), true).then(record => {
+           for(let row of record) {
+             result[row.id] =row;
+           }
+
+            self._niveles = result;
+         });
+
+         if (this.niveles_ids.length > 0){
+           this.isValid = true;
+         }
+
+    }
+    this.isLoading = false;
+  }
 }

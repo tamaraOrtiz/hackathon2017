@@ -353,22 +353,7 @@ page-show-institucion{
       border-radius: 25px;
       padding-top: 9px;
     }
-    #send-comment{
-      background: #0086b3;
-      height: 29px !important;
-      position: absolute;
-      right: 3px;
-      margin-right: 11px;
-      .button-inner{
-        font-size: 12px;
-        text-transform: none;
-      }
-      ion-icon{
-        padding-right: 3px !important;
-        color: white !important;
 
-      }
-    }
   }
 }
 
@@ -393,22 +378,7 @@ ppy-comment{
       color: white;
     }
   }
-  #send-comment{
-    background: #0086b3;
-    height: 29px !important;
-    position: absolute;
-    right: 3px;
-    margin-right: 11px;
-    .button-inner{
-      font-size: 12px;
-      text-transform: none;
-    }
-    ion-icon{
-      padding-right: 3px !important;
-      color: white !important;
 
-    }
-  }
 }
 .starts{
 
@@ -466,13 +436,31 @@ ppy-comment{
 
   }
   #send-rating{
-    background: #0097A7 !important;
-    color: white !important;
 
-  }
-  #send-button > span >ion-icon{
-    padding-right: 3px !important;
-    color: white !important;
+    margin-right: 11px;
+    text-transform: inherit;
+    background: white;
+    border: 1px solid #0086b3;
+    border-radius: 3px;
+    color: #0086b3;
+    box-shadow: none;
+    padding: 0;
+    height: 30px;
+    font-size: 13px;
+    span{
+          padding-left: 13px;
+          i{
+            padding: 0 13px;
+            background: #0086b3;
+            height: 100%;
+            color: white !important;
+            margin-left: 8px;
+            padding-top: 6px;
+            color: white;
+            font-size: 13px;
+          }
+    }
+
   }
 }
 
@@ -1725,4 +1713,59 @@ ion-backdrop{
   background: transparent;
   box-shadow: none;
   padding-bottom: 0;
+}
+
+
+
+.facebook-div{
+  position: absolute;
+  right: 9px;
+  .facebook-comment{
+
+    text-transform: inherit;
+    background: transparent;
+    border: 1px solid #4267b2;
+    border-radius: 3px;
+    color: #4267b2;
+    box-shadow: none;
+    padding: 0;
+    height: 30px;
+    font-size: 13px;
+    span{
+          padding-left: 13px;
+          i{
+            padding: 0 13px;
+            background: #4267b2;
+            height: 100%;
+            margin-left: 8px;
+            padding-top: 6px;
+            color: white;
+            font-size: 13px;
+          }
+    }
+  }
+  #send-comment{
+
+    text-transform: inherit;
+    background: white;
+    border: 1px solid #0086b3;
+    border-radius: 3px;
+    color: #0086b3;
+    box-shadow: none;
+    padding: 0;
+    height: 30px;
+    font-size: 13px;
+    span{
+          padding-left: 13px;
+          i{
+            padding: 0 13px;
+            background: #0086b3;
+            height: 100%;
+            margin-left: 8px;
+            padding-top: 6px;
+            color: white;
+            font-size: 13px;
+          }
+    }
+  }
 }

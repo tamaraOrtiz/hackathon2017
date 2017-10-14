@@ -75,6 +75,15 @@ export class PpyComment {
     return this._comment;
   }
 
+  isvalid(){
+
+    if (this.userData && this.comment.text != null){
+      return true;
+    } else{
+      return false;
+    }
+  }
+
   pushComment(){
     this.comment.meta = this.comment.meta ? this.comment.meta : {};
     this.comment.meta['name'] = this.userData.name;
