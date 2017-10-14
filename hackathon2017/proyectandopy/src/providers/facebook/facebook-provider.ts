@@ -24,12 +24,27 @@ export class FacebookProvider {
     .catch(e => console.log('Error logging into Facebook', e));
   }
 
+  logOut(){
+    let self = this;
+    self.isConnected().then((result) =>{
+      self.fb.logout().then((response)=>{
+        console.log('logged out');
+        self.events.publish('Facebook:LoggedOut');
+      })
+      .catch(e => console.log('Error getting status', e));
+    })
+  }
+
   isConnected(){
     let self = this;
-    self.fb.getLoginStatus().then((response)=>{
-      return response.status == 'connected';
-    })
-    .catch(e => console.log('Error getting status', e));
+    return new Promise<any>((resolve, reject) => {
+      self.fb.getLoginStatus().then((response)=>{
+        resolve(response.status == 'connected');
+      }, (error) => {
+        console.log('Error getting status');
+        reject(error);
+      });
+    });
   }
 
 

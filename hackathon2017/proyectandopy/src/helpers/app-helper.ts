@@ -116,10 +116,14 @@ export class AppHelper {
     let self = this;
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
     var elem = (_elem as any)._elementRef.nativeElement;
-    elem.setAttribute("href",     dataStr     );
-    elem.setAttribute("download", filename);
-
+    if(self.isBrowser()){
+      elem.setAttribute("href",     dataStr     );
+      elem.setAttribute("download", filename);
+    } else {
+      
+    }
   }
+
   share(via='facebook', message=null, url=null, image=null) {
     url = url ? url : 'https://proyectandopy.com';
     image = 'http://fiuni.edu.py/img/logo-fiuni.png';
