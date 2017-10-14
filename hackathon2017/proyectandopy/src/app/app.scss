@@ -502,9 +502,12 @@ ppy-comment{
   color: #1d6fad !important;
   font-weight: bold;
   button{
+    padding: 2px;
     height: 17px;
     margin-top: -5px;
     color: #1d6fad !important;
+    background: transparent;
+    box-shadow: none;
   }
   i.fa{
     height: 17px;
@@ -1712,4 +1715,14 @@ ion-backdrop{
       width: 35px;
     }
   }
+}
+
+.title-page-button{
+  padding: 2px;
+  height: 17px;
+  margin-top: -5px;
+  color: #1d6fad !important;
+  background: transparent;
+  box-shadow: none;
+  padding-bottom: 0;
 }

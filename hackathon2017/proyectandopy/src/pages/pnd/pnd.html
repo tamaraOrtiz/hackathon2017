@@ -156,17 +156,13 @@
           <ion-row class="resumen"  [ngClass]="(!shownab ? 'pnd-deskop' : 'pnd-app')">
             <ion-col  col-12>
               <ion-label class="title c5">General
-                <ion-fab class="download-fab">
-                  <button ion-fab mini><ion-icon name="md-download"></ion-icon></button>
-                  <ion-fab-list side="right" class="download-fablist">
-                    <a ion-fab class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_totales', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndgeneral.jpg')">
-                      <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
-                    </a>
-                    <a ion-fab  #pndgeneral (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pnd.json', general, pndgeneral)">
-                      <ion-icon name="code-download"></ion-icon>
-                    </a>
-                  </ion-fab-list>
-                </ion-fab>
+                <button ion-button class="title-page-button leaflet-control-zoom-out" (click)="appHelper.download('.pnd_totales', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndgeneral.jpg')">
+                  <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
+                </button>
+                <button ion-button class="title-page-button"  #pndgeneral (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pnd.json', general, pndgeneral)">
+                  <ion-icon name="code-download"></ion-icon>
+                </button>
+
               </ion-label>
 
             </ion-col>
@@ -219,17 +215,12 @@
           <ion-row *ngIf="eje['Reducción de pobreza y desarrollo social']">
             <ion-col class="resumen"  col-12>
               <ion-label class="title c5">Ejes
-                <ion-fab class="download-fab">
-                  <button ion-fab mini><ion-icon name="md-download"></ion-icon></button>
-                  <ion-fab-list side="right" class="download-fablist">
-                    <a ion-fab class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd_eje', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndeje.jpg')">
-                    <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
-                    </a>
-                    <a ion-fab  #pndeje (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pndeje.json', eje, pndeje)">
-                      <ion-icon name="code-download"></ion-icon>
-                    </a>
-                  </ion-fab-list>
-                </ion-fab>
+                <button ion-button class="title-page-button leaflet-control-zoom-out" (click)="appHelper.download('.pnd_eje', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndeje.jpg')">
+              <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
+            </button>
+            <button ion-button class="title-page-button"  #pndeje (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pndeje.json', eje, pndeje)">
+              <ion-icon name="code-download"></ion-icon>
+            </button>
 
 
               </ion-label>
@@ -347,17 +338,12 @@
           <ion-row  >
             <ion-col class="resumen"  col-12>
               <ion-label class="title c5">Estrategias
-                <ion-fab class="download-fab">
-                  <button ion-fab mini><ion-icon name="md-download"></ion-icon></button>
-                  <ion-fab-list side="right" class="download-fablist">
-                    <a ion-fab class="leaflet-control-zoom-out" (click)="appHelper.download('.pnd-estrategia', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndestrategias.jpg')">
-                      <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
-                    </a>
-                    <a ion-fab  #pndest (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pndestrategias.json', estrategias, pndest)">
-                      <ion-icon name="code-download"></ion-icon>
-                    </a>
-                  </ion-fab-list>
-                </ion-fab>
+                <button ion-button class="title-page-button leaflet-control-zoom-out" (click)="appHelper.download('.pnd-estrategia', ['.vermas','.leaflet-control-zoom-out'], ['.graph-title'], 'Pnd', 1, 'pnd_view', 'pndestrategias.jpg')">
+                  <ion-icon style="margin-left: -3px;" name="ios-image"></ion-icon>
+                </button>
+                <button ion-button class="title-page-button" #pndest (click)="appHelper.downloadjson('Pnd', 1, 'pnd_view', 'pndestrategias.json', estrategias, pndest)">
+                  <ion-icon name="code-download"></ion-icon>
+                </button>
 
               </ion-label>
             </ion-col>

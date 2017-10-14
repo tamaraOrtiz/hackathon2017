@@ -120,7 +120,7 @@ export class AppHelper {
       elem.setAttribute("href",     dataStr     );
       elem.setAttribute("download", filename);
     } else {
-      
+
     }
   }
 

@@ -1,11 +1,11 @@
 <div>
   <ion-label class="title-page item-grouper">Estadísticas
-    <a class="leaflet-control-center-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica', 'estadistica.jpg')">
+    <button ion-button class="leaflet-control-center-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica', 'estadistica.jpg')">
       <i class="fa fa-download"></i>
-    </a>
-    <a class="leaflet-control-center-zoom-out" (click)="appHelper.shareDiv('.graph-canva', ['.selection-info'])">
+    </button>
+    <button ion-button class="leaflet-control-center-zoom-out" (click)="appHelper.shareDiv('.graph-canva', ['.selection-info'])">
       <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </a>
+    </button>
   </ion-label>
 
 
