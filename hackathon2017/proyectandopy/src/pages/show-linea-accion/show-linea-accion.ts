@@ -10,11 +10,13 @@ import * as d3 from "d3";
 import 'leaflet-search';
 import { Slides } from 'ionic-angular';
 import { Events } from 'ionic-angular';
+import { RatingData } from '../../providers/rating';
+
 
 @Component({
   selector: 'page-show-nivel',
   templateUrl: 'show-linea-accion.html',
-  providers: [LineaAccionData]
+  providers: [LineaAccionData, RatingData]
 })
 
 export class ShowLineaAccionPage extends ShowBasePage  {
@@ -25,11 +27,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   map: any;
   tabactive: any;
   openbar: any;
+  calificacion: any
   alcanceNacional: any;
   ranges: {};
   count_view = 0;
   count_download = 0;
   events: any;
+  ratingService: RatingData
   maxAvance = Number.NEGATIVE_INFINITY;
   maxMeta = Number.NEGATIVE_INFINITY;
   unidad = null;
@@ -37,9 +41,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
 
   @ViewChild(Slides) slides: Slides;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper, public loadingCtrl: LoadingController) {
+    public dataService: LineaAccionData, public eventHandler: Events, public appHelper: AppHelper, public raService: RatingData, public loadingCtrl: LoadingController) {
       super(navCtrl, navParams, appHelper);
       this.item = navParams.get('item');
+      this.ratingService = raService;
       this.openbar = appHelper.isDeskTop();
       this.tabactive = 'mapa';
       this.eventHandler.subscribe('lineasAccion:view:saved:success', (data) => {
@@ -101,6 +106,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
             self.loading.dismiss();
             self.loading = null;
         }
+      });
+
+      this.ratingService.getRating(self.item.id, 'LineaAccion').then(rating => {
+        this.calificacion = rating;
+        this.eventHandler.publish('rating:retrieve', rating, Date.now());
       });
 
     }
@@ -321,7 +331,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           return d.value[v];
         });
       });
-      
+
       y.domain([max == 0 ? 1 : max, 0]).nice();
 
       let svg = d3.select("#graph2")

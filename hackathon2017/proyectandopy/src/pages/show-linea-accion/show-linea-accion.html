@@ -217,7 +217,24 @@
               </ion-grid>
             </div>
           </ion-col>
+          <ion-col   [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+            <ion-grid class="common-grid">
+              <ion-row>
+                <ion-col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center>
+                  <div class="starts">
+                    <ppy-rating [rating]="{page: 'show-linea-accion', entity_id: item.id, entity_type: 'LineaAccion', score: calificacion, meta: '{}'}" [options]="['General', 'Grafico de Barra', 'Mapa de Calor']"></ppy-rating>
+                  </div>
+                </ion-col>
+                <ion-col col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center>
+                  <ppy-comment [comment]="{page: 'show-linea-accion', entity_id: item.id, entity_type: 'LineaAccion', text: '', meta: null}"></ppy-comment>
+                </ion-col>
 
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
+            <ppy-footer></ppy-footer>
+          </ion-col>
           <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-md-10 col-xl-10>
             <ppy-footer></ppy-footer>
           </ion-col>

@@ -26,6 +26,7 @@ export class InstitucionPage extends BasePage {
   selectedNiveles: Array<any> = [];
   groupedItems: Array<any> = [];
   loading;
+  text: string = "";
   openbar: any;
   rootPage: any = InstitucionPage;
   inst : any = {};
@@ -104,6 +105,7 @@ export class InstitucionPage extends BasePage {
     }, 500);
     if (!value){
 
+      this.text = ""
       self.filter(null, false);
     }
 
@@ -128,7 +130,8 @@ export class InstitucionPage extends BasePage {
             alert("error");
         }
       }).then(result => {
-        this.dataService.getQuery(this.dataService.getInstituciones(this._niveles_relevantes), true).then(record => {
+        this.isValid = true;
+        this.dataService.getQuery(this.dataService.filterInstituciones(this._niveles_relevantes,this.text), true).then(record => {
           this._niveles = record;
           this._nivelesCount = Object.keys(record).length;
           if(self.loading){
@@ -159,6 +162,8 @@ export class InstitucionPage extends BasePage {
       	}
       });
     }else{
+      this.text = val;
+      this.isValid = false;
       self.dataService.getQuery(self.dataService.filterInstituciones(self.selectedNiveles,val), true).then(record => {
         self._niveles = record;
         if(loading){
@@ -191,7 +196,7 @@ export class InstitucionPage extends BasePage {
     }
 
     if(this.selectedNiveles.length == 0){
-      this.dataService.getQuery(this.dataService.getInstituciones(["-1"]), true).then(record => {
+      this.dataService.getQuery(this.dataService.filterInstituciones(this._niveles_relevantes,this.text), true).then(record => {
         this._niveles = record;
         if(loading){
           loading.dismiss();
@@ -199,7 +204,8 @@ export class InstitucionPage extends BasePage {
       	}
       });
     } else{
-      this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
+      this.isValid = false;
+      this.dataService.getQuery(this.dataService.filterInstituciones(this.selectedNiveles,this.text), true).then(record => {
         this._niveles = record;
         if(loading){
           loading.dismiss();
@@ -271,7 +277,7 @@ export class InstitucionPage extends BasePage {
 
       let result = {};
       Object.assign(result, self._niveles);
-      self.dataService.getQuery(self.dataService.getInstituciones(items), true).then(record => {
+      self.dataService.getQuery(self.dataService.filterInstituciones(items,this.text), true).then(record => {
         self._niveles = record;
         Object.assign(self._niveles, result);
 
