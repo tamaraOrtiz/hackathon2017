@@ -30,7 +30,7 @@ export class InstitucionPage extends BasePage {
   rootPage: any = InstitucionPage;
   inst : any = {};
   _niveles : any = {};
-  _niveles_relevantes = [11,12,13];
+  _niveles_relevantes = ["11", "12", "13"];
   _nivelesCount = 0;
   niveles_ids: Array<any> = [];
   isLoading: boolean = false
@@ -217,7 +217,7 @@ export class InstitucionPage extends BasePage {
         id: row.nivel,
         nombre: this.appHelper.toTitleCase(row.nombrenivel),
       };
-      
+
       if (!(this._niveles_relevantes as any).includes(row.nivel)){
         console.log(row.nivel);
         this.niveles_ids.push(row.nivel);
@@ -257,6 +257,7 @@ export class InstitucionPage extends BasePage {
     this.isLoading = true;
     this.isValid = false;
     let self = this;
+
     if (self.niveles_ids.length > 0){
       let items = [];
       let item = self.niveles_ids.pop();
