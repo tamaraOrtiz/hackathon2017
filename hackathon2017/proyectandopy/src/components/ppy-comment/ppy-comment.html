@@ -3,7 +3,7 @@
   <form #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
   <ion-item>
     <ion-avatar item-start style="padding: 0;">
-      <img src="{{userData.picture}}" *ngIf="userData"/>
+      <img [src]="userData.picture" *ngIf="userData"/>
       <i class="fa fa-comments-o" style="margin-top: 7px;" aria-hidden="true" *ngIf="!userData"></i>
     </ion-avatar>
 
@@ -20,7 +20,7 @@
 <ion-list class="comment-list">
   <ion-item *ngFor="let comment of comments">
     <ion-avatar item-start style="padding: 0;">
-        <img src="{{comment.meta.picture}}" *ngIf="comment.meta"/>
+        <img [src]="comment.meta.picture" *ngIf="comment.meta"/>
     </ion-avatar>
     <div class="item-list">
       <h2>{{comment.meta ? comment.meta.name : 'Anónimo]'}}</h2>

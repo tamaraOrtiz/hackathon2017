@@ -1,3 +1,4 @@
+
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
@@ -30,6 +31,7 @@ export class InstitucionPage extends BasePage {
   inst : any = {};
   _niveles : any = {};
   _niveles_relevantes = [11,12,13];
+  _nivelesCount = 0;
   niveles_ids: Array<any> = [];
   isLoading: boolean = false
   isValid: boolean = true
@@ -127,8 +129,8 @@ export class InstitucionPage extends BasePage {
         }
       }).then(result => {
         this.dataService.getQuery(this.dataService.getInstituciones(this._niveles_relevantes), true).then(record => {
-
           this._niveles = record;
+          this._nivelesCount = Object.keys(record).length;
           if(self.loading){
               self.loading.dismiss();
               self.loading = null;
@@ -139,25 +141,26 @@ export class InstitucionPage extends BasePage {
 
   }
   filtersearch(event, bar, loader=null) {
+    let self = this;
     let val = bar && (event.target.value !== null || event.target.value !== undefined) ? event.target.value : '';
-    let loading = loader ? loader : this.loadingCtrl.create({
+    let loading = loader ? loader : self.loadingCtrl.create({
        content: 'Por favor espere...'
     });
     if(!loader){
       loading.present();
     }
 
-    if(this.selectedNiveles.length == 0){
-      this.dataService.getQuery(this.dataService.filterInstituciones(["-1"],""), true).then(record => {
-        this._niveles = record;
+    if(self.selectedNiveles.length == 0){
+      self.dataService.getQuery(self.dataService.filterInstituciones(["-1"],""), true).then(record => {
+        self._niveles = record;
         if(loading){
           loading.dismiss();
           loading = null;
       	}
       });
     }else{
-      this.dataService.getQuery(this.dataService.filterInstituciones(this.selectedNiveles,val), true).then(record => {
-        this._niveles = record;
+      self.dataService.getQuery(self.dataService.filterInstituciones(self.selectedNiveles,val), true).then(record => {
+        self._niveles = record;
         if(loading){
           loading.dismiss();
           loading = null;
@@ -167,15 +170,17 @@ export class InstitucionPage extends BasePage {
 
 
   }
+
   add_all_niveles(){
-     this.selectedNiveles = Object.keys(this.niveles);
+    this.selectedNiveles = Object.keys(this.niveles);
 
-   }
-   remove_all_niveles(){
-      this.selectedNiveles = [];
-      this._niveles = {};
+  }
 
-    }
+  remove_all_niveles(){
+    this.selectedNiveles = [];
+    this._niveles = {};
+
+  }
 
   filter(event, bar, loader=null) {
     let loading = loader ? loader : this.loadingCtrl.create({
@@ -193,7 +198,7 @@ export class InstitucionPage extends BasePage {
           loading = null;
       	}
       });
-    }else{
+    } else{
       this.dataService.getQuery(this.dataService.getInstituciones(this.selectedNiveles), true).then(record => {
         this._niveles = record;
         if(loading){
@@ -202,8 +207,6 @@ export class InstitucionPage extends BasePage {
       	}
       });
     }
-
-
   }
 
   structNiveles (meta):any {
@@ -214,15 +217,14 @@ export class InstitucionPage extends BasePage {
         id: row.nivel,
         nombre: this.appHelper.toTitleCase(row.nombrenivel),
       };
-      if (!(row.nivel in this._niveles_relevantes)){
+      
+      if (!(this._niveles_relevantes as any).includes(row.nivel)){
+        console.log(row.nivel);
         this.niveles_ids.push(row.nivel);
       }
     }
-
     return niveles;
   }
-
-
 
   itemTapped(event, item) {
     this.dataService.pushEvent("Institucion", item.id, "view", "institucion_list");
@@ -255,30 +257,29 @@ export class InstitucionPage extends BasePage {
     this.isLoading = true;
     this.isValid = false;
     let self = this;
-    if (this.niveles_ids.length > 0){
+    if (self.niveles_ids.length > 0){
       let items = [];
-      let item = this.niveles_ids.pop();
+      let item = self.niveles_ids.pop();
       items = [item];
-      this._niveles_relevantes.push(item);
-        if (this.niveles_ids.length > 1){
-            item = this.niveles_ids.pop();
-            items.push(item);
-            this._niveles_relevantes.push(item);
+      self._niveles_relevantes.push(item);
+      if (self.niveles_ids.length > 1){
+        item = self.niveles_ids.pop();
+        items.push(item);
+        self._niveles_relevantes.push(item);
+      }
+
+      let result = {};
+      Object.assign(result, self._niveles);
+      self.dataService.getQuery(self.dataService.getInstituciones(items), true).then(record => {
+        self._niveles = record;
+        Object.assign(self._niveles, result);
+
+        if (self.niveles_ids.length > 0){
+          self.isValid = true;
+          self.isLoading = false;
         }
-        let result = this._niveles;
-         this.dataService.getQuery(this.dataService.getInstituciones(items), true).then(record => {
-           for(let row of record) {
-             result[row.id] =row;
-           }
-
-            self._niveles = result;
-         });
-
-         if (this.niveles_ids.length > 0){
-           this.isValid = true;
-         }
-
+      });
     }
-    this.isLoading = false;
+
   }
 }

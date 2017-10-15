@@ -116,15 +116,16 @@ export class AppHelper {
   downloadjson(entidad, id, page, filename, _object, _elem: Element) {
     this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
-    var elem = (_elem as any)._elementRef.nativeElement;
+    var url = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(_object));
     if(self.isBrowser()){
-      elem.setAttribute("href", dataStr);
-      elem.setAttribute("download", filename);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
     } else {
        self.platform.ready().then(() => {
          const fileTransfer: FileTransferObject = self.transfer.create();
-         fileTransfer.download(dataStr, `${self.file.dataDirectory}${filename}`).then((entry) => {
+         fileTransfer.download(url, `${self.file.dataDirectory}${filename}`).then((entry) => {
            let toast = self.toastCtrl.create({
              message: "Se ha descargado correctamente",
              duration: 3000,
