@@ -151,6 +151,9 @@
                 <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map', [], [], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa')">
                   <i class="fa fa-download"></i>
                 </a>
+                <button ion-button class="title-page-button" style="font-size: 16px;padding-left: 0;"  #mapa (click)="appHelper.downloadjson('lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa.json', departamentoGeoJson, mapa)">
+                  <ion-icon name="code-download"></ion-icon>
+                </button>
               </ion-item>
               <ion-grid>
                 <ion-row>
@@ -164,12 +167,15 @@
           <ion-col *ngIf="tabactive=='barra'" [ngClass]="(!openbar ? 'central-col' : 'normal-col')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-md-10 col-xl-10>
             <div class="view-content">
               <ion-item class="item-grouper">Gráfico de Barras
-
+                <button ion-button class="title-page-button" style="font-size: 16px;padding-left: 0;"  #barra (click)="appHelper.downloadjson('lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'departamentos.json', mapajson, barra)">
+                  <ion-icon name="code-download"></ion-icon>
+                </button>
               </ion-item>
               <ion-item class="subtitle-graph">Gráfico de barra por Departamento
                 <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('.graph-canva', [], ['.graph-title'], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'barra')">
                   <i class="fa fa-download"></i>
                 </a>
+
               </ion-item>
               <ion-grid class="graph-canva">
                 <ion-row class="graph-title" style="display: none;">
@@ -235,9 +241,7 @@
           <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-lg-10 col-xl-10>
             <ppy-footer></ppy-footer>
           </ion-col>
-          <ion-col [ngClass]="(!openbar ? 'central-col footer_col footer_content' : 'normal-col footer_content')" col-sm-12 col-md-12 offset-lg-2 offset-xl-2 col-md-10 col-xl-10>
-            <ppy-footer></ppy-footer>
-          </ion-col>
+
         </ion-row>
 
       </ion-grid>

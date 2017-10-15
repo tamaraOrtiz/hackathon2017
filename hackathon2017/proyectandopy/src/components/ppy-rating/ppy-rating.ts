@@ -15,7 +15,7 @@ export class PpyRating {
   @ViewChild('ratingElement') ratingElement;
 
   _options: Array<string>
-
+  sendRating: Boolean = false;
   _rating: { page: string, entity_id: string, entity_type: string, score: number, meta: string };
 
   ratingText = ['Sin calificación',
@@ -75,10 +75,11 @@ export class PpyRating {
       cssClass: `toast-${result}`
     });
     toast.present();
-    if(result === 'success'){
-      element.querySelector("#send-rating").style.display = 'none';
-      element.querySelector("#col-rating").style.display = 'none';
-      self.setRating(rating.score, false);
+
+    if(result == 'success'){
+
+      self.sendRating = false;
+      self.setRating(rating.score, false, true);
     }
   }
 
@@ -101,14 +102,14 @@ export class PpyRating {
   }
 
 
-  setRating(number, init){
+  setRating(number, init, call=false){
     this.rating.score = number;
     this.rating.meta = this._options[0];
     let element = this.ratingElement.nativeElement;
     element.querySelector("#rating-text").innerHTML = this.ratingText[Math.floor(number)];
-    if(!init){
-      element.querySelector("#send-rating").style.display = 'block';
-      element.querySelector("#col-rating").style.display = 'block';
+    if(!init && !call){
+      
+      this.sendRating = true;
     }
     for (let i = 1; i < 6; i++) {
       var el = element.querySelector("#star-"+i.toString());

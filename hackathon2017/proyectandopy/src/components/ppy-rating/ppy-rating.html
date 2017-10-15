@@ -17,22 +17,24 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+
+    <ion-row *ngIf="sendRating">
       <ion-col col-9>
-        <ion-item id="col-rating" style="display:none;" >
+        <ion-item id="col-rating" *ngIf="options.length > 0"  >
           <ion-label hidden>Información</ion-label>
-          <ion-select class="rating-select" [(ngModel)]="rating.meta" cancelText="Cancelar">
+          <ion-select class="rating-select"  [(ngModel)]="rating.meta" cancelText="Cancelar">
             <ion-option *ngFor="let option of options" value="{{option}}">{{option}}</ion-option>
 
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col col-3>
-        <button ion-button id="send-rating" style="display:none;" (click)="pushRating()">
+      <ion-col col-3 style="min-width: 108px;">
+        <button ion-button id="send-rating" (click)="pushRating()">
           Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i>
         </button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
 

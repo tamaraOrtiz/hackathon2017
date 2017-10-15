@@ -37,6 +37,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
   maxAvance = Number.NEGATIVE_INFINITY;
   maxMeta = Number.NEGATIVE_INFINITY;
   unidad = null;
+  mapajson: any
   loading;
 
   @ViewChild(Slides) slides: Slides;
@@ -131,6 +132,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
           self.dataService.getQuery(self.dataService.getLineasAccionDetalle(self.item.id, self.item.nivel, self.item.entidad, self.item.institucion), true).then(records => {
             self.chartsData = (records as any).info_departamento;
             self.unidad = (records as any).unidad;
+            self.mapajson = records;
             self.departamentoGeoJson.forEach( departamento => {
               for(let name of Object.keys(self.chartsData)) {
                 let record = self.chartsData[name];
