@@ -286,12 +286,10 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       // set the dimensions and margins of the graph
       let margin = {top: 20, right: 20, bottom: 20, left: 20};
       let data = Object.keys(self.item.avance_metas).map(function(k) {
-        console.log(k);
-        console.log(self.item);
         return {key: k,
           value: {
             "Avances": self.item.avance_metas[k]+(self.item.promedio_metas[k])/(self.item.denominador_metas[k] > 0 ? self.item.denominador_metas[k] : 1),
-            "Programacion": self.item.programa_metas[k]+(self.item.programa_promedio_metas[k])/(self.item.programa_denominador_metas[k] > 0 ? self.item.programa_denominador_metas[k] : 1)
+            "Programación": self.item.programa_metas[k]+(self.item.programa_promedio_metas[k])/(self.item.programa_denominador_metas[k] > 0 ? self.item.programa_denominador_metas[k] : 1)
           }
         }
       });
@@ -318,11 +316,13 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       x0.domain(['m1', 'm2', 'm3', 'm4']);
       x1.domain(keys).rangeRound([0, x0.bandwidth()]);
 
-      y.domain([d3.max(data, function(d) {
+      let max = d3.max(data, function(d) {
         return d3.max(Object.keys(d.value), function(v) {
           return d.value[v];
         });
-      }), 0]).nice();
+      });
+      
+      y.domain([max == 0 ? 1 : max, 0]).nice();
 
       let svg = d3.select("#graph2")
       .append("svg")
@@ -338,11 +338,11 @@ export class ShowLineaAccionPage extends ShowBasePage  {
       .enter().append("g")
       .attr("transform", function(d) { return "translate(" + x0(d.key) + ", 0)"; })
       .selectAll("rect")
-      .data(function(d) { return keys.map(function(key) { return {key: key, value: d.value[key]}; }); })
+      .data(function(d) { return keys.map(function(key) { console.log(key); console.log(d.value);return {key: key, value: d.value[key]}; }); })
 
       rects.enter().append("rect")
       .attr("x", function(d) { return x1(d.key); })
-      .attr("y", function(d) { return y(d.value); })
+      .attr("y", function(d) { console.log(y); return y(d.value); })
       .attr("width", x1.bandwidth())
       .attr("height", function(d) {
         let result = (height-margin.bottom-margin.top) - y(d.value);
