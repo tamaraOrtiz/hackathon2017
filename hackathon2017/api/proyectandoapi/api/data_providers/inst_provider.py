@@ -247,11 +247,12 @@ def filter_inst(_niveles, text):
 
                 for k1, n in data.items():
                     for k2, ent in n["entidades"].items():
-                        for k, inst in ent["instituciones"].items():
-                            ninst = unidecode.unidecode(inst["nombre"]).lower()
+                        for k, _inst in ent["instituciones"].items():
+                            ninst = unidecode.unidecode(_inst["nombre"]).lower()
                             if text not in ninst:
                                 del(filter[k1]["entidades"][k2]["instituciones"][k])
                             else:
+                                inst =filter[k1]["entidades"][k2]["instituciones"][k]
                                 inst["rating"] = round(_sum_rating[inst["id"]] / _rating[inst["id"]], 2) if inst[
                                                                                                                 "id"] in _rating else 0
                                 inst["comment"] = _comment[inst["id"]] if inst["id"] in _comment else 0
@@ -273,11 +274,12 @@ def filter_inst(_niveles, text):
                 for n in niveles:
                     if n in data:
                         for k, ent in data[n]["entidades"].items():
-                            for k1, inst in ent["instituciones"].items():
-                                ninst = unidecode.unidecode(inst["nombre"]).lower()
+                            for k1, _inst in ent["instituciones"].items():
+                                ninst = unidecode.unidecode(_inst["nombre"]).lower()
                                 if text not in ninst:
                                     del (filter[n]["entidades"][k]["instituciones"][k1])
                                 else:
+                                    inst= filter[n]["entidades"][k]["instituciones"][k1]
                                     inst["rating"] = round(_sum_rating[inst["id"]] / _rating[inst["id"]], 2) if inst[
                                                                                                                     "id"] in _rating else 0
                                     inst["comment"] = _comment[inst["id"]] if inst["id"] in _comment else 0

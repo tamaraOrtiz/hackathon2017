@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.postgres.fields import JSONField
 
 # Este modelo es utilizado para guardar el rating de cada entidad
 class Rating(models.Model):
@@ -16,7 +16,7 @@ class Comment(models.Model):
     entity_type = models.CharField(max_length=50, null=True)
     commented_at = models.DateTimeField(auto_now=True, null=False)
     text = models.CharField(max_length=50, null=True)
-    meta = models.CharField(max_length=50, null=True)
+    meta = JSONField()
 
 
 class UUIDField(models.CharField):

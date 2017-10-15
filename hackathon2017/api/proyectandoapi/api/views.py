@@ -54,7 +54,7 @@ def event(request):
         URL: https://proyectando-api.herokuapp.com/api/event/
         """
         data = request.data  # Save data request in json data
-        event = Event.objects.filter(entity_type__exact=data["entity_type"], event_type__exact=data["event_type"], entity_id__exact=data["entity_id"], page__exact=data["page"])[:1]
+        event = Event.objects.filter(entity_type__exact=data["entity_type"], event_type__exact=data["event_type"], entity_id__exact=data["entity_id"])[:1]
         if data["entity_type"] == "lineasAccion" and data["event_type"] == "download":
             inst = data["entity_id"].split("_")[0]
             inst_event = Event.objects.filter(entity_type__exact="Institucion",
