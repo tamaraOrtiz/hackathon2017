@@ -225,7 +225,7 @@ export class InstitucionPage extends BasePage {
       };
 
       if (!(this._niveles_relevantes as any).includes(row.nivel)){
-        console.log(row.nivel);
+      
         this.niveles_ids.push(row.nivel);
       }
     }

@@ -1153,8 +1153,8 @@ svg {
   width: calc(100% - 30px);
   min-height: 131px;
   height: 30%;
-  ion-slide{
-    width: 100%;
+  ion-slide.swiper-slide{
+    width: calc(100% -20px) !important;
   }
   p{
         font-size: 14px;
