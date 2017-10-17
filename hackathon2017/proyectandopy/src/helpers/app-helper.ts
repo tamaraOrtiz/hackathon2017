@@ -74,45 +74,51 @@ export class AppHelper {
     return dom.querySelector(identifier);
   }
 
-  download(div, excludedElements=[], showElements=[], entidad, id, page, filename) {
+  download(div, excludedElements=[], showElements=[], entidad, id, page, filename, background=false) {
     this.provider.pushEvent(entidad, id, "download", page)
     let self = this;
-    self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
-      if(self.isBrowser()){
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        a.click();
-      } else {
-        self.platform.ready().then(() => {
-          const fileTransfer: FileTransferObject = self.transfer.create();
-          fileTransfer.download(url, `${self.file.dataDirectory}${filename}`).then((entry) => {
-            let toast = self.toastCtrl.create({
-              message: "Se ha descargado correctamente",
-              duration: 3000,
-              position: 'top',
-              cssClass: "toast-success"
-            });
-            toast.present();
-            console.log(entry.toURL());
-            self.fileOpener.open(entry.toURL(), 'image/jpg')
-            .catch(e => {
-              console.log('Error openening file', e)
-            });
-            console.log(entry.toURL());
-
-          }, (error) => {
-            console.log(error);
-            let toast = self.toastCtrl.create({
-              message: "No se pudo descargar la imagen",
-              duration: 3000,
-              position: 'top',
-              cssClass: "toast-error"
-            });
-            toast.present();
-          })
-       });
-      }
+    return new Promise<any>((resolve) => {
+      self.getGenerateCanva(div, excludedElements, showElements).then(function (url) {
+        if(self.isBrowser()){
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          a.click();
+        } else {
+          self.platform.ready().then(() => {
+            const fileTransfer: FileTransferObject = self.transfer.create();
+            fileTransfer.download(url, `${self.file.dataDirectory}${filename}`).then((entry) => {
+              if(background){
+                resolve(entry.toURL());
+              } else {
+                let toast = self.toastCtrl.create({
+                  message: "Se ha descargado correctamente",
+                  duration: 3000,
+                  position: 'top',
+                  cssClass: "toast-success"
+                });
+                toast.present();
+                self.fileOpener.open(entry.toURL(), 'image/jpg')
+                .catch(e => {
+                  console.log('Error openening file', e)
+                });
+              }
+            }, (error) => {
+              if(background) {
+                resolve(null);
+              } else {
+                let toast = self.toastCtrl.create({
+                  message: "No se pudo descargar la imagen",
+                  duration: 3000,
+                  position: 'top',
+                  cssClass: "toast-error"
+                });
+                toast.present();
+              }
+            })
+          });
+        }
+      });
     });
   }
 
@@ -159,7 +165,6 @@ export class AppHelper {
 
   share(via='facebook', message=null, url=null, image=null) {
     url = url ? url : 'https://proyectandopy.com';
-    image = 'http://fiuni.edu.py/img/logo-fiuni.png';
     let appnames = {
       'facebook': `http://www.facebook.com/sharer.php?summary=${message}&u=${url}&image=${image}`,
       'twitter': `https://twitter.com/share?text=${message}&url=${url}`
@@ -170,15 +175,15 @@ export class AppHelper {
       this.socialSharing.shareWithOptions({
         message: 'share this', // not supported on some apps (Facebook, Instagram)
         subject: 'the subject', // fi. for email
-        files: [image], // an array of filenames either locally or remotely
-        url: 'https://www.website.com/foo/#bar?a=b',
+        files: [image],
         chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
       });//(via, message, '', url, image);
     }
   }
 
-  shareDiv(div, excludedElements=[], via='facebook'){
-    this.getGenerateCanva(div, excludedElements).then((image) => {
+
+  shareDiv(div, excludedElements=[], showElements=[], entidad, id, page, filename, background=false, via='facebook'){
+    this.download(div, excludedElements=[], showElements=[], entidad, id, page, filename, true).then((image) => {
 
       this.share(via, null, null, image);
     });
