@@ -30,7 +30,6 @@ export class PpyCanva {
 
   public constructor(public appHelper: AppHelper) {
     this.smallScreen = appHelper.platform.width() < 768;
-    console.log(appHelper.platform.width());
   }
 
   @Input()
@@ -120,9 +119,15 @@ export class PpyCanva {
                   "#f5de4b", "#f59f4b", "#987a13",
                   "#4e9813", "#139878", "#1177a5",
                   "#112ca5", "#5c11a5", "#a51179"]
-    if(!this.hashColores[key]){
-      this.hashColores[key] = colors[Math.round(colors.length * Math.random())];
+    if(this.hashColores[key]){
+      return this.hashColores[key];
     }
+    let color = colors[0];
+    while(!(Object.keys(this.hashColores).length == 0) && (Object as any).values(this.hashColores).includes(color)){
+      color = colors[Math.round(colors.length * Math.random())];
+    }
+
+    this.hashColores[key] = color;
     return this.hashColores[key];
   }
 
@@ -153,19 +158,21 @@ export class PpyCanva {
     });
 
     dispatch.on("load.pie", function(presupuestosByName) {
-      let width  = this.smallScreen ? this.appHelper.platform.width() * 0.9 : 600;
-      let height = width * 0.9;
-      let radius = width * 0.8 / 2;
+      let width  = this.smallScreen ? this.appHelper.platform.width() * 0.8 : 600;
+      let height = width * 0.8;
+      let radius = width * 0.7 / 2;
       let data = presupuestosByName["$"+self.selectData].programas;
 
       let legend = d3.select("#pie-info-legend");
       legend.html('');
 
+
       let arc = d3.arc()
-                  .outerRadius(radius - 10)
+                  .outerRadius(radius)
                   .innerRadius(0);
+
       let outerArc = d3.arc()
-            	         .outerRadius(width-(width*0.333))
+            	         .outerRadius(radius/2)
                        .innerRadius(0);
 
       let pie = d3.pie()
@@ -225,29 +232,38 @@ export class PpyCanva {
          .style("fill-opacity", .5)
          .style("stroke", function(d) { return self.colores(d.data.nombre); })
          .style("stroke-width", 2)
+
+        let textPosition = self.smallScreen ? radius + 10 : 255;
         g.append("text")
         .attr("transform", function(d) {
-          let c = arc.centroid(d);
-          let c2= outerArc.centroid(d);
-          return "translate(" + (c2[0] < 0 ? -255 : 255) +  ',' +
-          c2[1] +  ")";
+          let c = arc.centroid(d),
+          x = c[0],
+          y = c[1],
+          h = Math.sqrt(x*x + y*y);
+          return "translate(" + (c[0] < 0 ? -1 * textPosition : textPosition) +  ',' +
+          y/h*(radius+10) +  ")";
         })
         .attr("dy", ".35em")
         .text(function(d) {
            let percent = Math.round(1000 * d.data.total / total)/10;
            return self.appHelper.numberFormatter(percent)+'%';
          })
-         .style("font-size","1em")
-         .style("text-anchor","middle")
+         .style("font-size",function(){ return self.smallScreen ? "0.75em" : "1em"})
+         .style("text-anchor",function(d) {
+           let c = arc.centroid(d),
+           x = c[0];
+           return x < 0 ? "end" : "start";
+         })
 	       .style("fill", "black");
 
+        let lineEnd = self.smallScreen ? radius : 255;
         g.append("polyline")
          .attr("points", function(d) {
-           let c = outerArc.centroid(d),
+           let c = arc.centroid(d),
            x = c[0],
            y = c[1],
            h = Math.sqrt(x*x + y*y);
-           return [arc.centroid(d), [x/h * radius, c[1]], [(x < 0 ? -210 : 210), c[1]]];
+           return [c, [x/h*(radius+10), y/h*(radius+10)], [(x < 0 ? -1 * lineEnd : lineEnd), y/h*(radius+10)]];
          })
          .style("opacity", ".3")
          .style("stroke", "black")

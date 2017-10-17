@@ -148,7 +148,7 @@
             <div class="view-content">
 
               <ion-item class="item-grouper">Grafica
-                <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map', [], [], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa')">
+                <a class="leaflet-control-zoom-out title-button" (click)="appHelper.download('#map',['.leaflet-control-zoom', '.leaflet-top.leaflet-right', '.leaflet-bottom'], [], 'lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa')">
                   <i class="fa fa-download"></i>
                 </a>
                 <button ion-button class="title-page-button" style="font-size: 16px;padding-left: 0;"  #mapa (click)="appHelper.downloadjson('lineasAccion', this.item.institucion+'_'+item.id, 'linea_de_Accion_show', 'mapa.json', departamentoGeoJson, mapa)">

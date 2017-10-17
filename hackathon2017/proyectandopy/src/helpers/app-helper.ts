@@ -46,6 +46,8 @@ export class AppHelper {
     return new Promise<any>((resolve) => {
       let target = self.getElement(div);
       html2canvas(target, {
+        allowTaint: true,
+        useCORS: true,
         onclone: function(doc) {
           excludedElements.forEach(function (div) {
             let element = self.getElement(div, doc);
@@ -61,6 +63,7 @@ export class AppHelper {
           });
         }
       }).then( canvas => {
+        console.log(canvas);
         let url = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
         resolve(url);
       });
@@ -134,7 +137,7 @@ export class AppHelper {
            });
            toast.present();
            console.log(entry.toURL());
-           self.fileOpener.open(entry.toURL(), 'image/jpg')
+           self.fileOpener.open(entry.toURL(), 'text/plain')
            .catch(e => {
              console.log('Error openening file', e)
            });

@@ -413,7 +413,7 @@ export class ShowLineaAccionPage extends ShowBasePage  {
         "Metas": {"nombre": self.unidad, "simbolo": self.unidad, "titulo": "Metas por departamento"},
       }
 
-      self.map = L.map('map').setView([-23.88, -55.76], 6);
+      self.map = L.map('map', { preferCanvas: true }).setView([-23.88, -55.76], 6);
 
       let geoPorcentaje = new L.GeoJSON(self.departamentoGeoJson, {
         style: function (feature) {
