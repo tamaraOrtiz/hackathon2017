@@ -6,6 +6,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { ToastController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 import * as d3 from "d3";
 @Injectable()
 export class AppHelper {
@@ -16,7 +17,7 @@ export class AppHelper {
 
   constructor(public socialSharing: SocialSharing, public platform: Platform,
     private transfer: FileTransfer, private file: File, public toastCtrl: ToastController,
-    private fileOpener: FileOpener) {
+    private fileOpener: FileOpener, public loadingCtrl: LoadingController) {
     let localeFormatter = d3.formatLocale({ "decimal": ",", "thousands": ".", "grouping": [3]});
     this.numberFormat = localeFormatter.format(",.2f")
   }
@@ -173,19 +174,23 @@ export class AppHelper {
       window.open(appnames[via], '_blank');
     } else {
       this.socialSharing.shareWithOptions({
-        message: 'share this', // not supported on some apps (Facebook, Instagram)
-        subject: 'the subject', // fi. for email
+        message: message, // not supported on some apps (Facebook, Instagram)
+        subject: null, // fi. for email
         files: [image],
-        chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
-      });//(via, message, '', url, image);
+        chooserTitle: 'Seleccione una aplicación' // Android only, you can override the default share sheet title
+      });
     }
   }
 
 
-  shareDiv(div, excludedElements=[], showElements=[], entidad, id, page, filename, background=false, via='facebook'){
+  shareDiv(div, message, excludedElements=[], showElements=[], entidad, id, page, filename, background=false, via='facebook'){
+    let loading = this.loadingCtrl.create({
+       content: 'Por favor espere...'
+    });
+      loading.present();
     this.download(div, excludedElements=[], showElements=[], entidad, id, page, filename, true).then((image) => {
-
-      this.share(via, null, null, image);
+      loading.dismiss();
+      this.share(via, message, null, image);
     });
   }
 

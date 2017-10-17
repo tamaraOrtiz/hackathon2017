@@ -3,7 +3,7 @@
     <button ion-button class="leaflet-control-center-zoom-out" (click)="appHelper.download('.graph-canva', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica', 'estadistica.jpg')">
       <i class="fa fa-download"></i>
     </button>
-    <button ion-button class="leaflet-control-center-zoom-out" (click)="appHelper.shareDiv('.graph-canva', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica', 'estadistica.jpg')">
+    <button ion-button class="leaflet-control-center-zoom-out" (click)="appHelper.shareDiv('.graph-canva', 'Mira esta estadistica', ['.selection-info'], ['.graph-title'], 'Entidad', item.nivelid+'_'+item.entidadid, 'estadistica', 'estadistica.jpg')">
       <i class="fa fa-share-alt" aria-hidden="true"></i>
     </button>
   </ion-label>
